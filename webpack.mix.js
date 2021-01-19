@@ -12,4 +12,21 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+    .sass('resources/sass/app.scss', 'public/css')
+
+    .copyDirectory('resources/assets', 'public/assets')
+    .copyDirectory('resources/dist', 'public/dist');
+/*
+.styles([
+    'resources/dist/css/style.css',
+], 'public/assets/css/index.css')
+    .scripts([
+        'resources/assets/js/jquery-3.3.1.min.js',
+        'resources/assets/js/popper.min.js',
+        'resources/assets/js/bootstrap.min.js',
+        'resources/assets/js/magnific-popup.min.js',
+        'resources/assets/js/owl.carousel.min.js',
+        'resources/assets/js/scrollIt.min.js',
+        'resources/assets/js/validator.min.js',
+        'resources/assets/js/contact.js',
+        'resources/assets/js/custom.js'], 'public/assets/js/index.js')*/

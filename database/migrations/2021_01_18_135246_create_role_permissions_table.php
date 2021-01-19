@@ -13,12 +13,14 @@ class CreateRolePermissionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('role_permissions', function (Blueprint $table) {
-            $table->unsignedInteger('role_id');
-            $table->unsignedInteger('permission_id');
+        Schema::create('permission_role', function (Blueprint $table) {
+            //$table->unsignedInteger('role_id');
+            //$table->unsignedInteger('permission_id');
+            $table->timestamps();
 
-            $table->foreign('role_id')->reference('id')->on('roles')->onDelete('cascade');
-            $table->foreign('permission_id')->reference('id')->on('permissions')->onDelete('cascade');
+            $table->foreignId('role_id')->constrained('roles')->onDelete('cascade');
+            $table->foreignId('permission_id')->constrained('permissions')->onDelete('cascade');
+
             $table->primary(['role_id', 'permission_id']);
         });
     }
