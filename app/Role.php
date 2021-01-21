@@ -24,11 +24,17 @@ class Role extends Model
      * @param  Permission $permission
      * @return mixed
      */
-    public function givePermissionTo(Permission $permission){
+    public function givePermissionTo( $permission ){
         if(is_string($permission)){
             $permission = Permission::whereName($permission)->firstOrFail();
+        }elseif (is_array($permission)){
+            foreach ($permission as $key => $permit){
+                $permit = Permission::whereName($permit)->firstOrFail();
+                $this->permissions()->sync($permit, false);
+            }
+            return true;
         }
-
-        return $this->permissions()->sync($permission, false)->withTimestamps();
+        return $this->permissions()->sync($permission, false);
     }
 }
+
