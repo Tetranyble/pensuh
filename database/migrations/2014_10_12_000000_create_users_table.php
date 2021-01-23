@@ -21,14 +21,15 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('active')->default(false);
             $table->integer('student_code')->unique()->nullable();//Auto generated
             $table->string('gender')->default('');
+            $table->string('role_id')->default('');
             $table->string('blood_group')->default('');
             $table->string('nationality')->default('');
             $table->string('phone')->unique()->default('');
             $table->string('address')->default('');
             $table->text('about')->default('');
             $table->string('photo')->default('');
+            $table->integer('department_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->integer('section_id')->unsigned()->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

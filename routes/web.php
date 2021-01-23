@@ -22,6 +22,8 @@ Route::get('/authenticate', function () {
 
 Auth::routes();
 
+//Route::get('/user');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('users', 'UsersController');
 Route::resource('roles', 'RolesController')->middleware('can:edit');
+

@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','gender', 'student_code', 'role_id', 'blood_group', 'nationality', 'phone', 'address', 'about', 'photo', 'section_id', 'department_id'
     ];
 
     /**
@@ -50,5 +50,21 @@ class User extends Authenticatable
 
     public function permissions(){
         return $this->roles->map->permissions->flatten()->pluck('name')->unique();
+    }
+
+    public function classes(){
+        return $this->belongsToMany(Section::class)->withTimestamps();
+    }
+    public function assignClasses($classes){
+        if(is_string($classes)){
+            $section = Section::whereName($classes)->firstOrFail();
+        }elseif (is_array($classes)){
+            foreach ($classes as $key => $class){
+                $class = Section::whereName($class)->firstOrFail();
+                $this->classes()->sync($class, false)->withTimestamps();
+            }
+            return true;
+        }
+        return $this->classes()->sync($section, false)->withTimestamps();
     }
 }

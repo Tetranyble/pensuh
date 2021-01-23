@@ -34,7 +34,7 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'view teacher']);
 
         Permission::create(['name' => 'create result']);
-        Permission::create(['name' => 'create result']);
+        Permission::create(['name' => 'view result',]);
         Permission::create(['name' => 'edit result']);
 
         Permission::create(['name' => 'view book']);
@@ -48,23 +48,25 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'delete account']);
 
         // or may be done by chaining
+        $role = Role::create(['name' => 'student'])
+            ->givePermissionTo(['view result']);
         $role = Role::create(['name' => 'teacher'])
-            ->givePermissionTo(['view teacher', 'view student', 'view student attendance']);
+            ->givePermissionTo(['view teacher', 'view student', 'view result', 'view student attendance']);
         $role = Role::create(['name' => 'form teacher'])
             ->givePermissionTo(['view teacher', 'view student', 'view student attendance', 'child safety attendance', 'take staff attendance', 'take student attendance']);
         $role = Role::create(['name' => 'librarian'])
-            ->givePermissionTo(['view book', 'create book', 'delete book', 'edit book', 'view staff attendance']);
+            ->givePermissionTo(['view book', 'create book', 'delete book', 'edit book', 'view result', 'view staff attendance']);
         $role = Role::create(['name' => 'security'])
-            ->givePermissionTo(['view book', 'create book', 'delete book', 'edit book', 'view staff attendance','child safety attendance', 'view staff attendance']);
+            ->givePermissionTo(['view book', 'create book', 'delete book', 'edit book', 'view result', 'view staff attendance','child safety attendance', 'view staff attendance']);
         $role = Role::create(['name' => 'principal'])
-            ->givePermissionTo(['create student', 'edit student', 'delete student','view student','admit student',
+            ->givePermissionTo(['create student', 'edit student', 'view result', 'delete student','view student','admit student',
                 'take student attendance','take staff attendance','view staff attendance','view student attendance',
                 'create staff','edit staff','delete staff','view teacher','create result','create result','edit result',
                 'view account', 'create account', 'edit account', 'delete account'
                 ]);
         $role = Role::create(['name' => 'bursar'])
             ->givePermissionTo(['view student', 'view account', 'create account', 'edit account', 'delete account',
-                'view staff attendance','view student attendance',
+                'view staff attendance','view student attendance', 'view result',
                 'view teacher'
             ]);
 
