@@ -1,10 +1,12 @@
 @extends('dashboard.layouts.dashboard')
 
 @section('content')
+
     <div class="container-fluid">
         <h4 class="card-title mt-5">Create New User</h4>
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12">
+                <form class="mt-4" method="POST" action="{{ route('users.store') }}" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-body">
                         @if ($errors->any())
@@ -16,11 +18,11 @@
                                 </ul>
                             </div>
                         @endif
-                        <form class="mt-4" method="POST" action="{{ route('users.store') }}" enctype="multipart/form-data">
+
                             @csrf()
                            <div class="row">
                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                   <div class="form-group mb-4">
+                                   <div class="form-group required mb-4 ">
                                        <label for="name">Name</label>
                                        <input type="text" id="name"  class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                                        @error('name')
@@ -147,10 +149,10 @@
                                        <label for="role_id">User Role</label>
                                        <select  class="form-control @error('role_id') is-invalid @enderror" name="role_id" value="{{ old('role_id') }}" required autocomplete="blood_group" id="role_id">
                                            @foreach($roles as $role)
-                                               <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                               <option value="{{ $role->name }}">{{ $role->name }}</option>
                                                @endforeach
                                        </select>
-                                       @error('blood_group')
+                                       @error('role_id')
                                        <span class="invalid-feedback" role="alert">
                                            <strong>{{ $message }}</strong>
                                        </span>
@@ -168,7 +170,7 @@
                                        @enderror
                                    </div>
                                </div>
-                               <div id="student-record" class="col-lg-6 col-md-6 col-sm-12 d-none" data-js="hide">
+                               <div class="col-lg-6 col-md-6 col-sm-12 d-none" data-js="hide">
                                    <div class="form-group mb-4">
                                        <label for="session">Session</label>
                                        <input type="text"  class="form-control @error('session') is-invalid @enderror" name="session" value="{{ old('session') }}" autocomplete="session" id="session">
@@ -333,7 +335,48 @@
                                        @enderror
                                    </div>
                                </div>
+                               <div class="col-lg-6 col-md-6 col-sm-12 d-none" data-js="teacher">
+                                   <div class="form-group mb-4">
+                                       <label for="department_id">Department</label>
+                                       <select  class="form-control @error('department_id') is-invalid @enderror" name="department_id" value="{{ old('department_id') }}" required autocomplete="department_id" id="department_id">
+                                           @foreach($departments as $department)
+                                               <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                           @endforeach
+                                       </select>
+                                       @error('department_id')
+                                       <span class="invalid-feedback" role="alert">
+                                           <strong>{{ $message }}</strong>
+                                       </span>
+                                       @enderror
+                                   </div>
+                               </div>
                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 d-none" data-js="teacher">
+                                <h4 class="card-title mt-5">Assign Class</h4>
+                               <div class="row">
+                                   @foreach($classes as $class)
+                                       <div class="col-lg-6 col-md-6 col-sm-12">
+                                           <div class="card">
+                                               <div class="card-body">
+                                                   <h4 class="card-title">{{ $class->name }}</h4>
+
+                                                   @forelse ($class->sections as $section)
+                                                       <fieldset class="checkbox">
+                                                           <label>
+                                                               <input type="checkbox" name="sections[]" value="{{ $section->id }}" id="{{ $section->id }}"> {{ $section->name }}
+                                                           </label>
+                                                       </fieldset>
+                                                   @empty
+                                                       <div class="custom-control custom-checkbox">
+                                                           <label class="custom-control-label" for="customCheck1"> There's no section for {{ $class->name }} </label>
+                                                       </div>
+                                                   @endforelse
+                                               </div>
+                                           </div>
+                                       </div>
+                                   @endforeach
+                               </div>
+                            </div>
                             <div class="row">
                                 <div class="form-group row mb-0">
                                     <div class="col-md-6 offset-md-4">
@@ -343,9 +386,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
+
                     </div>
                 </div>
+
+                </form>
             </div>
 
         </div>
@@ -356,7 +401,7 @@
             $(document).ready(function(){
                 let info =  function(e = {}){
                     var str = $('#role_id').val();
-                    if(str ==1){
+                    if(str == "student"){
                         $.each(document.querySelectorAll('[data-js="hide"]'), function(i, value){
                             $(value).removeClass('d-none').slideDown('slow')
                         })
@@ -367,10 +412,20 @@
                         })
 
                     }
+                    if(str === "teacher" || str === "form teacher"){
+                        $.each(document.querySelectorAll('[data-js="teacher"]'), function(i, value){
+                            $(value).removeClass('d-none').slideDown('slow')
+                        })
+                    }else{
+                        $.each(document.querySelectorAll('[data-js="teacher"]'), function(i, value){
+                            $(value).removeClass('d-none').slideUp('slow')
+                        })
+                    }
                     // str = str.replace(/\W+(?!$)/g, '-').toLowerCase();//rplace stapces with dash
                     // $('#role_slug').val(str);
                     // $('#role_slug').attr('placeholder', str);
                 }
+
                 $('#role_id').on('change', function(e){
                     info(e)
                 });

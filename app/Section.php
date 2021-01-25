@@ -11,4 +11,11 @@ class Section extends Model
     {
         return $this->belongsToMany(User::class)->withTimestamps();
     }
+    /**
+     * Get the class that owns the section.
+     */
+    public function classes()
+    {
+        return $this->belongsTo('App\Post');
+    }
 }

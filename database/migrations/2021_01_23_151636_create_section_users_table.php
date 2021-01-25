@@ -13,7 +13,7 @@ class CreateSectionUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('section_user', function (Blueprint $table) {
+        Schema::create('section_users', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('section_id')->constrained('sections')->onDelete('cascade');
             $table->primary(['user_id', 'section_id']);
