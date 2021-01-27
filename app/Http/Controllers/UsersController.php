@@ -30,14 +30,15 @@ class UsersController extends Controller
     {
         $request->validate(['user' => 'string']);
         $role = Role::whereName($request->query('user'))->get();
-        $users = User::whereIn('role_id',$role)->get();
-        if(!$users){
-            $users = User::all()->except();
-        }else{
 
+        if($role && $request->query('user') === 'student'){
+            $users = User::whereIn('role_id',$role)->get();
+        }else{
+            $role = Role::whereName('student')->first();
+            $users = User::where('role_id', '!=', $role->id)->get();
         }
 
-        return $users;
+        return view('dashboard.user.student_index', $users);
         //$users = User::orderBy('id', 'desc')->get();
         //return view('admin.users.index',['users'=>$users]);
     }
@@ -46,14 +47,17 @@ class UsersController extends Controller
      * Show the form for creating a new resource.
      *
      * @param Role $role
+     * @param Section $section
+     * @param Department $departments
      * @return \Illuminate\Http\Response
      */
-    public function create(Role $role, Classes $classes, Department $departments)
+    public function create(Role $role, Section $section, Department $departments, Classes $class)
     {
         $roles = $role->get();
-        $classes = $classes->get();
+        $classes = $class->get();
+        $sections = $section->with('classes')->get();
         $departments = $departments->get();
-        return view('dashboard.user.create', compact('roles', 'classes', 'departments'));
+        return view('dashboard.user.create', compact('roles', 'sections', 'departments', 'classes'));
     }
 
     /**
@@ -97,7 +101,7 @@ class UsersController extends Controller
             $request->validate([ 'sections' => 'required|min:1']);
         }elseif ($request->input('role_id') === 'student'){
             $student = $request->validate([
-                    'user_id' => 'numeric',
+                    'class_id' => 'numeric',
                     'session' => 'nullable|string',
                     'group' => 'nullable|string',
                     'birthday' => 'required|date',

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Section extends Model
 {
     protected $guarded = [];
+
     public function classTeacher()
     {
         return $this->belongsToMany(User::class)->withTimestamps();
@@ -16,6 +17,6 @@ class Section extends Model
      */
     public function classes()
     {
-        return $this->belongsTo('App\Post');
+        return $this->belongsTo(Classes::class);
     }
 }

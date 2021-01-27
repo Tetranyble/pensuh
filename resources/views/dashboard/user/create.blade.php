@@ -335,6 +335,23 @@
                                        @enderror
                                    </div>
                                </div>
+                               <div class="col-lg-6 col-md-6 col-sm-12" data-js="hide">
+                                   <div class="form-group mb-4">
+                                       <label for="class_id">Class</label>
+                                       <select  class="form-control @error('class_id') is-invalid @enderror" name="class_id" value="{{ old('class_id') }}" required autocomplete="class_id" id="class_id">
+                                           @foreach($sections as $section)
+                                               <option value="{{ $section->id }}"> {{ $section->classes->name }} {{ $section->name  }}</option>
+                                           @endforeach
+
+
+                                       </select>
+                                       @error('class_id')
+                                       <span class="invalid-feedback" role="alert">
+                                           <strong>{{ $message }}</strong>
+                                       </span>
+                                       @enderror
+                                   </div>
+                               </div>
                                <div class="col-lg-6 col-md-6 col-sm-12 d-none" data-js="teacher">
                                    <div class="form-group mb-4">
                                        <label for="department_id">Department</label>

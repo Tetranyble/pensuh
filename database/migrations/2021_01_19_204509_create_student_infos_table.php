@@ -32,6 +32,7 @@ class CreateStudentInfosTable extends Migration
             $table->string('mother_occupation')->nullable();
             $table->string('mother_designation')->nullable();
             $table->integer('mother_annual_income')->nullable();
+            $table->integer('class_id')->unsigned()->nullable();
             $table->integer('user_id')->unsigned()->nullable();
             $table->timestamps();
         });
