@@ -39,14 +39,14 @@ class User extends Authenticatable
     ];
 
     public function roles(){
-        return $this->belongsTo(Role::class)->withTimestamps();
+        return $this->belongsToMany(Role::class)->withTimestamps();
     }
 
     public function assignRole($role){
         if(is_string($role)){
             $role = Role::whereName($role)->firstOrFail();
         }
-        $this->roles()->sync($role, false)->withTimestamps();
+        $this->roles()->sync($role, false);
     }
 
     public function permissions(){
@@ -67,5 +67,10 @@ class User extends Authenticatable
             return true;
         }
         return $this->classes()->sync($section, false)->withTimestamps();
+    }
+
+    public function school()
+    {
+        return $this->belongsTo('App\School');
     }
 }

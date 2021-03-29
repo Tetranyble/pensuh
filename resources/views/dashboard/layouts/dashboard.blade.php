@@ -299,7 +299,7 @@
         <!-- ============================================================== -->
         <!-- Container fluid  -->
         <!-- ============================================================== -->
-        @include('partial.flash-message')
+        @include('components.flash-message')
         <div class="container-fluid">
             @yield('content')
         </div>

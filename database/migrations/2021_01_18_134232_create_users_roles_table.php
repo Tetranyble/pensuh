@@ -16,11 +16,10 @@ class CreateUsersRolesTable extends Migration
         Schema::create('role_user', function (Blueprint $table) {
             //$table->unsignedInteger('user_id');
             //$table->unsignedInteger('role_id');
-            $table->timestamps();
-
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('role_id')->constrained('roles')->onDelete('cascade');
             $table->primary(['user_id', 'role_id']);
+            $table->timestamps();
         });
     }
 

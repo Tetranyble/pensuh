@@ -14,61 +14,53 @@ class PermissionSeeder extends Seeder
     public function run()
     {
         // create permissions
-        Permission::create(['name' => 'create student']);
-        Permission::create(['name' => 'edit student']);
-        Permission::create(['name' => 'delete student']);
+        Permission::create(['name' => 'admission_status', 'slug' => 'admission_status']);
 
-        Permission::create(['name' => 'view student']);
-        Permission::create(['name' => 'admit student']);
-
-        Permission::create(['name' => 'take student attendance']);
-        Permission::create(['name' => 'take staff attendance']);
-        Permission::create(['name' => 'view staff attendance']);
-        Permission::create(['name' => 'view student attendance']);
-        Permission::create(['name' => 'child safety attendance']);
+        Permission::create(['name' => 'create_student', 'slug' => 'create student']);
+        Permission::create(['name' => 'edit_student', 'slug' => 'edit student']);
+        Permission::create(['name' => 'delete_student', 'slug' => 'delete student']);
+        Permission::create(['name' => 'update_student', 'slug' => 'update student']);
+        Permission::create(['name' => 'show_student', 'slug' => 'show student']);
+        Permission::create(['name' => 'view_student', 'slug' => 'show student']);
+        Permission::create(['name' => 'admit_student', 'slug' => 'admit student']);
 
 
-        Permission::create(['name' => 'create staff']);
-        Permission::create(['name' => 'edit staff']);
-        Permission::create(['name' => 'delete staff']);
-        Permission::create(['name' => 'view teacher']);
+        Permission::create(['name' => 'take_student_attendance', 'slug' => 'take student attendance']);
+        Permission::create(['name' => 'take_staff_attendance', 'slug' => 'take staff attendance']);
 
-        Permission::create(['name' => 'create result']);
-        Permission::create(['name' => 'view result',]);
-        Permission::create(['name' => 'edit result']);
+        Permission::create(['name' => 'view_student_attendance', 'slug' => 'view student attendance']);
+        Permission::create(['name' => 'view_staff_attendance', 'slug' => 'view staff attendance']);
 
-        Permission::create(['name' => 'view book']);
-        Permission::create(['name' => 'create book']);
-        Permission::create(['name' => 'edit book']);
-        Permission::create(['name' => 'delete book']);
+        Permission::create(['name' => 'child_safety_attendance', 'slug' => 'child safety attendance']);
 
-        Permission::create(['name' => 'view account']);
-        Permission::create(['name' => 'create account']);
-        Permission::create(['name' => 'edit account']);
-        Permission::create(['name' => 'delete account']);
 
-        // or may be done by chaining
-        $role = Role::create(['name' => 'student'])
-            ->givePermissionTo(['view result']);
-        $role = Role::create(['name' => 'teacher'])
-            ->givePermissionTo(['view teacher', 'view student', 'view result', 'view student attendance']);
-        $role = Role::create(['name' => 'form teacher'])
-            ->givePermissionTo(['view teacher', 'view student', 'view student attendance', 'child safety attendance', 'take staff attendance', 'take student attendance']);
-        $role = Role::create(['name' => 'librarian'])
-            ->givePermissionTo(['view book', 'create book', 'delete book', 'edit book', 'view result', 'view staff attendance']);
-        $role = Role::create(['name' => 'security'])
-            ->givePermissionTo(['view book', 'create book', 'delete book', 'edit book', 'view result', 'view staff attendance','child safety attendance', 'view staff attendance']);
-        $role = Role::create(['name' => 'principal'])
-            ->givePermissionTo(['create student', 'edit student', 'view result', 'delete student','view student','admit student',
-                'take student attendance','take staff attendance','view staff attendance','view student attendance',
-                'create staff','edit staff','delete staff','view teacher','create result','create result','edit result',
-                'view account', 'create account', 'edit account', 'delete account'
-                ]);
-        $role = Role::create(['name' => 'bursar'])
-            ->givePermissionTo(['view student', 'view account', 'create account', 'edit account', 'delete account',
-                'view staff attendance','view student attendance', 'view result',
-                'view teacher'
-            ]);
+        Permission::create(['name' => 'create_staff', 'slug' => 'create staff']);
+        Permission::create(['name' => 'edit_staff', 'slug' => 'edit staff']);
+        Permission::create(['name' => 'delete_staff', 'slug' => 'delete staff']);
+        Permission::create(['name' => 'view_staff', 'slug' => 'view teacher']);
+        Permission::create(['name' => 'update_staff', 'slug' => 'update teacher']);
+
+        Permission::create(['name' => 'create_result', 'slug' => 'create result']);
+        Permission::create(['name' => 'view_result', 'slug' => 'view result']);
+        Permission::create(['name' => 'edit_result', 'slug' => 'edit result']);
+        Permission::create(['name' => 'delete_result', 'slug' => 'edit result']);
+        Permission::create(['name' => 'update_result', 'slug' => 'update result']);
+
+        Permission::create(['name' => 'view_book', 'slug' => 'view book']);
+        Permission::create(['name' => 'create_book', 'slug' => 'create book']);
+        Permission::create(['name' => 'edit_book', 'slug' => 'edit book']);
+        Permission::create(['name' => 'delete_book', 'slug' => 'delete book']);
+        Permission::create(['name' => 'update_book', 'slug' => 'update book']);
+
+        Permission::create(['name' => 'update_account', 'slug' => 'update account']);
+        Permission::create(['name' => 'view_account', 'slug' => 'view account']);
+        Permission::create(['name' => 'create_account', 'slug' => 'create account']);
+        Permission::create(['name' => 'edit_account', 'slug' => 'edit account']);
+        Permission::create(['name' => 'delete_account', 'slug' => 'delete account']);
+
+        Permission::create(['name' => 'master', 'slug' => 'master']);
+
+
 
     }
 }

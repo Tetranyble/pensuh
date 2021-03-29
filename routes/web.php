@@ -13,17 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard.index');
-});
-Route::get('/authenticate', function () {
-    return view('dashboard.authentication');
-});
-
 Auth::routes();
 
-//Route::get('/user');
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'FrontController@index')->name('home');
+Route::get('/events', 'FrontController@event')->name('event');
+Route::get('/news', 'FrontController@news')->name('news');
+Route::get('/classes', 'FrontController@classes')->name('classes');
+Route::get('/about', 'FrontController@about')->name('about');
+Route::get('/schedule', 'FrontController@schedule')->name('schedule');
+Route::get('/teachers', 'FrontController@teachers')->name('teachers');
+Route::get('/contacts', 'FrontController@contacts')->name('contacts');
+Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 Route::resource('users', 'UsersController');
 Route::resource('roles', 'RolesController')->middleware('can:edit');
 

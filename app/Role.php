@@ -36,5 +36,8 @@ class Role extends Model
         }
         return $this->permissions()->sync($permission, false);
     }
+    public function allowTo($role){
+
+    }
 }
 
