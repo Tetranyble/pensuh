@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Event;
 use App\School;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,8 @@ class FrontController extends Controller
 {
     public function index(){
         $home = School::first();
-        return view('frontend.home', compact('home'));
+        $events = Event::limit(3)->get();
+        return view('frontend.home', compact('home', 'events'));
     }
 
     public function news(){

@@ -82,26 +82,13 @@
                 <!--about-rw end-->
                 <div class="abt-img">
                     <ul class="masonary">
-                        <li class="width1 wow zoomIn" data-wow-duration="1000ms"><a href="assets/img/gallery1.jpg" data-group="set1"
-                                                                                    title="" class="html5lightbox"><img src="assets/img/gallery1.jpg" alt=""></a></li>
-                        <li class="width2 wow zoomIn" data-wow-duration="1000ms"><a href="assets/img/gallery2.jpg" data-group="set1"
-                                                                                    title="" class="html5lightbox"><img src="assets/img/gallery2.jpg" alt=""></a></li>
-                        <li class="width3 wow zoomIn" data-wow-duration="1000ms"><a href="assets/img/gallery4.jpg" data-group="set1"
-                                                                                    title="" class="html5lightbox"><img src="assets/img/gallery4.jpg" alt=""></a></li>
-                        <li class="width4 wow zoomIn" data-wow-duration="1000ms"><a href="assets/img/gallery6.jpg" data-group="set1"
-                                                                                    title="" class="html5lightbox"><img src="assets/img/gallery6.jpg" alt=""></a></li>
-                        <li class="width5 wow zoomIn" data-wow-duration="1000ms"><a href="assets/img/gallery8.jpg" data-group="set1"
-                                                                                    title="" class="html5lightbox"><img src="assets/img/gallery8.jpg" alt=""></a></li>
-                        <li class="width6 wow zoomIn" data-wow-duration="1000ms"><a href="assets/img/gallery7.jpg" data-group="set1"
-                                                                                    title="" class="html5lightbox"><img src="assets/img/gallery7.jpg" alt=""></a></li>
-                        <li class="width7 wow zoomIn" data-wow-duration="1000ms"><a href="assets/img/gallery9.jpg" data-group="set1"
-                                                                                    title="" class="html5lightbox"><img src="assets/img/gallery9.jpg" alt=""></a></li>
-                        <li class="width8 wow zoomIn" data-wow-duration="1000ms"><a href="assets/img/gallery10.jpg"
-                                                                                    data-group="set1" title="" class="html5lightbox"><img src="assets/img/gallery10.jpg" alt=""></a></li>
-                        <li class="width9 wow zoomIn" data-wow-duration="1000ms"><a href="assets/img/gallery3.jpg" data-group="set1"
-                                                                                    title="" class="html5lightbox"><img src="assets/img/gallery3.jpg" alt=""></a></li>
-                        <li class="width10 wow zoomIn" data-wow-duration="1000ms"><a href="assets/img/gallery5.jpg"
-                                                                                     data-group="set1" title="" class="html5lightbox"><img src="assets/img/gallery5.jpg" alt=""></a></li>
+                        @forelse($home->galleries as $key => $gallery)
+                        <li class="{{ 'width'.($key+1) }} wow zoomIn" data-wow-duration="1000ms"><a href="{{ asset($gallery->photo) }}" data-group="set1"
+                                                                                    title="{{ $gallery->name }}" class="html5lightbox"><img src="{{ asset($gallery->photo) }}" alt="{{ $home->name }}"></a></li>
+                        @empty
+                            'no data to show'
+                        @endforelse
+
                     </ul>
                 </div><!-- abt-img end-->
             </div>
@@ -344,51 +331,25 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="courses-list">
-                            <div class="course-card wow fadeInLeft" data-wow-duration="1000ms">
+                            @forelse($events as $key => $event)
+                                <div class="course-card wow fadeInLeft" data-wow-duration="{{$key === 0 ? '1000ms' : '400ms'}}">
                                 <div class="d-flex flex-wrap align-items-center">
                                     <ul class="course-meta">
-                                        <li><img src="assets/img/icon12.png" alt=""> 29/07/2020</li>
-                                        <li>11AM to 15PM</li>
-                                    </ul><span>FREE</span>
+                                        <li><img src="assets/img/icon12.png" alt="">{{ $event->start_date }}</li>
+                                        <li>{{ getTimeFromDate($event->start_date) }} to {{ getTimeFromDate($event->end_date) }}</li>
+                                    </ul><span>{{ $event->price ? money($event->price) : 'FREE' }}</span>
                                 </div>
-                                <h3><a href="event-single.html" title="">Digital Transformation Conference</a></h3>
+                                <h3><a href="{{ route('events.show', $event->slug) }}" title="">{{ $event->name }}</a></h3>
                                 <div class="d-flex flex-wrap">
-                                    <div class="posted-by"><img src="assets/img/ico2.png" alt=""> <a href="#" title="">Amanda Kern</a>
-                                    </div><span class="locat"><img src="assets/img/loct.png" alt="">43 castle road 517 district</span>
+                                    <div  class="posted-by"><img style="max-width: 26px;" src="{{ asset($event->host->photo) }}" alt=""> <a href="#" title="">{{ $event->host->name }}</a>
+                                    </div><span class="locat"><img src="assets/img/loct.png" alt="">{{ $event->location }}</span>
                                 </div>
                             </div>
-                            <!--course-card end-->
-                            <div class="course-card wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="400ms">
-                                <div class="d-flex flex-wrap align-items-center">
-                                    <ul class="course-meta">
-                                        <li><img src="assets/img/icon12.png" alt=""> 29/07/2020</li>
-                                        <li>11AM to 15PM</li>
-                                    </ul><span>$16</span>
-                                </div>
-                                <h3><a href="event-single.html" title="">Environment conference</a></h3>
-                                <div class="d-flex flex-wrap">
-                                    <div class="posted-by"><img src="assets/img/ico2.png" alt=""> <a href="#" title="">Cvita
-                                            Doleschall</a></div><span class="locat"><img src="assets/img/loct.png" alt="">43 castle road 517
-                    district</span>
-                                </div>
-                            </div>
-                            <!--course-card end-->
-                            <div class="course-card wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="600ms">
-                                <div class="d-flex flex-wrap align-items-center">
-                                    <ul class="course-meta">
-                                        <li><img src="assets/img/icon12.png" alt=""> 29/07/2020</li>
-                                        <li>11AM to 15PM</li>
-                                    </ul><span>$8</span>
-                                </div>
-                                <h3><a href="event-single.html" title="">Campus clean workshop</a></h3>
-                                <div class="d-flex flex-wrap">
-                                    <div class="posted-by"><img src="assets/img/ico2.png" alt=""> <a href="#" title="">Helena Brauer</a>
-                                    </div><span class="locat"><img src="assets/img/loct.png" alt="">43 castle road 517 district</span>
-                                </div>
-                            </div>
-                            <!--course-card end-->
+                            @empty
+                                <p>no data to display</p>
+                             @endforelse
                         </div>
-                        <!--courses-list end--> <a href="{{ route('event') }}" title="" class="all-btn">All Events <i
+                        <!--courses-list end--> <a href="{{ route('events.index') }}" title="" class="all-btn">All Events <i
                                 class="fa fa-long-arrow-alt-right"></i></a>
                         <div class="clearfix"></div>
                     </div>

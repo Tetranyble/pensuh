@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'FrontController@index')->name('home');
-Route::get('/events', 'FrontController@event')->name('event');
+Route::resource('/events', 'EventController');
 Route::get('/news', 'FrontController@news')->name('news');
 Route::get('/classes', 'FrontController@classes')->name('classes');
 Route::get('/about', 'FrontController@about')->name('about');

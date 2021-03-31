@@ -42,7 +42,7 @@
                     <li><a class="{{ (request()->is('/')) ? 'active' : '' }}" href="{{ route('home') }}" title="">Home</a></li>
                     <li><a class="{{ (request()->is('/about')) ? 'active' : '' }}" href="{{ route('about') }}" title="">About</a>
                         <ul>
-                            <li><a class="{{ (request()->is('/events')) ? 'active' : '' }}" href="{{ route('event') }}" title="">Events</a></li>
+                            <li><a class="{{ (request()->is('/events')) ? 'active' : '' }}" href="{{ route('events.index') }}" title="">Events</a></li>
                             <li><a class="{{ (request()->is('/schedule')) ? 'active' : '' }}" href="{{ route('schedule') }}" title="">Schedule</a></li>
 
                         </ul>
@@ -68,7 +68,7 @@
     <ul>
         <li><a class="{{ (request()->is('/')) ? 'active' : '' }}" href="{{ route('home') }}" title="">Home</a></li>
         <li><a class="{{ (request()->is('/about')) ? 'active' : '' }}" href="{{ route('about') }}" title="">About</a></li>
-        <li><a class="{{ (request()->is('/events')) ? 'active' : '' }}" href="{{ route('event') }}" title="">Events</a></li>
+        <li><a class="{{ (request()->is('/events')) ? 'active' : '' }}" href="{{ route('events.index') }}" title="">Events</a></li>
         <li><a class="{{ (request()->is('/schedule')) ? 'active' : '' }}" href="{{ route('schedule') }}" title="">Schedule</a></li>
         <li><a class="{{ (request()->is('/classes')) ? 'active' : '' }}" href="{{ route('classes') }}" title="">Classes</a></li>
         <li><a class="{{ (request()->is('/teachers')) ? 'active' : '' }}" href="{{ route('teachers') }}" title="">Teachers</a></li>

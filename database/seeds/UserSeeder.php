@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => bcrypt('ugbanawaji1234'), // password
             'remember_token' => Str::random(10),
+            'photo' => 'storage/user.png'
         ]);
 
         $user->assignRole('master');

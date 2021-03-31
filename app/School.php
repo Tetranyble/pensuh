@@ -11,4 +11,8 @@ class School extends Model
     public function users(){
         return $this->hasMany(User::class);
     }
+
+    public function galleries(){
+        return $this->hasMany(Gallery::class);
+    }
 }

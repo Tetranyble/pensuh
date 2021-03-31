@@ -73,4 +73,12 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\School');
     }
+
+    public function events(){
+        return $this->hasMany(Event::class);
+    }
+
+    public function hostEvents(){
+        return $this->hasMany(Event::class, 'host_id');
+    }
 }
