@@ -19,4 +19,12 @@ class Section extends Model
     {
         return $this->belongsTo(Classes::class);
     }
+
+    public function formTeacher(){
+        return $this->belongsToMany(User::class);
+    }
+
+    public function assignFormTeacher($user){
+        return $this->formTeacher()->sync($user);
+    }
 }

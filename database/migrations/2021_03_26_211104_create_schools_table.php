@@ -27,8 +27,10 @@ class CreateSchoolsTable extends Migration
             $table->string('school_excerpt_header')->nullable();
             $table->string('school_welcome_header')->nullable();
             $table->string('school_welcome_body')->nullable();
-            $table->string('school_longitude')->nullable();
-            $table->string('school_latitude')->nullable();
+            $table->text('map')->nullable()->default('');
+            $table->string('course_banner')->nullable()->default('storage/classes-banner.jpg');
+//            $table->string('school_longitude')->nullable();
+//            $table->string('school_latitude')->nullable();
             $table->string('school_class_header')->nullable();
             $table->string('school_class_body')->nullable();
             $table->string('school_teacher_header')->nullable();

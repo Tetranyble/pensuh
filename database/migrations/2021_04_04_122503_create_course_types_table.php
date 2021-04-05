@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSectionUsersTable extends Migration
+class CreateCourseTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateSectionUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('section_users', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('section_id')->constrained('sections')->onDelete('cascade');
-            $table->primary(['user_id', 'section_id']);
+        Schema::create('course_types', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->nullable();
+            $table->string('slug')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateSectionUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('section_users');
+        Schema::dropIfExists('course_types');
     }
 }

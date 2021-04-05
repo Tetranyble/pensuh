@@ -12,7 +12,7 @@ class TagSeeder extends Seeder
      */
     public function run()
     {
-        Tag::truncate();
+        //Tag::truncate();
         Tag::create([
             'name' => 'schools',
             'slug' => 'schools',

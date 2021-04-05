@@ -16,13 +16,14 @@ class CreateBlogsTable extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->integer('school_id')->nullable();
-            $table->integer('user_id')->nullable();
+            $table->string('slug')->nullable();
             $table->string('name')->nullable();
+            $table->string('photo')->nullable();
             $table->string('excerpt')->nullable();
             $table->text('body')->nullable();
             $table->timestamps();
 
-            $table->foreign('user_id')
+            $table->foreignId('user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');

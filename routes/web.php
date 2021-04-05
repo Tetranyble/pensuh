@@ -17,7 +17,7 @@ Auth::routes();
 
 Route::get('/', 'FrontController@index')->name('home');
 Route::resource('/events', 'EventController');
-Route::get('/news', 'FrontController@news')->name('news');
+Route::resource('/news', 'BlogController');
 Route::get('/classes', 'FrontController@classes')->name('classes');
 Route::get('/about', 'FrontController@about')->name('about');
 Route::get('/schedule', 'FrontController@schedule')->name('schedule');
@@ -25,5 +25,6 @@ Route::get('/teachers', 'FrontController@teachers')->name('teachers');
 Route::get('/contacts', 'FrontController@contacts')->name('contacts');
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 Route::resource('users', 'UsersController');
+Route::resource('courses', 'CourseController');
 Route::resource('roles', 'RolesController')->middleware('can:edit');
 

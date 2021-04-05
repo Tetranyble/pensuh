@@ -48,7 +48,7 @@
                             <li><a href="{{ route('classes') }}" title="">Our Classes</a></li>
                             <li><a href="{{ route('teachers') }}" title="">School Teachers</a></li>
                             <li><a href="{{ route('events.index') }}" title="">Recent Events</a></li>
-                            <li><a href="{{ route('news') }}" title="">Our News</a></li>
+                            <li><a href="{{ route('news.index') }}" title="">Our News</a></li>
                             <li><a href="{{ route('schedule') }}" title="">Schedule</a></li>
                         </ul>
                     </div>

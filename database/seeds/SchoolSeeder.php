@@ -30,8 +30,11 @@ class SchoolSeeder extends Seeder
             'school_excerpt_header'=> 'The Smarter Way to Learn Anything',
             'school_welcome_header' => 'Welcome to Pensuh School',
             'school_welcome_body' => 'Pensuh school is an automated school management software',
-            'school_latitude' => '',
-            'school_longitude' => '',
+//            'school_latitude' => '',
+//            'school_longitude' => '',
+            'map' => '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d992.0768131556866!2d6.847625129228582!3d5.952335083604819!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1043bd28b4b0d209%3A0x586a92d8335d4c00!2sPeculiar%20Nursery%20and%20Primary%20School%2C%20Ozubulu!5e0!3m2!1sen!2sng!4v1617175652942!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
+
+            'course_banner' => 'storage/classes-banner.jpg',
             'school_class_header' => 'Our Classes',
             'school_class_body' => 'our class schedule',
             'school_teacher_header' => 'Our Awesome Teachers',

@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Blog;
-use App\Category;
+use App\Course;
 use App\School;
-use App\Tag;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
-class BlogController extends Controller
+class CourseController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -23,25 +19,9 @@ class BlogController extends Controller
      */
     public function index()
     {
-        if (request('tag')){
-            $blogs = Tag::where('slug', request('tag'))->firstOrFail()->blogs()->paginate();
-        }elseif (request('category')){
-            $blogs = Category::where('slug', request('category'))->firstOrFail()->blogs()->paginate();
-        }elseif (request('search')){
-            $blogs = Blog::where([
-
-                ['name', 'LIKE', '%' . Str::lower(request('search')) . '%'],
-            ])->latest()->paginate();
-        } else{
-            $blogs = Blog::paginate();
-        }
         $home = School::first();
-        $latestBlogs = Blog::orderBy('created_at', 'desc')->take(3)->get();
-
-        $tags = Tag::all();
-        $categories = Category::withCount('blogs')->get();
-
-        return view('frontend.blogs', compact('blogs', 'tags', 'categories', 'latestBlogs', 'home'));
+        $courses = Course::paginate();
+        return view('frontend.courses', compact('home', 'courses'));
     }
 
     /**
@@ -68,10 +48,10 @@ class BlogController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Blog  $blog
+     * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function show(Blog $blog)
+    public function show(Course $course)
     {
         //
     }
@@ -79,10 +59,10 @@ class BlogController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Blog  $blog
+     * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function edit(Blog $blog)
+    public function edit(Course $course)
     {
         //
     }
@@ -91,10 +71,10 @@ class BlogController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Blog  $blog
+     * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blog $blog)
+    public function update(Request $request, Course $course)
     {
         //
     }
@@ -102,10 +82,10 @@ class BlogController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Blog  $blog
+     * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blog $blog)
+    public function destroy(Course $course)
     {
         //
     }

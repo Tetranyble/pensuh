@@ -2,6 +2,7 @@
 
 use App\SchoolType;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class SchoolTypeSeeder extends Seeder
 {
@@ -13,20 +14,24 @@ class SchoolTypeSeeder extends Seeder
     public function run()
     {
         SchoolType::create([
-            'name' => 'Secondary School',
-            'description' => 'Secondary school'
+            'name' => 'Nursery School',
+            'slug' => Str::lower(Str::slug('nursery school')),
+            'description' => 'primary school section'
         ]);
         SchoolType::create([
            'name' => 'Primary School',
-           'description' => 'primary school'
+           'slug' => Str::lower(Str::slug('primary school')),
+           'description' => 'primary school section'
         ]);
         SchoolType::create([
-            'name' => 'Nursery School',
-            'description' => 'nursery school'
+            'name' => 'Secondary School',
+            'slug' => Str::lower(Str::slug('secondary school')),
+            'description' => 'secondary school section'
         ]);
         SchoolType::create([
-            'name' => 'Creche School',
-            'description' => 'nursery school'
+            'name' => 'University',
+            'slug' => Str::lower(Str::slug('university')),
+            'description' => 'higher institution'
         ]);
     }
 }
