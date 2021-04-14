@@ -19,7 +19,7 @@ class CreateClassesTable extends Migration
             $table->string('slug')->nullable();
             $table->string('name')->nullable();
             $table->integer('school_id')->nullable();
-            $table->string('syllabus')->nullable();
+            $table->integer('syllabus_id')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
         });

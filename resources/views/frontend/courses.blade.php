@@ -1,6 +1,5 @@
-
 @extends('layouts.app')
-@section('title', 'Events')
+@section('title', 'Courses')
 @section('styles')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/main.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/button.min.css') }}">
@@ -23,12 +22,13 @@
             </div>
         </section>
         <!--pager-section end-->
-        <section class="classes-page">
+        <!-- "classes-page" add this class here -->
+        <section class="classes-page" style="padding: 0 0;">
             <div class="container">
-                <div  class="classes-banner" style="background-image: url({{ '"'.asset($home->course_banner. '"') }});"><span>Try now</span>
-                    <h2>Start Investing in You</h2><a href="classes.html" title="" class="btn-default">Classes <i
-                            class="fa fa-long-arrow-alt-right"></i></a>
-                </div>
+{{--                <div  class="classes-banner" style="background-image: url({{ '"'.asset($home->course_banner. '"') }});"><span>Try now</span>--}}
+{{--                    <h2>Start Investing in You</h2><a href="classes.html" title="" class="btn-default">Classes <i--}}
+{{--                            class="fa fa-long-arrow-alt-right"></i></a>--}}
+{{--                </div>--}}
                 <!--classes-banner end-->
                 <div class="classes-section">
                     <div class="classes-sec">
@@ -41,9 +41,13 @@
                                         </div>
                                         <div class="class-info">
                                             <h3><a href="{{ route('courses.show', $course->id) }}" title="">{{ $course->name }}</a></h3>
-                                            <span>Mon-Fri</span> <span>10 AM - 12 AM</span>
+                                            @forelse($course->schedules as $schedule)
+                                            <span>{{ Str::ucfirst($schedule->day) }}</span> <span>{{ $schedule->start . ' - ' . $schedule->end }}</span>
+                                                @empty
+                                                <span>No Time Table</span>
+                                            @endforelse
                                             <div class="d-flex flex-wrap align-items-center">
-                                                <div class="posted-by"><img style="width: 1.5rem;" src="{{ asset($course->teacher->photo) }}" alt=""> <a href="#" title="">{{ $course->teacher->name }}</a>
+                                                <div class="posted-by"><img style="width: 1.5rem;" src="{{ asset($course->teacher->first()->photo) }}" alt=""> <a href="#" title="">{{ $course->teacher->first()->firstname . ' ' . $course->teacher->first()->lastname }}</a>
                                                     {{--                                            </div><strong class="price">$45</strong>--}}
                                                 </div>
                                             </div>

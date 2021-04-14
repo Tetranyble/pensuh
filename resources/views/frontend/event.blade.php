@@ -14,8 +14,8 @@
                 <div class="pager-content text-center">
                     <h2>{{ $event->name }}</h2>
                     <ul>
-                        <li><a href="{{ route('home') }}" title="">Home</a></li>
-                        <li><a href="{{ route('events.index') }}" title="">Events</a></li>
+                        <li><a href="{{ route('home') }}" title="Events">Home</a></li>
+                        <li><a href="{{ route('events.index') }}" title="Events">Events</a></li>
                         <li><span>Events</span></li>
                     </ul>
                 </div>
@@ -50,19 +50,19 @@
                         <div class="sidebar class-sidebar position-static">
                             <div class="widget widget-information">
                                 <ul class="clt">
-                                    <li><img src="assets/img/cir3.png" alt="">
+                                    <li><img src="{{ asset('assets/img/cir3.png') }}" alt="">
                                         <div class="clt-info">
                                             <h3>{{ $event->location }}</h3>
                                         </div>
                                     </li>
-                                    <li><img src="assets/img/cir4.png" alt="">
+                                    <li><img src="{{ asset('assets/img/cir4.png') }}" alt="">
                                         <div class="clt-info">
                                             <h3>{{ $event->start_date }} <span>{{ getTimeFromDate($event->start_date) }} to {{ getTimeFromDate($event->end_date) }}</span></h3>
                                         </div>
                                     </li>
                                 </ul>
                                 <div class="tech-info">
-                                    <div class="tech-tble"><img src="assets/img/thumb1.png" alt="">
+                                    <div class="tech-tble"><img src="{{ asset('assets/img/thumb1.png') }}" alt="">
                                         <div class="tch-info">
                                             <h3>{{ $event->host->name }}</h3><span>Convener</span>
                                         </div>
@@ -77,7 +77,7 @@
                                     <ul>
                                         <li>
                                             <div class="d-flex flex-wrap">
-                                                <div class="icon-v"><img src="assets/img/icon15.png" alt=""></div>
+                                                <div class="icon-v"><img src="{{ asset('assets/img/icon15.png') }}" alt=""></div>
                                                 <div class="dd-cont">
                                                     <h4>Call</h4><span>{{ $home->contact_phone }}</span>
                                                 </div>
@@ -85,7 +85,7 @@
                                         </li>
                                         <li>
                                             <div class="d-flex flex-wrap">
-                                                <div class="icon-v"><img src="assets/img/icon16.png" alt=""></div>
+                                                <div class="icon-v"><img src="{{ asset('assets/img/icon16.png') }}" alt=""></div>
                                                 <div class="dd-cont">
                                                     <h4>Work Time</h4><span>{{ $home->work_time }}</span>
                                                 </div>
@@ -93,7 +93,7 @@
                                         </li>
                                         <li>
                                             <div class="d-flex flex-wrap">
-                                                <div class="icon-v"><img src="assets/img/icon17.png" alt=""></div>
+                                                <div class="icon-v"><img src="{{ asset('assets/img/icon17.png') }}" alt=""></div>
                                                 <div class="dd-cont">
                                                     <h4>Address</h4><span>{{ $home->address }}</span>
                                                 </div>

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Course;
-use App\School;
+use App\Syllabus;
 use Illuminate\Http\Request;
 
-class CourseController extends Controller
+class SyllabusController extends Controller
 {
     public function __construct()
     {
@@ -19,9 +18,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $home = School::first();
-        $courses = Course::paginate();
-        return view('frontend.courses', compact('home', 'courses'));
+        //
     }
 
     /**
@@ -48,23 +45,21 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Course  $course
+     * @param  \App\Syllabus  $syllabus
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show(Syllabus $syllabus)
     {
-        $home = School::first();
-        $courses = Course::paginate(5);
-        return view('frontend.course', compact('course', 'home', 'courses'));
+        return $syllabus->name;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Course  $course
+     * @param  \App\Syllabus  $syllabus
      * @return \Illuminate\Http\Response
      */
-    public function edit(Course $course)
+    public function edit(Syllabus $syllabus)
     {
         //
     }
@@ -73,10 +68,10 @@ class CourseController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Course  $course
+     * @param  \App\Syllabus  $syllabus
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $course)
+    public function update(Request $request, Syllabus $syllabus)
     {
         //
     }
@@ -84,10 +79,10 @@ class CourseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Course  $course
+     * @param  \App\Syllabus  $syllabus
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $course)
+    public function destroy(Syllabus $syllabus)
     {
         //
     }

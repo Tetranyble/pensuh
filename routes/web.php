@@ -26,5 +26,8 @@ Route::get('/contacts', 'FrontController@contacts')->name('contacts');
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 Route::resource('users', 'UsersController');
 Route::resource('courses', 'CourseController');
+Route::resource('admissions', 'AdmissionController');
+Route::resource('syllabi', 'SyllabusController');
+Route::resource('teachers', 'TeacherController');
 Route::resource('roles', 'RolesController')->middleware('can:edit');
 

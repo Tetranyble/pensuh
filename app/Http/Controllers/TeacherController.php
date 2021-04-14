@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Course;
 use App\School;
+use App\User;
 use Illuminate\Http\Request;
 
-class CourseController extends Controller
+class TeacherController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
-    }
     /**
      * Display a listing of the resource.
      *
@@ -20,8 +16,8 @@ class CourseController extends Controller
     public function index()
     {
         $home = School::first();
-        $courses = Course::paginate();
-        return view('frontend.courses', compact('home', 'courses'));
+        $teachers = User::whereHas("roles", function($q){ $q->where("name", "teacher"); })->paginate();
+        return view('frontend.teachers', compact('teachers', 'home'));
     }
 
     /**
@@ -48,23 +44,23 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Course  $course
+     * @param  \App\User  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show(User $teacher)
     {
         $home = School::first();
-        $courses = Course::paginate(5);
-        return view('frontend.course', compact('course', 'home', 'courses'));
+        $teachers = User::whereHas("roles", function($q){ $q->where("name", "teacher"); })->paginate();
+        return view('frontend.teacher', compact('teacher', 'home', 'teachers'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Course  $course
+     * @param  \App\User  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function edit(Course $course)
+    public function edit(User $teacher)
     {
         //
     }
@@ -73,21 +69,21 @@ class CourseController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Course  $course
+     * @param  \App\User  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $course)
+    public function update(Request $request, User $teacher)
     {
-        //
+        $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Course  $course
+     * @param  \App\User  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $course)
+    public function destroy(User $teacher)
     {
         //
     }

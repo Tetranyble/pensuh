@@ -25,5 +25,7 @@ class Classes extends Model
         }
         return $this->sections()->save($sections)->withTimestamps();
     }
-
+    public function syllabus(){
+        return $this->belongsTo(Syllabus::class);
+    }
 }

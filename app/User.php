@@ -2,9 +2,12 @@
 
 namespace App;
 
+use Facade\Ignition\Solutions\SolutionTransformer;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -29,6 +32,14 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'date_of_birth',
+    ];
     /**
      * The attributes that should be cast to native types.
      *
@@ -81,4 +92,68 @@ class User extends Authenticatable
     public function hostEvents(){
         return $this->hasMany(Event::class, 'host_id');
     }
+
+    public function formTeacher(){
+        return $this->belongsToMany(Section::class);
+    }
+    public function courses(){
+        return $this->belongsToMany(Course::class);
+    }
+
+    public function setUsernameAttribute($value)
+    {
+        $firstName = Str::lower($this->attributes['firstname']);
+        $lastName = Str::lower($this->attributes['lastname']);
+
+        $username = $firstName . '.' . $lastName;
+
+        $i = 0;
+        while(User::whereUsername($username)->exists())
+        {
+            $i++;
+            $username = $firstName . '.' . $lastName . $i;
+        }
+
+        $this->attributes['username'] = $username;
+    }
+    public function setCodeAttribute($value){
+        $code = time();
+        while(User::whereCode($code)->exists())
+        {
+            $code = time();
+        }
+        $this->attributes['code'] = $code;
+    }
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
+
+    public function getUDateOfBirthAttribute($value){
+        return Carbon::parse($value)->format('F j, Y');
+    }
+
+    public function teacherQualification(){
+        return $this->hasOne(TeacherQualification::class);
+    }
+
+    /**
+     * Get the user's full name.
+     *
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return "{$this->firstname} {$this->lastname}";
+    }
+
+//    public function setUDateOfBirthAttribute($value){
+//
+//        $this->attributes['date_of_birth']  = Carbon::createFromFormat('d-m-y', $value)->format('Y-m-d');
+//    }
 }

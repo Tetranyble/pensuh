@@ -2,16 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Course;
-use App\School;
+use App\Admission;
 use Illuminate\Http\Request;
 
-class CourseController extends Controller
+class AdmissionController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
-    }
     /**
      * Display a listing of the resource.
      *
@@ -19,9 +14,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $home = School::first();
-        $courses = Course::paginate();
-        return view('frontend.courses', compact('home', 'courses'));
+        //
     }
 
     /**
@@ -48,23 +41,21 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Course  $course
+     * @param  \App\Admission  $admission
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show(Admission $admission)
     {
-        $home = School::first();
-        $courses = Course::paginate(5);
-        return view('frontend.course', compact('course', 'home', 'courses'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Course  $course
+     * @param  \App\Admission  $admission
      * @return \Illuminate\Http\Response
      */
-    public function edit(Course $course)
+    public function edit(Admission $admission)
     {
         //
     }
@@ -73,10 +64,10 @@ class CourseController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Course  $course
+     * @param  \App\Admission  $admission
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $course)
+    public function update(Request $request, Admission $admission)
     {
         //
     }
@@ -84,10 +75,10 @@ class CourseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Course  $course
+     * @param  \App\Admission  $admission
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $course)
+    public function destroy(Admission $admission)
     {
         //
     }

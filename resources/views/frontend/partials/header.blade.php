@@ -47,8 +47,8 @@
 
                         </ul>
                     </li>
-                    <li><a class="{{ (request()->is('/classes')) ? 'active' : '' }}" href="{{ route('classes') }}" title="">Classes</a></li>
-                    <li><a class="{{ (request()->is('/teachers')) ? 'active' : '' }}" href="{{ route('teachers') }}" title="">Teachers</a></li>
+                    <li><a class="{{ (request()->is('/classes')) ? 'active' : '' }}" href="{{ route('courses.index') }}" title="">Classes</a></li>
+                    <li><a class="{{ (request()->is('/teachers')) ? 'active' : '' }}" href="{{ route('teachers.index') }}" title="">Teachers</a></li>
                     <li><a class="{{ (request()->is('/news')) ? 'active' : '' }}" href="{{ route('news.index') }}" title="">Blog</a></li>
                     <li><a class="{{ (request()->is('/contacts')) ? 'active' : '' }}" href="{{ route('contacts') }}" title="">Contacts</a></li>
                 </ul>
@@ -70,8 +70,8 @@
         <li><a class="{{ (request()->is('/about')) ? 'active' : '' }}" href="{{ route('about') }}" title="">About</a></li>
         <li><a class="{{ (request()->is('/events')) ? 'active' : '' }}" href="{{ route('events.index') }}" title="">Events</a></li>
         <li><a class="{{ (request()->is('/schedule')) ? 'active' : '' }}" href="{{ route('schedule') }}" title="">Schedule</a></li>
-        <li><a class="{{ (request()->is('/classes')) ? 'active' : '' }}" href="{{ route('classes') }}" title="">Classes</a></li>
-        <li><a class="{{ (request()->is('/teachers')) ? 'active' : '' }}" href="{{ route('teachers') }}" title="">Teachers</a></li>
+        <li><a class="{{ (request()->is('/courses')) ? 'active' : '' }}" href="{{ route('courses.index') }}" title="">Classes</a></li>
+        <li><a class="{{ (request()->is('/teachers')) ? 'active' : '' }}" href="{{ route('teachers.index') }}" title="">Teachers</a></li>
         <li><a class="{{ (request()->is('/news')) ? 'active' : '' }}" href="{{ route('news.index') }}" title="">Blog</a></li>
         <li><a class="{{ (request()->is('/contacts')) ? 'active' : '' }}" href="{{ route('contacts') }}" title="">Contacts</a></li>
     </ul>
