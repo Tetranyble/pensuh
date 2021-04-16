@@ -12,6 +12,7 @@ return array(
     'App\\Category' => $baseDir . '/app/Category.php',
     'App\\Classes' => $baseDir . '/app/Classes.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
+    'App\\Contact' => $baseDir . '/app/Contact.php',
     'App\\Course' => $baseDir . '/app/Course.php',
     'App\\CourseType' => $baseDir . '/app/CourseType.php',
     'App\\Department' => $baseDir . '/app/Department.php',

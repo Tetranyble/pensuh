@@ -71,9 +71,31 @@ class BlogController extends Controller
      * @param  \App\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function show(Blog $blog)
+    public function show(Blog $blog, $news)
     {
-        //
+
+        if (request('tag')){
+            $blogs = Tag::where('slug', request('tag'))->firstOrFail()->blogs()->paginate();
+        }elseif (request('category')){
+            $blogs = Category::where('slug', request('category'))->firstOrFail()->blogs()->paginate();
+        }elseif (request('search')){
+            $blogs = Blog::where([
+
+                ['name', 'LIKE', '%' . Str::lower(request('search')) . '%'],
+            ])->latest()->paginate();
+        } else{
+            $blogs = Blog::paginate();
+        }
+        $home = School::first();
+        $latestBlogs = Blog::orderBy('created_at', 'desc')->take(3)->get();
+
+        $tags = Tag::all();
+        $categories = Category::withCount('blogs')->get();
+        if (request('tag') || \request('category')){
+            return view('frontend.blogs', compact('blogs', 'tags', 'categories', 'latestBlogs', 'home'));
+        }
+        $blog = Blog::whereSlug($news)->first();
+        return view('frontend.blog', compact('blog', 'tags', 'categories', 'latestBlogs', 'home'));
     }
 
     /**

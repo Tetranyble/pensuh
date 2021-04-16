@@ -21,7 +21,8 @@
                                 <!--form-group end-->
                             </div>
                             <div class="col-md-4">
-                                <div class="form-group select-tg"><select>
+                                <div class="form-group select-tg">
+                                    <select>
                                         <option>Class</option>
                                         <option>Class</option>
                                         <option>Class</option>

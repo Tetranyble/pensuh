@@ -497,6 +497,7 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         'App\\Category' => __DIR__ . '/../..' . '/app/Category.php',
         'App\\Classes' => __DIR__ . '/../..' . '/app/Classes.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Contact' => __DIR__ . '/../..' . '/app/Contact.php',
         'App\\Course' => __DIR__ . '/../..' . '/app/Course.php',
         'App\\CourseType' => __DIR__ . '/../..' . '/app/CourseType.php',
         'App\\Department' => __DIR__ . '/../..' . '/app/Department.php',

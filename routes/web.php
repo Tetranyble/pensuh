@@ -20,7 +20,7 @@ Route::resource('/events', 'EventController');
 Route::resource('/news', 'BlogController');
 Route::get('/classes', 'FrontController@classes')->name('classes');
 Route::get('/about', 'FrontController@about')->name('about');
-Route::get('/schedule', 'FrontController@schedule')->name('schedule');
+Route::Resource('/schedules', 'ScheduleController');
 Route::get('/teachers', 'FrontController@teachers')->name('teachers');
 Route::get('/contacts', 'FrontController@contacts')->name('contacts');
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');

@@ -4,7 +4,7 @@
 @section('title', 'Events')
 @section('styles')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/main.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/button.min.css') }}">
+{{--    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/button.min.css') }}">--}}
     @parent
 @endsection
 @section('content')
@@ -13,10 +13,10 @@
         <section class="pager-section">
             <div class="container">
                 <div class="pager-content text-center">
-                    <h2>Blog</h2>
+                    <h2>News</h2>
                     <ul>
                         <li><a href="{{ route('home') }}" title="">Home</a></li>
-                        <li><span>Blog</span></li>
+                        <li><span>News</span></li>
                     </ul>
                 </div>
                 <!--pager-content end-->
@@ -33,7 +33,7 @@
                                 @forelse($blogs as $blog)
                                 <div class="blog-post">
                                     <div class="blog-thumbnail">
-                                        <a href="{{ route('news.show', $blog->slug) }}" title="">
+                                        <a href="{{ route('news.show', $blog) }}" title="{{ $blog->name }}">
                                             <img src="{{ asset($blog->photo) }}" alt="{{ $blog->slug }}"  class="w-100">
                                         </a>
                                         <span class="category">
@@ -44,16 +44,16 @@
                                     </div>
                                     <div class="blog-info">
                                         <ul class="meta">
-                                            <li><a href="#" title="">{{ $blog->created_at }}</a></li>
-                                            <li><a href="#" title="">{{ $blog->user->name }}</a></li>
-                                            <li><img src="assets/img/icon13.png" alt="">
+                                            <li><a href="#" title="{{ $blog->created_at }}">{{ $blog->created_at }}</a></li>
+                                            <li><a href="#" title="{{ $blog->user->fullname }}">{{ $blog->user->fullname }}</a></li>
+                                            <li><img src="{{ asset('assets/img/icon13.png') }}" alt="">
                                                 @foreach($blog->tags as $tag)
                                                 <a href="{{ route('news.index',['tag' => $tag->slug]) }}" title="{{ $tag->name }}">{{ $tag->name }}</a>
                                                 @endforeach
                                             </li>
                                         </ul>
-                                        <h3 class="stick"><a href="#" title="">{{ $blog->name }}</a></h3>
-                                        {!! $blog->body !!}
+                                        <h3 class="stick"><a href="{{ route('news.show', $blog->slug) }}" title="">{{ $blog->name }}</a></h3>
+                                         <p>{{ $blog->excerpt }}</p>
                                         <a href="{{ route('news.show', $blog->slug) }}" title="" class="read-more">Read <i class="fa fa-long-arrow-alt-right"></i></a>
 
                                     </div>
@@ -98,7 +98,7 @@
                                 <div class="wd-posts">
                                     @forelse($latestBlogs as $blog)
                                     <div class="wd-post d-flex flex-wrap">
-                                        <div class="wd-thumb"><img src="{{ asset($blog->photo) }}" alt="{{ $blog->name }}"></div>
+                                        <div class="wd-thumb"><img style="max-width: 3.25rem" src="{{ asset($blog->photo) }}" alt="{{ $blog->name }}"></div>
                                         <div class="wd-info">
                                             <h3><a href="{{ route('news.show', $blog->slug) }}" title="{{ $blog->name }}">{{ $blog->name }}</a></h3><span>{{ $blog->created_at }}</span>
                                         </div>

@@ -18,6 +18,8 @@ class CreateSchoolsTable extends Migration
             $table->string('address')->nullable();
             $table->string('work_time')->nullable();
             $table->string('contact_phone')->nullable();
+            $table->string('email')->nullable();
+            $table->string('blog_banner')->default('storage/blogger.jpg')->nullable();
             $table->string('facebook_handle')->nullable();
             $table->string('twitter_handle')->nullable();
             $table->string('instagram_handle')->nullable();

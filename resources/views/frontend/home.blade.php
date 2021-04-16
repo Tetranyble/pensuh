@@ -2,7 +2,7 @@
 @section('title', 'Home')
 @section('styles')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/main.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/button.min.css') }}">
+{{--    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/button.min.css') }}">--}}
 @parent
 @endsection
 @section('content')
@@ -103,128 +103,33 @@
                 <!--sec-title end-->
                 <div class="classes-sec">
                     <div class="row classes-carousel">
-                        <div class="col-lg-3">
-                            <div class="classes-col wow fadeInUp" data-wow-duration="1000ms">
-                                <div class="class-thumb"><img src="assets/img/img1.jpg" alt="" class="w-100"> <a href="contacts.html"
-                                                                                                                 title="" class="crt-btn"><img src="assets/img/icon10.png" alt=""></a></div>
-                                <div class="class-info">
-                                    <h3><a href="class-single.html" title="">Basic English Speaking and Grammar</a></h3>
-                                    <span>Mon-Fri</span> <span>10 AM - 12 AM</span>
-                                    <div class="d-flex flex-wrap align-items-center">
-                                        <div class="posted-by"><img src="assets/img/ico.png" alt=""> <a href="#" title="">Amanda Kern</a>
-                                        </div><strong class="price">$45</strong>
+                        @forelse($courses as $course)
+                            <div class="col-lg-3">
+                                <div class="classes-col">
+                                    <div class="class-thumb"><img src="{{ asset($course->photo) }}" alt="" class="w-100">
+                                        {{--                                        <a href="#" title="" class="crt-btn"><img src="assets/img/icon10.png" alt=""></a>--}}
                                     </div>
+                                    <div class="class-info">
+                                        <h3><a href="{{ route('courses.show', $course->id) }}" title="">{{ $course->name }}</a></h3>
+                                        @forelse($course->schedules as $schedule)
+                                            <span>{{ Str::ucfirst($schedule->day) }}</span> <span>{{ $schedule->start . ' - ' . $schedule->end }}</span>
+                                        @empty
+                                            <span>No Time Table</span>
+                                        @endforelse
+                                        <div class="d-flex flex-wrap align-items-center">
+                                            <div class="posted-by"><img style="width: 1.5rem;" src="{{ asset($course->teacher->first()->photo) }}" alt=""> <a href="#" title="">{{ $course->teacher->first()->firstname . ' ' . $course->teacher->first()->lastname }}</a>
+                                                {{--                                            </div><strong class="price">$45</strong>--}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--classes-col end-->
                                 </div>
                             </div>
-                            <!--classes-col end-->
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="classes-col wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="200ms">
-                                <div class="class-thumb"><img src="assets/img/img2.jpg" alt="" class="w-100"> <a href="contacts.html"
-                                                                                                                 title="" class="crt-btn"><img src="assets/img/icon10.png" alt=""></a></div>
-                                <div class="class-info">
-                                    <h3><a href="class-single.html" title="">Natural Sciences & Mathematics Courses</a></h3>
-                                    <span>Mon-Fri</span> <span>10 AM - 12 AM</span>
-                                    <div class="d-flex flex-wrap align-items-center">
-                                        <div class="posted-by"><img src="assets/img/ico.png" alt=""> <a href="#" title="">Gypsy Hardinge</a>
-                                        </div><strong class="price">$67</strong>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--classes-col end-->
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="classes-col wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="400ms">
-                                <div class="class-thumb"><img src="assets/img/img3.jpg" alt="" class="w-100"> <a href="contacts.html"
-                                                                                                                 title="" class="crt-btn"><img src="assets/img/icon10.png" alt=""></a></div>
-                                <div class="class-info">
-                                    <h3><a href="class-single.html" title="">Environmental Studies & Earth Sciences</a></h3>
-                                    <span>Mon-Fri</span> <span>10 AM - 12 AM</span>
-                                    <div class="d-flex flex-wrap align-items-center">
-                                        <div class="posted-by"><img src="assets/img/ico.png" alt=""> <a href="#" title="">Margje Jutten</a>
-                                        </div><strong class="price">$89</strong>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--classes-col end-->
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="classes-col wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="600ms">
-                                <div class="class-thumb"><img src="assets/img/img4.jpg" alt="" class="w-100"> <a href="contacts.html"
-                                                                                                                 title="" class="crt-btn"><img src="assets/img/icon10.png" alt=""></a></div>
-                                <div class="class-info">
-                                    <h3><a href="class-single.html" title="">Hospitality, Leisure & Sports Courses</a></h3>
-                                    <span>Mon-Fri</span> <span>10 AM - 12 AM</span>
-                                    <div class="d-flex flex-wrap align-items-center">
-                                        <div class="posted-by"><img src="assets/img/ico.png" alt=""> <a href="#" title="">Hubert Franck</a>
-                                        </div><strong class="price">$67</strong>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--classes-col end-->
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="classes-col">
-                                <div class="class-thumb"><img src="assets/img/img1.jpg" alt="" class="w-100"> <a href="contacts.html"
-                                                                                                                 title="" class="crt-btn"><img src="assets/img/icon10.png" alt=""></a></div>
-                                <div class="class-info">
-                                    <h3><a href="class-single.html" title="">Basic English Speaking and Grammar</a></h3>
-                                    <span>Mon-Fri</span> <span>10 AM - 12 AM</span>
-                                    <div class="d-flex flex-wrap align-items-center">
-                                        <div class="posted-by"><img src="assets/img/ico.png" alt=""> <a href="#" title="">Amanda Kern</a>
-                                        </div><strong class="price">$45</strong>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--classes-col end-->
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="classes-col">
-                                <div class="class-thumb"><img src="assets/img/img2.jpg" alt="" class="w-100"> <a href="contacts.html"
-                                                                                                                 title="" class="crt-btn"><img src="assets/img/icon10.png" alt=""></a></div>
-                                <div class="class-info">
-                                    <h3><a href="class-single.html" title="">Natural Sciences & Mathematics Courses</a></h3>
-                                    <span>Mon-Fri</span> <span>10 AM - 12 AM</span>
-                                    <div class="d-flex flex-wrap align-items-center">
-                                        <div class="posted-by"><img src="assets/img/ico.png" alt=""> <a href="#" title="">Gypsy Hardinge</a>
-                                        </div><strong class="price">$67</strong>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--classes-col end-->
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="classes-col">
-                                <div class="class-thumb"><img src="assets/img/img3.jpg" alt="" class="w-100"> <a href="contacts.html"
-                                                                                                                 title="" class="crt-btn"><img src="assets/img/icon10.png" alt=""></a></div>
-                                <div class="class-info">
-                                    <h3><a href="class-single.html" title="">Environmental Studies & Earth Sciences</a></h3>
-                                    <span>Mon-Fri</span> <span>10 AM - 12 AM</span>
-                                    <div class="d-flex flex-wrap align-items-center">
-                                        <div class="posted-by"><img src="assets/img/ico.png" alt=""> <a href="#" title="">Margje Jutten</a>
-                                        </div><strong class="price">$89</strong>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--classes-col end-->
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="classes-col">
-                                <div class="class-thumb"><img src="assets/img/img4.jpg" alt="" class="w-100"> <a href="contacts.html"
-                                                                                                                 title="" class="crt-btn"><img src="assets/img/icon10.png" alt=""></a></div>
-                                <div class="class-info">
-                                    <h3><a href="class-single.html" title="">Hospitality, Leisure & Sports Courses</a></h3>
-                                    <span>Mon-Fri</span> <span>10 AM - 12 AM</span>
-                                    <div class="d-flex flex-wrap align-items-center">
-                                        <div class="posted-by"><img src="assets/img/ico.png" alt=""> <a href="#" title="">Hubert Franck</a>
-                                        </div><strong class="price">$67</strong>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--classes-col end-->
-                        </div>
+                        @empty
+                            <p>No data</p>
+                        @endforelse
                     </div>
-                    <div class="lnk-dv text-center"><a href="classes.html" title="" class="btn-default">Classes <i
+                    <div class="lnk-dv text-center"><a href="{{ route('courses.index') }}" title="" class="btn-default">Classes <i
                                 class="fa fa-long-arrow-alt-right"></i></a></div>
                 </div>
                 <!--classes-sec end-->
@@ -240,74 +145,28 @@
                 <!--section-title end-->
                 <div class="teachers">
                     <div class="row">
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-6 full-wdth">
-                            <div class="teacher">
-                                <div class="teacher-img"><img src="assets/img/img5.jpg" alt="" class="w-100">
-                                    <div class="sc-div">
-                                        <ul>
-                                            <li><a href="#" title=""><i class="fab fa-instagram"></i></a></li>
-                                            <li><a href="#" title=""><i class="fab fa-linkedin-in"></i></a></li>
-                                            <li><a href="#" title=""><i class="fab fa-facebook-f"></i></a></li>
-                                        </ul><span><img src="assets/img/plus.png" alt=""></span>
+                        @forelse($teachers as $teacher)
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-6 full-wdth">
+                                <div class="teacher" >
+                                    <div class="teacher-img"><img style="max-width: 430px; max-height: 645px" src="{{ asset($teacher->photo) }}" alt="{{ $teacher->name }}" class="w-100">
+                                        <div class="sc-div">
+                                            <ul>
+                                                <li><a href="{{ $teacher->instagram }}" title=""><i class="fab fa-instagram"></i></a></li>
+                                                <li><a href="{{ $teacher->linkedin }}" title=""><i class="fab fa-linkedin-in"></i></a></li>
+                                                <li><a href="{{ $teacher->facebook }}" title=""><i class="fab fa-facebook-f"></i></a></li>
+                                                <li><a href="{{ $teacher->twitter }}" title=""><i class="fab fa-twitter"></i></a></li>
+                                            </ul><span><img src="assets/img/plus.png" alt=""></span>
+                                        </div>
+                                    </div>
+                                    <div class="teacher-info">
+                                        <h3><a href="{{ route('teachers.show', $teacher) }}" title="{{ $teacher->firstname. ' ' .$teacher->lastname }}">{{ $teacher->firstname. ' ' .$teacher->lastname }}</a></h3><span>{{ $teacher->courses->first()->name ? $teacher->courses->first()->name : ''  }}</span>
                                     </div>
                                 </div>
-                                <div class="teacher-info">
-                                    <h3><a href="teacher-single.html" title="">Polina Kerston</a></h3><span>English Teacher</span>
-                                </div>
+                                <!--teacher end-->
                             </div>
-                            <!--teacher end-->
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-6 full-wdth">
-                            <div class="teacher">
-                                <div class="teacher-img"><img src="assets/img/img6.jpg" alt="" class="w-100">
-                                    <div class="sc-div">
-                                        <ul>
-                                            <li><a href="#" title=""><i class="fab fa-instagram"></i></a></li>
-                                            <li><a href="#" title=""><i class="fab fa-linkedin-in"></i></a></li>
-                                            <li><a href="#" title=""><i class="fab fa-facebook-f"></i></a></li>
-                                        </ul><span><img src="assets/img/plus.png" alt=""></span>
-                                    </div>
-                                </div>
-                                <div class="teacher-info">
-                                    <h3><a href="teacher-single.html" title="">Faadi Al Rahman</a></h3><span>Instructor</span>
-                                </div>
-                            </div>
-                            <!--teacher end-->
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-6 full-wdth">
-                            <div class="teacher">
-                                <div class="teacher-img"><img src="assets/img/img7.jpg" alt="" class="w-100">
-                                    <div class="sc-div">
-                                        <ul>
-                                            <li><a href="#" title=""><i class="fab fa-instagram"></i></a></li>
-                                            <li><a href="#" title=""><i class="fab fa-linkedin-in"></i></a></li>
-                                            <li><a href="#" title=""><i class="fab fa-facebook-f"></i></a></li>
-                                        </ul><span><img src="assets/img/plus.png" alt=""></span>
-                                    </div>
-                                </div>
-                                <div class="teacher-info">
-                                    <h3><a href="teacher-single.html" title="">Chikelu Obasea</a></h3><span>Art Teacher</span>
-                                </div>
-                            </div>
-                            <!--teacher end-->
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-6 full-wdth">
-                            <div class="teacher">
-                                <div class="teacher-img"><img src="assets/img/img8.jpg" alt="" class="w-100">
-                                    <div class="sc-div">
-                                        <ul>
-                                            <li><a href="#" title=""><i class="fab fa-instagram"></i></a></li>
-                                            <li><a href="#" title=""><i class="fab fa-linkedin-in"></i></a></li>
-                                            <li><a href="#" title=""><i class="fab fa-facebook-f"></i></a></li>
-                                        </ul><span><img src="assets/img/plus.png" alt=""></span>
-                                    </div>
-                                </div>
-                                <div class="teacher-info">
-                                    <h3><a href="teacher-single.html" title="">Katayama Fumiki</a></h3><span>Teacher</span>
-                                </div>
-                            </div>
-                            <!--teacher end-->
-                        </div>
+                        @empty
+                            <p>There are no teachers to display</p>
+                        @endforelse
                     </div>
                 </div>
                 <!--teachers end-->
@@ -366,60 +225,39 @@
                 <!--section-title end-->
                 <div class="blog-posts">
                     <div class="row">
+
+
+                        @forelse($blogs as $blog)
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="blog-post">
-                                <div class="blog-thumbnail"><img src="assets/img/blog1.jpg" alt="" class="w-100"> <span
-                                        class="category">English</span></div>
+                                <div class="blog-thumbnail">
+                                    <img src="{{ asset($blog->photo) }}" alt="{{ $blog->slug }}"  class="w-100">
+                                    <span class="category">
+                                        @foreach($blog->categories as $category)
+                                            <a href="{{ route('news.index', ['category' => $category->slug]) }}">{{ $category->name }}</a>
+                                        @endforeach
+                                    </span>
+                                </div>
                                 <div class="blog-info">
                                     <ul class="meta">
-                                        <li><a href="#" title="">17/09/2020</a></li>
-                                        <li><a href="#" title="">by Admin</a></li>
-                                        <li><img src="assets/img/icon13.png" alt=""><a href="#" title="">Teachers,</a><a href="#" title="">
-                                                School</a></li>
+                                        <li><a href="#" title="{{ $blog->created_at }}">{{ $blog->created_at }}</a></li>
+                                        <li><a href="#" title="{{ $blog->user->fullname }}">{{ $blog->user->fullname }}</a></li>
+                                        <li><img src="{{ asset('assets/img/icon13.png') }}" alt="">
+                                            @foreach($blog->tags as $tag)
+                                                <a href="{{ route('news.index',['tag' => $tag->slug]) }}" title="{{ $tag->name }}">{{ $tag->name }}</a>
+                                            @endforeach
+                                        </li>
                                     </ul>
-                                    <h3><a href="post.html" title="">Campus clean workshop</a></h3>
-                                    <p>Nam mattis felis id sodales rutrum. Nulla ornare tristique mauris, a laoreet erat ornare sit amet
-                                    </p><a href="post.html" title="" class="read-more">Read <i class="fa fa-long-arrow-alt-right"></i></a>
+                                    <h3><a href="{{ route('news.show', $blog) }}" title="{{ $blog->name }}"></a></h3>
+                                    <p>{{ $blog->excerpt }}</p>
+                                    <a href="{{ route('news.show', $blog) }}" title="{{ $blog->name }}" class="read-more">Read <i class="fa fa-long-arrow-alt-right"></i></a>
                                 </div>
                             </div>
                             <!--blog-post end-->
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="blog-post">
-                                <div class="blog-thumbnail"><img src="assets/img/blog2.jpg" alt="" class="w-100"> <span
-                                        class="category">English</span></div>
-                                <div class="blog-info">
-                                    <ul class="meta">
-                                        <li><a href="#" title="">17/09/2020</a></li>
-                                        <li><a href="#" title="">by Admin</a></li>
-                                        <li><img src="assets/img/icon13.png" alt=""><a href="#" title="">Teachers,</a><a href="#" title="">
-                                                School</a></li>
-                                    </ul>
-                                    <h3><a href="post.html" title="">Campus clean workshop</a></h3>
-                                    <p>Nam mattis felis id sodales rutrum. Nulla ornare tristique mauris, a laoreet erat ornare sit amet
-                                    </p><a href="post.html" title="" class="read-more">Read <i class="fa fa-long-arrow-alt-right"></i></a>
-                                </div>
-                            </div>
-                            <!--blog-post end-->
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="blog-post">
-                                <div class="blog-thumbnail"><img src="assets/img/blog3.jpg" alt="" class="w-100"> <span
-                                        class="category">English</span></div>
-                                <div class="blog-info">
-                                    <ul class="meta">
-                                        <li><a href="#" title="">17/09/2020</a></li>
-                                        <li><a href="#" title="">by Admin</a></li>
-                                        <li><img src="assets/img/icon13.png" alt=""><a href="#" title="">Teachers,</a><a href="#" title="">
-                                                School</a></li>
-                                    </ul>
-                                    <h3><a href="post.html" title="">Campus clean workshop</a></h3>
-                                    <p>Nam mattis felis id sodales rutrum. Nulla ornare tristique mauris, a laoreet erat ornare sit amet
-                                    </p><a href="post.html" title="" class="read-more">Read <i class="fa fa-long-arrow-alt-right"></i></a>
-                                </div>
-                            </div>
-                            <!--blog-post end-->
-                        </div>
+                            @empty
+                            <p>no news data</p>
+                        @endforelse
                     </div>
                 </div>
                 <!--blog-posts end-->
@@ -433,7 +271,7 @@
 @endsection
 @section('javascript')
     <script src="{{ asset('assets/js/bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/js/button.min.js') }}"></script>
+{{--    <script src="{{ asset('assets/js/button.min.js') }}"></script>--}}
     <!-- Global site tag (gtag.js) - Google Analytics -->
 {{--    <script async src="http://www.googletagmanager.com/gtag/js2c98?id=UA-180910402-1"></script>--}}
 {{--    <script>window.dataLayer = window.dataLayer || [];--}}

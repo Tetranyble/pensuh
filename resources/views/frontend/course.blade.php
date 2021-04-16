@@ -4,7 +4,7 @@
 @section('title', $course->name)
 @section('styles')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/main.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/button.min.css') }}">
+{{--    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/button.min.css') }}">--}}
     @parent
 @endsection
 @section('content')
@@ -117,7 +117,7 @@
                                         </li>
                                         <li>
                                             <div class="d-flex flex-wrap">
-                                                <div class="icon-v"><img src="{{ asset('assets/img/icon16.png') }}" alt="{ $home->work_time }}"></div>
+                                                <div class="icon-v"><img src="{{ asset('assets/img/icon16.png') }}" alt="{{ $home->work_time }}"></div>
                                                 <div class="dd-cont">
                                                     <h4>Work Time</h4><span>{{ $home->work_time }}</span>
                                                 </div>

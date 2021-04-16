@@ -2,7 +2,7 @@
 @section('title', 'Courses')
 @section('styles')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/main.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/button.min.css') }}">
+{{--    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/button.min.css') }}">--}}
     @parent
 @endsection
 @section('content')
