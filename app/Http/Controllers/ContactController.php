@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\Mail\ContactAcknowledgement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -35,7 +37,22 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:3|string',
+            'email' => 'required|email',
+            'phone' => 'nullable|string',
+            'class' => 'nullable|numeric',
+            'message' => 'required|string'
+        ]);
+        $contact = Contact::create($request->all());
+
+        Mail::to(env('MAIL_SUPPORT'))
+            ->cc(env('MAIL_USERNAME'))
+            ->queue(new \App\Mail\Contact($contact));
+        Mail::to($contact->email)
+            ->queue(new ContactAcknowledgement($contact));
+
+        return redirect()->back()->with('success', 'Thank you for reaching out. We have received your message. We would get back to you as soon as possible. Thanks again.');
     }
 
     /**

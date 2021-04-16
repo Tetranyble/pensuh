@@ -32,7 +32,23 @@
                 </li>
             </ul>
             <!--contact-information end-->
-            <div class="menu-btn"><a href="#"><span class="bar1"></span> <span class="bar2"></span> <span
+            <div class="menu-btn" >
+                @guest
+                    <a class=""  href="{{ route('login') }}">{{ __('Login') }}</a>
+                @else
+                    <a  href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                @endguest
+
+            </div>
+            <div style="margin-left: 1rem;" id="menu-btn" class="menu-btn"><a href="#"><span class="bar1"></span> <span class="bar2"></span> <span
                         class="bar3"></span></a></div>
             <!--menu-btn end-->
         </div>
@@ -51,7 +67,7 @@
                     <li><a class="{{ (request()->is('/classes')) ? 'active' : '' }}" href="{{ route('courses.index') }}" title="">Classes</a></li>
                     <li><a class="{{ (request()->is('/teachers')) ? 'active' : '' }}" href="{{ route('teachers.index') }}" title="">Teachers</a></li>
                     <li><a class="{{ (request()->is('/news')) ? 'active' : '' }}" href="{{ route('news.index') }}" title="">News</a></li>
-                    <li><a class="{{ (request()->is('/contacts')) ? 'active' : '' }}" href="{{ route('contacts') }}" title="">Contacts</a></li>
+                    <li><a class="{{ (request()->is('/contact')) ? 'active' : '' }}" href="{{ route('contact') }}" title="">Contacts</a></li>
                 </ul>
             </nav>
             <!--nav end-->
@@ -74,6 +90,7 @@
         <li><a class="{{ (request()->is('/courses')) ? 'active' : '' }}" href="{{ route('courses.index') }}" title="">Classes</a></li>
         <li><a class="{{ (request()->is('/teachers')) ? 'active' : '' }}" href="{{ route('teachers.index') }}" title="">Teachers</a></li>
         <li><a class="{{ (request()->is('/news')) ? 'active' : '' }}" href="{{ route('news.index') }}" title="">News</a></li>
-        <li><a class="{{ (request()->is('/contacts')) ? 'active' : '' }}" href="{{ route('contacts') }}" title="">Contacts</a></li>
+        <li><a class="{{ (request()->is('/contact')) ? 'active' : '' }}" href="{{ route('contact') }}" title="">Contacts</a></li>
+
     </ul>
 </div>

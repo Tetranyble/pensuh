@@ -66,7 +66,7 @@
                                         <div class="tch-info">
                                             <h3>{{ $event->host->name }}</h3><span>Convener</span>
                                         </div>
-                                    </div><a href="{{ route('contacts') }}" title="conacts" class="btn-default">Enroll Now <i
+                                    </div><a href="{{ route('contact') }}" title="conacts" class="btn-default">Enroll Now <i
                                             class="fa fa-long-arrow-alt-right"></i></a>
                                 </div>
                             </div>

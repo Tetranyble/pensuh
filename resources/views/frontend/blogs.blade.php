@@ -77,7 +77,7 @@
                             <div class="widget widget-search">
                                 <form method="GET" action="{{ route('news.index') }}">
                                     <input type="text" name="search" placeholder="Search"> <button type="submit"><img
-                                            src="assets/img/icon4.png" alt=""></button>
+                                            src="{{ asset('assets/img/icon4.png') }}" alt=""></button>
                                 </form>
                             </div>
                             <!--widget-search end-->

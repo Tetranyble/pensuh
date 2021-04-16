@@ -33,14 +33,14 @@
                                 <div class="course-card">
                                     <div class="d-flex flex-wrap align-items-center">
                                         <ul class="course-meta">
-                                            <li><img src="assets/img/icon12.png" alt="">{{ $event->start_date }}</li>
+                                            <li><img src="{{ asset('assets/img/icon12.png') }}" alt="">{{ $event->start_date }}</li>
                                             <li>{{ getTimeFromDate($event->start_date) }} to {{ getTimeFromDate($event->end_date) }}</li>
                                         </ul><span>{{ $event->price ? money($event->price) : 'FREE' }}</span>
                                     </div>
                                     <h3><a href="{{ route('events.show', $event->slug) }}" title="">{{ $event->name }}</a></h3>
                                     <div class="d-flex flex-wrap">
                                         <div class="posted-by"><img style="max-width: 26px;" src="{{ asset($event->host->photo) }}" alt=""> <a href="#" title="">{{ $event->host->name }}</a>
-                                        </div><span class="locat"><img src="assets/img/loct.png" alt="">{{ $event->location }}</span>
+                                        </div><span class="locat"><img src="{{ asset('assets/img/loct.png') }}" alt="">{{ $event->location }}</span>
                                     </div>
                                 </div>
                                 <!--course-card end-->

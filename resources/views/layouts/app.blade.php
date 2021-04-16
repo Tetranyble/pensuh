@@ -42,6 +42,7 @@
 {{--    <meta property="twitter:card" content="summary_large_image">--}}
 </head>
 <body id="app">
+    @include('components.flash-message')
    @yield('content')
    @yield('javascript')
 </body>

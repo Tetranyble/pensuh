@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Course;
 use App\School;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CourseController extends Controller
 {
     public function __construct()
     {
+
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
     /**
@@ -19,8 +21,16 @@ class CourseController extends Controller
      */
     public function index()
     {
+        if (request('q')) {
+            $courses = Course::where([
+
+                ['name', 'LIKE', '%' . Str::lower(request('q')) . '%'],
+            ])->paginate();
+
+        }else{
+            $courses = Course::paginate();
+        }
         $home = School::first();
-        $courses = Course::paginate();
         return view('frontend.courses', compact('home', 'courses'));
     }
 

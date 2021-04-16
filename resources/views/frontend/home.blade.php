@@ -17,8 +17,11 @@
                             <div class="banner-text wow fadeInLeft" data-wow-duration="1000ms">
                                 <h2>{{ $home->school_excerpt_header }} <span></span></h2>
                                 <p>{{ $home->school_excerpt }}</p>
-                                <form class="search-form"><input type="text" name="search" placeholder="Search Class"> <button><i
-                                            class="fa fa-search"></i></button></form>
+                                <form method="GET" action="{{ route('courses.index') }}" class="search-form">
+                                    <input type="text" name="q" placeholder="Search Class">
+                                    <button><i
+                                            class="fa fa-search"></i></button>
+                                </form>
                             </div>
                         </div>
                         <div class="col-lg-5 col-md-5">
@@ -248,7 +251,7 @@
                                             @endforeach
                                         </li>
                                     </ul>
-                                    <h3><a href="{{ route('news.show', $blog) }}" title="{{ $blog->name }}"></a></h3>
+                                    <h3><a href="{{ route('news.show', $blog) }}" title="{{ $blog->name }}">{{ $blog->name }}</a></h3>
                                     <p>{{ $blog->excerpt }}</p>
                                     <a href="{{ route('news.show', $blog) }}" title="{{ $blog->name }}" class="read-more">Read <i class="fa fa-long-arrow-alt-right"></i></a>
                                 </div>

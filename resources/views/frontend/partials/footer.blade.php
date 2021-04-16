@@ -13,7 +13,7 @@
                     <div class="widget widget-contact">
                         <ul class="contact-add">
                             <li>
-                                <div class="contact-info"><img src="assets/img/icon1.png" alt="">
+                                <div class="contact-info"><img src="{{ asset('assets/img/icon1.png') }}" alt="">
                                     <div class="contact-tt">
                                         <h4>Call</h4><span><a href="tel:{{ $home->contact_phone }}">{{ $home->contact_phone }}</a></span>
                                     </div>
@@ -29,7 +29,7 @@
                                 <!--contact-info end-->
                             </li>
                             <li>
-                                <div class="contact-info"><img src="assets/img/icon2.png" alt="">
+                                <div class="contact-info"><img src="{{ asset('assets/img/icon2.png') }}" alt="">
                                     <div class="contact-tt">
                                         <h4>Work Time</h4><span>{{ $home->work_time }}</span>
                                     </div>
@@ -37,7 +37,7 @@
                                 <!--contact-info end-->
                             </li>
                             <li>
-                                <div class="contact-info"><img src="assets/img/icon3.png" alt="">
+                                <div class="contact-info"><img src="{{ asset('assets/img/icon3.png') }}" alt="">
                                     <div class="contact-tt">
                                         <h4>Address</h4><span>{{ $home->address }}</span>
                                     </div>
@@ -53,7 +53,7 @@
                         <h3 class="widget-title">Quick Links</h3>
                         <ul>
                             <li><a href="{{ route('about') }}" title="">About Us</a></li>
-                            <li><a href="{{ route('contacts') }}" title="">Contact Us</a></li>
+                            <li><a href="{{ route('contact') }}" title="">Contact Us</a></li>
                             <li><a href="{{ route('courses.index') }}" title="">Our Classes</a></li>
                             <li><a href="{{ route('teachers.index') }}" title="">School Teachers</a></li>
                             <li><a href="{{ route('events.index') }}" title="">Recent Events</a></li>
