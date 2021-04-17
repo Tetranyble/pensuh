@@ -15,7 +15,8 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
 
     .copyDirectory('resources/assets', 'public/assets')
-    .copyDirectory('resources/dist', 'public/dist');
+    .copyDirectory('resources/dist', 'public/dist')
+    .copyDirectory('resources/favicon', 'public');
 /*
 .styles([
     'resources/dist/css/style.css',
