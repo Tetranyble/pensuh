@@ -35,7 +35,8 @@
                         <div class="col-lg-8 col-md-7">
                             <div class="comment-area">
                                 <h3>Lets Meet</h3>
-                                <form id="contact-form" method="post" action="#">
+                                <form id="contact-form" method="post" action="{{ route('contacts.store') }}">
+                                    @csrf
                                     <div class="response"></div>
                                     <div class="row">
                                         <div class="col-lg-6">
