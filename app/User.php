@@ -4,6 +4,7 @@ namespace App;
 
 use Facade\Ignition\Solutions\SolutionTransformer;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
@@ -12,6 +13,7 @@ use Illuminate\Support\Str;
 class User extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -20,7 +22,7 @@ class User extends Authenticatable
      *
      */
     protected $fillable = [
-        'name', 'email', 'password','gender', 'student_code', 'role_id', 'blood_group', 'nationality', 'phone', 'address', 'about', 'photo', 'department',
+        'firstname', 'middlename', 'lastname', 'email', 'password','gender_id', 'code', 'username','blood_group_id', 'nationality_id', 'phone', 'address', 'about', 'photo','twitter','active','facebook','instagram','linkedin','school_id','address',
     ];
 
     /**
@@ -97,7 +99,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Section::class);
     }
     public function courses(){
-        return $this->belongsToMany(Course::class);
+        return $this->belongsToMany(Course::class, 'course_user');
     }
 
     public function setUsernameAttribute($value)
@@ -156,4 +158,8 @@ class User extends Authenticatable
 //
 //        $this->attributes['date_of_birth']  = Carbon::createFromFormat('d-m-y', $value)->format('Y-m-d');
 //    }
+
+public function studentInfo(){
+        return $this->hasOne(StudentInfo::class);
+}
 }

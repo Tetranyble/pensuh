@@ -17,23 +17,25 @@ class CreateStudentInfosTable extends Migration
             $table->id();
             //$table->integer('student_id')->unsigned();
             $table->string('session')->nullable();
-            $table->string('group')->nullable();
-            $table->dateTime('birthday');
+            $table->integer('group_id')->nullable();
             $table->string('religion')->nullable();
             $table->string('father_name');
             $table->string('father_phone_number');
+            $table->string('father_email')->nullable();
             $table->string('father_national_id')->nullable();
             $table->string('father_occupation')->nullable();
             $table->string('father_designation')->nullable();
             $table->integer('father_annual_income')->nullable();
             $table->string('mother_name');
             $table->string('mother_phone_number');
+            $table->string('mother_email')->nullable();
             $table->string('mother_national_id')->nullable();
             $table->string('mother_occupation')->nullable();
             $table->string('mother_designation')->nullable();
             $table->integer('mother_annual_income')->nullable();
-            $table->integer('class_id')->unsigned()->nullable();
+            $table->integer('section_id')->unsigned()->nullable();
             $table->integer('user_id')->unsigned()->nullable();
+            $table->integer('school_type_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }

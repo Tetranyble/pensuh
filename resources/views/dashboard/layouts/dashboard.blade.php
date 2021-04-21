@@ -43,11 +43,12 @@
                 <div class="page-breadcrumb">
                     <div class="row">
                         <div class="col-7 align-self-center">
-                            <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Good Morning Jason!</h3>
+                            <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Hello {{ auth()->user()->fullname }}!</h3>
                             <div class="d-flex align-items-center">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb m-0 p-0">
-                                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a>
+{{--                                        , "Teacher Code - {$courses->teacher->first()->code} Name - {{$courses->teacher->first()->fullname}}"--}}
+                                        <li class="breadcrumb-item"><a href="index.html"> @yield('title') </a>
                                         </li>
                                     </ol>
                                 </nav>
@@ -56,9 +57,7 @@
                         <div class="col-5 align-self-center">
                             <div class="customize-input float-right">
                                 <select class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius">
-                                    <option selected>Aug 19</option>
-                                    <option value="1">July 19</option>
-                                    <option value="2">Jun 19</option>
+                                    <option selected>{{ \Carbon\Carbon::now()->format('F j, Y') }}</option>
                                 </select>
                             </div>
                         </div>
@@ -89,11 +88,8 @@
     <!--This page JavaScript -->
     <script src="{{ asset('../assets/extra-libs/c3/d3.min.js') }}"></script>
     <script src="{{ asset('../assets/extra-libs/c3/c3.min.js') }}"></script>
-    <script src="{{ asset('../assets/libs/chartist/dist/chartist.min.js') }}"></script>
-    <script src="{{ asset('../assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js') }}"></script>
-    <script src="{{ asset('../assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js') }}"></script>
-    <script src="{{ asset('../assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js') }}"></script>
-    <script src="{{ asset('./dist/js/pages/dashboards/dashboard1.min.js') }}"></script>
+
+
 
     @parent
 @endsection

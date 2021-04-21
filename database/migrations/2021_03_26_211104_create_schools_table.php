@@ -18,7 +18,7 @@ class CreateSchoolsTable extends Migration
             $table->string('address')->nullable();
             $table->string('work_time')->nullable();
             $table->string('contact_phone')->nullable();
-            $table->string('email')->nullable();
+            $table->string('email');
             $table->string('blog_banner')->default('storage/blogger.jpg')->nullable();
             $table->string('facebook_handle')->nullable();
             $table->string('twitter_handle')->nullable();
@@ -42,8 +42,8 @@ class CreateSchoolsTable extends Migration
             $table->string('school_event_header')->nullable();
             $table->string('school_event_body')->nullable();
 
-            $table->string('established')->default('');
-            $table->string('teaching_language')->default('GB-en');//bn,en
+            $table->string('established')->default('')->nullable();
+            $table->integer('teaching_language')->nullable();//bn,en
             $table->integer('code')->unique();
             $table->string('theme')->nullable()->nullable();
             $table->string('favicon')->nullable()->default('storage/school/favicon.icon');

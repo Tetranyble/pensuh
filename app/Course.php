@@ -50,4 +50,5 @@ class Course extends Model
         }
         return $this->schedules()->sync($schedule, false);
     }
+
 }

@@ -15,6 +15,8 @@ class RoleSeeder extends Seeder
         // or may be done by chaining
         Role::create(['name' => 'user', 'slug' => 'user'])
             ->givePermissionTo(['admission_status']);
+        Role::create(['name' => 'parent', 'slug' => 'parent'])
+            ->givePermissionTo(['admission_status','child_safety_attendance','view_result','view_result','view_student_attendance']);
 
         Role::create(['name' => 'student', 'slug' => 'student'])
             ->givePermissionTo(['view_result']);

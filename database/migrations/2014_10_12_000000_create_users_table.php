@@ -24,25 +24,26 @@ class CreateUsersTable extends Migration
 
             $table->string('email')->unique();
             $table->string('password');
-            $table->tinyInteger('active')->default(false);
+            $table->tinyInteger('active')->default(true);
             $table->integer('code')->unique()->nullable();//Auto generated
-            $table->string('gender')->default('')->nullable();
+            $table->string('gender_id')->default('')->nullable();
 
-            $table->string('blood_group')->default('')->nullable();
-            $table->string('nationality')->default('')->nullable();
+            $table->string('blood_group_id')->default('')->nullable();
+            $table->string('nationality_id')->default('')->nullable();
             $table->string('phone')->default('')->nullable();
             $table->string('address')->default('')->nullable();
             $table->date('date_of_birth')->nullable();
+            $table->string('about')->default('')->nullable();
+            $table->string('photo')->nullable()->default('storage/user.png');
+
 
             $table->string('twitter')->default('')->nullable();
             $table->string('facebook')->default('')->nullable();
             $table->string('instagram')->default('')->nullable();
             $table->string('linkedin')->default('')->nullable();
 
-            $table->string('about')->default('')->nullable();
-            $table->string('photo')->nullable()->default('storage/user.png');
-            $table->integer('department_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

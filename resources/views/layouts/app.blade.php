@@ -45,5 +45,6 @@
     @include('components.flash-message')
    @yield('content')
    @yield('javascript')
+    @yield('script')
 </body>
 </html>

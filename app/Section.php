@@ -10,7 +10,7 @@ class Section extends Model
 
     public function classTeacher()
     {
-        return $this->belongsToMany(User::class)->withTimestamps();
+        return $this->belongsToMany(User::class);
     }
     /**
      * Get the class that owns the section.

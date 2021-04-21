@@ -15,17 +15,17 @@
                 <a href="index.html">
                     <b class="logo-icon">
                         <!-- Dark Logo icon -->
-                        <img src="../assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
+                        <img src="{{ asset($home->school_logo) }}" alt="{{ $home->school_name }}" class="dark-logo" />
                         <!-- Light Logo icon -->
-                        <img src="../assets/images/logo-icon.png" alt="homepage" class="light-logo" />
+{{--                        <img src="../assets/images/logo-icon.png" alt="homepage" class="light-logo" />--}}
                     </b>
                     <!--End Logo icon -->
                     <!-- Logo text -->
                     <span class="logo-text">
                                 <!-- dark Logo text -->
-                                <img src="../assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+{{--                                <img src="{{ asset($home->school_logo) }}" alt="{{ $home->school_name }}" class="dark-logo" />--}}
                         <!-- Light Logo text -->
-                                <img src="../assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
+{{--                                <img src="../assets/images/logo-light-text.png" class="light-logo" alt="homepage" />--}}
                             </span>
                 </a>
             </div>
@@ -177,10 +177,10 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
-                        <img src="../assets/images/users/profile-pic.jpg" alt="user" class="rounded-circle"
+                        <img src="{{ asset(auth()->user()->photo) }}" alt="user" class="rounded-circle"
                              width="40">
                         <span class="ml-2 d-none d-lg-inline-block"><span>Hello,</span> <span
-                                class="text-dark">Jason Doe</span> <i data-feather="chevron-down"
+                                class="text-dark">{{ auth()->user()->fullname }}</span> <i data-feather="chevron-down"
                                                                       class="svg-icon"></i></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
@@ -198,9 +198,10 @@
                                                                               class="svg-icon mr-2 ml-1"></i>
                             Account Setting</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:void(0)"><i data-feather="power"
-                                                                              class="svg-icon mr-2 ml-1"></i>
-                            Logout</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i data-feather="power"
+                                                                                                          class="svg-icon mr-2 ml-1"></i>
+                            {{ __('Logout') }}</a>
                         <div class="dropdown-divider"></div>
                         <div class="pl-4 p-3"><a href="javascript:void(0)" class="btn btn-sm btn-info">View
                                 Profile</a></div>

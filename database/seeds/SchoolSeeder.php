@@ -14,7 +14,7 @@ class SchoolSeeder extends Seeder
     {
         School::create([
             'established' => '2001',
-            'teaching_language' => 'GB-en, Igbo',
+            'teaching_language' => '1',
             'school_name' => 'Ph',
             'code' =>  time() + 1,
             'theme' => 'white',
