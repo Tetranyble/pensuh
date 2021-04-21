@@ -154,8 +154,8 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="photo">Your profile photo
-                                                    <span class="text-danger"><span  class="text-danger h6">{{$errors->first('photo')}}</span></span>
+                                                <label for="image">Your profile photo
+                                                    <span class="text-danger"><span  class="text-danger h6">{{$errors->first('image')}}</span></span>
                                                 </label>
                                                 <div class="input-group mb-3">
 
@@ -163,7 +163,7 @@
                                                         <span class="input-group-text">Upload</span>
                                                     </div>
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" name="photo" id="photo">
+                                                        <input type="file" class="custom-file-input" name="image" id="image">
                                                         <label class="custom-file-label" for="photo"></label>
                                                     </div>
                                                 </div>

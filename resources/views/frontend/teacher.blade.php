@@ -42,7 +42,7 @@
                                 <h3>{{ $teacher->roles->first()->name }}</h3>
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 col-sm-6">
-                                        <div class="rol-z"><img src="assets/img/ro1.png" alt="">
+                                        <div class="rol-z"><img src="{{ asset('assets/img/ro1.png') }}" alt="">
                                             <div class="rol-info">
                                                 <h3>Phone</h3><span>{{ $teacher->phone }}</span>
                                             </div>
@@ -50,7 +50,7 @@
                                         <!--rol-z end-->
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-sm-6">
-                                        <div class="rol-z"><img src="assets/img/ro2.png" alt="">
+                                        <div class="rol-z"><img src="{{ asset('assets/img/ro2.png') }}" alt="">
                                             <div class="rol-info">
                                                 <h3>Email</h3><span><a href="mailto:{{ $teacher->email }}" class="__cf_email__"
                                                                        data-cfemail="402e212d2500242f2d21292e6e232f2d">{{ $teacher->email }}</a></span>
@@ -59,7 +59,7 @@
                                         <!--rol-z end-->
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-sm-6">
-                                        <div class="rol-z style2"><img src="assets/img/ro3.png" alt="">
+                                        <div class="rol-z style2"><img src="{{ asset('assets/img/ro3.png') }}" alt="">
                                             <div class="rol-info">
                                                 <h3><a href="tel:{{ $teacher->phone }}" title="">Call Teacher<br>Now</a></h3>
                                             </div>

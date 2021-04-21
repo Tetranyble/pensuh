@@ -37,11 +37,14 @@
                                                 <li><a href="{{ $teacher->linkedin }}" title=""><i class="fab fa-linkedin-in"></i></a></li>
                                                 <li><a href="{{ $teacher->facebook }}" title=""><i class="fab fa-facebook-f"></i></a></li>
                                                 <li><a href="{{ $teacher->twitter }}" title=""><i class="fab fa-twitter"></i></a></li>
-                                            </ul><span><img src="assets/img/plus.png" alt=""></span>
+                                            </ul><span><img src="{{ asset('assets/img/plus.png') }}" alt=""></span>
                                         </div>
                                     </div>
                                     <div class="teacher-info">
-                                        <h3><a href="{{ route('teachers.show', $teacher) }}" title="{{ $teacher->firstname. ' ' .$teacher->lastname }}">{{ $teacher->firstname. ' ' .$teacher->lastname }}</a></h3><span>{{ $teacher->courses->first()->name ? $teacher->courses->first()->name : ''  }}</span>
+                                        <h3><a href="{{ route('teachers.show', $teacher) }}" title="{{ $teacher->fullname }}">{{ $teacher->fullname }}</a></h3>
+                                            @if($teacher->courses->first())
+                                                <span><a href="{{ route('courses.show', $teacher->courses->first()->id) }}" title="{{ $teacher->courses->first()->name }}">{{ $teacher->courses->first()->name }}</a></span>
+                                            @endif
                                     </div>
                                 </div>
                                 <!--teacher end-->

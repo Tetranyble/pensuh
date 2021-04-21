@@ -120,7 +120,7 @@
                                             <span>No Time Table</span>
                                         @endforelse
                                         <div class="d-flex flex-wrap align-items-center">
-                                            <div class="posted-by"><img style="width: 1.5rem;" src="{{ asset($course->teacher->first()->photo) }}" alt=""> <a href="#" title="">{{ $course->teacher->first()->firstname . ' ' . $course->teacher->first()->lastname }}</a>
+                                            <div class="posted-by"><img style="width: 1.5rem;" src="{{ asset($course->teacher->first()->photo) }}" alt=""> <a href="{{ route('teachers.show', $course->teacher->first()) }}" title="">{{ $course->teacher->first()->firstname . ' ' . $course->teacher->first()->lastname }}</a>
                                                 {{--                                            </div><strong class="price">$45</strong>--}}
                                             </div>
                                         </div>
@@ -158,11 +158,14 @@
                                                 <li><a href="{{ $teacher->linkedin }}" title=""><i class="fab fa-linkedin-in"></i></a></li>
                                                 <li><a href="{{ $teacher->facebook }}" title=""><i class="fab fa-facebook-f"></i></a></li>
                                                 <li><a href="{{ $teacher->twitter }}" title=""><i class="fab fa-twitter"></i></a></li>
-                                            </ul><span><img src="assets/img/plus.png" alt=""></span>
+                                            </ul><span><img src="{{ asset('assets/img/plus.png') }}" alt=""></span>
                                         </div>
                                     </div>
                                     <div class="teacher-info">
-                                        <h3><a href="{{ route('teachers.show', $teacher) }}" title="{{ $teacher->firstname. ' ' .$teacher->lastname }}">{{ $teacher->firstname. ' ' .$teacher->lastname }}</a></h3><span>{{ $teacher->courses->first()->name ? $teacher->courses->first()->name : ''  }}</span>
+                                        <h3><a href="{{ route('teachers.show', $teacher) }}" title="{{ $teacher->fullname }}">{{ $teacher->fullname }}</a></h3>
+                                        @if($teacher->courses->first())
+                                        <span><a href="{{ route('courses.show', $course->id) }}" title="{{ $teacher->courses->first()->name }}">{{ $teacher->courses->first()->name }}</a></span>
+                                        @endif
                                     </div>
                                 </div>
                                 <!--teacher end-->

@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes;
+use App\School;
+use App\Section;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +27,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index');
+        $teacher = User::whereHas("roles", function($q){ $q->where("name", "teacher"); })->count();
+        $student = User::whereHas("roles", function($q){ $q->where("name", "student"); })->count();
+        $class = Classes::count();
+        $section = Section::count();
+        return view('dashboard.index', compact('teacher', 'student', 'class', 'section'));
     }
 }

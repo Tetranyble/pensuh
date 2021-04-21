@@ -29,5 +29,10 @@ class AuthServiceProvider extends ServiceProvider
                 return true;
             }
         });
+        Gate::after(function($user, $permission){
+            if ($user->roles->contains($permission)) {
+                return true;
+            }
+        });
     }
 }

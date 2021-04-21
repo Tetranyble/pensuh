@@ -11,20 +11,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-//use Intervention\Image\Image;
-// import the Intervention Image Manager Class
 use Intervention\Image\ImageManagerStatic as Image;
 
-class AdminController extends Controller
+class TeacherOnboardingController extends Controller
 {
     public function create(){
         $nationalities = Nationality::get();
         $genders = Gender::get();
         $bloods = BloodGroup::get();
-        return view('frontend.onboarding.admin', compact('nationalities', 'genders', 'bloods'));
+        return view('frontend.onboarding.teacher', compact('nationalities', 'genders', 'bloods'));
     }
-    public function store(Request $request){
-         $request->validate([
+    public function store( Request $request){
+        $request->validate([
             'firstname' => 'required|string|max:255',
             'middlename' => 'nullable|string|max:255',
             'lastname' => 'required|string|max:255',
@@ -52,10 +50,9 @@ class AdminController extends Controller
         }
         $request->merge([ 'password' => Hash::make($request->get('password')), 'school_id' => '1', 'username' => $request->get('firstname').'.'. $request->get('lastname') ]);
         DB::transaction(function () use($request){
-            User::create($request->all())->assignRole('principal');
+            User::create($request->all())->assignRole('teacher');
         });
 
         return redirect()->back()->with('success', 'Account created successfully');
-
     }
 }
