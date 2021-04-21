@@ -66,9 +66,8 @@
                         <div class="section-title">
                             <h2>{{ $home->benefit_header }}</h2>
                             <p>{{ $home->benefit_body }}</p>
-                            <a href="{{ route('contacts') }}" title="" class="btn-default">Contacts <i
+                            <a href="{{ route('contact') }}" title="" class="btn-default">Contacts <i
                                     class="fa fa-long-arrow-alt-right"></i></a>
-
                         </div>
                         <!--section-title end-->
                     </div>
