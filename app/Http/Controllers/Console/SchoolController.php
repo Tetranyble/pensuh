@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Console;
+use App\Http\Controllers\Controller;
+use App\Language;
 use App\School;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,9 @@ class SchoolController extends Controller
      */
     public function create()
     {
-        //
+        $school = School::first();
+        $languages = Language::get();
+        return view('dashboard.school.school', compact('school', 'languages'));
     }
 
     /**

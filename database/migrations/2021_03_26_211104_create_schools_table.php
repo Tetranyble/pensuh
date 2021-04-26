@@ -43,7 +43,7 @@ class CreateSchoolsTable extends Migration
             $table->string('school_event_body')->nullable();
 
             $table->string('established')->default('')->nullable();
-            $table->integer('teaching_language')->nullable();//bn,en
+            $table->integer('language_id')->nullable();//bn,en
             $table->integer('code')->unique();
             $table->string('theme')->nullable()->nullable();
             $table->string('favicon')->nullable()->default('storage/school/favicon.icon');

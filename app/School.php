@@ -15,4 +15,13 @@ class School extends Model
     public function galleries(){
         return $this->hasMany(Gallery::class);
     }
+
+    public function setCodeAttribute($value){
+        $code = time();
+        while(User::whereCode($code)->exists())
+        {
+            $code = time();
+        }
+        $this->attributes['code'] = $code;
+    }
 }

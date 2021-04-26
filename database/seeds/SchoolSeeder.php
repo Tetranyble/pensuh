@@ -14,7 +14,7 @@ class SchoolSeeder extends Seeder
     {
         School::create([
             'established' => '2001',
-            'teaching_language' => '1',
+            'language_id' => '1',
             'school_name' => 'Ph',
             'code' =>  time() + 1,
             'theme' => 'white',
@@ -55,7 +55,7 @@ class SchoolSeeder extends Seeder
             'support' => 'Student Support Service',
             'support_body' => 'Our school bus and paramedic support service is exceptional',
             'banner_image' => 'storage/banner-img.png',
-            'event_image' => 'storage/course-img.png',
+            'event_image' => 'storage/course-img.jpg',
 
             'about_image' => 'storage/abt1.png',
             'mission_image' => 'storage/abt2.png',

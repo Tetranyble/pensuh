@@ -35,11 +35,10 @@ Route::resource('attendances', 'AttendanceController');
 
 Route::resource('roles', 'RolesController')->middleware('can:edit');
 Route::group([ 'prefix' => 'console', 'namespace' => 'Console', 'middleware' => 'auth'], function(){
-//    Route::resource('courses', 'CourseController');
+    Route::resource('schools', 'SchoolController');
     Route::get('courses/{teacher}', 'TeacherCourseController@index')->name('teacher.courses');
     Route::get('grades/{teacher}', 'GradesController@index')->name('grades.course');
-    Route::get('admin/create', 'AdminController@create')->name('admin.create');
-    Route::get('admin/store', 'AdminController@store')->name('admin.store');
+
     Route::resource('staff', 'StaffController');
 });
 Route::group([ 'prefix' => 'setup', 'namespace' => 'Administration'], function(){
