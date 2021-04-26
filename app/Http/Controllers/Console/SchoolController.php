@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Console;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreSchoolRequest;
 use App\Language;
 use App\School;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class SchoolController extends Controller
 {
@@ -36,9 +39,24 @@ class SchoolController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSchoolRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $filenames = [ 'mission_image_x' => [575,592], 'blog_banner_x' => [1340,894], 'school_logo_x' => [162,57], 'course_banner_x' => [1170,400],
+            'banner_image_x' => [497,586], 'event_image_x' => [476,526], 'about_image_x' => [601,645], 'favicon_x' => [32,32]];
+        foreach ($filenames as $key => $file){
+            if ($request->has($key)){
+                $photo = $request->file($key);
+                $photos = Image::make($photo->getRealPath())->resize($file[0], $file[1]);
+                $newName = time() . Str::slug($request->get('school_name')) . '.' . $photo->getClientOriginalExtension();
+                $request->merge([str_replace('_x','', $key) => 'storage/'.$newName]);
+                $photos->save(storage_path('app/public/'.$newName));
+            }
+        }
+        School::whereId($request->id)->update($request->except(['_token', 'id', 'mission_image_x', 'blog_banner_x', 'school_logo_x', 'course_banner_x', 'banner_image_x',
+            'event_image_x', 'about_image_x', 'favicon_x']));
+        return redirect()->back()->with('success', 'school updated successfully');
+
     }
 
     /**

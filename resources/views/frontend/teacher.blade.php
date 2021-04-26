@@ -19,7 +19,7 @@
                     </ul>
                 </div>
                 <!--pager-content end-->
-                <h2 class="page-titlee">{{ $home->school_name }}</h2>
+                <h2 class="page-titlee">{{ $home->school_name_code }}</h2>
             </div>
         </section>
         <!--pager-section end-->

@@ -253,7 +253,7 @@
 @endsection
 @section('javascript')
     <script src="{{ asset('assets/js/bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/js/button.min.js') }}"></script>
+{{--    <script src="{{ asset('assets/js/button.min.js') }}"></script>--}}
     <!-- Global site tag (gtag.js) - Google Analytics -->
     {{--    <script async src="http://www.googletagmanager.com/gtag/js2c98?id=UA-180910402-1"></script>--}}
     {{--    <script>window.dataLayer = window.dataLayer || [];--}}

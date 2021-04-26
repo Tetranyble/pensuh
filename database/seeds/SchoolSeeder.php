@@ -15,7 +15,8 @@ class SchoolSeeder extends Seeder
         School::create([
             'established' => '2001',
             'language_id' => '1',
-            'school_name' => 'Ph',
+            'school_name' => 'Peculiar Group Of School Ozubulu',
+            'school_name_code' => 'PGSO',
             'code' =>  time() + 1,
             'theme' => 'white',
             'address' => 'Egbema Ozubulu',

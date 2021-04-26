@@ -34,7 +34,7 @@
                 </div>
             </section>
             <!--main-banner end-->
-            <h2 class="main-title">{{ $home->school_name }}</h2>
+            <h2 class="main-title">{{ $home->school_name_code }}</h2>
         </div>
         <!--main-section end-->
         <section class="about-us-section">

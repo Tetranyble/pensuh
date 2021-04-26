@@ -24,4 +24,8 @@ class School extends Model
         }
         $this->attributes['code'] = $code;
     }
+
+    public function language(){
+        return $this->belongsTo(Language::class);
+    }
 }
