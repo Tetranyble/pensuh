@@ -45,6 +45,9 @@ Route::group([ 'prefix' => 'setup', 'namespace' => 'Administration'], function()
     Route::get('admin/create', 'AdminController@create')->name('admin.create');
     Route::post('admin/store', 'AdminController@store')->name('admin.store');
 
+    Route::resource('classes', 'ClassManagerController');
+    Route::resource('sections', 'SectionManagerController');
+
     Route::get('teacher/create', 'TeacherOnboardingController@create')->name('teacher.create');
     Route::post('teacher/store', 'TeacherOnboardingController@store')->name('teacher.store');
 });

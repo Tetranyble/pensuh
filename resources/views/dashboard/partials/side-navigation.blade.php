@@ -50,21 +50,40 @@
                 <li class="nav-small-cap"><span class="hide-menu">School Setup</span></li>
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                              aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
+                            class="hide-menu">Classes </span></a>
+                    <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                        <li class="sidebar-item"><a href="{{ route('classes.create') }}" class="sidebar-link"><span
+                                    class="hide-menu">Create
+                                        </span></a>
+                        </li>
+                        <li class="sidebar-item"><a href="{{ route('classes.index') }}" class="sidebar-link"><span
+                                    class="hide-menu">View
+                                        </span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                                             aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
+                            class="hide-menu">Class Sections </span></a>
+                    <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                        <li class="sidebar-item"><a href="{{ route('sections.create') }}" class="sidebar-link"><span
+                                    class="hide-menu">Create
+                                        </span></a>
+                        </li>
+                        <li class="sidebar-item"><a href="{{ route('sections.index') }}" class="sidebar-link"><span
+                                    class="hide-menu">View
+                                        </span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                                             aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
                             class="hide-menu">Settings </span></a>
                     <ul aria-expanded="false" class="collapse  first-level base-level-line">
                         <li class="sidebar-item"><a href="{{ route('schools.create') }}" class="sidebar-link"><span
                                     class="hide-menu"> My School
                                         </span></a>
                         </li>
-{{--                        <li class="sidebar-item"><a href="form-input-grid.html" class="sidebar-link"><span--}}
-{{--                                    class="hide-menu"> Form Grids--}}
-{{--                                        </span></a>--}}
-{{--                        </li>--}}
-{{--                        <li class="sidebar-item"><a href="form-checkbox-radio.html" class="sidebar-link"><span--}}
-{{--                                    class="hide-menu"> Checkboxes &--}}
-{{--                                            Radios--}}
-{{--                                        </span></a>--}}
-{{--                        </li>--}}
                     </ul>
                 </li>
 {{--                <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"--}}

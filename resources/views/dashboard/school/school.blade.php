@@ -20,7 +20,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h2 class="card-title">Let's Meet You</h2>
+                            <h4 class="card-title">Let's Meet Your School</h4>
                             @csrf
                             <div class="form-body">
                                 <div class="row">
