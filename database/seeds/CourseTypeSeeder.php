@@ -16,16 +16,19 @@ class CourseTypeSeeder extends Seeder
         CourseType::truncate();
         CourseType::create([
             'name' => 'Elective',
+            'school_id' => '1',
             'slug' => Str::lower(Str::slug('Elective')),
             'description' => 'Elective course'
         ]);
         CourseType::create([
             'name' => 'Core',
+            'school_id' => '1',
             'slug' => Str::lower(Str::slug('Core')),
             'description' => 'Core course'
         ]);
         CourseType::create([
             'name' => 'Optional',
+            'school_id' => '1',
             'slug' => Str::lower(Str::slug('Optional')),
             'description' => 'Optional course'
         ]);

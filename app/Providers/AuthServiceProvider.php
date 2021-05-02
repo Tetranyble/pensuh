@@ -24,13 +24,13 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-        Gate::before(function($user, $permission){
+        Gate::after(function($user, $permission){
             if ($user->permissions()->contains($permission)) {
                 return true;
             }
         });
         Gate::after(function($user, $permission){
-            if ($user->roles->contains($permission)) {
+            if ($user->roles->pluck('name')->contains($permission)) {
                 return true;
             }
         });

@@ -19,6 +19,7 @@ class CreateSectionsTable extends Migration
             $table->string('capacity')->nullable();
             $table->integer('classes_id')->unsigned();
             $table->string('classroom')->nullable();
+            $table->integer('school_id')->unsigned()->nullable();
             $table->integer('form_teacher')->nullable();
             $table->timestamps();
         });

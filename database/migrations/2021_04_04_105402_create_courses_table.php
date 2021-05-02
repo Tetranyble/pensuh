@@ -17,10 +17,8 @@ class CreateCoursesTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->integer('section_id')->nullable();
-
+            $table->integer('school_id')->unsigned()->nullable();
             $table->integer('course_type_id')->nullable();
-            $table->integer('schedule_id')->nullable();
-            $table->integer('syllabus_id')->nullable();
             $table->text('body')->nullable();
             $table->string('banner')->nullable()->default('storage/class-single-banner.jpg');
             $table->string('photo')->nullable()->default('storage/class1.jpg');

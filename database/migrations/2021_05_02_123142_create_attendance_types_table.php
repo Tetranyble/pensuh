@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClassesTable extends Migration
+class CreateAttendanceTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,9 @@ class CreateClassesTable extends Migration
      */
     public function up()
     {
-        Schema::create('classes', function (Blueprint $table) {
+        Schema::create('attendance_types', function (Blueprint $table) {
             $table->id();
-            $table->string('age')->nullable();
-            $table->string('slug')->nullable();
             $table->string('name')->nullable();
-            $table->integer('school_id')->unsigned()->nullable();
-            $table->integer('syllabus_id')->nullable();
-            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ class CreateClassesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('classes');
+        Schema::dropIfExists('attendance_types');
     }
 }

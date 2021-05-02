@@ -14,11 +14,13 @@ class NationalitySeeder extends Seeder
     {
         Nationality::create([
             'name' => 'Nigeria',
-            'code' => 'NG'
+            'code' => 'NG',
+            'school_id' => '1'
         ]);
         Nationality::create([
             'name' => 'Ghana',
-            'code' => 'Gh'
+            'code' => 'Gh',
+            'school_id' => '1'
         ]);
         Nationality::create([
             'name' => 'Great Britain',
@@ -26,7 +28,8 @@ class NationalitySeeder extends Seeder
         ]);
         Nationality::create([
             'name' => 'United States',
-            'code' => 'US'
+            'code' => 'US',
+            'school_id' => '1'
         ]);
     }
 }

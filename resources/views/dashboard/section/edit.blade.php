@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.dashboard')
-@section('title', 'New Section')
+@section('title', 'Edit Section')
 @section('dashboard')
     <div class="container-fluid">
         @include('components.flash-message')
@@ -13,13 +13,13 @@
                         <h4 class="card-title">Create New Section</h4>
                         <div class="d-flex ">
                             @forelse($formteachers as $teacher)
-                                @empty
+                            @empty
                                 <p class="text-warning">There appears to be no <b>Form Teacher</b> in<b> {{ $home->school_name }}</b> <a href="#" class=" btn btn-sm text-danger">Assign Role</a></p>
                             @endforelse
                         </div>
-                        <form method="POST" action="{{ route('sections.store', ['class' => request('class')]) }}">
+                        <form method="POST" action="{{ route('sections.update',$section) }}">
                             @csrf
-
+                            @method('PUT')
                             <div class="form-body">
                                 <div class="row">
 
@@ -29,7 +29,7 @@
                                                 <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('name')}}</span></span>
                                             </label>
                                             <input name="name" class="form-control" id="name" type="text"
-                                                   placeholder="school name" value="{{ old('name') }}">
+                                                   placeholder="school name" value="{{ old('name', $section->name) }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -38,7 +38,7 @@
                                                 <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('capacity')}}</span></span>
                                             </label>
                                             <input name="capacity" class="form-control" id="capacity" type="text"
-                                                   placeholder="section setting capacity" value="{{ old('capacity') }}">
+                                                   placeholder="section setting capacity" value="{{ old('capacity', $section->capacity) }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -47,7 +47,7 @@
                                                 <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('classroom')}}</span></span>
                                             </label>
                                             <input name="classroom" class="form-control" id="classroom" type="text"
-                                                   placeholder="class tag/room number" value="{{ old('classroom') }}">
+                                                   placeholder="class tag/room number" value="{{ old('classroom', $section->classroom) }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -58,7 +58,7 @@
                                             <select name="classes_id" class="form-control" id="syllabus_id" type="text">
                                                 <option>Select class</option>
                                                 @forelse($classes as $class)
-                                                    <option {{ old('classes_id', request('class')) == $class->id ? "selected" : "" }} value="{{ $class->id }}">{{ $class->name }}</option>
+                                                    <option {{ old('classes_id', $section->id) == $class->id ? "selected" : "" }} value="{{ $class->id }}">{{ $class->name }}</option>
                                                 @empty
                                                     <option>No data</option>
                                                 @endforelse
@@ -73,7 +73,7 @@
                                             <select name="form_teacher" class="form-control" id="form_teacher" type="text">
                                                 <option>Select class</option>
                                                 @forelse($formteachers as $teacher)
-                                                    <option {{ old('form_teacher') == $teacher->id ? "selected" : "" }} value="{{ $teacher->id }}">{{ $teacher->fullname }}</option>
+                                                    <option {{ old('form_teacher', $section->form_teacher) == $teacher->id ? "selected" : "" }} value="{{ $teacher->id }}">{{ $teacher->fullname }}</option>
                                                 @empty
                                                     <option>No data</option>
                                                 @endforelse

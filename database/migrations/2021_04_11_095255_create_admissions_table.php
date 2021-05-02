@@ -15,6 +15,7 @@ class CreateAdmissionsTable extends Migration
     {
         Schema::create('admissions', function (Blueprint $table) {
             $table->id();
+            $table->integer('school_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }

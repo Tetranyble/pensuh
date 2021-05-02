@@ -16,82 +16,98 @@ class SyllabusSeeder extends Seeder
         Syllabus::create([
             'name' => 'JSS 1 Scheme of Works',
             'slug' => Str::slug('JSS 1 Scheme of Works'),
-            'body' => '<p> JSS 1 Scheme of Works</p>'
+            'body' => '<p> JSS 1 Scheme of Works</p>',
+            'school_id' => '1'
         ]);
         Syllabus::create([
             'name' => 'JSS 2 Scheme of Works',
             'slug' => Str::slug('JSS 2 Scheme of Works'),
-            'body' => '<p> JSS 2 Scheme of Works</p>'
+            'body' => '<p> JSS 2 Scheme of Works</p>',
+            'school_id' => '1'
         ]);
         Syllabus::create([
             'name' => 'JSS 3 Scheme of Works',
             'slug' => Str::slug('JSS 3 Scheme of Works'),
-            'body' => '<p> JSS 3 Scheme of Works</p>'
+            'body' => '<p> JSS 3 Scheme of Works</p>',
+            'school_id' => '1'
         ]);
         Syllabus::create([
             'name' => 'SS 1 Scheme of Works',
             'slug' => Str::slug('SS 1 Scheme of Works'),
-            'body' => '<p> SS 1 Scheme of Works</p>'
+            'body' => '<p> SS 1 Scheme of Works</p>',
+            'school_id' => '1'
         ]);
         Syllabus::create([
             'name' => 'SS 2 Scheme of Works',
             'slug' => Str::slug('SS 2 Scheme of Works'),
-            'body' => '<p> SS 2 Scheme of Works</p>'
+            'body' => '<p> SS 2 Scheme of Works</p>',
+            'school_id' => '1'
         ]);
         Syllabus::create([
             'name' => 'SS 3 Scheme of Works',
             'slug' => Str::slug('SS 3 Scheme of Works'),
-            'body' => '<p> SS 3 Scheme of Works</p>'
+            'body' => '<p> SS 3 Scheme of Works</p>',
+            'school_id' => '1'
         ]);
         Syllabus::create([
             'name' => 'Primary 1 Scheme of Works',
             'slug' => Str::slug('Primary 1 Scheme of Works'),
-            'body' => '<p> Primary 1 Scheme of Works</p>'
+            'body' => '<p> Primary 1 Scheme of Works</p>',
+            'school_id' => '1'
         ]);
         Syllabus::create([
             'name' => 'Primary 2 Scheme of Works',
             'slug' => Str::slug('Primary 2 Scheme of Works'),
-            'body' => '<p> Primary 2 Scheme of Works</p>'
+            'body' => '<p> Primary 2 Scheme of Works</p>',
+            'school_id' => '1'
         ]);
         Syllabus::create([
             'name' => 'Primary 3 Scheme of Works',
             'slug' => Str::slug('Primary 3 Scheme of Works'),
-            'body' => '<p> Primary 3 Scheme of Works</p>'
+            'body' => '<p> Primary 3 Scheme of Works</p>',
+            'school_id' => '1'
         ]);
         Syllabus::create([
             'name' => 'Primary 4 Scheme of Works',
             'slug' => Str::slug('Primary 4 Scheme of Works'),
-            'body' => '<p> Primary 4 Scheme of Works</p>'
+            'body' => '<p> Primary 4 Scheme of Works</p>',
+            'school_id' => '1'
         ]);
         Syllabus::create([
             'name' => 'Primary 5 Scheme of Works',
             'slug' => Str::slug('Primary 5 Scheme of Works'),
-            'body' => '<p> Primary 5 Scheme of Works</p>'
+            'body' => '<p> Primary 5 Scheme of Works</p>',
+            'school_id' => '1'
         ]);
         Syllabus::create([
             'name' => 'Primary 6 Scheme of Works',
             'slug' => Str::slug('Primary 6 Scheme of Works'),
-            'body' => '<p> Primary 6 Scheme of Works</p>'
+            'body' => '<p> Primary 6 Scheme of Works</p>',
+            'school_id' => '1'
         ]);
         Syllabus::create([
             'name' => 'Nursery 1 Scheme of Works',
             'slug' => Str::slug('Nursery 1 Scheme of Works'),
-            'body' => '<p> Nursery 1 Scheme of Works</p>'
+            'body' => '<p> Nursery 1 Scheme of Works</p>',
+            'school_id' => '1'
         ]);
         Syllabus::create([
             'name' => 'Nursery 2 Scheme of Works',
             'slug' => Str::slug('Nursery 2 Scheme of Works'),
-            'body' => '<p> Nursery 2 Scheme of Works</p>'
+            'body' => '<p> Nursery 2 Scheme of Works</p>',
+            'school_id' => '1'
         ]);
         Syllabus::create([
             'name' => 'Nursery 3 Scheme of Works',
             'slug' => Str::slug('Nursery 3 Scheme of Works'),
-            'body' => '<p> Nursery 3 Scheme of Works</p>'
+            'body' => '<p> Nursery 3 Scheme of Works</p>',
+            'school_id' => '1'
         ]);
         Syllabus::create([
             'name' => 'Creche Scheme of Works',
             'slug' => Str::slug('Creche Scheme of Works'),
-            'body' => '<p> Creche Scheme of Works</p>'
+            'body' => '<p> Creche Scheme of Works</p>',
+            'school_id' => '1'
         ]);
     }
 }

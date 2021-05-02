@@ -2,20 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Attendance;
 use App\AttendanceType;
-use App\Http\Requests\AttendanceStoreRequest;
-
-use App\User;
 use Illuminate\Http\Request;
 
-class AttendanceController extends Controller
+class AttendanceTypeController extends Controller
 {
-    public function __construct()
-    {
-
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -33,8 +24,7 @@ class AttendanceController extends Controller
      */
     public function create()
     {
-        $attendanceTypes = AttendanceType::all();
-        return view('dashboard.attendance.create', compact('attendanceTypes'));
+        //
     }
 
     /**
@@ -43,19 +33,18 @@ class AttendanceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AttendanceStoreRequest $request)
+    public function store(Request $request)
     {
-        Attendance::create($request->except(['_token','user']));
-        return redirect()->back()->with('success', 'attendance marked successfully');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Attendance  $attendance
+     * @param  \App\AttendanceType  $attendanceType
      * @return \Illuminate\Http\Response
      */
-    public function show(Attendance $attendance)
+    public function show(AttendanceType $attendanceType)
     {
         //
     }
@@ -63,10 +52,10 @@ class AttendanceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Attendance  $attendance
+     * @param  \App\AttendanceType  $attendanceType
      * @return \Illuminate\Http\Response
      */
-    public function edit(Attendance $attendance)
+    public function edit(AttendanceType $attendanceType)
     {
         //
     }
@@ -75,10 +64,10 @@ class AttendanceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Attendance  $attendance
+     * @param  \App\AttendanceType  $attendanceType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Attendance $attendance)
+    public function update(Request $request, AttendanceType $attendanceType)
     {
         //
     }
@@ -86,10 +75,10 @@ class AttendanceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Attendance  $attendance
+     * @param  \App\AttendanceType  $attendanceType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Attendance $attendance)
+    public function destroy(AttendanceType $attendanceType)
     {
         //
     }

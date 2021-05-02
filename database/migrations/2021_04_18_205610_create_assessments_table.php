@@ -15,7 +15,7 @@ class CreateAssessmentsTable extends Migration
     {
         Schema::create('assessments', function (Blueprint $table) {
             $table->id();
-            $table->integer('school_id')->unsigned();
+            $table->integer('school_id')->unsigned()->nullable();
             $table->integer('school_type_id')->unsigned(); // assessment type i.e for primary or secondary or creche
             //$table->integer('session_id')->unsigned();
             $table->integer('classes_id')->unsigned();

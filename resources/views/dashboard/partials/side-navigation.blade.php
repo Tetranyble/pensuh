@@ -10,10 +10,11 @@
                 <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="{{ route('dashboard') }}"
                                              aria-expanded="false"><i data-feather="home" class="feather-icon"></i><span
                             class="hide-menu">Dashboard</span></a></li>
-                <li class="list-divider"></li>
+
 
 {{--                <li class="nav-small-cap"><span class="hide-menu">Applications</span></li>--}}
                 @canany(['teacher', 'admin', 'principal', 'security','form_teacher','student', 'master'])
+                    <li class="list-divider"></li>
                 <li class="sidebar-item"> <a class="sidebar-link" href="{{ route('students.index') }}"
                                              aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span
                             class="hide-menu">Students
@@ -27,36 +28,32 @@
                                 </span></a>
                 </li>
                 @endcan
-                @canany(['teacher','form_teacher'])
+{{--                @canany(['teacher','form_teacher'])--}}
                     <li class="sidebar-item"> <a class="sidebar-link" href="#"
                                                  aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span
                                 class="hide-menu">My Courses
                                 </span></a>
                     </li>
-                @endcan
-{{--                <li class="sidebar-item"> <a class="sidebar-link" href=""--}}
-{{--                                             aria-expanded="false"><i data-feather="tag" class="feather-icon"></i><span--}}
-{{--                            class="hide-menu">Ticket--}}
-{{--                                </span></a>--}}
-{{--                </li>--}}
-{{--                <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="app-chat.html"--}}
-{{--                                             aria-expanded="false"><i data-feather="message-square" class="feather-icon"></i><span--}}
-{{--                            class="hide-menu">Chat</span></a></li>--}}
-{{--                <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="app-calendar.html"--}}
-{{--                                             aria-expanded="false"><i data-feather="calendar" class="feather-icon"></i><span--}}
-{{--                            class="hide-menu">Calendar</span></a></li>--}}
-
+{{--                @endcan--}}
+                <li class="list-divider"></li>
+                <li class="nav-small-cap"><span class="hide-menu">Attendance</span></li>
+                <li class="sidebar-item"> <a class="sidebar-link" href="{{ route('attendances.create') }}"
+                                             aria-expanded="false"><i data-feather="tag" class="feather-icon"></i><span
+                            class="hide-menu">Take Attendance
+                                </span></a>
+                </li>
+                @canany(['admin', 'principal', 'master'])
                 <li class="list-divider"></li>
                 <li class="nav-small-cap"><span class="hide-menu">School Setup</span></li>
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                              aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
                             class="hide-menu">Classes </span></a>
                     <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                        <li class="sidebar-item"><a href="{{ route('classes.create') }}" class="sidebar-link"><span
+                        <li class="sidebar-item"><a href="{{ route('class.create') }}" class="sidebar-link"><span
                                     class="hide-menu">Create
                                         </span></a>
                         </li>
-                        <li class="sidebar-item"><a href="{{ route('classes.index') }}" class="sidebar-link"><span
+                        <li class="sidebar-item"><a href="{{ route('class.index') }}" class="sidebar-link"><span
                                     class="hide-menu">View
                                         </span></a>
                         </li>
@@ -66,12 +63,26 @@
                                              aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
                             class="hide-menu">Class Sections </span></a>
                     <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                        <li class="sidebar-item"><a href="{{ route('sections.create') }}" class="sidebar-link"><span
-                                    class="hide-menu">Create
-                                        </span></a>
-                        </li>
+{{--                        <li class="sidebar-item"><a href="{{ route('sections.create') }}" class="sidebar-link"><span--}}
+{{--                                    class="hide-menu">Create--}}
+{{--                                        </span></a>--}}
+{{--                        </li>--}}
                         <li class="sidebar-item"><a href="{{ route('sections.index') }}" class="sidebar-link"><span
                                     class="hide-menu">View
+                                        </span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                                             aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
+                            class="hide-menu">Courses/Subjects </span></a>
+                    <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                                                <li class="sidebar-item"><a href="{{ route('course.create') }}" class="sidebar-link"><span
+                                                            class="hide-menu">Create
+                                                                </span></a>
+                                                </li>
+                        <li class="sidebar-item"><a href="{{ route('course.index') }}" class="sidebar-link"><span
+                                    class="hide-menu">View All Courses
                                         </span></a>
                         </li>
                     </ul>
@@ -86,6 +97,7 @@
                         </li>
                     </ul>
                 </li>
+                @endcanany
 {{--                <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"--}}
 {{--                                             aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span--}}
 {{--                            class="hide-menu">Tables </span></a>--}}

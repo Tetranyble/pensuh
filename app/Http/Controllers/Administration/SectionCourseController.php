@@ -1,21 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Administration;
 
-use App\Attendance;
-use App\AttendanceType;
-use App\Http\Requests\AttendanceStoreRequest;
-
-use App\User;
+use App\Course;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
-class AttendanceController extends Controller
+class SectionCourseController extends Controller
 {
     public function __construct()
-    {
+{
 
-        $this->middleware('auth');
-    }
+    $this->middleware('auth');
+}
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +21,11 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        //
+
+        abort_if(!request('section'), 404);
+        $courses = Course::where([['section_id','=', request('section')],['school_id', '=', auth()->user()->school->id]])->paginate();
+
+        return view('dashboard.course.index',compact('courses'));
     }
 
     /**
@@ -33,8 +35,7 @@ class AttendanceController extends Controller
      */
     public function create()
     {
-        $attendanceTypes = AttendanceType::all();
-        return view('dashboard.attendance.create', compact('attendanceTypes'));
+        //
     }
 
     /**
@@ -43,19 +44,18 @@ class AttendanceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AttendanceStoreRequest $request)
+    public function store(Request $request)
     {
-        Attendance::create($request->except(['_token','user']));
-        return redirect()->back()->with('success', 'attendance marked successfully');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Attendance  $attendance
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Attendance $attendance)
+    public function show($id)
     {
         //
     }
@@ -63,10 +63,10 @@ class AttendanceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Attendance  $attendance
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Attendance $attendance)
+    public function edit($id)
     {
         //
     }
@@ -75,10 +75,10 @@ class AttendanceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Attendance  $attendance
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Attendance $attendance)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -86,10 +86,10 @@ class AttendanceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Attendance  $attendance
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Attendance $attendance)
+    public function destroy($id)
     {
         //
     }

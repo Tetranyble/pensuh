@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class ClassManagerController extends Controller
 {
+    public function __construct()
+    {
+
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -67,7 +72,6 @@ class ClassManagerController extends Controller
     {
         $syllabi = Syllabus::all();
         $class = Classes::findOrFail($id);
-
 
         return view('dashboard.class.edit', compact('class', 'syllabi'));
     }

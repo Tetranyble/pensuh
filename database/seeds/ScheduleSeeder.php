@@ -15,28 +15,33 @@ class ScheduleSeeder extends Seeder
         Schedule::create([
             'day' => 'monday',
             'start' => '8:05 PM',
-            'end' => '8:50 PM'
+            'end' => '8:50 PM',
+            'school_id' => '1'
         ]);
 
         Schedule::create([
             'day' => 'monday',
             'start' => '8:50 AM',
-            'end' => '9:35 AM'
+            'end' => '9:35 AM',
+            'school_id' => '1'
         ]);
         Schedule::create([
             'day' => 'monday',
             'start' => '9:35 AM',
-            'end' => '10:20 AM'
+            'end' => '10:20 AM',
+            'school_id' => '1'
         ]);
         Schedule::create([
             'day' => 'monday',
             'start' => '10:20 AM',
-            'end' => '11:05 AM'
+            'end' => '11:05 AM',
+            'school_id' => '1'
         ]);
         Schedule::create([
             'day' => 'monday',
             'start' => '11:05 AM',
-            'end' => '11:50 AM'
+            'end' => '11:50 AM',
+            'school_id' => '1'
         ]);
 //        Schedule::create([
 //            'day' => 'monday',

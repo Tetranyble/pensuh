@@ -9,7 +9,7 @@ class Course extends Model
     protected $guarded = [];
 
     public function teacher(){
-        return $this->belongsToMany(User::class,'course_user');
+        return $this->belongsToMany(User::class);
     }
 
     public function section(){
@@ -24,15 +24,12 @@ class Course extends Model
      */
     public function assignTeacherTo( $teacher ){
         if(is_string($teacher)){
-            $teacher = User::whereName($teacher)->firstOrFail();
+            $teacher = User::whereId($teacher)->firstOrFail();
         }elseif (is_array($teacher)){
-            foreach ($teacher as $key => $teach){
-                $teach = User::whereName($teach)->firstOrFail();
-                $this->teacher()->sync($teach, false);
-            }
+            $this->teacher()->sync($teacher);
             return true;
         }
-        return $this->teacher()->sync($teacher, false);
+        return $this->teacher()->sync($teacher);
     }
 
     public function schedules(){
@@ -40,15 +37,15 @@ class Course extends Model
     }
     public function attachSchedule($schedule){
         if(is_string($schedule)){
-            $schedule = Schedule::whereName($schedule)->firstOrFail();
+            $schedule = Schedule::whereId($schedule)->firstOrFail();
         }elseif (is_array($schedule)){
-            foreach ($schedule as $key => $time){
-                $time = Schedule::whereName($time)->firstOrFail();
-                $this->schedules()->sync($time, false);
-            }
+            $this->schedules()->sync($schedule);
             return true;
         }
-        return $this->schedules()->sync($schedule, false);
+        return $this->schedules()->sync($schedule);
+    }
+    public function courseType(){
+        return $this->belongsTo(CourseType::class);
     }
 
 }

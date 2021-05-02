@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class StoreSectionRequest extends FormRequest
 {
@@ -17,6 +18,17 @@ class StoreSectionRequest extends FormRequest
     }
 
     /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+//    protected function prepareForValidation()
+//    {
+//        $this->merge([
+//            'classes_id' => $this->request('class'),
+//        ]);
+//    }
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -25,7 +37,7 @@ class StoreSectionRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'capacity' => 'required|numeric',
+            'capacity' => 'required|string|max:255',
             'classes_id' => 'required|numeric',
             'classroom' => 'required|string|max:255',
             'form_teacher' => 'required|numeric',

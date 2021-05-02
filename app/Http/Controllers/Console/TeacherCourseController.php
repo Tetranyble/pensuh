@@ -18,7 +18,7 @@ class TeacherCourseController extends Controller
     {
         $courses = Course::whereHas("teacher", function($q) use($teacher){ $q->where("user_id", $teacher); })->paginate();
 
-        return view('dashboard.course.courses', compact('courses'));
+        return view('dashboard.course.index', compact('courses'));
     }
 
     /**

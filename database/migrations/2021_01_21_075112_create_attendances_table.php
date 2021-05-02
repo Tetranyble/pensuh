@@ -16,9 +16,10 @@ class CreateAttendancesTable extends Migration
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->unsigned();
-            $table->integer('section_id')->unsigned();
-            $table->tinyInteger('attendance')->unsigned();
-            $table->tinyInteger('safety_attendance')->unsigned();
+            $table->integer('attendant')->unsigned()->nullable();
+            $table->integer('school_id')->unsigned()->nullable();
+            $table->integer('attendance_type_id')->unsigned()->nullable();
+            $table->boolean('present')->default(false)->nullable();
             $table->timestamps();
         });
     }

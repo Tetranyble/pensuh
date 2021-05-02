@@ -34,6 +34,8 @@ Route::resource('teachers', 'TeacherController');
 Route::resource('attendances', 'AttendanceController');
 
 Route::resource('roles', 'RolesController')->middleware('can:edit');
+
+
 Route::group([ 'prefix' => 'console', 'namespace' => 'Console', 'middleware' => 'auth'], function(){
     Route::resource('schools', 'SchoolController');
     Route::get('courses/{teacher}', 'TeacherCourseController@index')->name('teacher.courses');
@@ -41,12 +43,16 @@ Route::group([ 'prefix' => 'console', 'namespace' => 'Console', 'middleware' => 
 
     Route::resource('staff', 'StaffController');
 });
-Route::group([ 'prefix' => 'setup', 'namespace' => 'Administration'], function(){
+
+
+Route::group([ 'prefix' => 'setup', 'namespace' => 'Administration','middleware' => 'auth', 'name' => 'setup'], function(){
     Route::get('admin/create', 'AdminController@create')->name('admin.create');
     Route::post('admin/store', 'AdminController@store')->name('admin.store');
 
-    Route::resource('classes', 'ClassManagerController');
+    Route::get('sections/courses', 'SectionCourseController@index')->name('sections.courses');
+    Route::resource('class', 'ClassManagerController');
     Route::resource('sections', 'SectionManagerController');
+    Route::resource('course', 'CourseManagerController');
 
     Route::get('teacher/create', 'TeacherOnboardingController@create')->name('teacher.create');
     Route::post('teacher/store', 'TeacherOnboardingController@store')->name('teacher.store');
