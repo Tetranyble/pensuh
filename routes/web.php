@@ -32,8 +32,12 @@ Route::resource('syllabi', 'SyllabusController');
 Route::resource('students', 'StudentController');
 Route::resource('teachers', 'TeacherController');
 Route::resource('attendances', 'AttendanceController');
+Route::resource('qrcodes', 'QrcodeController');
 
 Route::resource('roles', 'RolesController')->middleware('can:edit');
+
+//user identity controller
+Route::get('identifies/{user}', 'UserIdentityController@show')->name('identifies.show');
 
 
 Route::group([ 'prefix' => 'console', 'namespace' => 'Console', 'middleware' => 'auth'], function(){

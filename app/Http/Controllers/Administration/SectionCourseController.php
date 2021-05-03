@@ -21,9 +21,12 @@ class SectionCourseController extends Controller
      */
     public function index()
     {
-
-        abort_if(!request('section'), 404);
-        $courses = Course::where([['section_id','=', request('section')],['school_id', '=', auth()->user()->school->id]])->paginate();
+        if(!(request('section') || request('teacher'))){
+            abort(404);
+        }
+        $teacher = request('teacher');
+        $courses = Course::where([['section_id','=', request('section')],['school_id', '=', auth()->user()->school->id]])->
+            orWhereHas("teacher", function($q) use($teacher){ $q->where("user_id", $teacher); })->whereSchoolId(auth()->user()->school->id)->paginate();
 
         return view('dashboard.course.index',compact('courses'));
     }

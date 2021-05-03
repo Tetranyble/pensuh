@@ -24,7 +24,9 @@
                                 <h4 class="card-title">{{ $course->name }}</h4>
                                 <p class="card-text">{{ Str::limit(strip_tags($course->body), 100) }}</p>
                                 <a target="_blank" href="{{ route('courses.show', $course->id) }}" class="btn btn-primary">View</a>
+                                @canany(['admin', 'principal', 'master'])
                                 <a href="{{ route('course.edit', $course)}}" class="btn text-warning">Edit</a>
+                                @endcanany
                             </div>
                         </div>
                         <!-- Card -->

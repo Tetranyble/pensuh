@@ -28,13 +28,13 @@
                                 </span></a>
                 </li>
                 @endcan
-{{--                @canany(['teacher','form_teacher'])--}}
-                    <li class="sidebar-item"> <a class="sidebar-link" href="#"
+                @canany(['teacher','form_teacher'])
+                    <li class="sidebar-item"> <a class="sidebar-link" href="{{ route('sections.courses',[ 'teacher' => auth()->user()->id, 'section' => '']) }}"
                                                  aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span
                                 class="hide-menu">My Courses
                                 </span></a>
                     </li>
-{{--                @endcan--}}
+                @endcan
                 <li class="list-divider"></li>
                 <li class="nav-small-cap"><span class="hide-menu">Attendance</span></li>
                 <li class="sidebar-item"> <a class="sidebar-link" href="{{ route('attendances.create') }}"

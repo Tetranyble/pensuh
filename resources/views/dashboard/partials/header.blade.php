@@ -203,8 +203,8 @@
                                                                                                           class="svg-icon mr-2 ml-1"></i>
                             {{ __('Logout') }}</a>
                         <div class="dropdown-divider"></div>
-{{--                        <div class="pl-4 p-3"><a href="javascript:void(0)" class="btn btn-sm btn-info">View--}}
-{{--                                Profile</a></div>--}}
+                        <div class="pl-4 p-3"><a href="javascript:void(0)" class="btn btn-sm btn-info">View
+                                Identity</a></div>
                     </div>
                 </li>
                 <!-- ============================================================== -->
