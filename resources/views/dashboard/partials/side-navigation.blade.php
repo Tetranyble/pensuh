@@ -95,7 +95,7 @@
                                         class="hide-menu"> Add Teacher
                                         </span></a>
                             </li>
-                            <li class="sidebar-item"><a href="{{ route('schools.create') }}" class="sidebar-link"><span
+                            <li class="sidebar-item"><a href="{{ route('student.create') }}" class="sidebar-link"><span
                                         class="hide-menu"> Add Student
                                         </span></a>
                             </li>

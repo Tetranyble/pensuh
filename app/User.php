@@ -22,7 +22,7 @@ class User extends Authenticatable
      *
      */
     protected $fillable = [
-        'firstname', 'middlename', 'lastname', 'email', 'password','gender_id', 'code', 'username','blood_group_id', 'nationality_id', 'phone', 'address', 'about', 'photo','twitter','active','facebook','instagram','linkedin','school_id','address',
+        'firstname', 'middlename', 'lastname', 'email', 'password','gender_id', 'code','date_of_birth', 'username','blood_group_id', 'nationality_id', 'religion_id', 'phone', 'address', 'about', 'photo','twitter','active','facebook','instagram','linkedin','school_id','address',
     ];
 
     /**
@@ -39,9 +39,9 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $dates = [
-        'date_of_birth',
-    ];
+//    protected $dates = [
+//        'date_of_birth',
+//    ];
     /**
      * The attributes that should be cast to native types.
      *
@@ -50,7 +50,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
+    public function getFromDateOfBirthAttribute($value) {
+        return Carbon::parse($value)->format('d/m/Y');
+    }
     public function roles(){
         return $this->belongsToMany(Role::class);
     }
@@ -159,7 +161,16 @@ class User extends Authenticatable
 //        $this->attributes['date_of_birth']  = Carbon::createFromFormat('d-m-y', $value)->format('Y-m-d');
 //    }
 
-public function studentInfo(){
+    public function studentInfo(){
         return $this->hasOne(StudentInfo::class);
-}
+    }
+    public function group(){
+        return $this->belongsToMany(Group::class);
+    }
+    public function blood(){
+        return $this->belongsTo(BloodGroup::class, 'blood_group_id');
+    }
+    public function gender(){
+        return $this->belongsTo(Gender::class);
+    }
 }

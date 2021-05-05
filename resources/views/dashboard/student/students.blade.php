@@ -25,7 +25,6 @@
                                         <th><small>Attendance</small></th>
                                         <th><small>Session</small></th>
                                         <th><small>Class</small></th>
-                                        <th><small>Section</small></th>
                                         <th><small>Father</small></th>
                                         <th><small>Mother</small></th>
                                         <th><small>Gender</small></th>
@@ -37,8 +36,8 @@
                                     <tbody>
                                     @forelse($students as $key => $student)
                                     <tr>
-                                        <td><small>{{ $key }}</small></td>
-                                        <td><small><a href="{{ route('students.edit', $student) }}">edit</a></small></td>
+                                        <td><small>{{ $key+1 }}</small></td>
+                                        <td><small><a class="btn btn-sm btn-outline-danger" href="{{ route('student.edit', $student->username) }}">Edit</a></small></td>
                                         <td><small>{{ $student->code }}</small></td>
                                         <td>
                                             <small>
@@ -48,14 +47,13 @@
                                         </td>
                                         <td><small><a class="btn btn-primary" href="{{ route('attendances.show', $student) }}">View Attendance</a></small></td>
                                         <td><small>{{ $student->session }} <span class="label label-success">promoted/new</span></small></td>
-                                        <td><small>{{ $student->studentInfo->section->classes->name }}</small></td>
-                                        <td><small>{{ $student->studentInfo->section->name }}</small></td>
-                                        <td><small>{{ $student->studentInfo->father_name }}</small></td>
-                                        <td><small>{{ $student->studentInfo->mother_name }}</small></td>
-                                        <td><small>{{ $student->gender }}</small></td>
-                                        <td><small>{{ $student->blood_group }}</small></td>
+                                        <td><small>{{ $student->studentInfo->section->classes->name . ' / '.  $student->studentInfo->section->name }}</small></td>
+                                        <td><small>{{ $student->studentInfo->father_name }}</small> <br><small>{{ $student->studentInfo->father_phone_number }}</small></td>
+                                        <td><small>{{ $student->studentInfo->mother_name }}</small><br><small>{{ $student->studentInfo->mother_phone_number }}</small></td>
+                                        <td><small>{{ $student->gender->name }}</small></td>
+                                        <td><small>{{ $student->blood->name }}</small></td>
                                         <td><small>{{ $student->phone }}</small></td>
-                                        <td><small>{{ $student->address }}</small></td>
+                                        <td style="white-space: unset"><small>{{ $student->address }}</small></td>
                                     </tr>
                                         @empty
                                         <tr>
@@ -72,7 +70,6 @@
                                         <th><small>Attendance</small></th>
                                         <th><small>Session</small></th>
                                         <th><small>Class</small></th>
-                                        <th><small>Section</small></th>
                                         <th><small>Father</small></th>
                                         <th><small>Mother</small></th>
                                         <th><small>Gender</small></th>

@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->string('gender_id')->default('')->nullable();
 
             $table->string('blood_group_id')->default('')->nullable();
+            $table->string('religion_id')->nullable();
             $table->string('nationality_id')->default('')->nullable();
             $table->string('phone')->default('')->nullable();
             $table->string('address')->default('')->nullable();

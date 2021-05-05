@@ -16,16 +16,15 @@ class CreateStudentInfosTable extends Migration
         Schema::create('student_infos', function (Blueprint $table) {
             $table->id();
             //$table->integer('student_id')->unsigned();
-            $table->string('session')->nullable();
-            $table->integer('group_id')->nullable();
-            $table->string('religion')->nullable();
+            $table->bigInteger('session_id')->unsigned();
+            $table->bigInteger('group_id')->unsigned();
             $table->string('father_name');
             $table->string('father_phone_number');
             $table->string('father_email')->nullable();
             $table->string('father_national_id')->nullable();
             $table->string('father_occupation')->nullable();
             $table->string('father_designation')->nullable();
-            $table->integer('father_annual_income')->nullable();
+            $table->string('father_annual_income')->nullable();
 
             $table->string('mother_name');
             $table->string('mother_phone_number');
@@ -33,10 +32,10 @@ class CreateStudentInfosTable extends Migration
             $table->string('mother_national_id')->nullable();
             $table->string('mother_occupation')->nullable();
             $table->string('mother_designation')->nullable();
-            $table->integer('mother_annual_income')->nullable();
-            $table->integer('section_id')->unsigned()->nullable();
-            $table->integer('user_id')->unsigned()->nullable();
-            $table->integer('school_type_id')->unsigned()->nullable();
+            $table->string('mother_annual_income')->nullable();
+            $table->bigInteger('section_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('school_type_id')->unsigned();
             $table->timestamps();
         });
     }

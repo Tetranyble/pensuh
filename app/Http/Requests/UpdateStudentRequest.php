@@ -3,18 +3,18 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Hash;
 
-class StoreStudentRequest extends FormRequest
+class UpdateStudentRequest extends FormRequest
 {
     public function passedValidation()
     {
-        $this->merge([
-            'username' => $this->firstname . '.' . $this->lastname,
-            'code' => time(),
-            'school_id' => auth()->user()->school->id,
-            'password' => Hash::make($this->pass)
-        ]);
+//        if (!isset($this->pass)){
+//            $this->merge(['password' => Hash::make($this->pass)]);
+//        }else{
+//
+//            $this->request->remove('password');
+//        }
+
     }
     /**
      * Determine if the user is authorized to make this request.
@@ -37,12 +37,12 @@ class StoreStudentRequest extends FormRequest
             'firstname' => 'required|string|max:255',
             'middlename' => 'nullable|string|max:255',
             'lastname' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'pass' => 'required|string|min:8|confirmed',
+            'email' => 'required|email|unique:users,email,' . $this->id,
+//            'pass' => 'nullable|string|min:8|confirmed',
             'gender_id' => 'required|numeric',
             'blood_group_id' => 'required|numeric',
             'nationality_id' => 'required|numeric',
-            'phone' => 'required|numeric|unique:users,phone',
+            'phone' => 'required|numeric|unique:users,phone,' . $this->id,
             'address' => 'required|string|max:255',
             'date_of_birth' => 'required|date|date_format:Y-m-d',
             'about' => 'nullable|max:255',
