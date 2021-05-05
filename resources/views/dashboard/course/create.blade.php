@@ -3,9 +3,12 @@
 @section('dashboard')
     <div class="container-fluid">
         @include('components.flash-message')
-        @foreach($errors->all() as $message)
-            <li class="text-danger">{{ $message }}</li>
-        @endforeach
+        <ul>
+            @foreach($errors->all() as $message)
+                <li class="text-danger">{{ $message }}</li>
+            @endforeach
+        </ul>
+
         <div class="row">
             <form method="POST" action="{{ route('course.store', ['section' => request('section')]) }}" enctype="multipart/form-data">
                 <div class="col-12">

@@ -17,6 +17,12 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class AdminController extends Controller
 {
+
+    public function __construct()
+    {
+
+        $this->middleware('auth');
+    }
     public function create(){
         $nationalities = Nationality::get();
         $genders = Gender::get();

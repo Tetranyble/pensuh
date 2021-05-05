@@ -42,7 +42,9 @@ Route::get('identifies/{user}', 'UserIdentityController@show')->name('identifies
 
 Route::group([ 'prefix' => 'console', 'namespace' => 'Console', 'middleware' => 'auth'], function(){
     Route::resource('schools', 'SchoolController');
+    Route::resource('student', 'StudentOnboardingController');
     Route::get('courses/{teacher}', 'TeacherCourseController@index')->name('teacher.courses');
+
     Route::get('grades/{teacher}', 'GradesController@index')->name('grades.course');
 
     Route::resource('staff', 'StaffController');

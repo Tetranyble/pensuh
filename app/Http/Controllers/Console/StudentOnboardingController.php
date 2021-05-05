@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Console;
 
+use App\BloodGroup;
+use App\Gender;
+use App\Http\Controllers\Controller;
+use App\Nationality;
 use App\User;
 use Illuminate\Http\Request;
 
-class UserIdentityController extends Controller
+class StudentOnboardingController extends Controller
 {
-    public function __construct()
-    {
-
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -29,7 +28,10 @@ class UserIdentityController extends Controller
      */
     public function create()
     {
-        //
+        $nationalities = Nationality::get();
+        $genders = Gender::get();
+        $bloods = BloodGroup::get();
+        return view('dashboard.onboarding.student.create', compact('nationalities', 'genders', 'bloods'));
     }
 
     /**
@@ -51,7 +53,7 @@ class UserIdentityController extends Controller
      */
     public function show(User $user)
     {
-        return view('dashboard.identity.show', compact('user'));
+        //
     }
 
     /**

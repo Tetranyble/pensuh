@@ -198,13 +198,17 @@
 {{--                                                                                                     class="svg-icon mr-2 ml-1"></i>--}}
 {{--                            Account Setting</a>--}}
                         <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ route('identifies.show', auth()->user()) }}"><i data-feather="credit-card"
+                                                                                                          class="svg-icon mr-2 ml-1"></i>
+                            My Identity</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i data-feather="power"
                                                                                                           class="svg-icon mr-2 ml-1"></i>
                             {{ __('Logout') }}</a>
-                        <div class="dropdown-divider"></div>
-                        <div class="pl-4 p-3"><a href="javascript:void(0)" class="btn btn-sm btn-info">View
-                                Identity</a></div>
+
+{{--                        <div class="pl-4 p-3"><a href="{{ route('identifies.show', auth()->user()) }}" class="btn btn-sm btn-info"> My--}}
+{{--                                ID</a></div>--}}
                     </div>
                 </li>
                 <!-- ============================================================== -->

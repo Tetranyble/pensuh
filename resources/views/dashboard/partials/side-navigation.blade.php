@@ -16,14 +16,14 @@
                 @canany(['teacher', 'admin', 'principal', 'security','form_teacher','student', 'master'])
                     <li class="list-divider"></li>
                 <li class="sidebar-item"> <a class="sidebar-link" href="{{ route('students.index') }}"
-                                             aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span
+                                             aria-expanded="false"><i data-feather="eye" class="feather-icon"></i><span
                             class="hide-menu">Students
                                 </span></a>
                 </li>
                 @endcan
                 @canany(['teacher', 'admin', 'principal', 'security','form_teacher', 'master'])
                 <li class="sidebar-item"> <a class="sidebar-link" href="{{ route('staff.index') }}"
-                                             aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span
+                                             aria-expanded="false"><i data-feather="eye" class="feather-icon"></i><span
                             class="hide-menu">Staff
                                 </span></a>
                 </li>
@@ -74,7 +74,7 @@
                     </ul>
                 </li>
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
-                                             aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
+                                             aria-expanded="false"><i data-feather="book-open" class="feather-icon"></i><span
                             class="hide-menu">Courses/Subjects </span></a>
                     <ul aria-expanded="false" class="collapse  first-level base-level-line">
                                                 <li class="sidebar-item"><a href="{{ route('course.create') }}" class="sidebar-link"><span
@@ -87,8 +87,23 @@
                         </li>
                     </ul>
                 </li>
+                    <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                                                 aria-expanded="false"><i data-feather="user-plus" class="feather-icon"></i><span
+                                class="hide-menu">System Users </span></a>
+                        <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                            <li class="sidebar-item"><a href="{{ route('schools.create') }}" class="sidebar-link"><span
+                                        class="hide-menu"> Add Teacher
+                                        </span></a>
+                            </li>
+                            <li class="sidebar-item"><a href="{{ route('schools.create') }}" class="sidebar-link"><span
+                                        class="hide-menu"> Add Student
+                                        </span></a>
+                            </li>
+
+                        </ul>
+                    </li>
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
-                                             aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
+                                             aria-expanded="false"><i data-feather="settings" class="feather-icon"></i><span
                             class="hide-menu">Settings </span></a>
                     <ul aria-expanded="false" class="collapse  first-level base-level-line">
                         <li class="sidebar-item"><a href="{{ route('schools.create') }}" class="sidebar-link"><span

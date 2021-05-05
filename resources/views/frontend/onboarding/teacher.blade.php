@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Admin Registration')
+@section('title', 'Teacher Registration')
 @section('styles')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/main.min.css') }}">
     {{--    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/button.min.css') }}">--}}

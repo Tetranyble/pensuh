@@ -26,6 +26,7 @@ class CreateStudentInfosTable extends Migration
             $table->string('father_occupation')->nullable();
             $table->string('father_designation')->nullable();
             $table->integer('father_annual_income')->nullable();
+
             $table->string('mother_name');
             $table->string('mother_phone_number');
             $table->string('mother_email')->nullable();
