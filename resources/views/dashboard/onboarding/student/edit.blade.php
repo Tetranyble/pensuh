@@ -13,7 +13,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h2 class="card-title">Student's Bio</h2>
+                           <h2 class="card-title">Student's Bio</h2>
                             @method('PUT')
                             @csrf
                             <input type="hidden" name="id" value="{{ $user->id }}">

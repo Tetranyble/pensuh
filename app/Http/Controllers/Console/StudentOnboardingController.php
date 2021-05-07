@@ -62,7 +62,7 @@ class StudentOnboardingController extends Controller
 
         if ($request->has('photo_x')){
             $photo = $request->file('photo_x');
-            $photos = Image::make($photo->getRealPath())->resize(371, 505);
+            $photos = Image::make($photo->getRealPath())->resize(505, 505);
             $newName = time() . Str::slug($request->get('lastname')) . '.' . $photo->getClientOriginalExtension();
             $request->merge(['photo' => 'storage/'.$newName]);
             $photos->save(storage_path('app/public/'.$newName));
@@ -84,9 +84,10 @@ class StudentOnboardingController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(User $user, $student)
     {
-        //
+        $user = User::whereUsername($student)->first();
+        return view('dashboard.onboarding.student.show', compact('user'));
     }
 
     /**
@@ -123,7 +124,7 @@ class StudentOnboardingController extends Controller
         if ($request->has('photo_x')){
             Storage::delete($user->photo);
             $photo = $request->file('photo_x');
-            $photos = Image::make($photo->getRealPath())->resize(371, 505);
+            $photos = Image::make($photo->getRealPath())->resize(505, 505);
             $newName = time() . Str::slug($request->get('lastname')) . '.' . $photo->getClientOriginalExtension();
             $request->merge(['photo' => 'storage/'.$newName]);
             $photos->save(storage_path('app/public/'.$newName));

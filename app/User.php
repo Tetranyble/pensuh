@@ -50,7 +50,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function getFromDateOfBirthAttribute($value) {
+    public function getDateOfBirthAttribute($value) {
+        return Carbon::parse($value)->format('d/m/Y');
+    }
+    public function getCreatedAtAttribute($value) {
         return Carbon::parse($value)->format('d/m/Y');
     }
     public function roles(){
@@ -172,5 +175,11 @@ class User extends Authenticatable
     }
     public function gender(){
         return $this->belongsTo(Gender::class);
+    }
+    public function nationality(){
+        return $this->belongsTo(Nationality::class);
+    }
+    public function religion(){
+        return $this->belongsTo(Religion::class);
     }
 }

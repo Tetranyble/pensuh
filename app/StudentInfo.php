@@ -14,4 +14,13 @@ class StudentInfo extends Model
     public function section(){
         return $this->belongsTo(Section::class);
     }
+    public function schoolType(){
+        return $this->belongsTo(SchoolType::class);
+    }
+    public function session(){
+        return $this->belongsTo(Session::class);
+    }
+    public function group(){
+        return $this->belongsTo(Group::class);
+    }
 }
