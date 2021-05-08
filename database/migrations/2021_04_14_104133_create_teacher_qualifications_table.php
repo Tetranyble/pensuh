@@ -15,7 +15,8 @@ class CreateTeacherQualificationsTable extends Migration
     {
         Schema::create('teacher_qualifications', function (Blueprint $table) {
             $table->id();
-            $table->integer('department_id')->unsigned()->nullable();
+            $table->bigInteger('department_id')->unsigned()->nullable();
+            $table->bigInteger('school_type_id')->unsigned()->nullable();
             $table->string('education')->default('unavailable')->nullable();
             $table->text('description')->default('unavailable')->nullable();
             $table->string('experience')->default('unavailable')->nullable();

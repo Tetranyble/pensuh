@@ -3,9 +3,27 @@
 
 
 namespace App\Http\Controllers\Console;
+use App\BloodGroup;
+use App\Department;
+use App\Gender;
+use App\Group;
+use App\Http\Requests\StoreStaffRequest;
+use App\Http\Requests\UpdateStaffRequest;
+use App\Nationality;
+use App\Religion;
+use App\Role;
+use App\SchoolType;
+use App\Section;
+use App\Session;
+use App\StudentInfo;
+use App\TeacherQualification;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Intervention\Image\ImageManagerStatic as Image;
 
 
 class StaffController extends Controller
@@ -28,7 +46,14 @@ class StaffController extends Controller
      */
     public function create()
     {
-        //
+        $nationalities = Nationality::get();
+        $genders = Gender::get();
+        $bloods = BloodGroup::get();
+        $religions = Religion::all();
+        $schools = SchoolType::all();
+        $departments = Department::whereSchoolId(auth()->user()->school->id)->get();
+        $roles = Role::all();
+        return view('dashboard.onboarding.teacher.create', compact('nationalities', 'genders', 'bloods', 'religions', 'schools', 'departments', 'roles'));
     }
 
     /**
@@ -37,9 +62,26 @@ class StaffController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreStaffRequest $request)
     {
-        //
+
+        if ($request->has('photo_x')){
+            $photo = $request->file('photo_x');
+            $photos = Image::make($photo->getRealPath())->resize(505, 505);
+            $newName = time() . Str::slug($request->get('lastname')) . '.' . $photo->getClientOriginalExtension();
+            $request->merge(['photo' => 'storage/'.$newName]);
+            $photos->save(storage_path('app/public/'.$newName));
+        }
+        DB::transaction(function () use($request){
+            $user = new User();
+            $user->fill($request->all())->save();
+            $request->merge(['user_id' => $user->id]);
+            $staff = new TeacherQualification();
+            $staff->fill($request->all())->save();
+            $user->assignRole($request->roles);
+        });
+        return redirect()->back()->with('success', 'staff save successfully');
+
     }
 
     /**
@@ -59,9 +101,17 @@ class StaffController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(User $user, $staff)
     {
-        //
+        abort_unless($user = User::whereUsername($staff)->first(), 404);
+        $nationalities = Nationality::get();
+        $genders = Gender::get();
+        $bloods = BloodGroup::get();
+        $religions = Religion::all();
+        $schools = SchoolType::all();
+        $departments = Department::whereSchoolId(auth()->user()->school->id)->get();
+        $roles = Role::all();
+        return view('dashboard.onboarding.teacher.edit', compact('nationalities', 'genders', 'bloods', 'religions', 'schools', 'departments', 'roles', 'user'));
     }
 
     /**
@@ -71,9 +121,24 @@ class StaffController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateStaffRequest $request, User $user, $staff)
     {
-        //
+        abort_unless($user = User::whereUsername($staff)->first(), 404);
+        if ($request->has('photo_x')){
+            Storage::delete($user->photo);
+            $photo = $request->file('photo_x');
+            $photos = Image::make($photo->getRealPath())->resize(505, 505);
+            $newName = time() . Str::slug($request->get('lastname')) . '.' . $photo->getClientOriginalExtension();
+            $request->merge(['photo' => 'storage/'.$newName]);
+            $photos->save(storage_path('app/public/'.$newName));
+        }
+        DB::transaction(function () use($request, $user){
+            $user->fill($request->all())->save();
+            $user->assignRole($request->roles);
+            $user->teacherQualification->fill($request->all())->save();
+        });
+        return redirect()->back()->with('success', 'staff updated successfully');
+
     }
 
     /**

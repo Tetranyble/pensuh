@@ -17,14 +17,15 @@ class RoleSeeder extends Seeder
             ->givePermissionTo(['admission_status']);
         Role::create(['name' => 'parent', 'slug' => 'parent'])
             ->givePermissionTo(['admission_status','child_safety_attendance','view_result','view_result','view_student_attendance']);
-
+        Role::create(['name' => 'support', 'slug' => 'support'])
+            ->givePermissionTo(['child_safety_attendance','view_student_attendance']);
         Role::create(['name' => 'student', 'slug' => 'student'])
             ->givePermissionTo(['view_result']);
 
         Role::create(['name' => 'teacher', 'slug' => 'teacher'])
             ->givePermissionTo(['view_staff', 'view_student', 'view_result', 'view_student_attendance']);
 
-        Role::create(['name' => 'form_teacher', 'slug' => 'form teacher'])
+        Role::create(['name' => 'form teacher', 'slug' => 'form_teacher'])
             ->givePermissionTo(['view_staff', 'view_student', 'view_student_attendance', 'child_safety_attendance', 'take_staff_attendance', 'take_student_attendance']);
 
         Role::create(['name' => 'librarian', 'slug' => 'librarian'])

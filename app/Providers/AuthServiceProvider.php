@@ -30,7 +30,7 @@ class AuthServiceProvider extends ServiceProvider
             }
         });
         Gate::after(function($user, $permission){
-            if ($user->roles->pluck('name')->contains($permission)) {
+            if ($user->roles->pluck('slug')->contains($permission)) {
                 return true;
             }
         });

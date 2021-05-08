@@ -19,12 +19,16 @@ class UserSeeder extends Seeder
             'lastname' => 'Ekenekiso',
             'email' => 'senenerst@gmail.com',
             'username' => 'leonard.ekenekiso',
+
             'school_id' => '1',
+            'gender_id' => '1',
+            'blood_group_id' => '1',
             'email_verified_at' => now(),
             'code' => time(),
             'password' => bcrypt('ugbanawaji1234'), // password
             'remember_token' => Str::random(10),
-            'photo' => 'storage/user.png'
+            'photo' => 'storage/user.png',
+            'address' => '31 ikwere road port harcourt'
         ])->assignRole('master');
 
 
@@ -34,11 +38,14 @@ class UserSeeder extends Seeder
             'email' => 'jennifer@gmail.com',
             'username' => 'jennifer.chukwuka',
             'school_id' => '1',
+            'gender_id' => '1',
+            'blood_group_id' => '1',
             'email_verified_at' => now(),
             'code' => time(),
             'password' => bcrypt('jennifer'), // password
             'remember_token' => Str::random(10),
-            'photo' => 'storage/user.png'
+            'photo' => 'storage/user.png',
+            'address' => '31 ikwere road port harcourt'
         ]);
         $teacher->assignRole('teacher');
         TeacherQualification::create([
@@ -51,10 +58,13 @@ class UserSeeder extends Seeder
             'email' => 'ifeayi@gmail.com',
             'username' => 'francisca.ifeayi',
             'school_id' => '1',
+            'gender_id' => '1',
+            'blood_group_id' => '1',
             'email_verified_at' => now(),
             'code' => time(),
             'password' => bcrypt('francisca'), // password
             'remember_token' => Str::random(10),
+            'address' => '31 ikwere road port harcourt',
             'photo' => 'storage/user.png'
         ]);
         $teacher1->assignRole('teacher');
@@ -67,11 +77,14 @@ class UserSeeder extends Seeder
             'email' => 'obi@gmail.com',
             'username' => 'francisca.ifeayi',
             'school_id' => '1',
+            'gender_id' => '1',
+            'blood_group_id' => '1',
             'email_verified_at' => now(),
             'code' => time(),
             'password' => bcrypt('francisca'), // password
             'remember_token' => Str::random(10),
-            'photo' => 'storage/user.png'
+            'photo' => 'storage/user.png',
+            'address' => '31 ikwere road port harcourt'
         ]);
         $teacher2->assignRole('teacher');
         TeacherQualification::create([

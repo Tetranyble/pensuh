@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.dashboard')
-@section('title', 'Student Onboarding')
+@section('title', 'Staff info update')
 @section('dashboard')
     <div class="container-fluid">
         @include('components.flash-message')
@@ -9,11 +9,11 @@
             @endforeach
         </ul>
         <div class="row">
-            <form action="{{ route('student.update', $user) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('staff.update', $user) }}" method="POST" enctype="multipart/form-data">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                           <h2 class="card-title">Student's Bio</h2>
+                            <h4 class="card-title">Staff Bio</h4>
                             @method('PUT')
                             @csrf
                             <input type="hidden" name="id" value="{{ $user->id }}">
@@ -79,7 +79,7 @@
                                             <select name="blood_group_id" class="form-control" id="blood_group_id" type="text">
                                                 <option>Blood Group</option>
                                                 @forelse($bloods as $blood)
-                                                    <option {{ old('blood_group_id', $user->blood_group_id) == $blood->id ? "selected" : "" }} value="{{ $blood->id }}">{{ $blood->name }}</option>
+                                                    <option {{ old('blood_group_id', $user->blood->id) == $blood->id ? "selected" : "" }} value="{{ $blood->id }}">{{ $blood->name }}</option>
                                                 @empty
                                                     <option>No data</option>
                                                 @endforelse
@@ -93,7 +93,7 @@
                                             </label>
                                             <select name="gender_id" class="form-control" id="gender_id" type="text">
                                                 @forelse($genders as $gender)
-                                                    <option {{ old('gender_id', $user->gender_id) == $gender->id ? "selected" : "" }} value="{{ $gender->id }}">{{ $gender->name }}</option>
+                                                    <option {{ old('gender_id', $user->gender->id) == $gender->id ? "selected" : "" }} value="{{ $gender->id }}">{{ $gender->name }}</option>
                                                 @empty
                                                     <option>No data</option>
                                                 @endforelse
@@ -120,7 +120,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group {{($errors->has('about')) ? 'has-error' : ''}}">
-                                            <label for="about">Your headline
+                                            <label for="about">Your Headline
                                                 <span class="text-danger"> *<span  class="text-danger h6">{{$errors->first('about')}}</span></span>
                                             </label>
                                             <input name="about" class="form-control" id="about" type="text"
@@ -136,7 +136,6 @@
                                                    placeholder="enter where you address" value="{{ old('address', $user->address) }}">
                                         </div>
                                     </div>
-
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="photo_x">Your profile photo
@@ -149,23 +148,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
 
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group {{($errors->has('group_id')) ? 'has-error' : ''}}">
-                                            <label for="group_id">Group
-                                                <span class="text-danger">(optional)<span  class="text-danger h6">{{$errors->first('group_id')}}</span></span>
-                                            </label>
-                                            <select name="group_id" class="form-control" id="group_id" type="text">
-                                                <option>select a group</option>
-                                                @forelse($groups as $group)
-                                                    <option {{ old('group_id', $user->studentInfo->group_id) == $group->id ? "selected" : "" }} value="{{ $group->id }}">{{ $group->name }}</option>
-                                                @empty
-                                                    <option>No data</option>
-                                                @endforelse
-                                            </select>
-                                        </div>
-                                    </div>
                                     <div class="col-md-6">
                                         <div class="form-group {{($errors->has('religion_id')) ? 'has-error' : ''}}">
                                             <label for="religion_id">Religious view
@@ -189,43 +173,15 @@
                                             <select name="school_type_id" class="form-control" id="school_type_id" type="text">
                                                 <option>select school type</option>
                                                 @forelse($schools as $school)
-                                                    <option {{ old('school_type_id', $user->studentInfo->school_type_id) == $school->id ? "selected" : "" }} value="{{ $school->id }}">{{ $school->name }}</option>
+                                                    <option {{ old('school_type_id', $user->teacherQualification->school_type_id) == $school->id ? "selected" : "" }} value="{{ $school->id }}">{{ $school->name }}</option>
                                                 @empty
                                                     <option>No data</option>
                                                 @endforelse
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group {{($errors->has('section_id')) ? 'has-error' : ''}}">
-                                            <label for="section_id">Class
-                                                <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('section_id')}}</span></span>
-                                            </label>
-                                            <select name="section_id" class="form-control" id="section_id" type="text">
-                                                <option>select class</option>
-                                                @forelse($sections as $section)
-                                                    <option {{ old('section_id', $user->studentInfo->section_id) == $section->id ? "selected" : "" }} value="{{ $section->id }}">{{ $section->classes->name . ' / ' . $section->name }}</option>
-                                                @empty
-                                                    <option>No data</option>
-                                                @endforelse
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group {{($errors->has('session_id')) ? 'has-error' : ''}}">
-                                            <label for="session_id">Academic session
-                                                <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('session_id')}}</span></span>
-                                            </label>
-                                            <select name="session_id" class="form-control" id="session_id" type="text">
-                                                <option>academic session</option>
-                                                @forelse($sessions as $session)
-                                                    <option {{ old('session_id', $user->studentInfo->session_id) == $session->id ? "selected" : "" }} value="{{ $session->id }}">{{ $session->name }}</option>
-                                                @empty
-                                                    <option>No data</option>
-                                                @endforelse
-                                            </select>
-                                        </div>
-                                    </div>
+
+
                                 </div>
 
                             </div>
@@ -238,7 +194,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h2 class="card-title">We're Social Too. Let's Connect</h2>
+                            <h4 class="card-title">We're Social Too. Let's Connect</h4>
                             <p>Please provide full url</p>
                             @csrf
                             <div class="form-body">
@@ -249,7 +205,7 @@
                                                 <span class="text-danger">(optional)<span  class="text-danger h6">{{$errors->first('twitter')}}</span></span>
                                             </label>
                                             <input name="twitter" class="form-control" id="twitter" type="text"
-                                                   placeholder="enter your twitter handle" value="{{ old('twitter') }}">
+                                                   placeholder="enter your twitter handle" value="{{ old('twitter', $user->twitter) }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -258,7 +214,7 @@
                                                 <span class="text-danger">(optional)<span  class="text-danger h6">{{$errors->first('facebook')}}</span></span>
                                             </label>
                                             <input name="facebook" class="form-control" id="facebook" type="text"
-                                                   placeholder="enter your facebook handle" value="{{ old('facebook') }}">
+                                                   placeholder="enter your facebook handle" value="{{ old('facebook', $user->facebook) }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -267,7 +223,7 @@
                                                 <span class="text-danger"> *(optional)<span  class="text-danger h6">{{$errors->first('linkedin')}}</span></span>
                                             </label>
                                             <input name="linkedin" class="form-control" id="linkedin" type="text"
-                                                   placeholder="enter your linkedin handle" value="{{ old('linkedin') }}">
+                                                   placeholder="enter your linkedin handle" value="{{ old('linkedin', $user->linkedin) }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -276,7 +232,7 @@
                                                 <span class="text-danger">(optional)<span  class="text-danger h6">{{$errors->first('instagram')}}</span></span>
                                             </label>
                                             <input name="instagram" class="form-control" id="instagram" type="text"
-                                                   placeholder="enter your instagram handle" value="{{ old('instagram') }}">
+                                                   placeholder="enter your instagram handle" value="{{ old('instagram', $user->instagram) }}">
                                         </div>
                                     </div>
                                 </div>
@@ -289,153 +245,140 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h2 class="card-title">Parents/Guardian</h2>
+                            <h4 class="card-title">Qualification</h4>
+                            <p></p>
                             <div class="form-body">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="col-md-12">
-                                            <div class="form-group {{($errors->has('father_name')) ? 'has-error' : ''}}">
-                                                <label for="father_name">Father Name
-                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('father_name')}}</span></span>
-                                                </label>
-                                                <input name="father_name" class="form-control" id="father_name" type="text"
-                                                       placeholder="enter father's name" value="{{ old('father_name', $user->studentInfo->father_name) }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group {{($errors->has('father_phone_number')) ? 'has-error' : ''}}">
-                                                <label for="father_phone_number">Father Phone
-                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('father_phone_number')}}</span></span>
-                                                </label>
-                                                <input name="father_phone_number" class="form-control" id="father_phone_number" type="text"
-                                                       placeholder="enter father's phone number" value="{{ old('father_phone_number', $user->studentInfo->father_phone_number) }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group {{($errors->has('father_email')) ? 'has-error' : ''}}">
-                                                <label for="father_email">Father Email
-                                                    <span class="text-danger"> *<span  class="text-danger h6">{{$errors->first('father_email')}}</span></span>
-                                                </label>
-                                                <input name="father_email" class="form-control" id="father_email" type="text"
-                                                       placeholder="enter father's email" value="{{ old('father_email', $user->studentInfo->father_email) }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group {{($errors->has('father_naional_id')) ? 'has-error' : ''}}">
-                                                <label for="father_naional_id">Father National ID
-                                                    <span class="text-danger">(optional)<span  class="text-danger h6">{{$errors->first('father_naional_id')}}</span></span>
-                                                </label>
-                                                <input name="father_naional_id" class="form-control" id="father_naional_id" type="text"
-                                                       placeholder="enter father's national id" value="{{ old('father_naional_id', $user->studentInfo->father_national_id) }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group {{($errors->has('father_occupation')) ? 'has-error' : ''}}">
-                                                <label for="father_occupation">Father Occupation
-                                                    <span class="text-danger">(optional)<span  class="text-danger h6">{{$errors->first('father_occupation')}}</span></span>
-                                                </label>
-                                                <input name="father_occupation" class="form-control" id="father_occupation" type="text"
-                                                       placeholder="enter father's occupation" value="{{ old('father_occupation', $user->studentInfo->father_occupation) }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group {{($errors->has('father_designation')) ? 'has-error' : ''}}">
-                                                <label for="father_designation">Father Designation
-                                                    <span class="text-danger">(optional)<span  class="text-danger h6">{{$errors->first('father_designation')}}</span></span>
-                                                </label>
-                                                <input name="father_designation" class="form-control" id="father_designation" type="text"
-                                                       placeholder="enter father's designation" value="{{ old('father_designation', $user->studentInfo->father_designation) }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group {{($errors->has('father_annual_income')) ? 'has-error' : ''}}">
-                                                <label for="father_annual_income">Father Annual Income
-                                                    <span class="text-danger">(optional)<span  class="text-danger h6">{{$errors->first('father_annual_income')}}</span></span>
-                                                </label>
-                                                <input name="father_annual_income" class="form-control" id="father_annual_income" type="text"
-                                                       placeholder="enter father's annual income" value="{{ old('father_annual_income', $user->studentInfo->father_annual_income) }}">
-                                            </div>
+                                        <div class="form-group {{($errors->has('department_id')) ? 'has-error' : ''}}">
+                                            <label for="department_id">Department
+                                                <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('department_id')}}</span></span>
+                                            </label>
+                                            <select name="department_id" class="form-control" id="department_id" type="text">
+                                                <option>select department</option>
+                                                @forelse($departments as $department)
+                                                    <option {{ old('department_id', $user->teacherQualification->department_id) == $department->id ? "selected" : "" }} value="{{ $department->id }}">{{ $department->name }}</option>
+                                                @empty
+                                                    <option>No data</option>
+                                                @endforelse
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="col-md-12">
-                                            <div class="form-group {{($errors->has('mother_name')) ? 'has-error' : ''}}">
-                                                <label for="mother_name">Mother Name
-                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('mother_name')}}</span></span>
-                                                </label>
-                                                <input name="mother_name" class="form-control" id="mother_name" type="text"
-                                                       placeholder="enter mother's name" value="{{ old('mother_name', $user->studentInfo->mother_name) }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group {{($errors->has('mother_phone_number')) ? 'has-error' : ''}}">
-                                                <label for="mother_phone_number">Mother Phone
-                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('mother_phone_number')}}</span></span>
-                                                </label>
-                                                <input name="mother_phone_number" class="form-control" id="mother_phone_number" type="text"
-                                                       placeholder="enter mother's phone number" value="{{ old('mother_phone_number', $user->studentInfo->mother_phone_number) }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group {{($errors->has('mother_email')) ? 'has-error' : ''}}">
-                                                <label for="mother_email">Mother Email
-                                                    <span class="text-danger"> *<span  class="text-danger h6">{{$errors->first('mother_email')}}</span></span>
-                                                </label>
-                                                <input name="mother_email" class="form-control" id="mother_email" type="text"
-                                                       placeholder="enter mother's email" value="{{ old('mother_email', $user->studentInfo->mother_email) }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group {{($errors->has('mother_naional_id')) ? 'has-error' : ''}}">
-                                                <label for="mother_naional_id">Mother National ID
-                                                    <span class="text-danger">(optional)<span  class="text-danger h6">{{$errors->first('mother_naional_id')}}</span></span>
-                                                </label>
-                                                <input name="mother_naional_id" class="form-control" id="mother_naional_id" type="text"
-                                                       placeholder="enter mother's national id" value="{{ old('mother_naional_id',$user->studentInfo->mother_national_id) }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group {{($errors->has('mother_occupation')) ? 'has-error' : ''}}">
-                                                <label for="mother_occupation">Father Occupation
-                                                    <span class="text-danger">(optional)<span  class="text-danger h6">{{$errors->first('mother_occupation')}}</span></span>
-                                                </label>
-                                                <input name="mother_occupation" class="form-control" id="mother_occupation" type="text"
-                                                       placeholder="enter mother's occupation" value="{{ old('mother_occupation', $user->studentInfo->mother_occupation) }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group {{($errors->has('mother_designation')) ? 'has-error' : ''}}">
-                                                <label for="mother_designation">Father Designation
-                                                    <span class="text-danger">(optional)<span  class="text-danger h6">{{$errors->first('mother_designation')}}</span></span>
-                                                </label>
-                                                <input name="mother_designation" class="form-control" id="father_designation" type="text"
-                                                       placeholder="enter mother's designation" value="{{ old('mother_designation', $user->studentInfo->designation) }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group {{($errors->has('mother_annual_income')) ? 'has-error' : ''}}">
-                                                <label for="mother_annual_income">Father Annual Income
-                                                    <span class="text-danger">(optional)<span  class="text-danger h6">{{$errors->first('mother_annual_income')}}</span></span>
-                                                </label>
-                                                <input name="mother_annual_income" class="form-control" id="mother_annual_income" type="text"
-                                                       placeholder="enter mother's annual income" value="{{ old('mother_annual_income', $user->studentInfo->mother_annual_income) }}">
-                                            </div>
+                                        <div class="form-group {{($errors->has('education')) ? 'has-error' : ''}}">
+                                            <label for="education">Education
+                                                <span class="text-danger"><span  class="text-danger h6">{{$errors->first('education')}}</span></span>
+                                            </label>
+                                            <input name="education" class="form-control" id="education" type="text"
+                                                   placeholder="enter education qualification" value="{{ old('education', $user->teacherQualification->education) }}">
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group {{($errors->has('teaching')) ? 'has-error' : ''}}">
+                                            <label for="teaching">Teaching
+                                                <span class="text-danger"><span  class="text-danger h6">{{$errors->first('teaching')}}</span></span>
+                                            </label>
+                                            <input name="teaching" class="form-control" id="teaching" type="range"
+                                                   value="{{ old('teaching',$user->teacherQualification->teaching) }}" max="100" step="2" min="0">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group {{($errors->has('family_support')) ? 'has-error' : ''}}">
+                                            <label for="family_support">Family Support
+                                                <span class="text-danger"><span  class="text-danger h6">{{$errors->first('family_support')}}</span></span>
+                                            </label>
+                                            <input name="family_support" class="form-control" id="family_support" type="range"
+                                                   value="{{ old('family_support', $user->teacherQualification->family_support) }}" max="100" step="2" min="0">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group {{($errors->has('speaking')) ? 'has-error' : ''}}">
+                                            <label for="speaking">Speaking
+                                                <span class="text-danger"><span  class="text-danger h6">{{$errors->first('speaking')}}</span></span>
+                                            </label>
+                                            <input name="speaking" class="form-control" id="speaking" type="range"
+                                                   value="{{ old('speaking', $user->teacherQualification->speaking) }}" max="100" step="2" min="0">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group {{($errors->has('children_well_being')) ? 'has-error' : ''}}">
+                                            <label for="children_well_being">Children Well Being
+                                                <span class="text-danger"><span  class="text-danger h6">{{$errors->first('children_well_being')}}</span></span>
+                                            </label>
+                                            <input name="children_well_being" class="form-control" id="children_well_being" type="range"
+                                                   value="{{ old('children_well_being', $user->teacherQualification->children_well_being) }}" max="100" step="2" min="0">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group {{($errors->has('description')) ? 'has-error' : ''}}">
+                                            <label for="description">Description
+                                                <span class="text-danger"><span  class="text-danger h6">{{$errors->first('description')}}</span></span>
+                                            </label>
+                                            <textarea cols="1" rows="1" name="description" class="form-control" id="description" type="text"
+                                                      placeholder="enter educational Background" >{{ old('description', $user->teacherQualification->description) }}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group {{($errors->has('experience')) ? 'has-error' : ''}}">
+                                            <label for="experience">Experience
+                                                <span class="text-danger"> <span  class="text-danger h6">{{$errors->first('experience')}}</span></span>
+                                            </label>
+
+                                            <input name="experience" class="form-control" id="experience" type="text"
+                                                   placeholder="enter experience" value="{{ old('experience', $user->teacherQualification->experience) }}">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            @canany(['bursar', 'teacher','form_teacher', 'librarian', 'security'])
+                            <div class="form-actions">
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-info">Update</button>
+
+                                </div>
+                            </div>
+                                @endcanany
+                        </div>
+                    </div>
+                </div>
+                @canany(['master', 'admin', 'principal'])
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title text-danger">User Role/Permission</h4>
+                            <p class="text-warning">Careful of the roles</p>
+                            <div class="form-body">
+                                <div class="row">
+                                    @forelse($roles as $role)
+                                        @if($role->name != 'master')
+                                            <div class="col-md-6">
+                                                <div class="form-group {{($errors->has('roles')) ? 'has-error' : ''}}">
+                                                    <fieldset class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" {{ in_array($role->id, old('roles', $user->roles->pluck('id')->toArray()) ?: []) ? "checked" : "" }} name="roles[]" value="{{ $role->id }}"> {{ $role->name }}
+                                                        </label>
+                                                    </fieldset>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @empty
+                                        <p>no roles</p>
+                                    @endforelse
 
                                 </div>
 
                             </div>
                             <div class="form-actions">
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-info">Submit</button>
-                                    <button type="reset" class="btn btn-dark">Reset</button>
+                                    <button type="submit" class="btn btn-info">Update</button>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
+               @endcanany
             </form>
         </div>
     </div>

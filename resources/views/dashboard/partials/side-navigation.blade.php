@@ -91,8 +91,8 @@
                                                  aria-expanded="false"><i data-feather="user-plus" class="feather-icon"></i><span
                                 class="hide-menu">System Users </span></a>
                         <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                            <li class="sidebar-item"><a href="{{ route('schools.create') }}" class="sidebar-link"><span
-                                        class="hide-menu"> Add Teacher
+                            <li class="sidebar-item"><a href="{{ route('staff.create') }}" class="sidebar-link"><span
+                                        class="hide-menu"> Add Staff
                                         </span></a>
                             </li>
                             <li class="sidebar-item"><a href="{{ route('student.create') }}" class="sidebar-link"><span

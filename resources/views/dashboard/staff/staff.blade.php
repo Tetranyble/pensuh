@@ -21,34 +21,35 @@
                                         <th><small>Action</small></th>
                                         <th><small>Code</small></th>
                                         <th><small>Full Name</small></th>
+                                        <th><small>Phone</small></th>
                                         <th><small>Attendance</small></th>
-                                        <th><small>Courses</small></th>
+                                        <th><small>Email</small></th>
+                                        <th><small>Course</small></th>
                                         <th><small>Gender</small></th>
                                         <th><small>Blood</small></th>
-                                        <th><small>Phone</small></th>
                                         <th><small>Address</small></th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @forelse($staffs as $key => $student)
                                         <tr>
-                                            <td><small>{{ $key }}</small></td>
+                                            <td><small>{{ $key+1 }}</small></td>
                                             <td><small><a class="btn btn-sm btn-danger" href="{{ route('staff.edit', $student) }}">Edit</a></small></td>
                                             <td><small>{{ $student->code }}</small></td>
                                             <td>
                                                 <small>
                                                     <img data-src="{{ asset($student->photo) }}" src="{{ asset($student->photo) }}" style="border-radius: 50%; width: 25px; height: 25px">
-                                                    <a href="{{ route('students.show', $student) }}">{{ $student->fullname }}</a>
+                                                    <a href="{{ route('staff.show', $student) }}">{{ $student->fullname }}</a>
                                                 </small>
                                             </td>
+                                            <td><small>{{ $student->phone }}</small></td>
                                             <td><small><a class="btn btn-sm btn-outline-primary" href="{{ route('attendances.show', $student) }}">View Attendance</a></small></td>
 
                                             <td><small>{{ $student->email }}</small></td>
 
                                             <td><small><a href="{{ route('teacher.courses', $student->id) }}">All Courses</a></small></td>
-                                            <td><small>{{ $student->gender ? $student->gender : '' }}</small></td>
-                                            <td><small>{{ $student->blood_group ? $student->blood_group : ''}}</small></td>
-                                            <td><small>{{ $student->phone ? $student->phone : '' }}</small></td>
+                                            <td><small>{{ $student->gender->name ? $student->gender->name : '' }}</small></td>
+                                            <td><small>{{ $student->blood->name ? $student->blood->name : ''}}</small></td>
                                             <td><small>{{ $student->address ? $student->address : '' }}</small></td>
                                         </tr>
                                     @empty
@@ -63,11 +64,12 @@
                                         <th><small>Action</small></th>
                                         <th><small>Code</small></th>
                                         <th><small>Full Name</small></th>
+                                        <th><small>Phone</small></th>
                                         <th><small>Attendance</small></th>
-                                        <th><small>Courses</small></th>
+                                        <th><small>Email</small></th>
+                                        <th><small>Course</small></th>
                                         <th><small>Gender</small></th>
                                         <th><small>Blood</small></th>
-                                        <th><small>Phone</small></th>
                                         <th><small>Address</small></th>
                                     </tr>
                                     </tfoot>

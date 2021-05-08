@@ -20,6 +20,10 @@ class GenderSeeder extends Seeder
             'name' => 'Female'
         ]);
         Gender::create([
+            'name' => 'None binary',
+            'school_id' => '1'
+        ]);
+        Gender::create([
             'name' => 'Prefer not to say',
             'school_id' => '1'
         ]);
