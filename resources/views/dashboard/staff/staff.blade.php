@@ -39,7 +39,7 @@
                                             <td>
                                                 <small>
                                                     <img data-src="{{ asset($student->photo) }}" src="{{ asset($student->photo) }}" style="border-radius: 50%; width: 25px; height: 25px">
-                                                    <a href="{{ route('staff.show', $student) }}">{{ $student->fullname }}</a>
+                                                    <a target="_blank" href="{{ route('teachers.show', $student) }}">{{ $student->fullname }}</a>
                                                 </small>
                                             </td>
                                             <td><small>{{ $student->phone }}</small></td>

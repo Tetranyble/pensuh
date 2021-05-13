@@ -70,7 +70,7 @@
                                 <p>{{ $teacher->about }}</p>
                                 <ul class="tech-detils">
                                     <li>
-                                        <h3>DOB</h3><span>{{ $teacher->date_of_birth }}</span>
+                                        <h3>DOB</h3><span>{{ $teacher->date_of_birth->format('d/m/y') }}</span>
                                     </li>
                                     <li>
                                         <h3>Education</h3><span>{{ $teacher->teacherQualification->education }}</span>

@@ -3,10 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Grade;
+use App\Http\Requests\StoreGradeRequest;
+use App\Http\Traits\AssignGrade;
+use App\Services\ReportCard\GradeService;
 use Illuminate\Http\Request;
+
 
 class GradeController extends Controller
 {
+    use AssignGrade;
+    protected $gradeService;
+
+    /**
+     * GradeController constructor.
+     * @param GradeService $gradeService
+     */
+    public function __construct(GradeService $gradeService)
+    {
+        $this->gradeService = $gradeService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,9 +38,13 @@ class GradeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $exam = $this->gradeService->schoolExam();
+        $this->giveGrade($request->get('t'), $request->get('c'), $exam->id, $request->get('s'));
+        $grades = $this->gradeService->gradeWithCourseAndStudent($request->get('c'),$exam->id);
+        $gradesystems = $this->gradeService->getGradeSystemBySchoolId($grades);
+        return view('dashboard.grade.update', ['grades' => $grades,'request' => $request->all(), 'gradesystems' => $gradesystems]);
     }
 
     /**
@@ -33,9 +53,12 @@ class GradeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreGradeRequest $request)
     {
-        //
+        $gradeSystem = $this->gradeService->getGradeSystemByname($request->grade_system_name);
+        $this->gradeService->setGradeSystem($gradeSystem);
+        $this->gradeService->update($request);
+        return back()->with('success', __('saved successfully'));
     }
 
     /**

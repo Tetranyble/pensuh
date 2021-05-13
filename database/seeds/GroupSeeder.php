@@ -37,5 +37,35 @@ class GroupSeeder extends Seeder
             'name' => 'Scripture Union',
             'description' => 'Scripture Union is an international, inter-denominational, evangelical Christian organization. It was founded in 1867... '
         ]);
+        Group::create([
+            'school_id' => '1',
+            'name' => 'Mechanical',
+            'description' => 'have in interest in mechanical vocation'
+        ]);
+        Group::create([
+            'school_id' => '1',
+            'name' => 'Scientific',
+            'description' => 'have interest in science/scientific vocation'
+        ]);
+        Group::create([
+            'school_id' => '1',
+            'name' => 'Literary',
+            'description' => 'have in interest in literary work/vocation'
+        ]);
+        Group::create([
+            'school_id' => '1',
+            'name' => 'Painting',
+            'description' => 'have in interest in painting work/vocation'
+        ]);
+        Group::create([
+            'school_id' => '1',
+            'name' => 'Music',
+            'description' => 'have in interest in music work/vocation'
+        ]);
+        Group::create([
+            'school_id' => '1',
+            'name' => 'Drama',
+            'description' => 'have in interest in drama'
+        ]);
     }
 }

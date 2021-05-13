@@ -63,3 +63,8 @@ Route::group([ 'prefix' => 'setup', 'namespace' => 'Administration','middleware'
     Route::get('teacher/create', 'TeacherOnboardingController@create')->name('teacher.create');
     Route::post('teacher/store', 'TeacherOnboardingController@store')->name('teacher.store');
 });
+Route::group([ 'middleware' => 'auth'], function(){
+    Route::resource('grades', 'GradeController');
+});
+//Route::middleware(['auth', 'admin'])->prefix('academic')->name('academic.')->group(function () {});
+
