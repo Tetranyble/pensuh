@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Create New Class</h4>
-                        <form method="POST" action="{{ route('classes.store') }}">
+                        <form method="POST" action="{{ route('class.store') }}">
                             @csrf
 
                             <div class="form-body">

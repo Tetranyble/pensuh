@@ -1,20 +1,22 @@
 @extends('dashboard.layouts.dashboard')
 @section('title', 'Courses')
 @section('dashboard')
-    <link href="{{ asset('../assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}" rel="stylesheet">
-    <!-- ============================================================== -->
-    <!-- Container fluid  -->
-    <!-- ============================================================== -->
-
     <div class="container-fluid">
         <!-- basic table -->
-
+        @include('components.flash-message')
+        @foreach($errors->all() as $message)
+            <div class="alert alert-warning alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>{{ $message }}</strong>
+            </div>
+        @endforeach
         <div class="row">
             <div class="col-12">
                 <!-- Row -->
                 <div class="row">
                     <!-- column -->
                     @forelse($courses as $course)
+
                     <div class="col-lg-3 col-md-6">
                         <!-- Card -->
                         <div class="card">
@@ -26,9 +28,12 @@
                                 <a target="_blank" href="{{ route('courses.show', $course->id) }}" class="btn btn-sm btn-outline-primary">View</a>
                                 @canany(['admin', 'principal', 'master', 'teacher'])
                                     <a href="{{ route('grades.create', ['t'=> $course->teacher->first()->id, 'c' => $course->id, 's' => $course->section->id])}}" class="btn btn-sm btn-outline-secondary">Grade</a>
-                                @endcanany
-                                @canany(['admin', 'principal', 'master', 'teacher'])
                                     <a href="{{ route('course.edit', $course)}}" class="btn btn-sm btn-outline-dark">Message</a>
+                                @endcanany
+                                @canany(['admin', 'principal', 'master', 'form_teacher'])
+                                    @if($course->section->form_teacher === auth()->user()->id )
+                                    <a href="{{ route('report.create', ['section' => $course->section->id, 'exam' => '', 'form_teacher' => $course->section->form_teacher, 'course'=> $course->id]) }}" class="btn btn-sm btn-outline-info">Report Card</a>
+                                    @endif
                                 @endcanany
                                 @canany(['admin', 'principal', 'master'])
                                 <a href="{{ route('course.edit', $course)}}" class="btn btn-sm text-warning">Edit</a>
@@ -51,9 +56,4 @@
 
 @endsection
 
-@section('script')
-    <script src="{{ asset('../assets/extra-libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('../dist/js/pages/datatable/datatable-basic.init.js') }}"></script>
-    @parent
-@endsection
 

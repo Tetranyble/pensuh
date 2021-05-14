@@ -158,7 +158,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Time Table/Teacher</h4>
+                            <h4 class="card-title">Description</h4>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group {{($errors->has('body')) ? 'has-error' : ''}}">

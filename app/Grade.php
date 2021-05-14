@@ -42,8 +42,8 @@ class Grade extends Model
     /**
      * Get the exam name record associated with the exam.
      */
-    public function exam()
+    public function examination()
     {
-        return $this->belongsTo('App\Exam');
+        return $this->belongsTo('App\Exam', 'exam_id');
     }
 }

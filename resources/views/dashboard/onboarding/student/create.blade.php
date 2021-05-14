@@ -13,7 +13,7 @@
                 <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h2 class="card-title">Student's Bio</h2>
+                        <h4 class="card-title">Student's Bio</h4>
 
                         @csrf
                         <div class="form-body">
@@ -237,7 +237,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h2 class="card-title">We're Social Too. Let's Connect</h2>
+                            <h4 class="card-title">We're Social Too. Let's Connect</h4>
                             <p>Please provide full url</p>
                             @csrf
                             <div class="form-body">
@@ -288,7 +288,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h2 class="card-title">Parents/Guardian</h2>
+                            <h4 class="card-title">Parents/Guardian</h4>
                             <div class="form-body">
                                 <div class="row">
                                     <div class="col-md-6">

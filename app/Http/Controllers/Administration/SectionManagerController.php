@@ -38,7 +38,7 @@ class SectionManagerController extends Controller
         $classes = Classes::where('school_id', auth()->user()->school_id)->get();
         $formteachers = User::where('school_id', auth()->user()->school_id)->whereHas("roles", function($q){ $q->where("name", "form_teacher"); })->get();
         $teachers = User::where('school_id', auth()->user()->school_id)->whereHas("roles", function($q){ $q->where("name", "teacher"); })->get();
-        return view('dashboard.section.create', compact('classes', 'formteachers', 'teachers', 'departments'));
+        return view('dashboard.section.create', compact('classes', 'formteachers', 'teachers'));
     }
 
     /**

@@ -48,6 +48,7 @@ Route::group([ 'prefix' => 'console', 'namespace' => 'Console', 'middleware' => 
     Route::get('grades/{teacher}', 'GradesController@index')->name('grades.course');
 
     Route::resource('staff', 'StaffController');
+    Route::resource('report', 'ReportCardManagerController');
 });
 
 
@@ -65,6 +66,7 @@ Route::group([ 'prefix' => 'setup', 'namespace' => 'Administration','middleware'
 });
 Route::group([ 'middleware' => 'auth'], function(){
     Route::resource('grades', 'GradeController');
+    Route::resource('reports', 'ReportCardController');
 });
 //Route::middleware(['auth', 'admin'])->prefix('academic')->name('academic.')->group(function () {});
 

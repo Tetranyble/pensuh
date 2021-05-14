@@ -34,6 +34,7 @@ class StoreGradeRequest extends FormRequest
         array_push($partial, $this->attendance[$key]);
         array_push($partial, $this->exam[$key]);
         array_push($sum,array_sum($partial));
+        $partial = [];
         }
 
         $this->merge([
@@ -59,21 +60,20 @@ class StoreGradeRequest extends FormRequest
 
     public function rules()
     {
-
         return [
 
             'resumption_test.*' => 'nullable|numeric|between:0,5',
             'project.*' => 'nullable|numeric|between:0,2',
             'note.*' => 'nullable|numeric|between:0,8',
-            'classwork.*' => 'nullable|numeric|between:1,15',
-            'assignment.*' => 'nullable|numeric|between:1,15',
-            'midterm_test.*' => 'nullable|numeric|between:1,10',
+            'classwork.*' => 'nullable|numeric|between:0,15',
+            'assignment.*' => 'nullable|numeric|between:0,15',
+            'midterm_test.*' => 'nullable|numeric|between:0,10',
             'attendance.*' => 'nullable|numeric|between:0,8',
-            'exam.*' => 'nullable|numeric|between:1,100',
-            'teacher_id' => 'required|numeric',
-            'course_id' => 'required|numeric',
-            'grade_system_name' => 'required|string',
-            'exam_id' => 'required|numeric',
+            'exam.*' => 'nullable|numeric|between:0,100',
+            't' => 'required|numeric',
+            'c' => 'required|numeric',
+            'grade_system_name' => 'required|string|min:2',
+//            'grade_system_name' => 'required|string',
             'sum' => 'required',
             'sum.*' => 'numeric|between:1,100'
         ];

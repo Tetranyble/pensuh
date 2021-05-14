@@ -118,4 +118,12 @@ class GradeService {
         }
 
     }
+
+    public function gradeWithCourseStudentExam($course, $exam)
+    {
+        return Grade::with('course','student','examination')
+            ->where('course_id', $course)
+            ->where('exam_id',$exam)
+            ->get();
+    }
 }

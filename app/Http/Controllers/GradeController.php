@@ -26,11 +26,13 @@ class GradeController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $grades = $this->gradeService->gradeWithCourseStudentExam($request->get('c'),$request->get('e'));
+        return view('dashboard.grade.index', compact('grades'));
     }
 
     /**
@@ -44,7 +46,8 @@ class GradeController extends Controller
         $this->giveGrade($request->get('t'), $request->get('c'), $exam->id, $request->get('s'));
         $grades = $this->gradeService->gradeWithCourseAndStudent($request->get('c'),$exam->id);
         $gradesystems = $this->gradeService->getGradeSystemBySchoolId($grades);
-        return view('dashboard.grade.update', ['grades' => $grades,'request' => $request->all(), 'gradesystems' => $gradesystems]);
+
+        return view('dashboard.grade.update', ['grades' => $grades,'request' => $request->all(), 'gradesystems' => $gradesystems, 'e' => $exam->id]);
     }
 
     /**
@@ -58,7 +61,9 @@ class GradeController extends Controller
         $gradeSystem = $this->gradeService->getGradeSystemByname($request->grade_system_name);
         $this->gradeService->setGradeSystem($gradeSystem);
         $this->gradeService->update($request);
-        return back()->with('success', __('saved successfully'));
+
+        return redirect()->route('grades.index', ['c' => $request->get('c'), 'e' => $request->get('e')])->with('success', 'Course graded successfully');
+        //return back()->with('success', __('saved successfully'));
     }
 
     /**

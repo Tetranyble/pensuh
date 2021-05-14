@@ -3,6 +3,11 @@
 @section('dashboard')
     <div class="container-fluid">
         @include('components.flash-message')
+        <ul>
+            @foreach($errors->all() as $message)
+                <li class="text-danger">{{ $message }}</li>
+            @endforeach
+        </ul>
         <div class="row">
             <div class="col-12">
                 <form method="POST" action="{{ route('grades.store' ) }}">
@@ -10,6 +15,7 @@
                     @foreach($request as $key => $req)
                         <input type="hidden" name="{{ $key }}" value="{{ $req }}">
                     @endforeach
+                    <input type="hidden" name="e" value="{{ $e }}">
                 @forelse($grades as $key => $grade)
                 <div class="card">
                     <div class="card-body">
@@ -19,12 +25,12 @@
                                 <div class="row">
                                     <input type="hidden" name="id[]" value="{{ $grade->id }}">
                                     <div class="col-md-3">
-                                        <div class="form-group {{($errors->has('resumption_test')) ? 'has-error' : ''}}">
+                                        <div class="form-group {{($errors->has('resumption_test.'.$key)) ? 'has-error' : ''}}">
                                             <label for="resumption_test">Resumption Test
-                                                <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('resumption_test')}}</span></span>
+                                                <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('resumption_test.'. $key)}}</span></span>
                                             </label>
-                                            <input name="resumption_test[]" class="form-control" id="resumption_test" type="number"
-                                                   placeholder="resumption Test" value="{{ old('resumption_test', $grade->resumption_test) }}">
+                                            <input name="resumption_test[]" class="form-control" id="resumption_test" type="number" min="0" max="5"
+                                                   placeholder="resumption test" value="{{ in_array($grade->resumption_test, old('resumption_test', $grade->pluck('resumption_test')->toArray()) ?: []) ? $grade->resumption_test : old(`resumption_test.{$key}`) }}">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -32,8 +38,8 @@
                                             <label for="note">Note Score
                                                 <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('note')}}</span></span>
                                             </label>
-                                            <input name="note[]" class="form-control" id="note" type="number"
-                                                   placeholder="note score" value="{{ old('note', $grade->note) }}">
+                                            <input name="note[]" class="form-control" id="note" type="number" min="0" max="8"
+                                                   placeholder="note score" value="{{ in_array($grade->note, old('note', $grade->pluck('note')->toArray()) ?: []) ? $grade->note : $grade->note }}">
                                         </div>
                                     </div>
 
@@ -42,8 +48,8 @@
                                             <label for="project">Project Score
                                                 <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('project')}}</span></span>
                                             </label>
-                                            <input name="project[]" class="form-control" id="project" type="number"
-                                                      placeholder="project score" value="{{ old('project', $grade->project) }}">
+                                            <input name="project[]" class="form-control" id="project" type="number" min="0" max="2"
+                                                      placeholder="project score" value="{{ in_array($grade->project, old('project', $grade->pluck('project')->toArray()) ?: []) ? $grade->project : $grade->project }}">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -51,17 +57,18 @@
                                             <label for="classwork">Classwork Score
                                                 <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('classwork')}}</span></span>
                                             </label>
-                                            <input name="classwork[]" class="form-control" id="classwork" type="number"
-                                                   placeholder="classwork score" value="{{ old('classwork', $grade->classwork) }}">
+                                            <input name="classwork[]" class="form-control" id="classwork" type="number" min="0" max="15"
+                                                   placeholder="classwork score" value="{{ in_array($grade->classwork, old('classwork', $grade->pluck('classwork')->toArray()) ?: []) ? $grade->classwork : $grade->classwork }}">
                                         </div>
                                     </div>
+
                                     <div class="col-md-3">
                                         <div class="form-group {{($errors->has('assignment')) ? 'has-error' : ''}}">
                                             <label for="assignment">Assignment Score
                                                 <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('assignment')}}</span></span>
                                             </label>
-                                            <input name="assignment[]" class="form-control" id="assignment" type="number"
-                                                   placeholder="assignment score" value="{{ old('assignment', $grade->assignment) }}">
+                                            <input name="assignment[]" class="form-control" id="assignment" type="number" min="0" max="15"
+                                                   placeholder="assignment score" value="{{in_array($grade->assignment, old('assignment', $grade->pluck('assignment')->toArray()) ?: []) ? $grade->assignment : $grade->assignment }}">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -69,17 +76,17 @@
                                             <label for="midterm_test">Midterm Test
                                                 <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('midterm_test')}}</span></span>
                                             </label>
-                                            <input name="midterm_test[]" class="form-control" id="midterm_test" type="number"
-                                                   placeholder="midterm test score" value="{{ old('midterm_test', $grade->midterm_test) }}">
+                                            <input name="midterm_test[]" class="form-control" id="midterm_test" type="number" min="0" max="10"
+                                                   placeholder="midterm test score" value="{{ in_array($grade->midterm_test, old('midterm_test', $grade->pluck('midterm_test')->toArray()) ?: []) ? $grade->midterm_test : $grade->mideterm_test }}">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group {{($errors->has('attendance')) ? 'has-error' : ''}}">
-                                            <label for="attendance">Classwork Score
+                                            <label for="attendance">Attendance Score
                                                 <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('attendance')}}</span></span>
                                             </label>
-                                            <input name="attendance[]" class="form-control" id="attendance" type="number"
-                                                   placeholder="attendance score" value="{{ old('attendance', $grade->attendance) }}">
+                                            <input name="attendance[]" class="form-control" id="attendance" type="number" min="0" max="8"
+                                                   placeholder="attendance score" value="{{ in_array($grade->attendance, old('attendance', $grade->pluck('attendance')->toArray()) ?: []) ? $grade->attendance : $grade->attendance }}">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -87,8 +94,8 @@
                                             <label for="exam">Exam Score
                                                 <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('exam')}}</span></span>
                                             </label>
-                                            <input name="exam[]" class="form-control" id="exam" type="number"
-                                                   placeholder="classwork score" value="{{ old('exam', $grade->exam) }}">
+                                            <input name="exam[]" class="form-control" id="exam" type="number" min="0" max="100"
+                                                   placeholder="classwork score" value="{{ in_array($grade->exam, old('exam',$grade->pluck('exam')->toArray()) ?: []) ? $grade->exam : $grade->exam }}">
                                         </div>
                                     </div>
 
@@ -105,14 +112,14 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="col-md-6">
-                                <div class="form-group {{($errors->has('syllabus_id')) ? 'has-error' : ''}}">
-                                    <label for="grade_system_name">Syllabus
-                                        <span class="text-danger"><span  class="text-danger h6">{{$errors->first('syllabus_id')}}</span></span>
+                                <div class="form-group {{($errors->has('grade_system_name')) ? 'has-error' : ''}}">
+                                    <label for="grade_system_name">Grade System
+                                        <span class="text-danger"><span  class="text-danger h6">{{$errors->first('grade_system_name')}}</span></span>
                                     </label>
                                     <select name="grade_system_name" class="form-control" id="grade_system_name" type="text">
-                                        <option>Select Grading System</option>
+                                        <option value="">Select Grading System</option>
                                         @forelse($gradesystems as $gradesystem)
-                                            <option {{ old('grade_system_name') == $gradesystem->id ? "selected" : "" }} value="{{ $gradesystem->name }}">{{ $gradesystem->name }}</option>
+                                            <option {{  old('grade_system_name') == $gradesystem->name ? "selected" : "" }} value="{{ $gradesystem->name }}">{{ $gradesystem->name }}</option>
                                         @empty
                                             <option>No data</option>
                                         @endforelse
