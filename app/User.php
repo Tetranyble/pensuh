@@ -182,4 +182,8 @@ class User extends Authenticatable
     public function religion(){
         return $this->belongsTo(Religion::class);
     }
+
+    public function grade(){
+        return $this->hasMany(Grade::class,'student_id');
+    }
 }

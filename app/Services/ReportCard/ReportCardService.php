@@ -1,7 +1,7 @@
 <?php
 namespace App\Services\ReportCard;
 
-class ReportCard {
+class ReportCardService {
     protected $reportCard;
     public function __construct(ReportCardInterface $reportCard)
     {
@@ -22,5 +22,9 @@ class ReportCard {
             return $this->reportCard->annually();
         }
         // consider throwing exception here
+    }
+
+    public function generateRoprts($grades)
+    {
     }
 }

@@ -5,7 +5,7 @@ class ReportCardOutputer {
 
     protected $reportCard;
 
-    public function __construct(ReportCard $reportCard)
+    public function __construct(ReportCardService $reportCard)
     {
         $this->reportCard = $reportCard;
     }

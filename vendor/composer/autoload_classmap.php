@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\AcademicCalendar' => $baseDir . '/app/AcademicCalendar.php',
     'App\\Admission' => $baseDir . '/app/Admission.php',
     'App\\Assessment' => $baseDir . '/app/Assessment.php',
     'App\\Attendance' => $baseDir . '/app/Attendance.php',
@@ -61,6 +62,7 @@ return array(
     'App\\Http\\Controllers\\DepartmentController' => $baseDir . '/app/Http/Controllers/DepartmentController.php',
     'App\\Http\\Controllers\\EventController' => $baseDir . '/app/Http/Controllers/EventController.php',
     'App\\Http\\Controllers\\ExamController' => $baseDir . '/app/Http/Controllers/ExamController.php',
+    'App\\Http\\Controllers\\FeeController' => $baseDir . '/app/Http/Controllers/FeeController.php',
     'App\\Http\\Controllers\\FrontController' => $baseDir . '/app/Http/Controllers/FrontController.php',
     'App\\Http\\Controllers\\GalleryController' => $baseDir . '/app/Http/Controllers/GalleryController.php',
     'App\\Http\\Controllers\\GradeController' => $baseDir . '/app/Http/Controllers/GradeController.php',
@@ -107,6 +109,7 @@ return array(
     'App\\Http\\Requests\\UpdateStaffRequest' => $baseDir . '/app/Http/Requests/UpdateStaffRequest.php',
     'App\\Http\\Requests\\UpdateStudentRequest' => $baseDir . '/app/Http/Requests/UpdateStudentRequest.php',
     'App\\Http\\Traits\\AssignGrade' => $baseDir . '/app/Http/Traits/AssignGrade.php',
+    'App\\Http\\Traits\\GenerateReportCard' => $baseDir . '/app/Http/Traits/GenerateReportCard.php',
     'App\\Language' => $baseDir . '/app/Language.php',
     'App\\Listeners\\UserCode' => $baseDir . '/app/Listeners/UserCode.php',
     'App\\Mail\\Contact' => $baseDir . '/app/Mail/Contact.php',
@@ -128,12 +131,12 @@ return array(
     'App\\SchoolType' => $baseDir . '/app/SchoolType.php',
     'App\\Section' => $baseDir . '/app/Section.php',
     'App\\Services\\ReportCard\\GradeService' => $baseDir . '/app/Services/ReportCard/GradeService.php',
-    'App\\Services\\ReportCard\\ReportCard' => $baseDir . '/app/Services/ReportCard/ReportCard.php',
     'App\\Services\\ReportCard\\ReportCardCrecheSchool' => $baseDir . '/app/Services/ReportCard/ReportCardCrecheSchool.php',
     'App\\Services\\ReportCard\\ReportCardInterface' => $baseDir . '/app/Services/ReportCard/ReportCardInterface.php',
     'App\\Services\\ReportCard\\ReportCardOutputer' => $baseDir . '/app/Services/ReportCard/ReportCardOutputer.php',
     'App\\Services\\ReportCard\\ReportCardPrimarySchool' => $baseDir . '/app/Services/ReportCard/ReportCardPrimarySchool.php',
     'App\\Services\\ReportCard\\ReportCardSecondarySchool' => $baseDir . '/app/Services/ReportCard/ReportCardSecondarySchool.php',
+    'App\\Services\\ReportCard\\ReportCardService' => $baseDir . '/app/Services/ReportCard/ReportCardService.php',
     'App\\Session' => $baseDir . '/app/Session.php',
     'App\\StudentInfo' => $baseDir . '/app/StudentInfo.php',
     'App\\Syllabus' => $baseDir . '/app/Syllabus.php',

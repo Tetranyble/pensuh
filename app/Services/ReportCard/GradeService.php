@@ -5,6 +5,7 @@ use App\Exam;
 use App\Grade;
 use App\Gradesystem;
 use App\Http\Requests\StoreGradeRequest;
+use App\User;
 use Illuminate\Http\Request;
 
 class GradeService {
@@ -124,6 +125,31 @@ class GradeService {
         return Grade::with('course','student','examination')
             ->where('course_id', $course)
             ->where('exam_id',$exam)
+            ->get();
+    }
+
+    public function getStudentGradeCourse($course_id, $exam_id)
+    {
+        Grade::with('course','student','examination')
+            ->where('course_id', $course_id)
+            ->where('exam_id',$exam_id)
+            ->get();
+        return User::whereHas("roles", function($q){ $q->where("name", "student"); })
+            ->with('studentInfo','course','grade');
+    }
+
+    public function getGrade($course_id, $exam_id)
+    {
+        return Grade::where('course_id', $course_id)
+            ->where('exam_id',$exam_id)
+            ->get();
+    }
+
+    public function getStudentGradeExamination($course_id, $exam_id)
+    {
+        return Grade::with('student','examination')
+            ->where('course_id', $course_id)
+            ->where('exam_id',$exam_id)
             ->get();
     }
 }

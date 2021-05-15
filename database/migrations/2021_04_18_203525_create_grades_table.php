@@ -34,6 +34,7 @@ class CreateGradesTable extends Migration
             $table->integer('exam_id')->unsigned();
             $table->integer('student_id')->unsigned();
             $table->integer('user_id')->unsigned()->nullable();
+            $table->integer('report_card_id')->unsigned()->nullable();
             $table->string('remark')->default('')->nullable();
             $table->timestamps();
         });

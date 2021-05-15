@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ReportCard extends Model
+class AcademicCalendar extends Model
 {
-    protected $guarded = [];
+    //
 }

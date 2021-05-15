@@ -617,6 +617,7 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
     );
 
     public static $classMap = array (
+        'App\\AcademicCalendar' => __DIR__ . '/../..' . '/app/AcademicCalendar.php',
         'App\\Admission' => __DIR__ . '/../..' . '/app/Admission.php',
         'App\\Assessment' => __DIR__ . '/../..' . '/app/Assessment.php',
         'App\\Attendance' => __DIR__ . '/../..' . '/app/Attendance.php',
@@ -672,6 +673,7 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         'App\\Http\\Controllers\\DepartmentController' => __DIR__ . '/../..' . '/app/Http/Controllers/DepartmentController.php',
         'App\\Http\\Controllers\\EventController' => __DIR__ . '/../..' . '/app/Http/Controllers/EventController.php',
         'App\\Http\\Controllers\\ExamController' => __DIR__ . '/../..' . '/app/Http/Controllers/ExamController.php',
+        'App\\Http\\Controllers\\FeeController' => __DIR__ . '/../..' . '/app/Http/Controllers/FeeController.php',
         'App\\Http\\Controllers\\FrontController' => __DIR__ . '/../..' . '/app/Http/Controllers/FrontController.php',
         'App\\Http\\Controllers\\GalleryController' => __DIR__ . '/../..' . '/app/Http/Controllers/GalleryController.php',
         'App\\Http\\Controllers\\GradeController' => __DIR__ . '/../..' . '/app/Http/Controllers/GradeController.php',
@@ -718,6 +720,7 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         'App\\Http\\Requests\\UpdateStaffRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateStaffRequest.php',
         'App\\Http\\Requests\\UpdateStudentRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateStudentRequest.php',
         'App\\Http\\Traits\\AssignGrade' => __DIR__ . '/../..' . '/app/Http/Traits/AssignGrade.php',
+        'App\\Http\\Traits\\GenerateReportCard' => __DIR__ . '/../..' . '/app/Http/Traits/GenerateReportCard.php',
         'App\\Language' => __DIR__ . '/../..' . '/app/Language.php',
         'App\\Listeners\\UserCode' => __DIR__ . '/../..' . '/app/Listeners/UserCode.php',
         'App\\Mail\\Contact' => __DIR__ . '/../..' . '/app/Mail/Contact.php',
@@ -739,12 +742,12 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         'App\\SchoolType' => __DIR__ . '/../..' . '/app/SchoolType.php',
         'App\\Section' => __DIR__ . '/../..' . '/app/Section.php',
         'App\\Services\\ReportCard\\GradeService' => __DIR__ . '/../..' . '/app/Services/ReportCard/GradeService.php',
-        'App\\Services\\ReportCard\\ReportCard' => __DIR__ . '/../..' . '/app/Services/ReportCard/ReportCard.php',
         'App\\Services\\ReportCard\\ReportCardCrecheSchool' => __DIR__ . '/../..' . '/app/Services/ReportCard/ReportCardCrecheSchool.php',
         'App\\Services\\ReportCard\\ReportCardInterface' => __DIR__ . '/../..' . '/app/Services/ReportCard/ReportCardInterface.php',
         'App\\Services\\ReportCard\\ReportCardOutputer' => __DIR__ . '/../..' . '/app/Services/ReportCard/ReportCardOutputer.php',
         'App\\Services\\ReportCard\\ReportCardPrimarySchool' => __DIR__ . '/../..' . '/app/Services/ReportCard/ReportCardPrimarySchool.php',
         'App\\Services\\ReportCard\\ReportCardSecondarySchool' => __DIR__ . '/../..' . '/app/Services/ReportCard/ReportCardSecondarySchool.php',
+        'App\\Services\\ReportCard\\ReportCardService' => __DIR__ . '/../..' . '/app/Services/ReportCard/ReportCardService.php',
         'App\\Session' => __DIR__ . '/../..' . '/app/Session.php',
         'App\\StudentInfo' => __DIR__ . '/../..' . '/app/StudentInfo.php',
         'App\\Syllabus' => __DIR__ . '/../..' . '/app/Syllabus.php',

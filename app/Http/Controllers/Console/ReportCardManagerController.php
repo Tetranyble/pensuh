@@ -4,11 +4,23 @@ namespace App\Http\Controllers\Console;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReportCardManagerRequest;
+use App\Http\Traits\GenerateReportCard;
 use App\ReportCard;
+use App\Services\ReportCard\GradeService;
+use App\Services\ReportCard\ReportCardService;
 use Illuminate\Http\Request;
 
 class ReportCardManagerController extends Controller
 {
+    use GenerateReportCard;
+    protected $gradeService;
+    protected $reportCardService;
+    public function __construct(GradeService $gradeService, ReportCardService $reportCardService)
+    {
+        $this->gradeService = $gradeService;
+        $this->reportCardService = $reportCardService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +39,9 @@ class ReportCardManagerController extends Controller
      */
     public function create(ReportCardManagerRequest $request)
     {
-        $grades = $this->gradeService->gradeWithCourseAndStudent($request->get('c'),$request->exam_id);
+        $grades = $this->gradeService->getStudentGradeExamination($request->get('c'), $request->exam_id);
+        $this->generateReportCard($grades);
+        return view('dashboard.reportcard.update', compact('grades'));
 
     }
 

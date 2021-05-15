@@ -55,7 +55,7 @@ trait AssignGrade {
                     $tb->teacher_id = $teacher_id;
                     $tb->course_id = $course_id;
                     $tb->user_id = auth()->user()->id; // User id who is logged in while this command executes
-                    $tbc[] = $tb->attributesToArray();
+                    //$tbc[] = $tb->attributesToArray();
                     $tb->save();
                 }
             }
