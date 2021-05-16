@@ -10,95 +10,217 @@
         </ul>
         <div class="row">
             <div class="col-12">
-                <form method="POST" action="{{ route('grades.store' ) }}">
+                <form method="POST" action="{{ route('report.store' ) }}">
                     @csrf
                     @foreach($request as $key => $req)
                         <input type="hidden" name="{{ $key }}" value="{{ $req }}">
                     @endforeach
-                    <input type="hidden" name="e" value="{{ $e }}">
-                    @forelse($grades as $key => $grade)
+                    @forelse($reports as $key => $report)
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">{{ $grade->student->fullname }}</h4>
+                                <h4 class="card-title">{{ $report->student->fullname }}</h4>
 
                                 <div class="form-body">
                                     <div class="row">
-                                        <input type="hidden" name="id[]" value="{{ $grade->id }}">
-                                        <div class="col-md-3">
-                                            <div class="form-group {{($errors->has('resumption_test.'.$key)) ? 'has-error' : ''}}">
-                                                <label for="resumption_test">Resumption Test
-                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('resumption_test.'. $key)}}</span></span>
+                                        <input type="hidden" name="id[]" value="{{ $report->id }}">
+                                        <div class="col-md-2">
+                                            <div class="form-group {{($errors->has('punctuality')) ? 'has-error' : ''}}">
+                                                <label for="punctuality">Punctuality
+                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('punctuality')}}</span></span>
                                                 </label>
-                                                <input name="resumption_test[]" class="form-control" id="resumption_test" type="number" min="0" max="5"
-                                                       placeholder="resumption test" value="{{ in_array($grade->resumption_test, old('resumption_test', $grade->pluck('resumption_test')->toArray()) ?: []) ? $grade->resumption_test : old(`resumption_test.{$key}`) }}">
+                                                <input name="punctuality[]" class="form-control" id="punctuality" type="number" min="0" max="5"
+                                                       placeholder="punctuality" value="{{ in_array($report->punctuality, old('punctuality', $report->pluck('punctuality')->toArray()) ?: []) ? $report->punctuality : old('punctuality') }}">
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group {{($errors->has('note')) ? 'has-error' : ''}}">
-                                                <label for="note">Note Score
-                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('note')}}</span></span>
-                                                </label>
-                                                <input name="note[]" class="form-control" id="note" type="number" min="0" max="8"
-                                                       placeholder="note score" value="{{ in_array($grade->note, old('note', $grade->pluck('note')->toArray()) ?: []) ? $grade->note : $grade->note }}">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-3">
-                                            <div class="form-group {{($errors->has('project')) ? 'has-error' : ''}}">
-                                                <label for="project">Project Score
-                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('project')}}</span></span>
-                                                </label>
-                                                <input name="project[]" class="form-control" id="project" type="number" min="0" max="2"
-                                                       placeholder="project score" value="{{ in_array($grade->project, old('project', $grade->pluck('project')->toArray()) ?: []) ? $grade->project : $grade->project }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group {{($errors->has('classwork')) ? 'has-error' : ''}}">
-                                                <label for="classwork">Classwork Score
-                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('classwork')}}</span></span>
-                                                </label>
-                                                <input name="classwork[]" class="form-control" id="classwork" type="number" min="0" max="15"
-                                                       placeholder="classwork score" value="{{ in_array($grade->classwork, old('classwork', $grade->pluck('classwork')->toArray()) ?: []) ? $grade->classwork : $grade->classwork }}">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-3">
-                                            <div class="form-group {{($errors->has('assignment')) ? 'has-error' : ''}}">
-                                                <label for="assignment">Assignment Score
-                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('assignment')}}</span></span>
-                                                </label>
-                                                <input name="assignment[]" class="form-control" id="assignment" type="number" min="0" max="15"
-                                                       placeholder="assignment score" value="{{in_array($grade->assignment, old('assignment', $grade->pluck('assignment')->toArray()) ?: []) ? $grade->assignment : $grade->assignment }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group {{($errors->has('midterm_test')) ? 'has-error' : ''}}">
-                                                <label for="midterm_test">Midterm Test
-                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('midterm_test')}}</span></span>
-                                                </label>
-                                                <input name="midterm_test[]" class="form-control" id="midterm_test" type="number" min="0" max="10"
-                                                       placeholder="midterm test score" value="{{ in_array($grade->midterm_test, old('midterm_test', $grade->pluck('midterm_test')->toArray()) ?: []) ? $grade->midterm_test : $grade->mideterm_test }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             <div class="form-group {{($errors->has('attendance')) ? 'has-error' : ''}}">
-                                                <label for="attendance">Attendance Score
+                                                <label for="attendance">Attendance
                                                     <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('attendance')}}</span></span>
                                                 </label>
-                                                <input name="attendance[]" class="form-control" id="attendance" type="number" min="0" max="8"
-                                                       placeholder="attendance score" value="{{ in_array($grade->attendance, old('attendance', $grade->pluck('attendance')->toArray()) ?: []) ? $grade->attendance : $grade->attendance }}">
+                                                <input name="attendance[]" class="form-control" id="attendance" type="number" min="0" max="5"
+                                                       placeholder="attendance" value="{{ in_array($report->attendance, old('attendance', $report->pluck('attendance')->toArray()) ?: []) ? $report->attendance : old('attendance') }}">
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group {{($errors->has('exam')) ? 'has-error' : ''}}">
-                                                <label for="exam">Exam Score
-                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('exam')}}</span></span>
+                                        <div class="col-md-2">
+                                            <div class="form-group {{($errors->has('attentiveness')) ? 'has-error' : ''}}">
+                                                <label for="attentiveness">Attentiveness
+                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('attentiveness')}}</span></span>
                                                 </label>
-                                                <input name="exam[]" class="form-control" id="exam" type="number" min="0" max="100"
-                                                       placeholder="classwork score" value="{{ in_array($grade->exam, old('exam',$grade->pluck('exam')->toArray()) ?: []) ? $grade->exam : $grade->exam }}">
+                                                <input name="attentiveness[]" class="form-control" id="attentiveness" type="number" min="0" max="5"
+                                                       placeholder="attentiveness" value="{{ in_array($report->attentiveness, old('attentiveness', $report->pluck('attentiveness')->toArray()) ?: []) ? $report->attentiveness : old('attentiveness') }}">
                                             </div>
                                         </div>
-
+                                        <div class="col-md-2">
+                                            <div class="form-group {{($errors->has('initiative')) ? 'has-error' : ''}}">
+                                                <label for="initiative">Initiative
+                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('initiative')}}</span></span>
+                                                </label>
+                                                <input name="initiative[]" class="form-control" id="initiative" type="number" min="0" max="5"
+                                                       placeholder="initiative" value="{{ in_array($report->initiative, old('initiative', $report->pluck('initiative')->toArray()) ?: []) ? $report->initiative : old('initiative') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group {{($errors->has('perseverance')) ? 'has-error' : ''}}">
+                                                <label for="perseverance">Perseverance
+                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('perseverance')}}</span></span>
+                                                </label>
+                                                <input name="perseverance[]" class="form-control" id="perseverance" type="number" min="0" max="5"
+                                                       placeholder="perseverance" value="{{ in_array($report->perseverance, old('perseverance', $report->pluck('perseverance')->toArray()) ?: []) ? $report->perseverance : old('perseverance') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group {{($errors->has('carrying_out_assignment')) ? 'has-error' : ''}}">
+                                                <label for="carrying_out_assignment">Carrying out assignment
+                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('carrying_out_assignment')}}</span></span>
+                                                </label>
+                                                <input name="carrying_out_assignment[]" class="form-control" id="carrying_out_assignment" type="number" min="0" max="5"
+                                                       placeholder="carrying_out_assignment" value="{{ in_array($report->carrying_out_assignment, old('carrying_out_assignment', $report->pluck('carrying_out_assignment')->toArray()) ?: []) ? $report->carrying_out_assignment : old('carrying_out_assignment') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group {{($errors->has('organisational_ability')) ? 'has-error' : ''}}">
+                                                <label for="organisational_ability">Organisational ability
+                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('organisational_ability')}}</span></span>
+                                                </label>
+                                                <input name="organisational_ability[]" class="form-control" id="organisational_ability" type="number" min="0" max="5"
+                                                       placeholder="organisational_ability" value="{{ in_array($report->organisational_ability, old('organisational_ability', $report->pluck('organisational_ability')->toArray()) ?: []) ? $report->organisational_ability : old('organisational_ability') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group {{($errors->has('neatness')) ? 'has-error' : ''}}">
+                                                <label for="neatness">Neatness
+                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('neatness')}}</span></span>
+                                                </label>
+                                                <input name="neatness[]" class="form-control" id="neatness" type="number" min="0" max="5"
+                                                       placeholder="neatness" value="{{ in_array($report->neatness, old('neatness', $report->pluck('neatness')->toArray()) ?: []) ? $report->neatness : old('neatness') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group {{($errors->has('politeness')) ? 'has-error' : ''}}">
+                                                <label for="politeness">Politeness
+                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('politeness')}}</span></span>
+                                                </label>
+                                                <input name="politeness[]" class="form-control" id="politeness" type="number" min="0" max="5"
+                                                       placeholder="politeness" value="{{ in_array($report->politeness, old('politeness', $report->pluck('politeness')->toArray()) ?: []) ? $report->politeness : old('politeness') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group {{($errors->has('honesty')) ? 'has-error' : ''}}">
+                                                <label for="honesty">Honesty
+                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('honesty')}}</span></span>
+                                                </label>
+                                                <input name="honesty[]" class="form-control" id="honesty" type="number" min="0" max="5"
+                                                       placeholder="honesty" value="{{ in_array($report->honesty, old('honesty', $report->pluck('honesty')->toArray()) ?: []) ? $report->honesty : old('honesty') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group {{($errors->has('self_control')) ? 'has-error' : ''}}">
+                                                <label for="self_control">Self Control
+                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('self_control')}}</span></span>
+                                                </label>
+                                                <input name="self_control[]" class="form-control" id="self_control" type="number" min="0" max="5"
+                                                       placeholder="self_control" value="{{ in_array($report->self_control, old('self_control', $report->pluck('self_control')->toArray()) ?: []) ? $report->self_control : old('self_control') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group {{($errors->has('spirit_of_cooperation')) ? 'has-error' : ''}}">
+                                                <label for="spirit_of_cooperation">Spirit of cooperation
+                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('spirit_of_cooperation')}}</span></span>
+                                                </label>
+                                                <input name="spirit_of_cooperation[]" class="form-control" id="spirit_of_cooperation" type="number" min="0" max="5"
+                                                       placeholder="spirit_of_cooperation" value="{{ in_array($report->spirit_of_cooperation, old('spirit_of_cooperation', $report->pluck('spirit_of_cooperation')->toArray()) ?: []) ? $report->spirit_of_cooperation : old('spirit_of_cooperation') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group {{($errors->has('obedience')) ? 'has-error' : ''}}">
+                                                <label for="obedience">Obedience
+                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('obedience')}}</span></span>
+                                                </label>
+                                                <input name="obedience[]" class="form-control" id="obedience" type="number" min="0" max="5"
+                                                       placeholder="obedience" value="{{ in_array($report->obedience, old('obedience', $report->pluck('obedience')->toArray()) ?: []) ? $report->obedience : old('obedience') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group {{($errors->has('sense_of_responsibility')) ? 'has-error' : ''}}">
+                                                <label for="sense_of_responsibility">Sense of responsibility
+                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('sense_of_responsibility')}}</span></span>
+                                                </label>
+                                                <input name="sense_of_responsibility[]" class="form-control" id="sense_of_responsibility" type="number" min="0" max="5"
+                                                       placeholder="sense_of_responsibility" value="{{ in_array($report->sense_of_responsibility, old('sense_of_responsibility', $report->pluck('sense_of_responsibility')->toArray()) ?: []) ? $report->sense_of_responsibility : old('sense_of_responsibility') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group {{($errors->has('public_speaking')) ? 'has-error' : ''}}">
+                                                <label for="public_speaking">Public speaking
+                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('public_speaking')}}</span></span>
+                                                </label>
+                                                <input name="public_speaking[]" class="form-control" id="public_speaking" type="number" min="0" max="5"
+                                                       placeholder="public_speaking" value="{{ in_array($report->public_speaking, old('public_speaking', $report->pluck('public_speaking')->toArray()) ?: []) ? $report->public_speaking : old('public_speaking') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group {{($errors->has('handwriting')) ? 'has-error' : ''}}">
+                                                <label for="handwriting">Handwriting
+                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('handwriting')}}</span></span>
+                                                </label>
+                                                <input name="handwriting[]" class="form-control" id="handwriting" type="number" min="0" max="5"
+                                                       placeholder="handwriting" value="{{ in_array($report->handwriting, old('handwriting', $report->pluck('handwriting')->toArray()) ?: []) ? $report->handwriting : old('handwriting') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group {{($errors->has('handling_of_tools')) ? 'has-error' : ''}}">
+                                                <label for="handling_of_tools">Handling of tools
+                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('handling_of_tools')}}</span></span>
+                                                </label>
+                                                <input name="handling_of_tools[]" class="form-control" id="handling_of_tools" type="number" min="0" max="5"
+                                                       placeholder="handling_of_tools" value="{{ in_array($report->handling_of_tools, old('handling_of_tools', $report->pluck('handling_of_tools')->toArray()) ?: []) ? $report->handling_of_tools : old('handling_of_tools') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group {{($errors->has('drawing')) ? 'has-error' : ''}}">
+                                                <label for="drawing">Drawing
+                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('drawing')}}</span></span>
+                                                </label>
+                                                <input name="drawing[]" class="form-control" id="drawing" type="number" min="0" max="5"
+                                                       placeholder="drawing" value="{{ in_array($report->drawing, old('drawing', $report->pluck('drawing')->toArray()) ?: []) ? $report->drawing : old('drawing') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group {{($errors->has('painting')) ? 'has-error' : ''}}">
+                                                <label for="painting">Painting
+                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('painting')}}</span></span>
+                                                </label>
+                                                <input name="painting[]" class="form-control" id="painting" type="number" min="0" max="5"
+                                                       placeholder="painting" value="{{ in_array($report->painting, old('painting', $report->pluck('painting')->toArray()) ?: []) ? $report->painting : old('painting') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group {{($errors->has('sculpture')) ? 'has-error' : ''}}">
+                                                <label for="sculpture">Sculpture
+                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('sculpture')}}</span></span>
+                                                </label>
+                                                <input name="sculpture[]" class="form-control" id="sculpture" type="number" min="0" max="5"
+                                                       placeholder="sculpture" value="{{ in_array($report->sculpture, old('sculpture', $report->pluck('sculpture')->toArray()) ?: []) ? $report->sculpture : old('sculpture') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group {{($errors->has('relationship_with_others')) ? 'has-error' : ''}}">
+                                                <label for="relationship_with_others">Relationship with others
+                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('relationship_with_others')}}</span></span>
+                                                </label>
+                                                <input name="relationship_with_others[]" class="form-control" id="relationship_with_others" type="number" min="0" max="5"
+                                                       placeholder="relationship_with_others" value="{{ in_array($report->relationship_with_others, old('relationship_with_others', $report->pluck('relationship_with_others')->toArray()) ?: []) ? $report->relationship_with_others : old('relationship_with_others') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group {{($errors->has('participation_in_school_arts')) ? 'has-error' : ''}}">
+                                                <label for="participation_in_school_arts"> Participation in arts
+                                                    <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('participation_in_school_arts')}}</span></span>
+                                                </label>
+                                                <input name="participation_in_school_arts[]" class="form-control" id="participation_in_school_arts" type="number" min="0" max="5"
+                                                       placeholder="participation_in_school_arts" value="{{ in_array($report->participation_in_school_arts, old('participation_in_school_arts', $report->pluck('participation_in_school_arts')->toArray()) ?: []) ? $report->participation_in_school_arts : old('participation_in_school_arts') }}">
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -111,24 +233,12 @@
                     @endforelse
                     <div class="card">
                         <div class="card-body">
-                            <div class="col-md-6">
-                                <div class="form-group {{($errors->has('grade_system_name')) ? 'has-error' : ''}}">
-                                    <label for="grade_system_name">Grade System
-                                        <span class="text-danger"><span  class="text-danger h6">{{$errors->first('grade_system_name')}}</span></span>
-                                    </label>
-                                    <select name="grade_system_name" class="form-control" id="grade_system_name" type="text">
-                                        <option value="">Select Grading System</option>
-                                        @forelse($gradesystems as $gradesystem)
-                                            <option {{  old('grade_system_name') == $gradesystem->name ? "selected" : "" }} value="{{ $gradesystem->name }}">{{ $gradesystem->name }}</option>
-                                        @empty
-                                            <option>No data</option>
-                                        @endforelse
-                                    </select>
+                            <div class="form-actions d-flex justify-content-between">
+                                <div>
+{{--                                    {{ $reports->links() }}--}}
                                 </div>
-                            </div>
-                            <div class="form-actions">
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-info">Submit</button>
+                                    <button type="submit" class="btn btn-info">Update Report</button>
                                 </div>
                             </div>
 

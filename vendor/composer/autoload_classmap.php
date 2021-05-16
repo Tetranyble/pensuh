@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AcademicCalendarSeeder' => $baseDir . '/database/seeds/AcademicCalendarSeeder.php',
     'App\\AcademicCalendar' => $baseDir . '/app/AcademicCalendar.php',
     'App\\Admission' => $baseDir . '/app/Admission.php',
     'App\\Assessment' => $baseDir . '/app/Assessment.php',
@@ -30,6 +31,7 @@ return array(
     'App\\Grade' => $baseDir . '/app/Grade.php',
     'App\\GradeSystem' => $baseDir . '/app/GradeSystem.php',
     'App\\Group' => $baseDir . '/app/Group.php',
+    'App\\Http\\Controllers\\AcademicCalendarController' => $baseDir . '/app/Http/Controllers/AcademicCalendarController.php',
     'App\\Http\\Controllers\\Administration\\AdminController' => $baseDir . '/app/Http/Controllers/Administration/AdminController.php',
     'App\\Http\\Controllers\\Administration\\ClassManagerController' => $baseDir . '/app/Http/Controllers/Administration/ClassManagerController.php',
     'App\\Http\\Controllers\\Administration\\CourseManagerController' => $baseDir . '/app/Http/Controllers/Administration/CourseManagerController.php',

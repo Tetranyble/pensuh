@@ -40,8 +40,6 @@ class ReportCardManagerRequest extends FormRequest
     public function rules()
     {
         return [
-            'course' => 'required|numeric',
-            'exam' => 'nullable|numeric',
             'form_teacher' => 'required|numeric',
             'section' => 'required|numeric'
         ];

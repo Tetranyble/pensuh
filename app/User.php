@@ -141,7 +141,7 @@ class User extends Authenticatable
         return 'username';
     }
 
-    public function getUDateOfBirthAttribute($value){
+    public function getDateOfBirthAttribute($value){
         return Carbon::parse($value)->format('F j, Y');
     }
 

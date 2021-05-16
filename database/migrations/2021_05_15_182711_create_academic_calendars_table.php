@@ -15,6 +15,13 @@ class CreateAcademicCalendarsTable extends Migration
     {
         Schema::create('academic_calendars', function (Blueprint $table) {
             $table->id();
+            $table->integer('school_id');
+            $table->integer('session_id');
+            $table->tinyInteger('active')->default(1);
+            $table->string('name');
+            $table->date('vacation')->nullable();
+            $table->date('resumption')->nullable();
+            $table->text('body')->nullable();
             $table->timestamps();
         });
     }

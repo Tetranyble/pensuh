@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Console;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReportCardManagerRequest;
+use App\Http\Requests\ReportCardManagerUpdateRequest;
 use App\Http\Traits\GenerateReportCard;
 use App\ReportCard;
 use App\Services\ReportCard\GradeService;
-use App\Services\ReportCard\ReportCardService;
+
+use App\Services\ReportCardService;
 use Illuminate\Http\Request;
 
 class ReportCardManagerController extends Controller
@@ -39,9 +41,10 @@ class ReportCardManagerController extends Controller
      */
     public function create(ReportCardManagerRequest $request)
     {
-        $grades = $this->gradeService->getStudentGradeExamination($request->get('c'), $request->exam_id);
-        $this->generateReportCard($grades);
-        return view('dashboard.reportcard.update', compact('grades'));
+        //$grades = $this->gradeService->getStudentGradeExamination($request->get('c'), $request->exam_id);
+        $this->generateReportCard($request->get('section'), $request->get('exam_id'));
+        $reports = $this->reportCardService->getReportCards($request->get('section'), $request->get('exam_id'));
+        return view('dashboard.reportcard.update', ['reports' => $reports, 'request' => $request->all()]);
 
     }
 
@@ -51,9 +54,10 @@ class ReportCardManagerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ReportCardManagerUpdateRequest $request)
     {
-        //
+        $this->reportCardService->update($request);
+        return redirect()->route('sections.index')->with('success', 'report updated successfully');
     }
 
     /**

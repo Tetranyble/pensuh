@@ -30,11 +30,7 @@
                                     <a href="{{ route('grades.create', ['t'=> $course->teacher->first()->id, 'c' => $course->id, 's' => $course->section->id])}}" class="btn btn-sm btn-outline-secondary">Grade</a>
                                     <a href="{{ route('course.edit', $course)}}" class="btn btn-sm btn-outline-dark">Message</a>
                                 @endcanany
-                                @canany(['admin', 'principal', 'master', 'form_teacher'])
-                                    @if($course->section->form_teacher === auth()->user()->id )
-                                    <a href="{{ route('report.create', ['section' => $course->section->id, 'exam' => '', 'form_teacher' => $course->section->form_teacher, 'course'=> $course->id]) }}" class="btn btn-sm btn-outline-info">Report Card</a>
-                                    @endif
-                                @endcanany
+
                                 @canany(['admin', 'principal', 'master'])
                                 <a href="{{ route('course.edit', $course)}}" class="btn btn-sm text-warning">Edit</a>
                                 @endcanany

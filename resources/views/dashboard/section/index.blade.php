@@ -7,6 +7,17 @@
     <!-- ============================================================== -->
 
     <div class="container-fluid">
+        <div class="alert alert-warning alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>Individual course result are supposed to be ready before compiling reports for a given class section.</strong><br>
+            <strong class="text-warning">Note: Compiled report cards may not be recompile after exam ended or even for a second attempt before exam ended.</strong>
+        </div>
+        @include('components.flash-message')
+        <ul>
+            @foreach($errors->all() as $message)
+                <li class="text-danger">{{ $message }}</li>
+        @endforeach
+        </ul>
         <!-- basic table -->
         <div class="row">
             <div class="col-12">
@@ -27,21 +38,29 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+
                                 @forelse($sections as $key => $section)
                                     <tr>
                                         <td><small>{{ $key+1 }}</small></td>
                                         <td><small>{{ $section->classes->name }}</small></td>
                                         <td><small>{{ $section->name }}</small></td>
                                         <td><small>{{ $section->classroom }}</small></td>
-                                        <td><small>{{ $section->formTeacher->fullname }}</small></td>
+                                        <td><small>{{ $section->formTeacher->fullname }}
+
+
+                                            </small></td>
                                         <td><small>
                                                 <a class="btn btn-sm btn-outline-info"  data-href="{{ route('sections.show', $section) }}"
                                                        href="{{ route('sections.courses',[ 'section' => $section]) }}">View Courses</a>
+                                                @canany(['master','principal', 'admin'])
                                                 <a class="btn btn-sm btn-outline-success" href="{{ route('course.create', ['section' => $section->id]) }}"><i class="fa fa-plus"></i></a>
+                                                @endcanany
                                             </small></td>
                                         <td><small>
-                                                @canany(['master','principal'])
+                                                @canany(['master','principal', 'admin','form_teacher'])
                                                     <a class="btn btn-sm btn-outline-danger" href="{{ route('sections.edit', $section) }}">Edit</a>
+                                                        <a href="{{ route('report.create', ['section' => $section->id, 'form_teacher' => $section->form_teacher]) }}" class="btn btn-sm btn-outline-dark">Report Card</a>
+                                                    <a href="{{ route('report.index', ['section' => $section->id, 'form_teacher' => $section->form_teacher]) }}" class="btn btn-sm btn-outline-dark">Report Card</a>
                                                 @else
                                                     <a onclick="return false;" title="Unauthorized" class="btn btn-sm btn-outline-danger" href="{{ route('sections.edit', $section) }}">Edit</a>
                                                 @endcan

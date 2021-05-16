@@ -617,6 +617,7 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
     );
 
     public static $classMap = array (
+        'AcademicCalendarSeeder' => __DIR__ . '/../..' . '/database/seeds/AcademicCalendarSeeder.php',
         'App\\AcademicCalendar' => __DIR__ . '/../..' . '/app/AcademicCalendar.php',
         'App\\Admission' => __DIR__ . '/../..' . '/app/Admission.php',
         'App\\Assessment' => __DIR__ . '/../..' . '/app/Assessment.php',
@@ -641,6 +642,7 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         'App\\Grade' => __DIR__ . '/../..' . '/app/Grade.php',
         'App\\GradeSystem' => __DIR__ . '/../..' . '/app/GradeSystem.php',
         'App\\Group' => __DIR__ . '/../..' . '/app/Group.php',
+        'App\\Http\\Controllers\\AcademicCalendarController' => __DIR__ . '/../..' . '/app/Http/Controllers/AcademicCalendarController.php',
         'App\\Http\\Controllers\\Administration\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/Administration/AdminController.php',
         'App\\Http\\Controllers\\Administration\\ClassManagerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Administration/ClassManagerController.php',
         'App\\Http\\Controllers\\Administration\\CourseManagerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Administration/CourseManagerController.php',
