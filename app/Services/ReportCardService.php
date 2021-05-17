@@ -53,4 +53,17 @@ class ReportCardService{
     {
         return ReportCard::whereIn('id',$id)->get();
     }
+
+    public function reportWithStudent($section, $exam)
+    {
+        return ReportCard::where('section_id', $section)
+            ->where('exam_id', $exam)
+            ->with('student')->paginate(50);
+    }
+
+    public function getReportCard($report)
+    {
+        return ReportCard::findOrFail($report)
+            ->with('grade','student')->first();
+    }
 }

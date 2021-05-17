@@ -47,11 +47,11 @@
                                                         @endempty
                                                 </small></td>
                                             <td><small>
-                                                    @canany(['master','principal'])
+                                                    @canany(['master','principal','admin'])
                                                     <a class="btn btn-sm btn-outline-danger" href="{{ route('class.edit', $class) }}">Edit</a>
 
                                                     @elsecan
-                                                        <a onclick="return false;" title="Authorized" class="btn btn-sm btn-outline-danger" href="{{ route('classes.edit', $class) }}">Edit</a>
+                                                        <a onclick="return false;" title="Authorized" class="btn btn-sm btn-outline-danger" href="{{ route('class.edit', $class) }}">Edit</a>
                                                     @endcan
                                                 </small></td>
                                         </tr>

@@ -8,7 +8,7 @@
               <div class="card">
                   <div class="card-body">
                       <h4 class="card-title">{{ $class->name }}</h4>
-                      <form method="POST" action="{{ route('classes.update', $class->id) }}">
+                      <form method="POST" action="{{ route('class.update', $class->id) }}">
                           @method('PUT')
                           @csrf
 

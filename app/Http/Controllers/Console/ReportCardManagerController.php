@@ -28,9 +28,10 @@ class ReportCardManagerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ReportCardManagerRequest $request)
     {
-        //
+        $reports = $this->reportCardService->reportWithStudent($request->section, $request->exam_id);
+        return view('dashboard.reportcard.index', compact('reports'));
     }
 
     /**
@@ -57,18 +58,20 @@ class ReportCardManagerController extends Controller
     public function store(ReportCardManagerUpdateRequest $request)
     {
         $this->reportCardService->update($request);
-        return redirect()->route('sections.index')->with('success', 'report updated successfully');
+        return redirect()->route('report.index', ['section' => $request->section, 'exam_id' => $request->exam_id, 'form_teacher' => $request->form_teacher])->with('success', 'report updated successfully');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\ReportCard  $reportCard
-     * @return \Illuminate\Http\Response
+     * @param \App\ReportCard $reportCard
+     * @param $report
+     * @return void
      */
-    public function show(ReportCard $reportCard)
+    public function show(ReportCard $reportCard, $report)
     {
-        //
+        $report = $this->reportCardService->getReportCard($report);
+        return view('dashboard.reportcard.show', compact('report'));
     }
 
     /**
