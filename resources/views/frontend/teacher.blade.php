@@ -139,7 +139,7 @@
                                             </div>
                                         </div>
                                         <div class="teacher-info">
-                                            <h3><a href="{{ route('teachers.show', $teacher) }}" title="{{ $teacher->fullname }}">{{ $teacher->fullname }}</a></h3><span>{{ $teacher->courses->first()->name ? $teacher->courses->first()->name : ''  }}</span>
+                                            <h3><a href="{{ route('teachers.show', $teacher) }}" title="{{ $teacher->fullname }}">{{ $teacher->fullname }}</a></h3><span>{{ !empty($teacher->courses->first()) ? $teacher->courses->first()->name : ''  }}</span>
                                         </div>
                                     </div>
                                     <!--teacher end-->
