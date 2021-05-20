@@ -124,7 +124,7 @@
                                 <div class="wd-posts">
                                     @forelse($latestBlogs as $blog)
                                         <div class="wd-post d-flex flex-wrap">
-                                            <div class="wd-thumb"><img style="max-width: 3.25rem" src="{{ asset($blog->photo) }}" alt="{{ $blog->name }}"></div>
+                                            <div class="wd-thumb"><img style="max-width: 3.25rem" src="{{ asset('storage/'.$blog->photo) }}" alt="{{ $blog->name }}"></div>
                                             <div class="wd-info">
                                                 <h3><a href="{{ route('news.show', $blog->slug) }}" title="{{ $blog->name }}">{{ $blog->name }}</a></h3><span>{{ $blog->created_at }}</span>
                                             </div>

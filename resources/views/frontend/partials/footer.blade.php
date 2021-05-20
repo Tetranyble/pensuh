@@ -4,7 +4,7 @@
         <div class="top-footer">
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="widget widget-about"><img src="{{ asset($home->school_logo) }}" alt="">
+                    <div class="widget widget-about"><img src="{{ asset('storage/'.$home->school_logo) }}" alt="">
                         <p>{{ $home->about_school }}</p>
                     </div>
                     <!--widget-about end-->

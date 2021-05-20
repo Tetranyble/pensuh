@@ -16,7 +16,7 @@ class CreateFeesTable extends Migration
         Schema::create('fees', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('school_id');
-            $table->bigInteger('school_type_id');
+            $table->bigInteger('school_type_id')->nullable();
             $table->string('name')->nullable();
             $table->integer('amount');
             $table->string('description')->nullable();
@@ -32,5 +32,6 @@ class CreateFeesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('fees');
+
     }
 }

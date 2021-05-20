@@ -10,7 +10,7 @@
 @section('content')
     <div class="wrapper">
         @include('frontend.partials.header')
-        <section class="class-single-banner"><img src="{{ asset($course->banner) }}" alt="{{ $course->name }}" class="w-100"></section>
+        <section class="class-single-banner"><img src="{{ asset('storage/'.$course->banner) }}" alt="{{ $course->name }}" class="w-100"></section>
         <!--class-single-banner end-->
         <section class="page-content style2">
             <div class="container">
@@ -24,7 +24,7 @@
                             </ul>
 
                             <div class="class-gallery">
-                                <div class="class-gallery-img"><a href="{{ asset($course->photo) }}" title="{{ $course->name }}" class="html5lightbox" data-group="set1"><img src="{{ asset($course->photo) }}" alt="{{ $course->name }}"></a></div>
+                                <div class="class-gallery-img"><a href="{{ asset('storage/'.$course->photo) }}" title="{{ $course->name }}" class="html5lightbox" data-group="set1"><img src="{{ asset('storage/'.$course->photo) }}" alt="{{ $course->name }}"></a></div>
                             </div>
                             <!--class-gallery end-->
                                 <p> {!! $course->body !!}</p>
@@ -57,7 +57,7 @@
                                     </li>
                                 </ul>
                                 <div class="tech-info">
-                                    <div class="tech-tble"><img style="width: 3rem" src="{{ asset($course->teacher->first()->photo) }}" alt="">
+                                    <div class="tech-tble"><img style="width: 3rem" src="{{ asset('storage/'.$course->teacher->first()->photo) }}" alt="">
                                         <div class="tch-info">
                                             <h3><a href="{{ route('teachers.show', $course->teacher->first()->username) }}">{{ $course->teacher->first()->fullname }}</a></h3><span></span>
                                         </div>
@@ -81,7 +81,7 @@
                                 <div class="classes-section classes-widget-slider">
                                     @forelse($courses as $course)
                                     <div class="classes-col">
-                                        <div class="class-thumb"><img src="{{ asset($course->photo) }}" alt="{{ $course->name }}" class="w-100"> <a
+                                        <div class="class-thumb"><img src="{{ asset('storage/'.$course->photo) }}" alt="{{ $course->name }}" class="w-100"> <a
                                                 href="{{ route('courses.show', $course->id) }}" title="" class="crt-btn"><img src="assets/img/icon10.png" alt=""></a></div>
                                         <div class="class-info">
                                             <h3>{{ $course->name }}</h3>
@@ -91,7 +91,7 @@
                                                 <span>No Time Table</span>
                                             @endforelse
                                             <div class="d-flex flex-wrap align-items-center">
-                                                <div class="posted-by"><img style="width: 1.5rem;" src="{{ asset($course->teacher->first()->photo) }}" alt="{{$course->teacher->first()->firstname . ' ' . $course->teacher->first()->lastname }}"> <a href="{{ route('teachers.show', $course->teacher->first()->username) }}" title="{{ $course->teacher->first()->firstname . ' ' . $course->teacher->first()->lastname }}">{{ $course->teacher->first()->firstname . ' ' . $course->teacher->first()->lastname }}
+                                                <div class="posted-by"><img style="width: 1.5rem;" src="{{ asset('storage/'.$course->teacher->first()->photo) }}" alt="{{$course->teacher->first()->fullname }}"> <a href="{{ route('teachers.show', $course->teacher->first()->username) }}" title="{{ $course->teacher->first()->fullname }}">{{ $course->teacher->first()->fullname }}
                                                         </a></div><strong class="price"></strong>
                                             </div>
                                         </div>

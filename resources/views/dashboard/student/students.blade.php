@@ -39,7 +39,7 @@
                                         <td><small>{{ $student->code }}</small></td>
                                         <td>
                                             <small>
-                                                <img data-src="{{ asset($student->photo) }}" src="{{ asset($student->photo) }}" style="border-radius: 50%; width: 25px; height: 25px">
+                                                <img data-src="{{ asset('storage/'.$student->photo) }}" src="{{ asset('storage/'.$student->photo) }}" style="border-radius: 50%; width: 25px; height: 25px">
                                                 <a href="{{ route('student.show', $student) }}">{{ $student->fullname }}</a>
                                             </small>
                                         </td>

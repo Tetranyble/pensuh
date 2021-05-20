@@ -1,8 +1,8 @@
 <header>
     <div class="container">
         <div class="header-content d-flex flex-wrap align-items-center">
-            <div class="logo"><a href="{{ route('home') }}" title=""><img src="{{ asset($home->school_logo) }}" alt=""
-                                                                   srcset="{{ asset($home->school_logo) }}"></a></div>
+            <div class="logo"><a href="{{ route('home') }}" title=""><img src="{{ asset('storage/'.$home->school_logo) }}" alt=""
+                                                                   srcset="{{ asset('storage/'.$home->school_logo) }}"></a></div>
             <!--logo end-->
             <ul class="contact-add d-flex flex-wrap">
                 <li>
@@ -68,6 +68,19 @@
                     <li><a class="{{ (request()->is('/teachers')) ? 'active' : '' }}" href="{{ route('teachers.index') }}" title="">Teachers</a></li>
                     <li><a class="{{ (request()->is('/news')) ? 'active' : '' }}" href="{{ route('news.index') }}" title="">News</a></li>
                     <li><a class="{{ (request()->is('/contact')) ? 'active' : '' }}" href="{{ route('contact') }}" title="">Contacts</a></li>
+                    @guest
+                    <a class="btn btn-md btn-outline-dark" href="{{ route('login') }}" title="sign in">Sign In</a>
+                    @else
+                        <a class="btn btn-md btn-outline-dark" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    @endguest
                 </ul>
             </nav>
             <!--nav end-->

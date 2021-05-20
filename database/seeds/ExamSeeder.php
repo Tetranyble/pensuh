@@ -18,6 +18,7 @@ class ExamSeeder extends Seeder
             'notice_published' => '1',
             'result_published' => '0',
             'school_id' => '1',
+            'academic_calendar_id' => '1',
             'user_id' => '1'
         ]);
     }

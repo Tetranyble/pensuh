@@ -226,6 +226,23 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group {{($errors->has('counsellor_id')) ? 'has-error' : ''}}">
+                                            <label for="counsellor_id">Counsellor
+                                                <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('counsellor_id')}}</span></span>
+                                            </label>
+                                            <select name="counsellor_id" class="form-control" id="counsellor_id" type="text">
+                                                <option value="">select counsellor</option>
+
+                                                @forelse($counsellors as $counsellor)
+
+                                                    <option {{ old('counsellor_id', $user->studentInfo->counsellor_id) == $counsellor->id ? "selected" : "" }} value="{{ $counsellor->id }}">{{ $counsellor->fullname }}</option>
+                                                @empty
+                                                    <option value="">No data</option>
+                                                @endforelse
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>

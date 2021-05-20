@@ -27,7 +27,7 @@
                                     </div>
 
                                     <div class="profile_photo">
-                                        <img src="{{ asset($user->photo) }}" alt="">
+                                        <img src="{{ asset('storage/'.$user->photo) }}" alt="">
                                     </div>
                                 </div>
                                 <nav class="profile_nav">

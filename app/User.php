@@ -50,9 +50,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-//    public function getDateOfBirthAttribute($value) {
-//        return Carbon::parse($value)->format('d/m/Y');
-//    }
+
     public function getCreatedAtAttribute($value) {
         return Carbon::parse($value)->format('d/m/Y');
     }

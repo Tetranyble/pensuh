@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\AcademicCalendar;
 use App\Exam;
+use App\Http\Requests\StoreExamRequest;
 use Illuminate\Http\Request;
 
 class ExamController extends Controller
@@ -14,7 +16,8 @@ class ExamController extends Controller
      */
     public function index()
     {
-        //
+        $exams = Exam::whereSchoolId(auth()->user()->school->id)->latest()->paginate(20);
+        return view('dashboard.exam.index', compact('exams'));
     }
 
     /**
@@ -24,7 +27,8 @@ class ExamController extends Controller
      */
     public function create()
     {
-        //
+        $calendars = AcademicCalendar::whereSchoolId(auth()->user()->school->id)->get();
+        return view('dashboard.exam.create', compact('calendars'));
     }
 
     /**
@@ -33,9 +37,13 @@ class ExamController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreExamRequest $request)
     {
-        //
+        $e = Exam::where('school_id', $request->school_id)->where('active', 1)->first();
+        $e->active = 0;
+        $e->save();
+        Exam::create($request->all());
+        return back()->with('success', 'exam save successfully');
     }
 
     /**
@@ -57,7 +65,8 @@ class ExamController extends Controller
      */
     public function edit(Exam $exam)
     {
-        //
+        $calendars = AcademicCalendar::whereSchoolId(auth()->user()->school->id)->get();
+        return view('dashboard.exam.edit', compact('exam', 'calendars'));
     }
 
     /**
@@ -67,9 +76,10 @@ class ExamController extends Controller
      * @param  \App\Exam  $exam
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Exam $exam)
+    public function update(StoreExamRequest $request, Exam $exam)
     {
-        //
+        $exam->fill($request->all())->save();
+        return redirect()->route('exams.index')->with('success', 'exam updated successfully');
     }
 
     /**
@@ -80,6 +90,6 @@ class ExamController extends Controller
      */
     public function destroy(Exam $exam)
     {
-        //
+
     }
 }

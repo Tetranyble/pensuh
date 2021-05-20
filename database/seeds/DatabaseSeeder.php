@@ -21,23 +21,22 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(GallerySeeder::class);
-//        $this->call(EventSeeder::class);
+        $this->call(EventSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(TagSeeder::class);
-//        $this->call(BlogSeeder::class);
-        $this->call(SchoolTypeSeeder::class);
-//        $this->call(ClassSeeder::class);
-//        $this->call(SectionSeeder::class);
+        $this->call(BlogSeeder::class);
+        $this->call(ClassSeeder::class);
+        $this->call(SectionSeeder::class);
         $this->call(ScheduleSeeder::class);
         $this->call(CourseTypeSeeder::class);
-//        $this->call(CourseSeeder::class);
+        $this->call(CourseSeeder::class);
         $this->call(SyllabusSeeder::class);
         $this->call(DepartmentSeeder::class);
-//        $this->call(AttendanceTypeSeeder::class);
+        $this->call(AttendanceTypeSeeder::class);
         $this->call(GroupSeeder::class);
         $this->call(ReligionSeeder::class);
         $this->call(SessionSeeder::class);
-//        $this->call(ExamSeeder::class);
-//        $this->call(AcademicCalendarSeeder::class);
+        $this->call(ExamSeeder::class);
+        $this->call(AcademicCalendarSeeder::class);
     }
 }

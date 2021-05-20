@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class ReportCard extends Model
 {
     protected $guarded = [];
@@ -12,6 +13,7 @@ class ReportCard extends Model
         return $this->belongsTo(User::class, 'student_id');
     }
     public function grade(){
+
         return $this->hasMany(Grade::class);
     }
 }

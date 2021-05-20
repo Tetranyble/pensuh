@@ -12,7 +12,7 @@
                 <div class="offset-lg-4 offset-md-3 col-lg-3 col-md-6">
                     <!-- Card -->
                     <div class="card">
-                        <img class="card-img-top img-fluid" src="data:image/svg+xml;base64,{!! base64_encode(QrCode::format('svg')->generate(auth()->user()->code)) !!}"
+                        <img class="card-img-top img-fluid" src="data:image/svg+xml;base64,{!! base64_encode(SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')->generate(auth()->user()->code)) !!}"
                              alt="{{ auth()->user()->id }}">
                         <div class="card-body">
                             <h4 class="card-title">{{ auth()->user()->fullname }}</h4>

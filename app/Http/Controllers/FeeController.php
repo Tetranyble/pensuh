@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Fee;
+use App\Http\Requests\StoreFeeReqest;
+use App\SchoolType;
 use Illuminate\Http\Request;
 
 class FeeController extends Controller
@@ -14,7 +16,8 @@ class FeeController extends Controller
      */
     public function index()
     {
-        //
+        $fees = Fee::whereSchoolId(auth()->user()->school->id)->latest()->paginate(30);
+        return view('dashboard.fee.index', compact('fees'));
     }
 
     /**
@@ -24,7 +27,8 @@ class FeeController extends Controller
      */
     public function create()
     {
-        //
+        $schoolTypes = SchoolType::whereSchoolId(auth()->user()->school->id)->get();
+        return view('dashboard.fee.create', compact('schoolTypes'));
     }
 
     /**
@@ -33,9 +37,10 @@ class FeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreFeeReqest $request)
     {
-        //
+        Fee::create($request->all());
+        return back()->with('success', 'fee saved successfully');
     }
 
     /**
@@ -46,7 +51,7 @@ class FeeController extends Controller
      */
     public function show(Fee $fee)
     {
-        //
+        return '<p>No implementation!</p>';
     }
 
     /**
@@ -57,7 +62,8 @@ class FeeController extends Controller
      */
     public function edit(Fee $fee)
     {
-        //
+        $schoolTypes = SchoolType::whereSchoolId(auth()->user()->school->id)->get();
+        return view('dashboard.fee.edit', compact('schoolTypes', 'fee'));
     }
 
     /**
@@ -67,9 +73,10 @@ class FeeController extends Controller
      * @param  \App\Fee  $fee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Fee $fee)
+    public function update(StoreFeeReqest $request, Fee $fee)
     {
-        //
+        $fee->fill($request->all())->save();
+        return redirect()->route('fees.index')->with('success', 'fee updated successfully');
     }
 
     /**
@@ -80,6 +87,6 @@ class FeeController extends Controller
      */
     public function destroy(Fee $fee)
     {
-        //
+        return '<p>No implementation!</p>';
     }
 }

@@ -12,17 +12,20 @@ use App\Nationality;
 use App\Religion;
 use App\SchoolType;
 use App\Section;
+use App\Services\UploadHandler;
 use App\Session;
 use App\StudentInfo;
 use App\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use Intervention\Image\ImageManagerStatic as Image;
 
 class StudentOnboardingController extends Controller
 {
+    protected $fileHandle;
+    public function __construct(UploadHandler $fileHandle)
+    {
+        $this->fileHandle = $fileHandle;
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -48,7 +51,8 @@ class StudentOnboardingController extends Controller
         $schools = SchoolType::all();
         $sections = Section::all();
         $sessions = Session::all();
-        return view('dashboard.onboarding.student.create', compact('nationalities', 'genders', 'bloods', 'groups', 'religions', 'schools', 'sections', 'sessions'));
+        $counsellors = User::whereHas("roles", function($q){ $q->where("name", "guardian/counsellor")->orWhere("slug", "form_teacher"); })->get();
+        return view('dashboard.onboarding.student.create', compact('nationalities', 'genders', 'bloods', 'groups', 'religions', 'schools', 'sections', 'sessions', 'counsellors'));
     }
 
     /**
@@ -59,14 +63,7 @@ class StudentOnboardingController extends Controller
      */
     public function store(StoreStudentRequest $request)
     {
-
-        if ($request->has('photo_x')){
-            $photo = $request->file('photo_x');
-            $photos = Image::make($photo->getRealPath())->resize(505, 505);
-            $newName = time() . Str::slug($request->get('lastname')) . '.' . $photo->getClientOriginalExtension();
-            $request->merge(['photo' => 'storage/'.$newName]);
-            $photos->save(storage_path('app/public/'.$newName));
-        }
+        $this->fileHandle->save($request,'photo_x','photo','lastname', ['width'=> 480, 'height' => 480]);
         DB::transaction(function () use($request){
             $user = new User();
             $user->fill($request->all())->save();
@@ -107,7 +104,8 @@ class StudentOnboardingController extends Controller
         $schools = SchoolType::all();
         $sections = Section::all();
         $sessions = Session::all();
-        return view('dashboard.onboarding.student.edit', compact('user','nationalities', 'genders', 'bloods', 'groups', 'religions', 'schools', 'sections', 'sessions'));
+        $counsellors = User::whereHas("roles", function($q){ $q->where("name", "guardian/counsellor")->orWhere("slug", "form_teacher"); })->get();
+        return view('dashboard.onboarding.student.edit', compact('counsellors','user','nationalities', 'genders', 'bloods', 'groups', 'religions', 'schools', 'sections', 'sessions'));
     }
 
     /**
@@ -120,15 +118,7 @@ class StudentOnboardingController extends Controller
     public function update(UpdateStudentRequest $request, User $user, $student)
     {
         $user = User::whereUsername($student)->first();
-
-        if ($request->has('photo_x')){
-            Storage::delete($user->photo);
-            $photo = $request->file('photo_x');
-            $photos = Image::make($photo->getRealPath())->resize(505, 505);
-            $newName = time() . Str::slug($request->get('lastname')) . '.' . $photo->getClientOriginalExtension();
-            $request->merge(['photo' => 'storage/'.$newName]);
-            $photos->save(storage_path('app/public/'.$newName));
-        }
+        $this->fileHandle->save($request,'photo_x','photo','lastname', ['width'=> 480, 'height' => 480]);
         DB::transaction(function () use($request, $user){
             $user->fill($request->all())->save();
             $userInfo = StudentInfo::whereUserId($user->id)->first();

@@ -36,7 +36,7 @@
                             @forelse($courses as $course)
                                 <div class="col-lg-3 col-md-6 col-sm-6">
                                     <div class="classes-col">
-                                        <div class="class-thumb"><img src="{{ asset($course->photo) }}" alt="" class="w-100">
+                                        <div class="class-thumb"><img src="{{ asset('storage/'.$course->photo) }}" alt="" class="w-100">
                                             {{--                                        <a href="#" title="" class="crt-btn"><img src="assets/img/icon10.png" alt=""></a>--}}
                                         </div>
                                         <div class="class-info">
@@ -47,7 +47,7 @@
                                                 <span>No Time Table</span>
                                             @endforelse
                                             <div class="d-flex flex-wrap align-items-center">
-                                                <div class="posted-by"><img style="width: 1.5rem;" src="{{ asset($course->teacher->first()->photo) }}" alt=""> <a href="#" title="">{{ $course->teacher->first()->firstname . ' ' . $course->teacher->first()->lastname }}</a>
+                                                <div class="posted-by"><img style="width: 1.5rem;" src="{{ asset('storage/'.$course->teacher->first()->photo) }}" alt="{{ $course->teacher->first()->fullname }}"> <a href="{{ route('teachers.show', $course->teacher->first()) }}" title="">{{ $course->teacher->first()->fullname }}</a>
                                                     {{--                                            </div><strong class="price">$45</strong>--}}
                                                 </div>
                                             </div>

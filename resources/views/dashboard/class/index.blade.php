@@ -33,7 +33,7 @@
                                             <td><small>{{ $class->name }}</small></td>
                                             <td><small>{{ $class->age }}</small></td>
                                             <td><small>{{ $class->description }}</small></td>
-                                            <td><small><a class="btn btn-sm btn-outline-primary" href="{{ route('syllabi.show', $class->syllabus->slug) }}">{{ $class->syllabus->name }}</a></small></td>
+                                            <td><small><a class="btn btn-sm btn-outline-primary" target="_blank" href="{{ route('syllabi.show', $class->syllabus->slug) }}">{{ $class->syllabus->name }}</a></small></td>
 
                                             <td><small>
                                                     @forelse($class->sections as $section)
@@ -43,16 +43,18 @@
 
                                                         @endforelse
                                                     @empty(!$class->sections)
-                                                            <a class="btn btn-sm btn-outline-success" href="{{ route('sections.create', ['class' => $class->id]) }}"><i class="fa fa-plus"></i></a>
+                                                            @canany(['master','principal','admin', 'vice_principal_admin', 'vice_principal_academy'])
+                                                                <a class="btn btn-sm btn-outline-success" href="{{ route('sections.create', ['class' => $class->id]) }}"><i class="fa fa-plus"></i></a>
+                                                            @endcanany
                                                         @endempty
                                                 </small></td>
                                             <td><small>
-                                                    @canany(['master','principal','admin'])
+                                                    @canany(['master','principal','admin', 'vice_principal_admin', 'vice_principal_academy'])
                                                     <a class="btn btn-sm btn-outline-danger" href="{{ route('class.edit', $class) }}">Edit</a>
 
-                                                    @elsecan
-                                                        <a onclick="return false;" title="Authorized" class="btn btn-sm btn-outline-danger" href="{{ route('class.edit', $class) }}">Edit</a>
-                                                    @endcan
+                                                    @else
+                                                        <a onclick="return false;" title="Unauthorized" class="btn btn-sm btn-outline-danger" href="{{ route('class.edit', $class) }}">Edit</a>
+                                                    @endcanany
                                                 </small></td>
                                         </tr>
                                     @empty

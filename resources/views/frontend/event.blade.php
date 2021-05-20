@@ -31,8 +31,8 @@
                         <div class="event-single">
                             <div class="event-gallery-sec">
                                 <div class="event-gallery">
-                                    <a href="{{ asset($event->photo) }}" title="{{ $event->name }}" class="html5lightbox"
-                                                              data-group="set1"><img src="{{ asset($event->photo) }}" alt="{{ $event->slug }}"> </a><span
+                                    <a href="{{ asset('storage/'.$event->photo) }}" title="{{ $event->name }}" class="html5lightbox"
+                                                              data-group="set1"><img src="{{ asset('storage/'.$event->photo) }}" alt="{{ $event->slug }}"> </a><span
                                         class="price">{{ money($event->price) }}</span>
                                 </div>
                                 <!--event-gallery end-->
@@ -66,7 +66,7 @@
                                         <div class="tch-info">
                                             <h3>{{ $event->host->name }}</h3><span>Convener</span>
                                         </div>
-                                    </div><a href="{{ route('contact') }}" title="conacts" class="btn-default">Enroll Now <i
+                                    </div><a href="{{ route('contact') }}" title="conacts" class="btn-default">Sign up <i
                                             class="fa fa-long-arrow-alt-right"></i></a>
                                 </div>
                             </div>

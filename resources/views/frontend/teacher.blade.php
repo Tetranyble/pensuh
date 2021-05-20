@@ -28,7 +28,7 @@
                 <div class="teacher-single-page">
                     <div class="row">
                         <div class="col-lg-4">
-                            <div class="teacher-coly"><img src="{{ asset($teacher->photo) }}" alt="">
+                            <div class="teacher-coly"><img src="{{ asset('storage/'.$teacher->photo) }}" alt="">
                                 <ul class="social-icons">
                                     <li><a href="{{ $teacher->facebook }}" title="Facebook Handle"><i class="fab fa-facebook-f"></i></a></li>
                                     <li><a href="{{ $teacher->twitter }}" title="Twitter Handle"><i class="fab fa-twitter"></i></a></li>
@@ -44,7 +44,7 @@
                                     <div class="col-lg-4 col-md-4 col-sm-6">
                                         <div class="rol-z"><img src="{{ asset('assets/img/ro1.png') }}" alt="">
                                             <div class="rol-info">
-                                                <h3>Phone</h3><span>{{ $teacher->phone }}</span>
+                                                <h3>Phone</h3><span>[hidden]</span>
                                             </div>
                                         </div>
                                         <!--rol-z end-->
@@ -70,7 +70,7 @@
                                 <p>{{ $teacher->about }}</p>
                                 <ul class="tech-detils">
                                     <li>
-                                        <h3>DOB</h3><span>{{ $teacher->date_of_birth->format('d/m/y') }}</span>
+                                        <h3>DOB</h3><span>[hidden]</span>
                                     </li>
                                     <li>
                                         <h3>Education</h3><span>{{ $teacher->teacherQualification->education }}</span>
@@ -128,18 +128,18 @@
                             @forelse($teachers as $teacher)
                                 <div class="col-lg-3 col-md-3 col-sm-6 col-6 full-wdth">
                                     <div class="teacher" >
-                                        <div class="teacher-img"><img style="max-width: 430px; max-height: 645px" src="{{ asset($teacher->photo) }}" alt="{{ $teacher->name }}" class="w-100">
+                                        <div class="teacher-img"><img style="max-width: 430px; max-height: 645px" src="{{ asset('storage/'.$teacher->photo) }}" alt="{{ $teacher->name }}" class="w-100">
                                             <div class="sc-div">
                                                 <ul>
                                                     <li><a href="{{ $teacher->instagram }}" title=""><i class="fab fa-instagram"></i></a></li>
                                                     <li><a href="{{ $teacher->linkedin }}" title=""><i class="fab fa-linkedin-in"></i></a></li>
                                                     <li><a href="{{ $teacher->facebook }}" title=""><i class="fab fa-facebook-f"></i></a></li>
                                                     <li><a href="{{ $teacher->twitter }}" title=""><i class="fab fa-twitter"></i></a></li>
-                                                </ul><span><img src="assets/img/plus.png" alt=""></span>
+                                                </ul><span><img src="{{ asset('assets/img/plus.png') }}" alt=""></span>
                                             </div>
                                         </div>
                                         <div class="teacher-info">
-                                            <h3><a href="{{ route('teachers.show', $teacher) }}" title="{{ $teacher->firstname. ' ' .$teacher->lastname }}">{{ $teacher->firstname. ' ' .$teacher->lastname }}</a></h3><span>{{ $teacher->courses->first()->name ? $teacher->courses->first()->name : ''  }}</span>
+                                            <h3><a href="{{ route('teachers.show', $teacher) }}" title="{{ $teacher->fullname }}">{{ $teacher->fullname }}</a></h3><span>{{ $teacher->courses->first()->name ? $teacher->courses->first()->name : ''  }}</span>
                                         </div>
                                     </div>
                                     <!--teacher end-->

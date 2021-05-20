@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\AcademicCalendar;
+use App\Http\Requests\StoreAcademicCalendarRequest;
+use App\Session;
 use Illuminate\Http\Request;
 
 class AcademicCalendarController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,8 @@ class AcademicCalendarController extends Controller
      */
     public function index()
     {
-        //
+        $academics = AcademicCalendar::with('session')->whereSchoolId(auth()->user()->school->id)->latest()->paginate(20);
+        return view('dashboard.academicCalendar.index', compact('academics'));
     }
 
     /**
@@ -24,7 +32,8 @@ class AcademicCalendarController extends Controller
      */
     public function create()
     {
-        //
+        $sessions = Session::whereSchoolId(auth()->user()->school->id)->get();
+        return view('dashboard.academicCalendar.create', compact('sessions'));
     }
 
     /**
@@ -33,9 +42,13 @@ class AcademicCalendarController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAcademicCalendarRequest $request)
     {
-        //
+        $a = AcademicCalendar::where('active', 1)->where('school_id', $request->school_id)->first();
+        $a->active = 0;
+        $a->save();
+        AcademicCalendar::create($request->all());
+        return back()->with('success', 'academic calendar saved successfully');
     }
 
     /**
@@ -44,9 +57,9 @@ class AcademicCalendarController extends Controller
      * @param  \App\AcademicCalendar  $academicCalendar
      * @return \Illuminate\Http\Response
      */
-    public function show(AcademicCalendar $academicCalendar)
+    public function show(AcademicCalendar $academic)
     {
-        //
+        return view('dashboard.academicCalendar.show', compact('academic'));
     }
 
     /**
@@ -55,9 +68,10 @@ class AcademicCalendarController extends Controller
      * @param  \App\AcademicCalendar  $academicCalendar
      * @return \Illuminate\Http\Response
      */
-    public function edit(AcademicCalendar $academicCalendar)
+    public function edit(AcademicCalendar $academic)
     {
-        //
+        $sessions = Session::whereSchoolId(auth()->user()->school->id)->get();
+        return view('dashboard.academicCalendar.edit', compact('sessions', 'academic'));
     }
 
     /**
@@ -67,9 +81,10 @@ class AcademicCalendarController extends Controller
      * @param  \App\AcademicCalendar  $academicCalendar
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AcademicCalendar $academicCalendar)
+    public function update(StoreAcademicCalendarRequest $request, AcademicCalendar $academic)
     {
-        //
+        $academic->fill($request->all())->save();
+        return redirect()->route('academics.index')->with('success', 'exam updated successfully');
     }
 
     /**
@@ -78,7 +93,7 @@ class AcademicCalendarController extends Controller
      * @param  \App\AcademicCalendar  $academicCalendar
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AcademicCalendar $academicCalendar)
+    public function destroy(AcademicCalendar $academic)
     {
         //
     }

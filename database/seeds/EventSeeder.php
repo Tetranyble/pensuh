@@ -27,7 +27,7 @@ class EventSeeder extends Seeder
 
             'host_id' => '1',
             'price' => '3000',
-            'photo' => 'storage/gallery1.jpg',
+            'photo' => 'school-1/gallery1.jpg',
             'user_id' => '1'
         ]);
 
@@ -44,7 +44,7 @@ class EventSeeder extends Seeder
 
             'host_id' => '1',
             'price' => '3000',
-            'photo' => 'storage/gallery1.jpg',
+            'photo' => 'school-1/gallery1.jpg',
             'user_id' => '1'
         ]);
         Event::create([
@@ -60,7 +60,7 @@ class EventSeeder extends Seeder
 
             'host_id' => '1',
             'price' => '3000',
-            'photo' => 'storage/gallery1.jpg',
+            'photo' => 'school-1/gallery1.jpg',
             'user_id' => '1'
         ]);
     }

@@ -4,13 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class StoreStudentRequest extends FormRequest
 {
     public function passedValidation()
     {
         $this->merge([
-            'username' => $this->firstname . '.' . $this->lastname,
+            'username' => Str::slug($this->firstname . '.' . $this->lastname),
             'code' => time(),
             'school_id' => auth()->user()->school->id,
             'password' => Hash::make($this->pass)
@@ -52,6 +53,7 @@ class StoreStudentRequest extends FormRequest
             'linkedin' => 'nullable|max:255',
             'instagram' => 'nullable|max:255',
 
+            'counsellor_id' => 'required|numeric',
             'session_id' => 'required|numeric',
             'group_id' => 'nullable|numeric',
             'religion_id' => 'required|numeric',

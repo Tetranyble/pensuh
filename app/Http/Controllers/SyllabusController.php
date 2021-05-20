@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreSyllabusRequest;
 use App\Syllabus;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,8 @@ class SyllabusController extends Controller
      */
     public function index()
     {
-        //
+        $syllabi = Syllabus::paginate(20);
+        return view('dashboard.syllabus.index', compact('syllabi'));
     }
 
     /**
@@ -28,7 +30,7 @@ class SyllabusController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.syllabus.create');
     }
 
     /**
@@ -37,9 +39,10 @@ class SyllabusController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSyllabusRequest $request)
     {
-        //
+        Syllabus::create($request->all());
+        return back()->with('success', 'syllabus saved successfully');
     }
 
     /**
@@ -61,7 +64,7 @@ class SyllabusController extends Controller
      */
     public function edit(Syllabus $syllabus)
     {
-        //
+        return view('dashboard.syllabus.edit', compact('syllabus'));
     }
 
     /**
@@ -71,9 +74,10 @@ class SyllabusController extends Controller
      * @param  \App\Syllabus  $syllabus
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Syllabus $syllabus)
+    public function update(StoreSyllabusRequest $request, Syllabus $syllabus)
     {
-        //
+        $syllabus->fill($request->all())->save();
+        return redirect()->route('syllabi.index')->with('success', 'syllabus updated successfully');
     }
 
     /**
@@ -84,6 +88,6 @@ class SyllabusController extends Controller
      */
     public function destroy(Syllabus $syllabus)
     {
-        //
+        return 'there is nothig here';
     }
 }

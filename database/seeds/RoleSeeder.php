@@ -60,37 +60,37 @@ class RoleSeeder extends Seeder
                 'view_staff_attendance','view_student_attendance', 'view_result',
                 'view_staff'
             ]);
-        Role::create(['name' => 'Public Relation Officer', 'slug' => 'public_relation_officer'])
+        Role::create(['name' => 'public pelation officer', 'slug' => 'public_relation_officer'])
             ->givePermissionTo(['view_student', 'view_account', 'create_account', 'edit_account', 'delete_account',
                 'view_staff_attendance','view_student_attendance', 'view_result',
                 'view_staff'
             ]);
-        Role::create(['name' => 'Exam Head', 'slug' => 'exam_head'])
+        Role::create(['name' => 'exam head', 'slug' => 'exam_head'])
             ->givePermissionTo(['view_student', 'view_account', 'create_account', 'edit_account', 'delete_account',
                 'view_staff_attendance','view_student_attendance', 'view_result',
                 'view_staff'
             ]);
-        Role::create(['name' => 'Guardian/Counsellor', 'slug' => 'counsellor'])
+        Role::create(['name' => 'guardian/counsellor', 'slug' => 'counsellor'])
             ->givePermissionTo(['view_student', 'view_account', 'create_account', 'edit_account', 'delete_account',
                 'view_staff_attendance','view_student_attendance', 'view_result',
                 'view_staff'
             ]);
-        Role::create(['name' => 'Sport', 'slug' => 'sport'])
+        Role::create(['name' => 'sport', 'slug' => 'sport'])
             ->givePermissionTo(['view_student', 'view_account', 'create_account', 'edit_account', 'delete_account',
                 'view_staff_attendance','view_student_attendance', 'view_result',
                 'view_staff'
             ]);
-        Role::create(['name' => 'Vice Principal Admin', 'slug' => 'vice_principal_admin'])
+        Role::create(['name' => 'vice principal admin', 'slug' => 'vice_principal_admin'])
             ->givePermissionTo(['view_student', 'view_account', 'create_account', 'edit_account', 'delete_account',
                 'view_staff_attendance','view_student_attendance', 'view_result',
                 'view_staff'
             ]);
-        Role::create(['name' => 'Vice Principal Academy', 'slug' => 'vice_principal_academy'])
+        Role::create(['name' => 'vice principal academy', 'slug' => 'vice_principal_academy'])
             ->givePermissionTo(['view_student', 'view_account', 'create_account', 'edit_account', 'delete_account',
                 'view_staff_attendance','view_student_attendance', 'view_result',
                 'view_staff'
             ]);
-        Role::create(['name' => 'Director', 'slug' => 'director'])
+        Role::create(['name' => 'director', 'slug' => 'director'])
             ->givePermissionTo(['view_student', 'view_account', 'create_account', 'edit_account', 'delete_account',
                 'view_staff_attendance','view_student_attendance', 'view_result',
                 'view_staff'
@@ -101,6 +101,11 @@ class RoleSeeder extends Seeder
                 'view_staff'
             ]);
         Role::create(['name' => 'prefect', 'slug' => 'prefect'])
+            ->givePermissionTo(['view_student', 'view_account', 'create_account', 'edit_account', 'delete_account',
+                'view_staff_attendance','view_student_attendance', 'view_result',
+                'view_staff'
+            ]);
+        Role::create(['name' => 'dean of study', 'slug' => 'dean_of_study'])
             ->givePermissionTo(['view_student', 'view_account', 'create_account', 'edit_account', 'delete_account',
                 'view_staff_attendance','view_student_attendance', 'view_result',
                 'view_staff'

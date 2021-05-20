@@ -8,7 +8,7 @@ class StudentInfo extends Model
 {
     protected $fillable = ['session_id', 'group_id', 'school_type_id', 'section_id', 'father_name', 'father_phone_number',
         'father_email', 'father_national_id', 'father_designation', 'father_annual_income', 'father_occupation',
-        'mother_name', 'mother_phone_number', 'mother_email', 'mother_national_id', 'mother_designation', 'mother_annual_income', 'mother_occupation', 'user_id'];
+        'mother_name', 'mother_phone_number', 'mother_email', 'mother_national_id', 'mother_designation', 'mother_annual_income', 'mother_occupation', 'user_id', 'counsellor_id'];
     protected $guarded = [];
 
     public function section(){

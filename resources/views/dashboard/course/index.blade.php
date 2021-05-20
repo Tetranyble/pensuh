@@ -20,7 +20,7 @@
                     <div class="col-lg-3 col-md-6">
                         <!-- Card -->
                         <div class="card">
-                            <img class="card-img-top img-fluid" src="{{ asset($course->photo) }}"
+                            <img class="card-img-top img-fluid" src="{{ asset('storage/'.$course->photo) }}"
                                  alt="{{ $course->name }}">
                             <div class="card-body">
                                 <h4 class="card-title">{{ $course->name }}</h4>

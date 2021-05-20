@@ -34,7 +34,7 @@
                                 <div class="blog-post">
                                     <div class="blog-thumbnail">
                                         <a href="{{ route('news.show', $blog) }}" title="{{ $blog->name }}">
-                                            <img src="{{ asset($blog->photo) }}" alt="{{ $blog->slug }}"  class="w-100">
+                                            <img src="{{ asset('storage/'.$blog->photo) }}" alt="{{ $blog->slug }}"  class="w-100">
                                         </a>
                                         <span class="category">
                                             @foreach($blog->categories as $category)
@@ -98,7 +98,7 @@
                                 <div class="wd-posts">
                                     @forelse($latestBlogs as $blog)
                                     <div class="wd-post d-flex flex-wrap">
-                                        <div class="wd-thumb"><img style="max-width: 3.25rem" src="{{ asset($blog->photo) }}" alt="{{ $blog->name }}"></div>
+                                        <div class="wd-thumb"><img style="max-width: 3.25rem" src="{{ asset('storage/'.$blog->photo) }}" alt="{{ $blog->name }}"></div>
                                         <div class="wd-info">
                                             <h3><a href="{{ route('news.show', $blog->slug) }}" title="{{ $blog->name }}">{{ $blog->name }}</a></h3><span>{{ $blog->created_at }}</span>
                                         </div>

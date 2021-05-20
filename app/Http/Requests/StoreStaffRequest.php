@@ -4,13 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class StoreStaffRequest extends FormRequest
 {
     public function passedValidation()
     {
         $this->merge([
-            'username' => $this->firstname . '.' . $this->lastname,
+            'username' => Str::slug($this->firstname . '.' . $this->lastname),
             'code' => time(),
             'school_id' => auth()->user()->school->id,
             'password' => Hash::make($this->pass)

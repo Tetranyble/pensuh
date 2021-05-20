@@ -39,7 +39,7 @@
                                     </div>
                                     <h3><a href="{{ route('events.show', $event->slug) }}" title="">{{ $event->name }}</a></h3>
                                     <div class="d-flex flex-wrap">
-                                        <div class="posted-by"><img style="max-width: 26px;" src="{{ asset($event->host->photo) }}" alt=""> <a href="#" title="">{{ $event->host->name }}</a>
+                                        <div class="posted-by"><img style="max-width: 26px;" src="{{ asset('storage/'.$event->host->photo) }}" alt=""> <a href="#" title="">{{ $event->host->name }}</a>
                                         </div><span class="locat"><img src="{{ asset('assets/img/loct.png') }}" alt="">{{ $event->location }}</span>
                                     </div>
                                 </div>

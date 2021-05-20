@@ -36,13 +36,13 @@
                             <!--section-title end-->
                         </div>
                         <div class="col-lg-6 col-md-6">
-                            <div class="avt-img"><img src="{{ asset($home->about_image) }}" alt="{{ $home->school_welcome_header }}"></div>
+                            <div class="avt-img"><img src="{{ asset('storage/'.$home->about_image) }}" alt="{{ $home->school_welcome_header }}"></div>
                             <!--avt-img end-->
                         </div>
                     </div>
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-md-6">
-                            <div class="avt-img"><img src="{{ asset($home->mission_image) }}" alt="{{ $home->mission_header }}"></div>
+                            <div class="avt-img"><img src="{{ asset('storage/'.$home->mission_image) }}" alt="{{ $home->mission_header }}"></div>
                             <!--avt-img end-->
                         </div>
                         <div class="col-lg-6 col-md-6">
@@ -76,14 +76,14 @@
                             <div class="about-sec">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="abt-col"><img src="assets/img/icon5.png" alt="">
+                                        <div class="abt-col"><img src="{{ asset('assets/img/icon5.png') }}" alt="">
                                             <h3>{{ $home->teacher_support }}</h3>
                                             <p>{{ $home->teacher_support_body }}</p>
                                         </div>
                                         <!--abt-col end-->
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="abt-col"><img src="assets/img/icon7.png" alt="">
+                                        <div class="abt-col"><img src="{{ asset('assets/img/icon7.png') }}" alt="">
                                             <h3>{{ $home->certificate_acceptance }}</h3>
                                             <p>{{ $home->certificate_acceptance_body }}</p>
                                         </div>
@@ -97,7 +97,7 @@
                                         <!--abt-col end-->
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="abt-col"><img src="assets/img/icon8.png" alt="">
+                                        <div class="abt-col"><img src="{{ asset('assets/img/icon8.png') }}" alt="">
                                             <h3>{{ $home->support }}</h3>
                                             <p>{{ $home->support_body }}</p>
                                         </div>
@@ -124,7 +124,7 @@
                             <div class="col-lg-3">
 
                                 <div class="classes-col">
-                                    <div class="class-thumb"><img src="{{ asset($course->photo) }}" alt="" class="w-100">
+                                    <div class="class-thumb"><img src="{{ asset('storage/'.$course->photo) }}" alt="" class="w-100">
                                         {{--                                        <a href="#" title="" class="crt-btn"><img src="assets/img/icon10.png" alt=""></a>--}}
                                     </div>
                                     <div class="class-info">
@@ -135,7 +135,7 @@
                                             <span>No Time Table</span>
                                         @endforelse
                                         <div class="d-flex flex-wrap align-items-center">
-                                            <div class="posted-by"><img style="width: 1.5rem;" src="{{ asset($course->teacher->first()->photo) }}" alt="{{ $course->teacher->first()->fullname }}"> <a href="{{ route('teachers.show', $course->teacher->first()->username) }}" title="">{{ $course->teacher->first()->fullname }}</a>
+                                            <div class="posted-by"><img style="width: 1.5rem;" src="{{ asset('storage/'.$course->teacher->first()->photo) }}" alt="{{ $course->teacher->first()->fullname }}"> <a href="{{ route('teachers.show', $course->teacher->first()->username) }}" title="">{{ $course->teacher->first()->fullname }}</a>
                                                 {{--                                            </div><strong class="price">$45</strong>--}}
                                             </div>
                                         </div>

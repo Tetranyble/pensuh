@@ -18,8 +18,8 @@ class CourseSeeder extends Seeder
             'school_id' => '1',
             'course_type_id' => '1',
             'body' => 'Nunc at tincidunt nisl. Nullam fringilla quis odio vitae eleifend. Quisque sed mi erat. In hac habitasse platea dictumst. Vivamus mattis nunc quis turpis pretium sollicitudin. In eu semper justo. Phasellus facilisis hendrerit massa, sed auctor lacus convallis et. Vestibulum ac odio interdum, efficitur nisl ut, sollicitudin arcu. Donec commodo elementum tempus. In hac habitasse platea dictumst.',
-            'photo' => 'storage/class1.jpg',
-            'banner' => 'storage/class-single-banner.jpg',
+            'photo' => 'school-1/class1.jpg',
+            'banner' => 'school-1/class-single-banner.jpg',
             'duration' => '26 hours'
         ]);
         $physics->attachSchedule([4,5]);
@@ -31,8 +31,8 @@ class CourseSeeder extends Seeder
             'school_id' => '1',
             'course_type_id' => '1',
             'body' => 'Nunc at tincidunt nisl. Nullam fringilla quis odio vitae eleifend. Quisque sed mi erat. In hac habitasse platea dictumst. Vivamus mattis nunc quis turpis pretium sollicitudin. In eu semper justo. Phasellus facilisis hendrerit massa, sed auctor lacus convallis et. Vestibulum ac odio interdum, efficitur nisl ut, sollicitudin arcu. Donec commodo elementum tempus. In hac habitasse platea dictumst.',
-            'photo' => 'storage/class1.jpg',
-            'banner' => 'storage/class-single-banner.jpg',
+            'photo' => 'school-1/class1.jpg',
+            'banner' => 'school-1/class-single-banner.jpg',
             'duration' => '26 hours'
         ]);
         $chemistry->assignTeacherTo([2,4]);
@@ -43,8 +43,8 @@ class CourseSeeder extends Seeder
             'school_id' => '1',
             'course_type_id' => '1',
             'body' => 'Nunc at tincidunt nisl. Nullam fringilla quis odio vitae eleifend. Quisque sed mi erat. In hac habitasse platea dictumst. Vivamus mattis nunc quis turpis pretium sollicitudin. In eu semper justo. Phasellus facilisis hendrerit massa, sed auctor lacus convallis et. Vestibulum ac odio interdum, efficitur nisl ut, sollicitudin arcu. Donec commodo elementum tempus. In hac habitasse platea dictumst.',
-            'photo' => 'storage/class1.jpg',
-            'banner' => 'storage/class-single-banner.jpg',
+            'photo' => 'school-1/class1.jpg',
+            'banner' => 'school-1/class-single-banner.jpg',
             'duration' => '26 hours'
         ]);
         $biology->assignTeacherTo([2,3]);

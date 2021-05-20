@@ -115,7 +115,7 @@
                                                 <span class="text-danger"> *<span  class="text-danger h6">{{$errors->first('date_of_birth')}}</span></span>
                                             </label>
                                             <input name="date_of_birth" class="form-control" id="date_of_birth" type="date"
-                                                   placeholder="enter your date of birth" value="{{ old('date_of_birth', $user->date_of_birth->format('Y-m-d') ) }}">
+                                                   placeholder="enter your date of birth" value="{{ old('date_of_birth', \Illuminate\Support\Carbon::parse($user->date_of_birth)->format('Y-m-d')) }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">

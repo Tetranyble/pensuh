@@ -12,10 +12,10 @@
             <!-- ============================================================== -->
             <div class="navbar-brand">
                 <!-- Logo icon -->
-                <a href="index.html">
+                <a href="{{ route('home') }}">
                     <b class="logo-icon">
                         <!-- Dark Logo icon -->
-                        <img src="{{ asset($home->school_logo) }}" alt="{{ $home->school_name }}" class="dark-logo" />
+                        <img src="{{ asset('storage/'.$home->school_logo) }}" alt="{{ $home->school_name }}" class="dark-logo" />
                         <!-- Light Logo icon -->
 {{--                        <img src="../assets/images/logo-icon.png" alt="homepage" class="light-logo" />--}}
                     </b>
@@ -177,7 +177,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
-                        <img src="{{ asset(auth()->user()->photo) }}" alt="user" class="rounded-circle"
+                        <img src="{{ asset('storage/'.auth()->user()->photo) }}" alt="user" class="rounded-circle"
                              width="40">
                         <span class="ml-2 d-none d-lg-inline-block"><span>Hello,</span> <span
                                 class="text-dark">{{ auth()->user()->fullname }}</span> <i data-feather="chevron-down"

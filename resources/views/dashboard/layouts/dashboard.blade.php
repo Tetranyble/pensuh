@@ -48,7 +48,7 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb m-0 p-0">
 {{--                                        , "Teacher Code - {$courses->teacher->first()->code} Name - {{$courses->teacher->first()->fullname}}"--}}
-                                        <li class="breadcrumb-item"><a href="index.html"> @yield('title') </a>
+                                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"> @yield('title') </a>
                                         </li>
                                     </ol>
                                 </nav>

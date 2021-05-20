@@ -25,7 +25,7 @@
                             </div>
                         </div>
                         <div class="col-lg-5 col-md-5">
-                            <div class="banner-img wow zoomIn" data-wow-duration="1000ms"><img src="{{ asset($home->banner_image) }}" alt="">
+                            <div class="banner-img wow zoomIn" data-wow-duration="1000ms"><img src="{{ asset('storage/'.$home->banner_image) }}" alt="">
                             </div>
                             <!--banner-img end-->
                             <div class="elements-bg wow zoomIn" data-wow-duration="1000ms"></div>
@@ -49,7 +49,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-3 col-md-6 col-sm-6">
-                                <div class="abt-col wow fadeInUp" data-wow-duration="1000ms"><img src="assets/img/icon5.png" alt="">
+                                <div class="abt-col wow fadeInUp" data-wow-duration="1000ms"><img src="{{ asset('assets/img/icon5.png') }}" alt="">
                                     <h3>{{ $home->teacher_support }}</h3>
                                     <p>{{ $home->teacher_support_body }}</p>
                                 </div>
@@ -57,7 +57,7 @@
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-6">
                                 <div class="abt-col wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="200ms"><img
-                                        src="assets/img/icon7.png" alt="">
+                                        src="{{ asset('assets/img/icon7.png') }}" alt="">
                                     <h3>{{ $home->certificate_acceptance }}</h3>
                                     <p>{{ $home->certificate_acceptance_body }}</p>
                                 </div>
@@ -65,7 +65,7 @@
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-6">
                                 <div class="abt-col wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="400ms"><img
-                                        src="assets/img/icon8.png" alt="">
+                                        src="{{ asset('assets/img/icon8.png') }}" alt="">
                                     <h3>{{ $home->program }}</h3>
                                     <p>{{ $home->program_body }}</p>
                                 </div>
@@ -73,7 +73,7 @@
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-6">
                                 <div class="abt-col wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="600ms"><img
-                                        src="assets/img/icon9.png" alt="">
+                                        src="{{ asset('assets/img/icon9.png') }}" alt="">
                                     <h3>{{ $home->support }}</h3>
                                     <p>{{ $home->support_body }}</p>
                                 </div>
@@ -87,7 +87,7 @@
                     <ul class="masonary">
                         @forelse($home->galleries as $key => $gallery)
                         <li class="{{ 'width'.($key+1) }} wow zoomIn" data-wow-duration="1000ms"><a href="{{ asset($gallery->photo) }}" data-group="set1"
-                                                                                    title="{{ $gallery->name }}" class="html5lightbox"><img src="{{ asset($gallery->photo) }}" alt="{{ $home->name }}"></a></li>
+                                                                                    title="{{ $gallery->name }}" class="html5lightbox"><img src="{{ asset('storage/'.$gallery->photo) }}" alt="{{ $home->name }}"></a></li>
                         @empty
                             'no data to show'
                         @endforelse
@@ -109,7 +109,7 @@
                         @forelse($courses as $course)
                             <div class="col-lg-3">
                                 <div class="classes-col">
-                                    <div class="class-thumb"><img src="{{ asset($course->photo) }}" alt="" class="w-100">
+                                    <div class="class-thumb"><img src="{{ asset('storage/'.$course->photo) }}" alt="" class="w-100">
                                         {{--                                        <a href="#" title="" class="crt-btn"><img src="assets/img/icon10.png" alt=""></a>--}}
                                     </div>
                                     <div class="class-info">
@@ -120,7 +120,7 @@
                                             <span>No Time Table</span>
                                         @endforelse
                                         <div class="d-flex flex-wrap align-items-center">
-                                            <div class="posted-by"><img style="width: 1.5rem;" src="{{ asset($course->teacher->first()->photo) }}" alt=""> <a href="{{ route('teachers.show', $course->teacher->first()) }}" title="">{{ $course->teacher->first()->firstname . ' ' . $course->teacher->first()->lastname }}</a>
+                                            <div class="posted-by"><img style="width: 1.5rem;" src="{{ asset('storage/'.$course->teacher->first()->photo) }}" alt=""> <a href="{{ route('teachers.show', $course->teacher->first()) }}" title="">{{ $course->teacher->first()->firstname . ' ' . $course->teacher->first()->lastname }}</a>
                                                 {{--                                            </div><strong class="price">$45</strong>--}}
                                             </div>
                                         </div>
@@ -151,7 +151,7 @@
                         @forelse($teachers as $teacher)
                             <div class="col-lg-3 col-md-3 col-sm-6 col-6 full-wdth">
                                 <div class="teacher" >
-                                    <div class="teacher-img"><img style="max-width: 430px; max-height: 645px" src="{{ asset($teacher->photo) }}" alt="{{ $teacher->name }}" class="w-100">
+                                    <div class="teacher-img"><img style="max-width: 430px; max-height: 645px" src="{{ asset('storage/'.$teacher->photo) }}" alt="{{ $teacher->name }}" class="w-100">
                                         <div class="sc-div">
                                             <ul>
                                                 <li><a href="{{ $teacher->instagram }}" title=""><i class="fab fa-instagram"></i></a></li>
@@ -186,10 +186,10 @@
                             <div class="sec-title">
                                 <h2>{{ $home->school_event_header }}</h2>
                                 <p>{{ $home->school_event_body }}</p>
-                                <h3><img src="assets/img/icon11.png" alt="">Call: <strong><a href="tel:{{ $home->contact_phone }}">{{ $home->contact_phone }}</a></strong></h3>
+                                <h3><img src="{{ asset('assets/img/icon11.png') }}" alt="">Call: <strong><a href="tel:{{ $home->contact_phone }}">{{ $home->contact_phone }}</a></strong></h3>
                             </div>
                             <!--sec-title end-->
-                            <div class="course-img"><img src="{{ asset($home->event_image) }}" alt=""></div>
+                            <div class="course-img"><img src="{{ asset('storage/'.$home->event_image) }}" alt=""></div>
                             <!--course-img end-->
                         </div>
                         <!--find-course end-->
@@ -200,14 +200,14 @@
                                 <div class="course-card wow fadeInLeft" data-wow-duration="{{$key === 0 ? '1000ms' : '400ms'}}">
                                 <div class="d-flex flex-wrap align-items-center">
                                     <ul class="course-meta">
-                                        <li><img src="assets/img/icon12.png" alt="">{{ $event->start_date }}</li>
+                                        <li><img src="{{ asset('assets/img/icon12.png') }}" alt="">{{ $event->start_date }}</li>
                                         <li>{{ getTimeFromDate($event->start_date) }} to {{ getTimeFromDate($event->end_date) }}</li>
                                     </ul><span>{{ $event->price ? money($event->price) : 'FREE' }}</span>
                                 </div>
                                 <h3><a href="{{ route('events.show', $event->slug) }}" title="">{{ $event->name }}</a></h3>
                                 <div class="d-flex flex-wrap">
                                     <div  class="posted-by"><img style="max-width: 26px;" src="{{ asset($event->host->photo) }}" alt=""> <a href="#" title="">{{ $event->host->name }}</a>
-                                    </div><span class="locat"><img src="assets/img/loct.png" alt="">{{ $event->location }}</span>
+                                    </div><span class="locat"><img src="{{ asset('assets/img/loct.png') }}" alt="">{{ $event->location }}</span>
                                 </div>
                             </div>
                             @empty
@@ -237,7 +237,7 @@
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="blog-post">
                                 <div class="blog-thumbnail">
-                                    <img src="{{ asset($blog->photo) }}" alt="{{ $blog->slug }}"  class="w-100">
+                                    <img src="{{ asset('storage/'.$blog->photo) }}" alt="{{ $blog->slug }}"  class="w-100">
                                     <span class="category">
                                         @foreach($blog->categories as $category)
                                             <a href="{{ route('news.index', ['category' => $category->slug]) }}">{{ $category->name }}</a>

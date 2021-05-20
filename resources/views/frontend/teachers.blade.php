@@ -30,7 +30,7 @@
                             @forelse($teachers as $teacher)
                             <div class="col-lg-3 col-md-3 col-sm-6 col-6 full-wdth">
                                 <div class="teacher" >
-                                    <div class="teacher-img"><img style="max-width: 430px; max-height: 645px" src="{{ asset($teacher->photo) }}" alt="{{ $teacher->name }}" class="w-100">
+                                    <div class="teacher-img"><img style="max-width: 430px; max-height: 645px" src="{{ asset('storage/'.$teacher->photo) }}" alt="{{ $teacher->name }}" class="w-100">
                                         <div class="sc-div">
                                             <ul>
                                                 <li><a href="{{ $teacher->instagram }}" title=""><i class="fab fa-instagram"></i></a></li>

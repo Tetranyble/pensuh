@@ -34,11 +34,11 @@
                                     @forelse($staffs as $key => $student)
                                         <tr>
                                             <td><small>{{ $key+1 }}</small></td>
-                                            <td><small><a class="btn btn-sm btn-danger" href="{{ route('staff.edit', $student) }}">Edit</a></small></td>
+                                            <td><small><a class="btn btn-sm btn-outline-danger" href="{{ route('staff.edit', $student) }}">Edit</a></small></td>
                                             <td><small>{{ $student->code }}</small></td>
                                             <td>
                                                 <small>
-                                                    <img data-src="{{ asset($student->photo) }}" src="{{ asset($student->photo) }}" style="border-radius: 50%; width: 25px; height: 25px">
+                                                    <img data-src="{{ asset('storage/'.$student->photo) }}" src="{{ asset('storage/'.$student->photo) }}" style="border-radius: 50%; width: 25px; height: 25px">
                                                     <a target="_blank" href="{{ route('teachers.show', $student) }}">{{ $student->fullname }}</a>
                                                 </small>
                                             </td>

@@ -33,6 +33,8 @@ Route::resource('students', 'StudentController');
 Route::resource('teachers', 'TeacherController');
 Route::resource('attendances', 'AttendanceController');
 Route::resource('qrcodes', 'QrcodeController');
+Route::resource('galleries', 'GalleryController');
+
 
 Route::resource('roles', 'RolesController')->middleware('can:edit');
 
@@ -67,6 +69,10 @@ Route::group([ 'prefix' => 'setup', 'namespace' => 'Administration','middleware'
 Route::group([ 'middleware' => 'auth'], function(){
     Route::resource('grades', 'GradeController');
     Route::resource('reports', 'ReportCardController');
+    Route::resource('fees', 'FeeController');
+    Route::resource('exams', 'ExamController');
+    Route::put('exams/publish/{exam}', 'PublishExamController@update')->name('exams.publish');
+    Route::resource('academics', 'AcademicCalendarController');
 });
 //Route::middleware(['auth', 'admin'])->prefix('academic')->name('academic.')->group(function () {});
 
