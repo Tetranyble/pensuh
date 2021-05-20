@@ -43,7 +43,7 @@
                                     <div class="teacher-info">
                                         <h3><a href="{{ route('teachers.show', $teacher) }}" title="{{ $teacher->fullname }}">{{ $teacher->fullname }}</a></h3>
                                             @if($teacher->courses->first())
-                                                <span><a href="{{ route('courses.show', $teacher->courses->first()->id) }}" title="{{ $teacher->courses->first()->name }}">{{ $teacher->courses->first()->name }}</a></span>
+                                                <span><a href="{{ route('courses.show', $teacher->courses->first()->id) }}" title="{{ $teacher->courses->first()->name ? $teacher->courses->first()->name : '' }}">{{ $teacher->courses->first()->name ? $teacher->courses->first()->name : '' }}</a></span>
                                             @endif
                                     </div>
                                 </div>
