@@ -30,7 +30,7 @@ class StoreGalleryRequest extends FormRequest
     public function rules()
     {
         return [
-            'photo_x' => 'required|mimes:jpeg,png,jpg|max:4240,' .$this->id,
+            'photo_x' => 'required|mimes:jpeg,png,jpg|max:10000,' .$this->id,
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:255',
         ];

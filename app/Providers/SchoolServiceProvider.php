@@ -26,12 +26,8 @@ class SchoolServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->singleton(Schools::class, function($app){
-
             $school = School::whereDomain($app['config']->get('app.url'))->first();
-
             return new Schools($school);
         });
-
-
     }
 }
