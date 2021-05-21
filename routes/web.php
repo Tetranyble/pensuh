@@ -51,6 +51,8 @@ Route::group([ 'prefix' => 'console', 'namespace' => 'Console', 'middleware' => 
 
     Route::resource('staff', 'StaffController');
     Route::resource('report', 'ReportCardManagerController');
+
+    Route::post('students/import', 'StudentImportController@import')->name('students.import');
 });
 
 

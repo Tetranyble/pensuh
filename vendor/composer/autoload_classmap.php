@@ -148,6 +148,7 @@ return array(
     'App\\Services\\ReportCard\\ReportCardPrimarySchool' => $baseDir . '/app/Services/ReportCard/ReportCardPrimarySchool.php',
     'App\\Services\\ReportCard\\ReportCardSecondarySchool' => $baseDir . '/app/Services/ReportCard/ReportCardSecondarySchool.php',
     'App\\Services\\ReportCard\\ReportCardService' => $baseDir . '/app/Services/ReportCard/ReportCardService.php',
+    'App\\Services\\Schools' => $baseDir . '/app/Services/Schools.php',
     'App\\Services\\UploadHandler' => $baseDir . '/app/Services/UploadHandler.php',
     'App\\Session' => $baseDir . '/app/Session.php',
     'App\\StudentInfo' => $baseDir . '/app/StudentInfo.php',

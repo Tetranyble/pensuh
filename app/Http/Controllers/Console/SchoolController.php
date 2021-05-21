@@ -61,7 +61,8 @@ class SchoolController extends Controller
             }
         }
         School::whereId($request->id)->update($request->except(['_token', 'id', 'mission_image_x', 'blog_banner_x', 'school_logo_x', 'course_banner_x', 'banner_image_x',
-            'event_image_x', 'about_image_x', 'favicon_x']));
+            'event_image_x', 'about_image_x'
+            , 'favicon_x']));
         return redirect()->back()->with('success', 'school updated successfully');
 
     }

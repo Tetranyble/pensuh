@@ -759,6 +759,7 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         'App\\Services\\ReportCard\\ReportCardPrimarySchool' => __DIR__ . '/../..' . '/app/Services/ReportCard/ReportCardPrimarySchool.php',
         'App\\Services\\ReportCard\\ReportCardSecondarySchool' => __DIR__ . '/../..' . '/app/Services/ReportCard/ReportCardSecondarySchool.php',
         'App\\Services\\ReportCard\\ReportCardService' => __DIR__ . '/../..' . '/app/Services/ReportCard/ReportCardService.php',
+        'App\\Services\\Schools' => __DIR__ . '/../..' . '/app/Services/Schools.php',
         'App\\Services\\UploadHandler' => __DIR__ . '/../..' . '/app/Services/UploadHandler.php',
         'App\\Session' => __DIR__ . '/../..' . '/app/Session.php',
         'App\\StudentInfo' => __DIR__ . '/../..' . '/app/StudentInfo.php',

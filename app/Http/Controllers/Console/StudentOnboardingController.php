@@ -43,14 +43,15 @@ class StudentOnboardingController extends Controller
      */
     public function create()
     {
+        $school = auth()->user()->school->id;
         $nationalities = Nationality::get();
-        $genders = Gender::get();
+        $genders = Gender::whereSchoolId($school)->get();
         $bloods = BloodGroup::get();
-        $groups = Group::whereSchoolId(auth()->user()->school->id)->get();
+        $groups = Group::whereSchoolId($school)->get();
         $religions = Religion::all();
-        $schools = SchoolType::all();
-        $sections = Section::all();
-        $sessions = Session::all();
+        $schools = SchoolType::whereSchoolId($school)->get();
+        $sections = Section::whereSchoolId($school)->get();
+        $sessions = Session::whereSchoolId($school)->get();
         $counsellors = User::whereHas("roles", function($q){ $q->where("name", "guardian/counsellor")->orWhere("slug", "form_teacher"); })->get();
         return view('dashboard.onboarding.student.create', compact('nationalities', 'genders', 'bloods', 'groups', 'religions', 'schools', 'sections', 'sessions', 'counsellors'));
     }
@@ -96,14 +97,15 @@ class StudentOnboardingController extends Controller
     public function edit(User $user, $student)
     {
         $user = User::whereUsername($student)->first();
+        $school = auth()->user()->school->id;
         $nationalities = Nationality::get();
-        $genders = Gender::get();
+        $genders = Gender::whereSchoolId($school)->get();
         $bloods = BloodGroup::get();
-        $groups = Group::whereSchoolId(auth()->user()->school->id)->get();
+        $groups = Group::whereSchoolId($school)->get();
         $religions = Religion::all();
-        $schools = SchoolType::all();
-        $sections = Section::all();
-        $sessions = Session::all();
+        $schools = SchoolType::whereSchoolId($school)->get();
+        $sections = Section::whereSchoolId($school)->get();
+        $sessions = Session::whereSchoolId($school)->get();
         $counsellors = User::whereHas("roles", function($q){ $q->where("name", "guardian/counsellor")->orWhere("slug", "form_teacher"); })->get();
         return view('dashboard.onboarding.student.edit', compact('counsellors','user','nationalities', 'genders', 'bloods', 'groups', 'religions', 'schools', 'sections', 'sessions'));
     }
