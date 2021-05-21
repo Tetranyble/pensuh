@@ -35,7 +35,7 @@ class SchoolController extends Controller
      */
     public function create()
     {
-        $school = School::whereSchoolId($this->schools->id())->first();
+        $school = School::whereId($this->schools->id())->first();
         $languages = Language::get();
         return view('dashboard.school.school', compact('school', 'languages'));
     }
