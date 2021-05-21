@@ -131,6 +131,7 @@ return array(
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
+    'App\\Providers\\SchoolServiceProvider' => $baseDir . '/app/Providers/SchoolServiceProvider.php',
     'App\\Religion' => $baseDir . '/app/Religion.php',
     'App\\ReportCard' => $baseDir . '/app/ReportCard.php',
     'App\\ReportCardComment' => $baseDir . '/app/ReportCardComment.php',

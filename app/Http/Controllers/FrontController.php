@@ -8,16 +8,23 @@ use App\Contact;
 use App\Course;
 use App\Event;
 use App\School;
+use App\Services\Schools;
 use App\User;
 
 class FrontController extends Controller
 {
+    protected $schools;
+    public function __construct(Schools $schools)
+    {
+        $this->schools = $schools;
+    }
+
     public function index(){
-        $events = Event::limit(3)->get();
-        $courses = Course::limit(8)->get();
-        $teachers = User::whereHas("roles", function($q){ $q->where("name", "teacher"); })->limit(4)->get();
-        $blogs = Blog::limit(3)->get();
-        $classes = Classes::get();
+        $events = Event::whereSchoolId($this->schools->id())->limit(3)->get();
+        $courses = Course::whereSchoolId($this->schools->id())->limit(8)->get();
+        $teachers = User::whereHas("roles", function($q){ $q->where("name", "teacher"); })->where('school_id',$this->schools->id())->limit(4)->get();
+        $blogs = Blog::whereSchoolId($this->schools->id())->limit(3)->get();
+        $classes = Classes::whereSchoolId($this->schools->id())->get();
         return view('frontend.home', compact( 'events', 'courses', 'teachers', 'blogs', 'classes'));
     }
 
@@ -28,7 +35,7 @@ class FrontController extends Controller
         return 'no implementation';
     }
     public function about(){
-        $courses = Course::get()->take(8);
+        $courses = Course::whereSchoolId($this->schools->id())->get()->take(8);
         return view('frontend.about', compact( 'courses'));
     }
     public function classes(){
