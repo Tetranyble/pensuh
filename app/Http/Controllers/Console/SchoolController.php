@@ -5,12 +5,19 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSchoolRequest;
 use App\Language;
 use App\School;
+use App\Services\Schools;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class SchoolController extends Controller
 {
+    protected $schools;
+    public function __construct(Schools $schools)
+    {
+        $this->schools = $schools;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -28,7 +35,7 @@ class SchoolController extends Controller
      */
     public function create()
     {
-        $school = School::first();
+        $school = School::whereSchoolId($this->schools->id())->first();
         $languages = Language::get();
         return view('dashboard.school.school', compact('school', 'languages'));
     }
