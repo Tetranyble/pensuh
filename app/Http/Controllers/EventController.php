@@ -4,10 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use App\School;
+use App\Services\Schools;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
+    protected $schools;
+    public function __construct(Schools $schools){
+        $this->schools = $schools;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +20,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        $home = School::first();
-        $events = Event::paginate(14);
-        return view('frontend.events', compact('home', 'events'));
+        $events = Event::whereSchoolId($this->schools->id())->paginate(14);
+        return view('frontend.events', compact( 'events'));
     }
 
     /**
@@ -49,8 +53,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        $home = School::first();
-        return view('frontend.event', compact( 'event', 'home'));
+        return view('frontend.event', compact( 'event'));
     }
 
     /**

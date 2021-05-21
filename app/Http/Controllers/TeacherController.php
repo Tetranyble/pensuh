@@ -3,11 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\School;
+use App\Services\Schools;
 use App\User;
 use Illuminate\Http\Request;
 
 class TeacherController extends Controller
 {
+    protected $schools;
+
+    public function __construct(Schools $schools)
+    {
+        $this->schools = $schools;
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +24,8 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $home = School::first();
-        $teachers = User::whereHas("roles", function($q){ $q->where("name", "teacher"); })->paginate();
-        return view('frontend.teachers', compact('teachers', 'home'));
+        $teachers = User::whereHas("roles", function($q){ $q->where("name", "teacher"); })->where('school_id', $this->schools->id())->paginate();
+        return view('frontend.teachers', compact('teachers'));
     }
 
     /**
@@ -49,9 +57,8 @@ class TeacherController extends Controller
      */
     public function show(User $teacher)
     {
-        $home = School::first();
-        $teachers = User::whereHas("roles", function($q){ $q->where("name", "teacher"); })->paginate();
-        return view('frontend.teacher', compact('teacher', 'home', 'teachers'));
+        $teachers = User::whereHas("roles", function($q){ $q->where("name", "teacher"); })->where('school_id', $this->schools->id())->paginate();
+        return view('frontend.teacher', compact('teacher', 'teachers'));
     }
 
     /**
@@ -74,7 +81,7 @@ class TeacherController extends Controller
      */
     public function update(Request $request, User $teacher)
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+
     }
 
     /**

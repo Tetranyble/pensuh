@@ -3,10 +3,8 @@
 namespace App\Providers;
 
 use App\Classes;
-use App\School;
-use Illuminate\Support\Facades\Schema;
+use App\Services\Schools;
 use Illuminate\Support\ServiceProvider;
-
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -26,6 +24,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->share(['classes' => Classes::get(), 'home' => $home = School::first()]);
+        if (! app()->runningInConsole()) {
+            view()->share(['classes' => Classes::whereSchoolId(Schools::schoolId())->get(), 'home' => $home = Schools::schools()]);
+        }
+
     }
 }

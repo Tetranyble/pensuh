@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSyllabusRequest;
+use App\Services\Schools;
 use App\Syllabus;
 use Illuminate\Http\Request;
 
 class SyllabusController extends Controller
 {
-    public function __construct()
+    protected $schools;
+    public function __construct(Schools $schools)
     {
+        $this->schools = $schools;
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
     /**
@@ -19,7 +22,7 @@ class SyllabusController extends Controller
      */
     public function index()
     {
-        $syllabi = Syllabus::paginate(20);
+        $syllabi = Syllabus::whereSchoolId($this->schools->id())->paginate(20);
         return view('dashboard.syllabus.index', compact('syllabi'));
     }
 

@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Course;
 use App\School;
+use App\Services\Schools;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class CourseController extends Controller
 {
-    public function __construct()
+    protected $schools;
+    public function __construct(Schools $schools)
     {
-
+        $this->schools = $schools;
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
     /**
@@ -22,16 +24,15 @@ class CourseController extends Controller
     public function index()
     {
         if (request('q')) {
-            $courses = Course::where([
+            $courses = Course::where('school_id', $this->schools->id())->where([
 
                 ['name', 'LIKE', '%' . Str::lower(request('q')) . '%'],
             ])->paginate();
 
         }else{
-            $courses = Course::paginate();
+            $courses = Course::where('school_id', $this->schools->id())->paginate();
         }
-        $home = School::first();
-        return view('frontend.courses', compact('home', 'courses'));
+        return view('frontend.courses', compact('courses'));
     }
 
     /**
@@ -63,9 +64,9 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        $home = School::first();
-        $courses = Course::paginate(5);
-        return view('frontend.course', compact('course', 'home', 'courses'));
+
+        $courses = Course::where('school_id', $this->schools->id())->paginate(5);
+        return view('frontend.course', compact('course', 'courses'));
     }
 
     /**

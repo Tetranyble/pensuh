@@ -18,4 +18,10 @@ class Schools {
     public function school(){
         return $this->school;
     }
+    public static function schoolId(){
+        return app(Schools::class)->id();
+    }
+    public static function schools(){
+        return app(Schools::class)->school();
+    }
 }
