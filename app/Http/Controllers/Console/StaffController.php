@@ -48,7 +48,7 @@ class StaffController extends Controller
     {
         $school = auth()->user()->school->id;
         $nationalities = Nationality::get();
-        $genders = Gender::where('school_id', $school)->where('school_id', null)->get();
+        $genders = Gender::where('school_id', $school)->orWhere('school_id', null)->get();
         $bloods = BloodGroup::get();
         $religions = Religion::all();
         $schools = SchoolType::where('school_id', $school)->get();
@@ -99,8 +99,9 @@ class StaffController extends Controller
     {
         abort_unless($user = User::whereUsername($staff)->first(), 404);
         $school = auth()->user()->school->id;
+
         $nationalities = Nationality::get();
-        $genders = Gender::where('school_id', $school)->where('school_id', null)->get();
+        $genders = Gender::where('school_id', $school)->orWhere('school_id', null)->get();
         $bloods = BloodGroup::get();
         $religions = Religion::all();
         $schools = SchoolType::where('school_id', $school)->get();
