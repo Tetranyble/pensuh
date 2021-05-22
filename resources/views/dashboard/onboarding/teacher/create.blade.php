@@ -9,6 +9,41 @@
             @endforeach
         </ul>
         <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Staff's Bio</h4>
+                        <form action="{{ route('staff.import') }}" method="POST" enctype="multipart/form-data">
+                            <div class="form-body">
+                                <div class="row">
+
+                                    @csrf
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="import">Import staff Excel File
+                                                <span class="text-danger"><span  class="text-danger h6">{{$errors->first('import')}}</span></span>
+                                            </label>
+                                            <div class="input-group mb-3">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" name="import" id="import">
+                                                    <label class="custom-file-label" for="import"></label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-info">Import</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <form action="{{ route('staff.store') }}" method="POST" enctype="multipart/form-data">
                 <div class="col-12">
                     <div class="card">

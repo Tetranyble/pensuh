@@ -35,7 +35,7 @@ class StaffController extends Controller
      */
     public function index()
     {
-        $staffs = User::whereHas("roles", function($q){ $q->where("name", "teacher")->orWhere("name", "staff")->orWhere("name", "security")->orWhere("name","admin"); })->paginate();
+        $staffs = User::whereHas("roles", function($q){ $q->where("name", "teacher")->orWhere("name", "staff")->orWhere("name", "security")->orWhere("name","admin"); })->where('school_id', auth()->user()->school->id)->paginate();
         return view('dashboard.staff.staff', compact('staffs'));
     }
 
@@ -46,12 +46,13 @@ class StaffController extends Controller
      */
     public function create()
     {
+        $school = auth()->user()->school->id;
         $nationalities = Nationality::get();
-        $genders = Gender::get();
+        $genders = Gender::where('school_id', $school)->where('school_id', null)->get();
         $bloods = BloodGroup::get();
         $religions = Religion::all();
-        $schools = SchoolType::all();
-        $departments = Department::whereSchoolId(auth()->user()->school->id)->get();
+        $schools = SchoolType::where('school_id', $school)->get();
+        $departments = Department::where('school_id', $school)->get();
         $roles = Role::all();
         return view('dashboard.onboarding.teacher.create', compact('nationalities', 'genders', 'bloods', 'religions', 'schools', 'departments', 'roles'));
     }
@@ -75,7 +76,6 @@ class StaffController extends Controller
             $user->assignRole($request->roles);
         });
         return redirect()->back()->with('success', 'staff save successfully');
-
     }
 
     /**
@@ -98,12 +98,13 @@ class StaffController extends Controller
     public function edit(User $user, $staff)
     {
         abort_unless($user = User::whereUsername($staff)->first(), 404);
+        $school = auth()->user()->school->id;
         $nationalities = Nationality::get();
-        $genders = Gender::get();
+        $genders = Gender::where('school_id', $school)->where('school_id', null)->get();
         $bloods = BloodGroup::get();
         $religions = Religion::all();
-        $schools = SchoolType::all();
-        $departments = Department::whereSchoolId(auth()->user()->school->id)->get();
+        $schools = SchoolType::where('school_id', $school)->get();
+        $departments = Department::where('school_id', $school)->get();
         $roles = Role::all();
         return view('dashboard.onboarding.teacher.edit', compact('nationalities', 'genders', 'bloods', 'religions', 'schools', 'departments', 'roles', 'user'));
     }

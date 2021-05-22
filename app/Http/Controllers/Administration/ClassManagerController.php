@@ -12,7 +12,6 @@ class ClassManagerController extends Controller
 {
     public function __construct()
     {
-
         $this->middleware('auth');
     }
     /**
@@ -23,7 +22,6 @@ class ClassManagerController extends Controller
     public function index()
     {
         $classes = Classes::whereSchoolId(auth()->user()->school->id)->paginate(20);
-
         return view('dashboard.class.index', compact('classes'));
     }
 
@@ -46,7 +44,6 @@ class ClassManagerController extends Controller
      */
     public function store(StoreClassRequest $request)
     {
-
         Classes::create($request->all());
         return redirect()->back()->with('success', 'class created successfully');
     }
@@ -93,8 +90,6 @@ class ClassManagerController extends Controller
         $class->age = $request->age;
         $class->save();
         return redirect()->back()->with('success', 'class updated successfully');
-
-
     }
 
     /**

@@ -17,25 +17,21 @@ class SchoolTypeSeeder extends Seeder
             'name' => 'Nursery School',
             'slug' => Str::lower(Str::slug('nursery school')),
             'description' => 'primary school section',
-            'school_id' => '1'
         ]);
         SchoolType::create([
            'name' => 'Primary School',
            'slug' => Str::lower(Str::slug('primary school')),
            'description' => 'primary school section',
-            'school_id' => '1'
         ]);
         SchoolType::create([
             'name' => 'Secondary School',
             'slug' => Str::lower(Str::slug('secondary school')),
             'description' => 'secondary school section',
-            'school_id' => '1',
         ]);
         SchoolType::create([
             'name' => 'University',
             'slug' => Str::lower(Str::slug('university')),
             'description' => 'higher institution',
-            'school_id' => '1',
         ]);
     }
 }
