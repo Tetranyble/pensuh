@@ -119,13 +119,19 @@ class StaffController extends Controller
      */
     public function update(UpdateStaffRequest $request, User $user, $staff)
     {
-        $this->fileHandle->save($request,'photo_x','photo','lastname', ['width'=> 480, 'height' => 480]);
+        $user = User::whereUsername($staff)->first();
+        try{
+            $this->fileHandle->save($request,'photo_x','photo','lastname', ['width'=> 480, 'height' => 480]);
+        }catch(\Exception $e){
+            dd($e);
+        }
+
         DB::transaction(function () use($request, $user){
             $user->fill($request->all())->save();
             $user->assignRole($request->roles);
             $user->teacherQualification->fill($request->all())->save();
         });
-        return redirect()->back()->with('success', 'staff updated successfully');
+        return redirect()->route('staff.index')->with('success', 'student updated successfully');
 
     }
 

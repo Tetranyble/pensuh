@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class UploadHandler {
-    public function save(FormRequest $request, $nameOnRequest, $dbFieldName, $fileName, $dimension = ['width' => null, 'height' => null]){
+    public function save(FormRequest $request, $nameOnRequest, $dbFieldName, $saveFileNameAs, $dimension = ['width' => null, 'height' => null]){
         try{
             if ($request->has($nameOnRequest)){
                 $photo = $request->file($nameOnRequest);
@@ -18,7 +18,7 @@ class UploadHandler {
                 }
                 //$photos = Image::make($photo->getRealPath())->resize($dimension['width'] ? $dimension['width'] : getimagesize($photo)[0], $dimension['height'] ? $dimension['height'] : getimagesize($photo)[1]);
                 $photos = $this->resizeImage(Image::make($photo->getRealPath()), $dimension['width'] ? $dimension['width'] : getimagesize($photo)[0]);
-                $doc = time().Str::slug($request->{$fileName}) . '.' . $photo->getClientOriginalExtension();
+                $doc = time().Str::slug($request->{$saveFileNameAs}) . '.' . $photo->getClientOriginalExtension();
                 $request->merge([$dbFieldName => 'school-'.auth()->user()->school->id.'/'.$doc]);
                 $photos->save(storage_path('app/public/school-'.auth()->user()->school->id.'/'.$doc));
                 return $request;

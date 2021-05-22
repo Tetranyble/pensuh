@@ -67,9 +67,9 @@ class ClassManagerController extends Controller
      */
     public function edit(Classes $classes, $id)
     {
-        $syllabi = Syllabus::where('school_id', auth()->user()->school->id)->orWhere('school_id', null)->get();
-        $class = Classes::findOrFail($id);
-
+        $school = auth()->user()->school->id;
+        $syllabi = Syllabus::where('school_id', $school)->orWhere('school_id', null)->get();
+        $class = Classes::whereSchoolId($school)->findOrFail($id);
         return view('dashboard.class.edit', compact('class', 'syllabi'));
     }
 

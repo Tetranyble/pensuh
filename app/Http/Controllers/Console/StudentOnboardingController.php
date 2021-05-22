@@ -114,7 +114,7 @@ class StudentOnboardingController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
+     * @param  \App\User  $usersec
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateStudentRequest $request, User $user, $student)

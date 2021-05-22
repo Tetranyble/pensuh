@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CourseStoreRequest;
 use App\Schedule;
 use App\Section;
+use App\Services\UploadHandler;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -17,9 +18,10 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class CourseManagerController extends Controller
 {
-    public function __construct()
+    protected $fileService;
+    public function __construct(UploadHandler $uploadHandler)
     {
-
+        $this->fileService = $uploadHandler;
         $this->middleware('auth');
     }
     /**
@@ -29,7 +31,7 @@ class CourseManagerController extends Controller
      */
     public function index()
     {
-        $courses = Course::paginate();
+        $courses = Course::whereSchoolId(auth()->user()->school->id)->paginate();
         return view('dashboard.course.index', compact('courses'));
     }
 
@@ -40,11 +42,12 @@ class CourseManagerController extends Controller
      */
     public function create()
     {
-        $courseTypes = CourseType::whereSchoolId(auth()->user()->school->id)->get();
-        $sections = Section::whereSchoolId(auth()->user()->school->id)->get();
-        $schedules = Schedule::whereSchoolId(auth()->user()->school->id)->get();
+        $school = auth()->user()->school->id;
+        $courseTypes = CourseType::whereSchoolId($school)->get();
+        $sections = Section::whereSchoolId($school)->get();
+        $schedules = Schedule::whereSchoolId($school)->get();
         //$departments = Department::whereSchoolId(auth()->user()->school->id)->get();
-        $teachers = User::where('school_id', auth()->user()->school_id)->whereHas("roles", function($q){ $q->where("name", "teacher"); })->get();
+        $teachers = User::where('school_id', $school)->whereHas("roles", function($q){ $q->where("name", "teacher"); })->get();
         return view('dashboard.course.create', compact('courseTypes', 'sections', 'schedules', 'teachers'));
     }
 
@@ -56,17 +59,8 @@ class CourseManagerController extends Controller
      */
     public function store(CourseStoreRequest $request)
     {
-
-        $filenames = [ 'banner_x' => [1919,700], 'photo_x' => [800,533]];
-        foreach ($filenames as $key => $file){
-            if ($request->has($key)){
-                $photo = $request->file($key);
-                $photos = Image::make($photo->getRealPath())->resize($file[0], $file[1]);
-                $newName = time() . Str::slug($request->get('school_name')) . '.' . $photo->getClientOriginalExtension();
-                $request->merge([str_replace('_x','', $key) => 'storage/'.$newName]);
-                $photos->save(storage_path('app/public/'.$newName));
-            }
-        }
+        $this->fileService->save($request,'banner_x','banner',$request->name,[1919, 700]);
+        $this->fileService->save($request,'photo_x','banner',$request->name,[800, 533]);
         $course = Course::create($request->except(['teacher','schedule_id','_token','photo_x','banner_x']));
         $course->assignTeacherTo($request->teacher);
         $course->attachSchedule($request->schedule_id);
@@ -109,7 +103,9 @@ class CourseManagerController extends Controller
      */
     public function update(CourseStoreRequest $request, Course $course)
     {
-        $course->fill($request->except(['_token', 'schedule_id','banner_x', 'photo_x','teacher']))->save();
+        $this->fileService->save($request,'banner_x','banner',$request->name,[1919, 700]);
+        $this->fileService->save($request,'photo_x','banner',$request->name,[800, 533]);
+//        $course->fill($request->except(['_token', 'schedule_id','banner_x', 'photo_x','teacher']))->save();
         $course->assignTeacherTo($request->teacher);
         $course->attachSchedule($request->schedule_id);
         return redirect()->back()->with('success', 'course updated successfully');

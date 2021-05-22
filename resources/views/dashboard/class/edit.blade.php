@@ -41,7 +41,7 @@
                                           <select name="syllabus_id" class="form-control" id="syllabus_id" type="text">
                                               <option>Select Syllabus</option>
                                               @forelse($syllabi as $syllabus)
-                                                  <option {{ old('syllabus_id', $class->id) == $syllabus->id ? "selected" : "" }} value="{{ $syllabus->id }}">{{ $syllabus->name }}</option>
+                                                  <option {{ old('syllabus_id', $class->syllabus_id) == $syllabus->id ? "selected" : "" }} value="{{ $syllabus->id }}">{{ $syllabus->name }}</option>
                                               @empty
                                                   <option>No data</option>
                                               @endforelse

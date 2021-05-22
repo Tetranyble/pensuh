@@ -6,6 +6,12 @@
     <!-- Container fluid  -->
     <!-- ============================================================== -->
         <div class="container-fluid">
+            @include('components.flash-message')
+            <ul>
+                @foreach($errors->all() as $message)
+                    <li class="text-danger">{{ $message }}</li>
+                @endforeach
+            </ul>
             <!-- basic table -->
             <div class="row">
                 <div class="col-12">

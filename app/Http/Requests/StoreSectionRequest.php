@@ -22,12 +22,12 @@ class StoreSectionRequest extends FormRequest
      *
      * @return void
      */
-//    protected function prepareForValidation()
-//    {
-//        $this->merge([
-//            'classes_id' => $this->request('class'),
-//        ]);
-//    }
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'school_id' => auth()->user()->school->id,
+        ]);
+    }
     /**
      * Get the validation rules that apply to the request.
      *

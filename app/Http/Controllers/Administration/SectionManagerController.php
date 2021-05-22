@@ -24,7 +24,7 @@ class SectionManagerController extends Controller
      */
     public function index()
     {
-        $sections = Section::paginate();
+        $sections = Section::whereSchoolId(auth()->user()->school->id)->paginate(20);
         return view('dashboard.section.index',compact('sections'));
     }
 
@@ -35,9 +35,10 @@ class SectionManagerController extends Controller
      */
     public function create()
     {
-        $classes = Classes::where('school_id', auth()->user()->school_id)->get();
-        $formteachers = User::where('school_id', auth()->user()->school_id)->whereHas("roles", function($q){ $q->where("name", "form_teacher"); })->get();
-        $teachers = User::where('school_id', auth()->user()->school_id)->whereHas("roles", function($q){ $q->where("name", "teacher"); })->get();
+        $school = auth()->user()->school->id;
+        $classes = Classes::where('school_id', $school)->get();
+        $formteachers = User::where('school_id', $school)->whereHas("roles", function($q){ $q->where("slug", "form_teacher"); })->get();
+        $teachers = User::where('school_id', $school)->whereHas("roles", function($q){ $q->where("name", "teacher"); })->get();
         return view('dashboard.section.create', compact('classes', 'formteachers', 'teachers'));
     }
 
@@ -49,7 +50,8 @@ class SectionManagerController extends Controller
      */
     public function store(StoreSectionRequest $request)
     {
-        Section::create($request->except(['_token','class']))->assignFormTeacher($request->input('form_teacher'));
+
+        Section::create($request->except(['_token','class']));
         return redirect()->back()->with('success', 'section created successfully');
     }
 
@@ -77,9 +79,10 @@ class SectionManagerController extends Controller
      */
     public function edit(Section $section)
     {
-        $classes = Classes::where('school_id', auth()->user()->school_id)->get();
-        $formteachers = User::where('school_id', auth()->user()->school_id)->whereHas("roles", function($q){ $q->where("name", "form_teacher"); })->get();
-        $teachers = User::where('school_id', auth()->user()->school_id)->whereHas("roles", function($q){ $q->where("name", "teacher"); })->get();
+        $school = auth()->user()->school->id;
+        $classes = Classes::where('school_id', $school)->get();
+        $formteachers = User::where('school_id', $school)->whereHas("roles", function($q){ $q->where("slug", "form_teacher"); })->get();
+        $teachers = User::where('school_id', $school)->whereHas("roles", function($q){ $q->where("name", "teacher"); })->get();
         return view('dashboard.section.edit', compact('classes', 'formteachers', 'teachers', 'section'));
     }
 

@@ -3,9 +3,17 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UpdateStaffRequest extends FormRequest
 {
+    public function passedValidation()
+    {
+        $this->merge([
+            'username' => Str::slug($this->firstname . '.' . $this->lastname),
+        ]);
+    }
     /**
      * Determine if the user is authorized to make this request.
      *

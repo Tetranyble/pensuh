@@ -58,7 +58,7 @@
                                             <select name="classes_id" class="form-control" id="syllabus_id" type="text">
                                                 <option>Select class</option>
                                                 @forelse($classes as $class)
-                                                    <option {{ old('classes_id', $section->id) == $class->id ? "selected" : "" }} value="{{ $class->id }}">{{ $class->name }}</option>
+                                                    <option {{ old('classes_id', $section->classes_id) == $class->id ? "selected" : "" }} value="{{ $class->id }}">{{ $class->name }}</option>
                                                 @empty
                                                     <option>No data</option>
                                                 @endforelse

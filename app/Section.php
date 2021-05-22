@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Section extends Model
 {
-    protected $guarded = [];
+    protected $fillable = ['name', 'classes_id', 'school_id', 'capacity', 'classroom', 'form_teacher'];
 
     public function classTeacher()
     {
