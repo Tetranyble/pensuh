@@ -17,6 +17,7 @@ class StoreClassRequest extends FormRequest
     {
         $this->merge([
             'slug' => Str::slug($this->name),
+            'school_id' => auth()->user()->school->id
         ]);
     }
     /**
