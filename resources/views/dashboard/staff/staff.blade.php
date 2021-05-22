@@ -75,6 +75,7 @@
                                     </tfoot>
                                 </table>
                             </div>
+                            {{ $staffs->links() }}
                         </div>
                     </div>
                 </div>
