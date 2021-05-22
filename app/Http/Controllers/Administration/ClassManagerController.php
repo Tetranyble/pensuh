@@ -22,7 +22,7 @@ class ClassManagerController extends Controller
      */
     public function index()
     {
-        $classes = Classes::paginate();
+        $classes = Classes::whereSchoolId(auth()->user()->school->id)->paginate(20);
 
         return view('dashboard.class.index', compact('classes'));
     }
@@ -34,7 +34,7 @@ class ClassManagerController extends Controller
      */
     public function create()
     {
-        $syllabi = Syllabus::all();
+        $syllabi = Syllabus::where('school_id', auth()->user()->school->id)->orWhere('school_id', null)->get();
         return view('dashboard.class.create', compact( 'syllabi'));
     }
 
@@ -59,7 +59,7 @@ class ClassManagerController extends Controller
      */
     public function show(Classes $classes)
     {
-        dd($classes);
+        return $classes->toArray();
     }
 
     /**
@@ -70,7 +70,7 @@ class ClassManagerController extends Controller
      */
     public function edit(Classes $classes, $id)
     {
-        $syllabi = Syllabus::all();
+        $syllabi = Syllabus::where('school_id', auth()->user()->school->id)->orWhere('school_id', null)->get();
         $class = Classes::findOrFail($id);
 
         return view('dashboard.class.edit', compact('class', 'syllabi'));
