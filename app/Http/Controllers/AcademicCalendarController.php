@@ -44,9 +44,11 @@ class AcademicCalendarController extends Controller
      */
     public function store(StoreAcademicCalendarRequest $request)
     {
-        $a = AcademicCalendar::where('active', 1)->where('school_id', $request->school_id)->first();
-        $a->active = 0;
-        $a->save();
+        $a = AcademicCalendar::where('active', 1)->where('school_id', auth()->user()->school->id)->first();
+        if($a){
+            $a->active = 0;
+            $a->save();
+        }
         AcademicCalendar::create($request->all());
         return back()->with('success', 'academic calendar saved successfully');
     }
