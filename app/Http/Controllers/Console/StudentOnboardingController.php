@@ -52,7 +52,7 @@ class StudentOnboardingController extends Controller
         $schools = SchoolType::whereSchoolId($school)->get();
         $sections = Section::whereSchoolId($school)->get();
         $sessions = Session::whereSchoolId($school)->get();
-        $counsellors = User::whereHas("roles", function($q){ $q->where("name", "guardian/counsellor")->orWhere("slug", "form_teacher"); })->get();
+        $counsellors = User::whereHas("roles", function($q){ $q->where("name", "guardian/counsellor")->orWhere("slug", "form_teacher"); })->where('school_id', $school)->get();
         return view('dashboard.onboarding.student.create', compact('nationalities', 'genders', 'bloods', 'groups', 'religions', 'schools', 'sections', 'sessions', 'counsellors'));
     }
 
@@ -106,7 +106,7 @@ class StudentOnboardingController extends Controller
         $schools = SchoolType::whereSchoolId($school)->get();
         $sections = Section::whereSchoolId($school)->get();
         $sessions = Session::whereSchoolId($school)->get();
-        $counsellors = User::whereHas("roles", function($q){ $q->where("name", "guardian/counsellor")->orWhere("slug", "form_teacher"); })->get();
+        $counsellors = User::whereHas("roles", function($q){ $q->where("name", "guardian/counsellor")->orWhere("slug", "form_teacher"); })->where('school_id', $school)->get();
         return view('dashboard.onboarding.student.edit', compact('counsellors','user','nationalities', 'genders', 'bloods', 'groups', 'religions', 'schools', 'sections', 'sessions'));
     }
 
