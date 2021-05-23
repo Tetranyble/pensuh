@@ -161,10 +161,10 @@
                 <!-- Search -->
                 <!-- ============================================================== -->
 {{--                <li class="nav-item d-none d-md-block">--}}
-{{--                    <a class="nav-link" href="javascript:void(0)">--}}
+{{--                    <a class="nav-link" href="{{ route('system.users') }}">--}}
 {{--                        <form>--}}
 {{--                            <div class="customize-input">--}}
-{{--                                <input class="form-control custom-shadow custom-radius border-0 bg-white"--}}
+{{--                                <input name="q" class="form-control custom-shadow custom-radius border-0 bg-white"--}}
 {{--                                       type="search" placeholder="Search" aria-label="Search">--}}
 {{--                                <i class="form-control-icon" data-feather="search"></i>--}}
 {{--                            </div>--}}
@@ -194,11 +194,12 @@
 {{--                                                                              class="svg-icon mr-2 ml-1"></i>--}}
 {{--                            Inbox</a>--}}
 {{--                        <div class="dropdown-divider"></div>--}}
-{{--                        <a class="dropdown-item" href="javascript:void(0)"><i data-feather="settings"--}}
-{{--                                                                                                     class="svg-icon mr-2 ml-1"></i>--}}
-{{--                            Account Setting</a>--}}
+
+                        @impersonating($guard = null)
+                        <a class="dropdown-item text-warning" href="{{ route('impersonate.leave') }}"><i data-feather="log-out" class="svg-icon mr-2 ml-1"></i>Leave Impersonation</a>
+                        @endImpersonating
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ route('identifies.show', auth()->user()) }}"><i data-feather="credit-card"
+                        <a class="dropdown-item " href="{{ route('identifies.show', auth()->user()) }}"><i data-feather="credit-card"
                                                                                                           class="svg-icon mr-2 ml-1"></i>
                             My Identity</a>
                         <div class="dropdown-divider"></div>

@@ -92,6 +92,7 @@ return array(
     'ed962a97bd972bc82007176b647d4e36' => $vendorDir . '/facade/ignition/src/helpers.php',
     '6124b4c8570aa390c21fafd04a26c69f' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
     'b6b991a57620e2fb6b2f66f03fe9ddc2' => $vendorDir . '/symfony/string/Resources/functions.php',
+    '507d7a825db0ba8319f9dd335c46057a' => $vendorDir . '/lab404/laravel-impersonate/src/helpers.php',
     '880d9aa7c2c689853e94e8a3794c8282' => $vendorDir . '/mavinoo/laravel-batch/src/Common/Helpers.php',
     '2bdaa6ef545278e06bf77098ec29abe8' => $baseDir . '/app/Helpers/ApplicationHelper.php',
 );

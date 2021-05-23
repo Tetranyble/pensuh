@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes();
-
+Route::impersonate();
 Route::get('/', 'FrontController@index')->name('home');
 Route::resource('/events', 'EventController');
 Route::resource('/news', 'BlogController');
@@ -79,3 +79,9 @@ Route::group([ 'middleware' => 'auth'], function(){
 });
 //Route::middleware(['auth', 'admin'])->prefix('academic')->name('academic.')->group(function () {});
 
+Route::middleware(['auth'])->prefix('master')->namespace('Console')->group(function(){
+    Route::resource('schools', 'SchoolController');
+    Route::post('impersonates/enter', 'ImpersonateUserController@impersonate')->name('impersonates.enter');
+//    Route::get('impersonates/leave', 'ImpersonateUserController@impersonate')->name('impersonates.leave');
+    Route::get('users', 'SystemUsersController@index')->name('system.users');
+});

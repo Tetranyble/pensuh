@@ -9,10 +9,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
+use Lab404\Impersonate\Models\Impersonate;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, Impersonate;
     use SoftDeletes;
 
     /**
@@ -183,5 +184,26 @@ class User extends Authenticatable
 
     public function grade(){
         return $this->hasMany(Grade::class,'student_id');
+    }
+
+    /*
+     *
+     * Impersonation sections
+     * */
+    /**
+     * @return bool
+     */
+    public function canImpersonate()
+    {
+        return auth()->user()->roles->flatten()->pluck('slug')->contains('master');
+    }
+    /**
+     * @return bool
+     */
+    public function canBeImpersonated()
+    {
+        // For example
+
+        return !auth()->user()->roles->flatten()->pluck('slug')->contains('master');
     }
 }

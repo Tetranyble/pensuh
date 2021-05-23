@@ -21,7 +21,11 @@
                             <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Number of Students</h6>
                         </div>
                         <div class="ml-auto mt-md-3 mt-lg-0">
+                            @canany(['principal', 'vice_principal_academy', 'vice_principal_admin', 'admin'])
+                            <a href="{{ route('student.create') }}"><span class="opacity-7 text-muted"><i data-feather="user-plus"></i></span></a>
+                            @else
                             <span class="opacity-7 text-muted"><i data-feather="user-plus"></i></span>
+                            @endcanany
                         </div>
                     </div>
                 </div>
@@ -36,7 +40,11 @@
                             </h6>
                         </div>
                         <div class="ml-auto mt-md-3 mt-lg-0">
-                            <span class="opacity-7 text-muted"><i data-feather="user-plus"></i></span>
+                            @canany(['principal', 'vice_principal_academy', 'vice_principal_admin', 'admin'])
+                            <a href="{{ route('staff.create') }}" > <span class="opacity-7 text-muted"><i data-feather="user-plus"></i></span></a>
+                            @else
+                                <span class="opacity-7 text-muted"><i data-feather="user-plus"></i></span>
+                            @endcanany
                         </div>
                     </div>
                 </div>
@@ -53,7 +61,11 @@
                             <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Classes / Sections</h6>
                         </div>
                         <div class="ml-auto mt-md-3 mt-lg-0">
-                            <span class="opacity-7 text-muted"><i data-feather="file-plus"></i></span>
+                            @canany(['principal', 'vice_principal_academy', 'vice_principal_admin', 'admin'])
+                                <a href="{{ route('class.create') }}" > <span class="opacity-7 text-muted"><i data-feather="file-plus"></i></span></a>
+                            @else
+                                <span class="opacity-7 text-muted"><i data-feather="file-plus"></i></span>
+                            @endcanany
                         </div>
                     </div>
                 </div>

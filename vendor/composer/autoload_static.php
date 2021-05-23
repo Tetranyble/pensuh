@@ -93,6 +93,7 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
+        '507d7a825db0ba8319f9dd335c46057a' => __DIR__ . '/..' . '/lab404/laravel-impersonate/src/helpers.php',
         '880d9aa7c2c689853e94e8a3794c8282' => __DIR__ . '/..' . '/mavinoo/laravel-batch/src/Common/Helpers.php',
         '2bdaa6ef545278e06bf77098ec29abe8' => __DIR__ . '/../..' . '/app/Helpers/ApplicationHelper.php',
     );
@@ -196,6 +197,7 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
             'League\\CommonMark\\' => 18,
             'Laravel\\Ui\\' => 11,
             'Laravel\\Tinker\\' => 15,
+            'Lab404\\Impersonate\\' => 19,
         ),
         'I' => 
         array (
@@ -493,6 +495,10 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         array (
             0 => __DIR__ . '/..' . '/laravel/tinker/src',
         ),
+        'Lab404\\Impersonate\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/lab404/laravel-impersonate/src',
+        ),
         'Intervention\\Image\\' => 
         array (
             0 => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image',
@@ -636,6 +642,9 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         'App\\Events\\UserRegistered' => __DIR__ . '/../..' . '/app/Events/UserRegistered.php',
         'App\\Exam' => __DIR__ . '/../..' . '/app/Exam.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Exports\\StaffImport' => __DIR__ . '/../..' . '/app/Exports/StaffImport.php',
+        'App\\Exports\\StudentImport' => __DIR__ . '/../..' . '/app/Exports/StudentImport.php',
+        'App\\Exports\\UsersExport' => __DIR__ . '/../..' . '/app/Exports/UsersExport.php',
         'App\\Fee' => __DIR__ . '/../..' . '/app/Fee.php',
         'App\\Gallery' => __DIR__ . '/../..' . '/app/Gallery.php',
         'App\\Gender' => __DIR__ . '/../..' . '/app/Gender.php',
@@ -666,6 +675,8 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         'App\\Http\\Controllers\\Console\\ReportCardManagerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Console/ReportCardManagerController.php',
         'App\\Http\\Controllers\\Console\\SchoolController' => __DIR__ . '/../..' . '/app/Http/Controllers/Console/SchoolController.php',
         'App\\Http\\Controllers\\Console\\StaffController' => __DIR__ . '/../..' . '/app/Http/Controllers/Console/StaffController.php',
+        'App\\Http\\Controllers\\Console\\StaffImportController' => __DIR__ . '/../..' . '/app/Http/Controllers/Console/StaffImportController.php',
+        'App\\Http\\Controllers\\Console\\StudentImportController' => __DIR__ . '/../..' . '/app/Http/Controllers/Console/StudentImportController.php',
         'App\\Http\\Controllers\\Console\\StudentOnboardingController' => __DIR__ . '/../..' . '/app/Http/Controllers/Console/StudentOnboardingController.php',
         'App\\Http\\Controllers\\Console\\TeacherCourseController' => __DIR__ . '/../..' . '/app/Http/Controllers/Console/TeacherCourseController.php',
         'App\\Http\\Controllers\\ContactController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContactController.php',
@@ -730,6 +741,8 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         'App\\Http\\Requests\\UpdateStudentRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateStudentRequest.php',
         'App\\Http\\Traits\\AssignGrade' => __DIR__ . '/../..' . '/app/Http/Traits/AssignGrade.php',
         'App\\Http\\Traits\\GenerateReportCard' => __DIR__ . '/../..' . '/app/Http/Traits/GenerateReportCard.php',
+        'App\\Imports\\StaffImport' => __DIR__ . '/../..' . '/app/Imports/StaffImport.php',
+        'App\\Imports\\StudentImport' => __DIR__ . '/../..' . '/app/Imports/StudentImport.php',
         'App\\Language' => __DIR__ . '/../..' . '/app/Language.php',
         'App\\Listeners\\UserCode' => __DIR__ . '/../..' . '/app/Listeners/UserCode.php',
         'App\\Mail\\Contact' => __DIR__ . '/../..' . '/app/Mail/Contact.php',
@@ -3100,6 +3113,17 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         'Intervention\\Image\\Response' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Response.php',
         'Intervention\\Image\\Size' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Size.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
+        'Lab404\\Impersonate\\Controllers\\ImpersonateController' => __DIR__ . '/..' . '/lab404/laravel-impersonate/src/Controllers/ImpersonateController.php',
+        'Lab404\\Impersonate\\Events\\LeaveImpersonation' => __DIR__ . '/..' . '/lab404/laravel-impersonate/src/Events/LeaveImpersonation.php',
+        'Lab404\\Impersonate\\Events\\TakeImpersonation' => __DIR__ . '/..' . '/lab404/laravel-impersonate/src/Events/TakeImpersonation.php',
+        'Lab404\\Impersonate\\Exceptions\\InvalidUserProvider' => __DIR__ . '/..' . '/lab404/laravel-impersonate/src/Exceptions/InvalidUserProvider.php',
+        'Lab404\\Impersonate\\Exceptions\\MissingUserProvider' => __DIR__ . '/..' . '/lab404/laravel-impersonate/src/Exceptions/MissingUserProvider.php',
+        'Lab404\\Impersonate\\Guard\\SessionGuard' => __DIR__ . '/..' . '/lab404/laravel-impersonate/src/Guard/SessionGuard.php',
+        'Lab404\\Impersonate\\Impersonate' => __DIR__ . '/..' . '/lab404/laravel-impersonate/src/Impersonate.php',
+        'Lab404\\Impersonate\\ImpersonateServiceProvider' => __DIR__ . '/..' . '/lab404/laravel-impersonate/src/ImpersonateServiceProvider.php',
+        'Lab404\\Impersonate\\Middleware\\ProtectFromImpersonation' => __DIR__ . '/..' . '/lab404/laravel-impersonate/src/Middleware/ProtectFromImpersonation.php',
+        'Lab404\\Impersonate\\Models\\Impersonate' => __DIR__ . '/..' . '/lab404/laravel-impersonate/src/Models/Impersonate.php',
+        'Lab404\\Impersonate\\Services\\ImpersonateManager' => __DIR__ . '/..' . '/lab404/laravel-impersonate/src/Services/ImpersonateManager.php',
         'LanguageSeeder' => __DIR__ . '/../..' . '/database/seeds/LanguageSeeder.php',
         'Laravel\\Tinker\\ClassAliasAutoloader' => __DIR__ . '/..' . '/laravel/tinker/src/ClassAliasAutoloader.php',
         'Laravel\\Tinker\\Console\\TinkerCommand' => __DIR__ . '/..' . '/laravel/tinker/src/Console/TinkerCommand.php',

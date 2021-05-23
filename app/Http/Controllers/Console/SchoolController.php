@@ -25,7 +25,8 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        //
+        $schools = School::paginate();
+        return view('dashboard.master.schools', compact('schools'));
     }
 
     /**

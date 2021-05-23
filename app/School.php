@@ -28,4 +28,9 @@ class School extends Model
     public function language(){
         return $this->belongsTo(Language::class);
     }
+
+    public function admin(){
+        //return $this->users()->map->whereHas('roles',function ($q){$q->where('slug', 'admin')->orWhere('slug', 'principal');})->first();
+
+    }
 }
