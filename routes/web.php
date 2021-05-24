@@ -54,6 +54,8 @@ Route::group([ 'prefix' => 'console', 'namespace' => 'Console', 'middleware' => 
 
     Route::post('students/import', 'StudentImportController@import')->name('students.import');
     Route::post('staff/import', 'StaffImportController@import')->name('staff.import');
+    //Grade Manager and master sheets
+    Route::resource('mastersheets', 'GradeManagerController');
 });
 
 
@@ -65,6 +67,8 @@ Route::group([ 'prefix' => 'setup', 'namespace' => 'Administration','middleware'
     Route::resource('class', 'ClassManagerController');
     Route::resource('sections', 'SectionManagerController');
     Route::resource('course', 'CourseManagerController');
+
+
 
     Route::get('teacher/create', 'TeacherOnboardingController@create')->name('teacher.create');
     Route::post('teacher/store', 'TeacherOnboardingController@store')->name('teacher.store');
@@ -80,6 +84,7 @@ Route::group([ 'middleware' => 'auth'], function(){
 //Route::middleware(['auth', 'admin'])->prefix('academic')->name('academic.')->group(function () {});
 
 Route::middleware(['auth'])->prefix('master')->namespace('Console')->group(function(){
+
     Route::resource('schools', 'SchoolController');
     Route::post('impersonates/enter', 'ImpersonateUserController@impersonate')->name('impersonates.enter');
 //    Route::get('impersonates/leave', 'ImpersonateUserController@impersonate')->name('impersonates.leave');

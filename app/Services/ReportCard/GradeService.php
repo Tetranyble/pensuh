@@ -4,9 +4,12 @@ namespace App\Services\ReportCard;
 use App\Exam;
 use App\Grade;
 use App\Gradesystem;
+use App\Http\Requests\GradeManagerRequest;
 use App\Http\Requests\StoreGradeRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Mavinoo\Batch\Batch;
+use phpDocumentor\Reflection\Types\True_;
 
 class GradeService {
 
@@ -109,12 +112,19 @@ class GradeService {
                 $grade->midterm_test = $request->midterm_test[$key];
                 $grade->attendance = $request->attendance[$key];
                 $grade->exam = $request->exam[$key];
+//                $grade->created_at = date('Y-m-d H:i:s');
+//                $grade->updated_at = date('Y-m-d H:i:s');
                 $grade->save();
-                //$tbc[] = $tb->attributesToArray();
+                //$tbc[] = $grade->attributesToArray();
+
             }
+            //\batch()->update(new Grade(), $tbc, 'id');
+//            $g = new Grade();
+//            return $g->update($tbc);
             return true;
+
         }catch (\Exception $e){
-            dd($e);
+
             return back()->with('error', __('Ops! something went wrong.'));
         }
 
@@ -151,5 +161,90 @@ class GradeService {
             ->where('course_id', $course_id)
             ->where('exam_id',$exam_id)
             ->get();
+    }
+
+    public function computeGrade(StoreGradeRequest $request)
+    {
+        $rawgrades = $this->gradeByIds($request->id);
+        $studentScores = [];
+
+        try{
+            foreach ($rawgrades->toArray() as $g){
+                array_push($studentScores, $this->total($g));
+            }
+            $class_average = array_sum($studentScores) / $rawgrades->count();
+            foreach($rawgrades as $key => $grade){
+                $total = $this->total($grade->toArray());
+                $grade->total = $total;
+                $grade->grade = $this->grade($total);
+                $grade->average = $class_average;
+                $grade->position = $this->position($studentScores, $total);
+                $grade->save();
+                //$tbc[] = $grade->attributesToArray();
+            }
+            //\batch()->update(new Grade(), $tbc, 'id');
+//            $g = new Grade();
+//            return $g->insert($tbc);
+            return true;
+        }catch (\Exception $e){
+
+            return back()->with('error', __('Ops! something went wrong.'));
+        }
+    }
+
+    public function masterSheet(GradeManagerRequest $request, $exam)
+    {
+        $rawgrades = Grade::where('school_id', auth()->user()->school->id)
+            ->where('course_name', $request->course_name)
+            ->where('exam_id', $exam->id)->get();
+        $studentScores = [];
+
+        try{
+            foreach ($rawgrades->toArray() as $g){
+                array_push($studentScores, $this->total($g));
+            }
+            $class_average = array_sum($studentScores) / $rawgrades->count();
+            foreach($rawgrades as $key => $grade){
+                $total = $this->total($grade->toArray());
+                $grade->total = $total;
+                $grade->grade = $this->grade($total);
+                $grade->average = $class_average;
+                $grade->position = $this->position($studentScores, $total);
+                $grade->save();
+                //$tbc[] = $grade->attributesToArray();
+            }
+            //\batch()->update(new Grade(), $tbc, 'id');
+//            $g = new Grade();
+//            return $g->insert($tbc);
+            return true;
+        }catch (\Exception $e){
+            dd($e);
+            return back()->with('error', __('Ops! something went wrong.'));
+        }
+
+    }
+    private function gradeSheet($rawgrades){
+        try{
+            foreach ($rawgrades->toArray() as $g){
+                array_push($studentScores, $this->total($g));
+            }
+            $class_average = array_sum($studentScores) / $rawgrades->count();
+            foreach($rawgrades as $key => $grade){
+                $total = $this->total($grade->toArray());
+                $grade->total = $total;
+                $grade->grade = $this->grade($total);
+                $grade->average = $class_average;
+                $grade->position = $this->position($studentScores, $total);
+                $grade->save();
+                //$tbc[] = $grade->attributesToArray();
+            }
+            //\batch()->update(new Grade(), $tbc, 'id');
+//            $g = new Grade();
+//            return $g->insert($tbc);
+            return true;
+        }catch (\Exception $e){
+
+            return back()->with('error', __('Ops! something went wrong.'));
+        }
     }
 }

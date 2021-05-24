@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Traits;
 
+use App\Course;
 use App\Grade as Grade;
 use App\User;
 
@@ -24,7 +25,7 @@ trait AssignGrade {
                 ->where('exam_id',$exam_id)
                 ->pluck('student_id')
                 ->toArray();
-
+            $course = Course::whereId($course_id)->first();
             $grade_student_ids = array();
 
             foreach($grades as $grade){
@@ -54,6 +55,7 @@ trait AssignGrade {
                     $tb->student_id = $student_id;
                     $tb->teacher_id = $teacher_id;
                     $tb->course_id = $course_id;
+                    $tb->course_name = $course->slug;
                     $tb->user_id = auth()->user()->id; // User id who is logged in while this command executes
                     //$tbc[] = $tb->attributesToArray();
                     $tb->save();

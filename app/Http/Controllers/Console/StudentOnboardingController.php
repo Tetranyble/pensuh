@@ -96,6 +96,7 @@ class StudentOnboardingController extends Controller
      */
     public function edit(User $user, $student)
     {
+
         $user = User::whereUsername($student)->first();
         $school = auth()->user()->school->id;
         $nationalities = Nationality::get();
@@ -126,7 +127,7 @@ class StudentOnboardingController extends Controller
             $userInfo = StudentInfo::whereUserId($user->id)->first();
             $userInfo->fill($request->all())->save();
         });
-        return redirect()->back()->with('success', 'student updated successfully');
+        return redirect()->route('students.index')->with('success', 'student updated successfully');
     }
 
     /**

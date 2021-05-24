@@ -3,13 +3,15 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class CourseStoreRequest extends FormRequest
 {
     public function passedValidation()
     {
         $this->merge([
-            'school_id' => auth()->user()->school->id
+            'school_id' => auth()->user()->school->id,
+            'slug' => Str::slug($this->name)
         ]);
     }
     /**

@@ -43,6 +43,9 @@ class GradeController extends Controller
     public function create(Request $request)
     {
         $exam = $this->gradeService->schoolExam();
+        if (!$exam){
+            return redirect()->back()->with('warning', 'No active exam in the system. contact admin to create one');
+        }
         $this->giveGrade($request->get('t'), $request->get('c'), $exam->id, $request->get('s'));
         $grades = $this->gradeService->gradeWithCourseAndStudent($request->get('c'),$exam->id);
         $gradesystems = $this->gradeService->getGradeSystemBySchoolId($grades);
@@ -61,7 +64,7 @@ class GradeController extends Controller
         $gradeSystem = $this->gradeService->getGradeSystemByname($request->grade_system_name);
         $this->gradeService->setGradeSystem($gradeSystem);
         $this->gradeService->update($request);
-
+        $this->gradeService->computeGrade($request);
         return redirect()->route('grades.index', ['c' => $request->get('c'), 'e' => $request->get('e')])->with('success', 'Course graded successfully');
         //return back()->with('success', __('saved successfully'));
     }
@@ -97,7 +100,7 @@ class GradeController extends Controller
      */
     public function update(Request $request, Grade $grade)
     {
-        //
+        dd($request->all());
     }
 
     /**

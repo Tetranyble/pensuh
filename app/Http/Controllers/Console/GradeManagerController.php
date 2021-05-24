@@ -1,21 +1,24 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Console;
 
-use App\User;
+use App\Exam;
+use App\Grade;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\GradeManagerRequest;
+use App\Services\ReportCard\GradeService;
 use Illuminate\Http\Request;
 
-class StudentController extends Controller
+class GradeManagerController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    protected $gradeService;
+
+    public function __construct(GradeService $gradeService)
     {
         $this->middleware('auth');
+        $this->gradeService = $gradeService;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -23,8 +26,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = User::whereHas("roles", function($q){ $q->where("name", "student"); })->where('school_id', auth()->user()->school->id)->with('gender','studentInfo', 'blood')->paginate(10);
-        return view('dashboard.student.students', compact('students'));
+        //
     }
 
     /**
@@ -43,18 +45,20 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GradeManagerRequest $request)
     {
-        //
+        $exam = $this->gradeService->schoolExam();
+        $this->gradeService->masterSheet($request, $exam);
+        return redirect()->route('grades.index', ['c' => $request->course_id, 'e' => $exam->id])->with('success', 'Master sheet generated successfully');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Grade  $grade
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Grade $grade)
     {
         //
     }
@@ -62,10 +66,10 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Grade  $grade
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Grade $grade)
     {
         //
     }
@@ -74,10 +78,10 @@ class StudentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Grade  $grade
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Grade $grade)
     {
         //
     }
@@ -85,10 +89,10 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Grade  $grade
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Grade $grade)
     {
         //
     }

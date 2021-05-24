@@ -40,8 +40,10 @@ class ExamController extends Controller
     public function store(StoreExamRequest $request)
     {
         $e = Exam::where('school_id', $request->school_id)->where('active', 1)->first();
-        $e->active = 0;
-        $e->save();
+        if ($e){
+            $e->active = 0;
+            $e->save();
+        }
         Exam::create($request->all());
         return back()->with('success', 'exam save successfully');
     }

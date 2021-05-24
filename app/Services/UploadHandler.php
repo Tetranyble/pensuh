@@ -24,7 +24,7 @@ class UploadHandler {
                 return $request;
             }
         }catch (\Exception $e){
-            abort(403);
+            return redirect()->back()->with('error', 'Oops something went wrong!');
         }
 
     }

@@ -22,6 +22,12 @@ class UpdateStaffRequest extends FormRequest
     public function authorize()
     {
         return true;
+//        return auth()->user()->roles->flatten()->pluck('slug')->contains('principal') ||
+//            auth()->user()->roles->flatten()->pluck('slug')->contains('admin') ||
+//            auth()->user()->roles->flatten()->pluck('slug')->contains('vice_principal_admin') ||
+//            auth()->user()->roles->flatten()->pluck('slug')->contains('vice_principal_academy') ||
+//            auth()->user()->roles->flatten()->pluck('slug')->contains('director') ||
+//            auth()->id() === $this->id;
     }
 
     /**
@@ -31,6 +37,7 @@ class UpdateStaffRequest extends FormRequest
      */
     public function rules()
     {
+        dd(auth()->id() === $this->id);
         return [
             'firstname' => 'required|string|max:255',
             'middlename' => 'nullable|string|max:255',

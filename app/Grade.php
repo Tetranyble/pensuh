@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Grade extends Model
 {
@@ -12,10 +13,10 @@ class Grade extends Model
      *
      * @var array
      */
-    protected $dates = [
-        'created_at',
-        'updated_at'
-    ];
+//    protected $dates = [
+//        'created_at',
+//        'updated_at'
+//    ];
 
     /**
      * Get the course record associated with the user.
@@ -46,4 +47,5 @@ class Grade extends Model
     {
         return $this->belongsTo('App\Exam', 'exam_id');
     }
+
 }

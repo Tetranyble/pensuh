@@ -43,18 +43,19 @@
 
                                                         @endforelse
                                                     @empty(!$class->sections)
-                                                            @canany(['master','principal','admin', 'vice_principal_admin', 'vice_principal_academy'])
+                                                            @canany(['principal','admin', 'vice_principal_admin', 'vice_principal_academy'])
                                                                 <a class="btn btn-sm btn-outline-success" href="{{ route('sections.create', ['class' => $class->id]) }}"><i class="fa fa-plus"></i></a>
                                                             @endcanany
                                                         @endempty
                                                 </small></td>
                                             <td><small>
-                                                    @canany(['master','principal','admin', 'vice_principal_admin', 'vice_principal_academy'])
+                                                    @canany(['principal','admin', 'vice_principal_admin', 'vice_principal_academy'])
                                                     <a class="btn btn-sm btn-outline-danger" href="{{ route('class.edit', $class) }}">Edit</a>
 
                                                     @else
                                                         <a onclick="return false;" title="Unauthorized" class="btn btn-sm btn-outline-danger" href="{{ route('class.edit', $class) }}">Edit</a>
                                                     @endcanany
+
                                                 </small></td>
                                         </tr>
                                     @empty
