@@ -8,9 +8,9 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
                 @impersonating($guard = null)
-                <li class="sidebar-item"> <a class="sidebar-link sidebar-link text-danger" href="{{ route('impersonate.leave') }}"
+                <li class="sidebar-item text-danger"> <a class="sidebar-link sidebar-link text-danger" href="{{ route('impersonate.leave') }}"
                                              aria-expanded="false"><i data-feather="log-out" class="feather-icon"></i><span
-                            class="hide-menu">Leave</span></a></li>
+                            class="hide-menu">Impersonation</span></a></li>
                 <li class="list-divider"></li>
                 @endImpersonating
                 <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="{{ route('dashboard') }}"
