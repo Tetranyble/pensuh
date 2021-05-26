@@ -123,7 +123,7 @@ class StaffController extends Controller
         try{
             $this->fileHandle->save($request,'photo_x','photo','lastname', ['width'=> 480, 'height' => 480]);
         }catch(\Exception $e){
-            dd($e);
+            return redirect()->back()->with('error', 'Oops, an error occurered!');
         }
 
         DB::transaction(function () use($request, $user){

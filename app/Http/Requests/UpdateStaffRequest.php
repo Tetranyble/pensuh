@@ -37,7 +37,6 @@ class UpdateStaffRequest extends FormRequest
      */
     public function rules()
     {
-        dd(auth()->id() === $this->id);
         return [
             'firstname' => 'required|string|max:255',
             'middlename' => 'nullable|string|max:255',
