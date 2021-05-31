@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Console;
 
+use App\Fee;
+use App\GradeSystem;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReportCardManagerRequest;
 use App\Http\Requests\ReportCardManagerUpdateRequest;
@@ -19,6 +21,7 @@ class ReportCardManagerController extends Controller
     protected $reportCardService;
     public function __construct(GradeService $gradeService, ReportCardService $reportCardService)
     {
+        $this->middleware('auth');
         $this->gradeService = $gradeService;
         $this->reportCardService = $reportCardService;
     }
@@ -71,7 +74,9 @@ class ReportCardManagerController extends Controller
     public function show(ReportCard $reportCard, $report)
     {
         $report = $this->reportCardService->getReportCard($report);
-        return view('dashboard.reportcard.show', compact('report'));
+        $gradeSystem = GradeSystem::where('name',$report->grade[0]->course->grade_system_name)->where('school_id', auth()->user()->school->id)->get();
+        $fees = Fee::where('school_id', auth()->user()->school->id)->where('school_type_id', $report->student->studentInfo->schoolType->id)->orWhere('school_type_id', null)->get();
+        return view('dashboard.reportcard.show', compact('report', 'gradeSystem', 'fees'));
     }
 
     /**

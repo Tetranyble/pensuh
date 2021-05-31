@@ -51,6 +51,8 @@ Route::group([ 'prefix' => 'console', 'namespace' => 'Console', 'middleware' => 
 
     Route::resource('staff', 'StaffController');
     Route::resource('report', 'ReportCardManagerController');
+    Route::resource('comments', 'ReportCardCommentController');
+    Route::resource('psychometrics', 'PsychologicalRatingController');
 
     Route::post('students/import', 'StudentImportController@import')->name('students.import');
     Route::post('staff/import', 'StaffImportController@import')->name('staff.import');

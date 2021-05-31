@@ -40,7 +40,20 @@
                                         <td>{{ $report->total }}</td>
                                         <td>{{ $report->average }}</td>
                                         <td>{{ $report->position }}</td>
-                                        <td><small><a class="btn btn-sm btn-outline-info" href="{{ route('report.show', $report) }}"><i class="fa fa-eye"></i> See Report</a></small></td>
+                                        <td><small><a class="btn btn-sm btn-outline-info" href="{{ route('report.show', $report) }}"><i class="fa fa-eye"></i>See Report</a>
+                                                @can('form_teacher')
+                                                <a class="btn btn-sm btn-outline-dark" href="{{ route('comments.create', ['report'=> $report->id, 'student'=> $report->student->id, 'role' => 'form_teacher']) }}"><i class="fa fa-plus"></i>F.T Comment</a>
+                                                @endcan
+                                                @can('counsellor')
+                                                <a class="btn btn-sm btn-outline-orange" href="{{ route('comments.create', ['report'=> $report->id, 'student'=> $report->student->id, 'role' => 'counsellor']) }}"><i class="fa fa-plus"></i>C. Comment</a>
+                                                @endcan
+                                                @can('sport')
+                                                    <a class="btn btn-sm btn-outline-cyan" href="{{ route('comments.create', ['report'=> $report->id, 'student'=> $report->student->id, 'role' => 'sport']) }}"><i class="fa fa-plus"></i>S. Comment</a>
+                                                @endcan
+                                                @can('principal')
+                                                    <a class="btn btn-sm btn-outline-secondary" href="{{ route('comments.create', ['report'=> $report->id, 'student'=> $report->student->id, 'role' => 'principal']) }}"><i class="fa fa-plus"></i>P. Comment</a>
+                                                @endcan
+                                            </small></td>
                                     </tr>
                                 @empty
                                     <tr>

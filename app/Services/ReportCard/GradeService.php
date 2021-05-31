@@ -1,6 +1,7 @@
 <?php
 namespace App\Services\ReportCard;
 
+use App\Course;
 use App\Exam;
 use App\Grade;
 use App\Gradesystem;
@@ -198,7 +199,6 @@ class GradeService {
             ->where('course_name', $request->course_name)
             ->where('exam_id', $exam->id)->get();
         $studentScores = [];
-
         try{
             foreach ($rawgrades->toArray() as $g){
                 array_push($studentScores, $this->total($g));
@@ -223,6 +223,19 @@ class GradeService {
         }
 
     }
+
+    public function setCourseGradeSystem($gradeSystem, $course_id )
+    {
+        $course = Course::whereId($course_id)->first();
+        $course->grade_system_name = $gradeSystem[0]->name;
+        return $course->save();
+    }
+
+    public function getCourseGradeSystemName($course_id)
+    {
+        return Course::whereId($course_id)->first()->grade_system_name;
+    }
+
     private function gradeSheet($rawgrades){
         try{
             foreach ($rawgrades->toArray() as $g){

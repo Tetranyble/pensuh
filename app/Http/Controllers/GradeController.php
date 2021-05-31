@@ -49,7 +49,7 @@ class GradeController extends Controller
         $this->giveGrade($request->get('t'), $request->get('c'), $exam->id, $request->get('s'));
         $grades = $this->gradeService->gradeWithCourseAndStudent($request->get('c'),$exam->id);
         $gradesystems = $this->gradeService->getGradeSystemBySchoolId($grades);
-        
+
         return view('dashboard.grade.update', ['grades' => $grades,'request' => $request->all(), 'gradesystems' => $gradesystems, 'e' => $exam->id]);
     }
 
@@ -62,6 +62,7 @@ class GradeController extends Controller
     public function store(StoreGradeRequest $request)
     {
         $gradeSystem = $this->gradeService->getGradeSystemByname($request->grade_system_name);
+        $this->gradeService->setCourseGradeSystem($gradeSystem, $request->c);
         $this->gradeService->setGradeSystem($gradeSystem);
         $this->gradeService->update($request);
         $this->gradeService->computeGrade($request);

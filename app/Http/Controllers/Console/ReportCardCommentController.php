@@ -1,12 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Console;
 
+use App\Http\Requests\StoreReportCardCommentRequest;
 use App\ReportCardComment;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ReportCardCommentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +30,7 @@ class ReportCardCommentController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.reportCardComment.create');
     }
 
     /**
@@ -33,9 +39,14 @@ class ReportCardCommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreReportCardCommentRequest $request)
     {
-        //
+        $record = ReportCardComment::where('report_card_id', $request->report_card_id)->where('user_id', $request->user_id)->where('comment_by', auth()->user()->id)->where('role', $request->role)->first();
+        if ($record){
+            return redirect()->to($request->redirect)->with('warning', 'comment ignored. you\'ve commented already for the student earlier.');
+        }
+        ReportCardComment::create($request->all());
+        return redirect()->to($request->redirect)->with('success', 'report comment saved successfully');
     }
 
     /**
@@ -67,7 +78,7 @@ class ReportCardCommentController extends Controller
      * @param  \App\ReportCardComment  $reportCardComment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ReportCardComment $reportCardComment)
+    public function update(StoreReportCardCommentRequest $request, ReportCardComment $reportCardComment)
     {
         //
     }

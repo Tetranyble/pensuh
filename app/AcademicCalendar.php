@@ -16,7 +16,7 @@ class AcademicCalendar extends Model
     protected $dates = ['resumption', 'vacation'];
 
     public function getResumptionAttribute($value) {
-        return Carbon::parse($value)->format('Y-m-d');
+        return Carbon::parse($value)->format('l jS \\of F Y');
     }
     public function getVacationAttribute($value) {
         return Carbon::parse($value)->format('Y-m-d');
@@ -24,4 +24,6 @@ class AcademicCalendar extends Model
     public function session(){
         return $this->belongsTo(Session::class);
     }
+
+
 }

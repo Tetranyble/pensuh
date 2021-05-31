@@ -157,6 +157,16 @@ class User extends Authenticatable
     {
         return "{$this->firstname} {$this->lastname}";
     }
+    /**
+     * Get the user's full name.
+     *
+     * @return string
+     */
+    public function getLongNameAttribute()
+    {
+        $full = "{$this->firstname} {$this->middlename} {$this->lastname}";
+        return Str::title($full);
+    }
 
 //    public function setUDateOfBirthAttribute($value){
 //

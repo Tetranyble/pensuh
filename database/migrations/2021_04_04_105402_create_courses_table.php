@@ -20,7 +20,7 @@ class CreateCoursesTable extends Migration
             $table->integer('school_id')->unsigned()->nullable();
             $table->integer('course_type_id')->nullable();
             $table->text('body')->nullable();
-            $table->integer('grade_system_name')->nullable();
+            $table->string('grade_system_name')->nullable();
             $table->string('banner')->nullable()->default('school-1/class-single-banner.jpg');
             $table->string('photo')->nullable()->default('school-1/class1.jpg');
             $table->string('duration')->nullable();

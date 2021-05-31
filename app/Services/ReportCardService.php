@@ -64,6 +64,6 @@ class ReportCardService{
     public function getReportCard($report)
     {
         return ReportCard::findOrFail($report)
-            ->with('grade','student')->first();
+            ->with('grade','student', 'school', 'exam')->first();
     }
 }

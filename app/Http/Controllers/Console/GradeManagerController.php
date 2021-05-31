@@ -48,6 +48,9 @@ class GradeManagerController extends Controller
     public function store(GradeManagerRequest $request)
     {
         $exam = $this->gradeService->schoolExam();
+        $gradeSystemName = $this->gradeService->getCourseGradeSystemName($request->course_id);
+        $gradeSystemByName = $this->gradeService->getGradeSystemByname($gradeSystemName);
+        $this->gradeService->setGradeSystem($gradeSystemByName);
         $this->gradeService->masterSheet($request, $exam);
         return redirect()->route('grades.index', ['c' => $request->course_id, 'e' => $exam->id])->with('success', 'Master sheet generated successfully');
     }

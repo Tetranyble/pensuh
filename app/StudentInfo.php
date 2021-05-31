@@ -23,4 +23,5 @@ class StudentInfo extends Model
     public function group(){
         return $this->belongsTo(Group::class);
     }
+
 }
