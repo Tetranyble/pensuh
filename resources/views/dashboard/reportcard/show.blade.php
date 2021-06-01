@@ -9,8 +9,8 @@
             @endforeach
         </ul>
         <div class="row">
-            <div class="col-12">
-                <div class="card">
+            <div class="col-12" >
+                <div class="card" id="result">
                     <div class="card-body">
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                            <div class="row">
-                               <div class="col-md-8">
+                               <div class="col-md-8 col-sm-6">
                                    <table class=" table-bordered">
                                        <thead>
                                        <tr>
@@ -126,7 +126,7 @@
                                        </div>
                                    </div>
                                </div>
-                               <div class="col-md-2">
+                               <div class="col-md-2 col-sm-3">
                                    <table class=" table-bordered">
                                        <thead>
 
@@ -245,12 +245,19 @@
                                        </tbody>
                                    </table>
                                </div>
-                               <div class="col-md-2">
+                               <div class="col-md-2 col-sm-3">
                                    <table class="table  table-bordered no-wrap">
                                        <thead>
                                        <tr>
-                                           <th >
-                                               <small> <b>KEY TO RATINGS</b></small>
+                                           <th>
+                                               <small> <b>KEY TO RATINGS</b>
+                                               @forelse($report->school->psychometric as $p)
+                                                   <p>{{ $p->key . ' - ' . $p->name }}</p>
+
+                                               @empty
+                                                   <p>no data</p>
+                                               @endforelse
+                                               </small>
                                            </th>
                                        </tr>
                                        </thead>
@@ -299,7 +306,7 @@
                                 {{--                                    {{ $reports->links() }}--}}
                             </div>
                             <div class="text-right">
-                                <a href="#" class="btn btn-dark">Print</a>
+                                <button class="btn btn-dark" id="download">Print</button>
                                 <a href="#" class="btn btn-info">Download</a>
                             </div>
                         </div>
@@ -328,6 +335,28 @@
         vertical-align:middle;
     }
 </style>
-@endsection
 
+
+@endsection
+@section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+   <script>
+       $(function() {
+           $('#download').on('click', function (e) {
+               const invoice = document.getElementById("result");
+               console.log(invoice)
+               var opt = {
+                   margin: 1,
+                   filename: 'myfile.pdf',
+                   image: { type: 'jpeg', quality: 0.98 },
+                   html2canvas: { scale: 2 },
+                   jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
+               };
+               html2pdf().from(invoice).set(opt).save();
+           })
+       });
+
+   </script>
+    @parent
+@endsection
 

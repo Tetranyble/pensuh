@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Console\PsychologicalRating;
 use Illuminate\Database\Eloquent\Model;
 
 class School extends Model
@@ -32,5 +33,8 @@ class School extends Model
     public function admin(){
         //return $this->users()->map->whereHas('roles',function ($q){$q->where('slug', 'admin')->orWhere('slug', 'principal');})->first();
 
+    }
+    public function psychometric(){
+        return $this->hasMany(PsychologicalRating::class);
     }
 }

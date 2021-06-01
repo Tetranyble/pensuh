@@ -1,12 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Console;
 
 use App\Console\PsychologicalRating;
+use App\Http\Requests\StorePsychologicalRatingRequest;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PsychologicalRatingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,8 @@ class PsychologicalRatingController extends Controller
      */
     public function index()
     {
-        //
+        $psychometrics = PsychologicalRating::whereSchoolId(auth()->user()->school->id)->paginate(10);
+        return view('dashboard.psychometric.index', compact('psychometrics'));
     }
 
     /**
@@ -24,7 +32,7 @@ class PsychologicalRatingController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.psychometric.create');
     }
 
     /**
@@ -33,9 +41,10 @@ class PsychologicalRatingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePsychologicalRatingRequest $request)
     {
-        //
+        PsychologicalRating::create($request->all());
+        return redirect()->back()->with('success', 'metric saved successfully');
     }
 
     /**
@@ -55,9 +64,10 @@ class PsychologicalRatingController extends Controller
      * @param  \App\Console\PsychologicalRating  $psychologicalRating
      * @return \Illuminate\Http\Response
      */
-    public function edit(PsychologicalRating $psychologicalRating)
+    public function edit(PsychologicalRating $psychologicalRating, $id)
     {
-        //
+        $psychologicalRating = PsychologicalRating::findOrFail($id);
+        return view('dashboard.psychometric.edit', compact('psychologicalRating'));
     }
 
     /**
@@ -67,9 +77,11 @@ class PsychologicalRatingController extends Controller
      * @param  \App\Console\PsychologicalRating  $psychologicalRating
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PsychologicalRating $psychologicalRating)
+    public function update(StorePsychologicalRatingRequest $request, PsychologicalRating $psychologicalRating, $id)
     {
-        //
+        $p = PsychologicalRating::findOrFail($id);
+        $p->fill($request->all())->save();
+        return redirect()->route('psychometrics.index')->with('success', 'metric updated successfully');
     }
 
     /**

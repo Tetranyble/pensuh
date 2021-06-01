@@ -211,7 +211,23 @@
                         </ul>
                     </li>
                 @endcanany
-
+                @canany(['principal'])
+                    <li class="list-divider"></li>
+                    <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                                                 aria-expanded="false"><i data-feather="activity" class="feather-icon"></i><span
+                                class="hide-menu">Psychometric Rating </span></a>
+                        <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                            <li class="sidebar-item"><a href="{{ route('psychometrics.create') }}" class="sidebar-link"><span
+                                        class="hide-menu">Psychometric
+                                        </span></a>
+                            </li>
+                            <li class="sidebar-item"><a href="{{ route('psychometrics.index') }}" class="sidebar-link"><span
+                                        class="hide-menu">Psychometrics
+                                        </span></a>
+                            </li>
+                        </ul>
+                    </li>
+                @endcanany
 
 {{--                authentication --}}
                 <li class="sidebar-item">

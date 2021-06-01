@@ -11,7 +11,9 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Behavioural And Moral Rating</h4>
-                        <div class="d-flex pt-3">
+                        <div class="d-flex justify-content-between pt-3 pb-3">
+                            <div></div>
+                            <div><a href="{{ route('psychometrics.index') }}" class="btn btn-sm btn-outline-info">Psychometrics</a></div>
                         </div>
                         <form method="POST" action="{{ route('psychometrics.store') }}">
                             @csrf
@@ -31,7 +33,7 @@
                                             <label for="key">Key
                                                 <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('key')}}</span></span>
                                             </label>
-                                            <input name="key" class="form-control" id="key" type="text"
+                                            <input name="key" class="form-control" id="key" type="number" max="5"
                                                    placeholder="5/4/3..." value="{{ old('key') }}" >
                                         </div>
                                     </div>
