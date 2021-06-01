@@ -306,8 +306,8 @@
                                 {{--                                    {{ $reports->links() }}--}}
                             </div>
                             <div class="text-right">
-                                <button class="btn btn-dark" id="download">Print</button>
-                                <a href="#" class="btn btn-info">Download</a>
+                                <button class="btn btn-dark" id="download">Download</button>
+{{--                                <a href="#" class="btn btn-info">Download</a>--}}
                             </div>
                         </div>
 
@@ -318,45 +318,46 @@
         </div>
     </div>
 <style>
-    .verticalTableHeader {
-        text-align:center;
-        white-space:nowrap;
-        transform-origin:50% 50%;
-        -webkit-transform: rotate(90deg);
-        -moz-transform: rotate(-90deg);
-        -ms-transform: rotate(-90deg);
-        -o-transform: rotate(-90deg);
-        transform: rotate(-90deg);
-    }
-    .verticalTableHeader:before {
-        content:'';
-        padding-top:110%;/* takes width as reference, + 10% for faking some extra padding */
-        display:inline-block;
-        vertical-align:middle;
-    }
+    /*.verticalTableHeader {*/
+    /*    text-align:center;*/
+    /*    white-space:nowrap;*/
+    /*    transform-origin:50% 50%;*/
+    /*    -webkit-transform: rotate(90deg);*/
+    /*    -moz-transform: rotate(-90deg);*/
+    /*    -ms-transform: rotate(-90deg);*/
+    /*    -o-transform: rotate(-90deg);*/
+    /*    transform: rotate(-90deg);*/
+    /*}*/
+    /*.verticalTableHeader:before {*/
+    /*    content:'';*/
+    /*    padding-top:110%;!* takes width as reference, + 10% for faking some extra padding *!*/
+    /*    display:inline-block;*/
+    /*    vertical-align:middle;*/
+    /*}*/
 </style>
 
 
 @endsection
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
-   <script>
-       $(function() {
-           $('#download').on('click', function (e) {
-               const invoice = document.getElementById("result");
-               console.log(invoice)
-               var opt = {
-                   margin: 1,
-                   filename: 'myfile.pdf',
-                   image: { type: 'jpeg', quality: 0.98 },
-                   html2canvas: { scale: 2 },
-                   jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
-               };
-               html2pdf().from(invoice).set(opt).save();
-           })
-       });
+    <script>
+        $(function() {
+            $('#download').on('click', function (e) {
 
-   </script>
+
+                var opt = {
+                    margin: 0,
+                    filename: 'myfile.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { unit: 'in', format: 'A3', orintation: 'landscape' }
+                };
+                html2pdf().from(document.getElementById('result')).set(opt).save();
+            })
+        });
+
+    </script>
     @parent
 @endsection
+
 

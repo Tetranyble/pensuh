@@ -356,9 +356,7 @@
                 transform: scale(0.8);
             }
         }
-        body{
-            transform: scale(0.8);
-        }
+
     </style>
 
 
