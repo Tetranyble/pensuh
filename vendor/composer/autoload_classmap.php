@@ -55,6 +55,7 @@ return array(
     'App\\Http\\Controllers\\BlogController' => $baseDir . '/app/Http/Controllers/BlogController.php',
     'App\\Http\\Controllers\\ClassesController' => $baseDir . '/app/Http/Controllers/ClassesController.php',
     'App\\Http\\Controllers\\Console\\CourseController' => $baseDir . '/app/Http/Controllers/Console/CourseController.php',
+    'App\\Http\\Controllers\\Console\\GenerateReportController' => $baseDir . '/app/Http/Controllers/Console/GenerateReportController.php',
     'App\\Http\\Controllers\\Console\\GradeManagerController' => $baseDir . '/app/Http/Controllers/Console/GradeManagerController.php',
     'App\\Http\\Controllers\\Console\\GradesController' => $baseDir . '/app/Http/Controllers/Console/GradesController.php',
     'App\\Http\\Controllers\\Console\\ImpersonateUserController' => $baseDir . '/app/Http/Controllers/Console/ImpersonateUserController.php',

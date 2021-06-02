@@ -1,15 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"  crossorigin="anonymous">
-    <title>Document</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>{{ $report->student->fullname }}</title>
+    <link href="{{ asset('../assets/extra-libs/c3/c3.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('../assets/libs/chartist/dist/chartist.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('../assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="{{ asset('../dist/css/style.min.css') }}" rel="stylesheet">
+
 </head>
 <body>
-    <div class="container-fluid">
-
+<div class="container-fluid">
+    @include('components.flash-message')
+    <ul>
+        @foreach($errors->all() as $message)
+            <li class="text-danger">{{ $message }}</li>
+        @endforeach
+    </ul>
     <div class="row" >
         <div class="col-12" >
             <div class="card" id="result">
@@ -25,9 +31,9 @@
                             </div>
                             <div class="text-center">
                                 @if($report->school->result_logo)
-                                    {{--                                        <img src="{{ asset('storage/'. $report->school->result_logo) }}" alt="{{ $report->school->school_name }}" title="{{ $report->school->school_name }}">--}}
+{{--                                    <img src="{{ asset('storage/'. $report->school->result_logo) }}" alt="{{ $report->school->school_name }}" title="{{ $report->school->school_name }}">--}}
                                 @else
-                                    {{--                                        <img src="{{ asset('storage/'. $report->school->school_logo) }}" alt="{{ $report->school->school_name }}" title="{{ $report->school->school_name }}">--}}
+{{--                                    <img src="{{ asset('storage/'. $report->school->school_logo) }}" alt="{{ $report->school->school_name }}" title="{{ $report->school->school_name }}">--}}
                                 @endif
                                 @if($report->school->result_school_name)
                                     <h3 class="p-2 text-capitalize">{{ \Illuminate\Support\Str::upper($report->school->result_school_name) }}</h3>
@@ -127,7 +133,6 @@
                             <div class="col-md-2 col-sm-3">
                                 <table class=" table-bordered">
                                     <thead>
-
                                     <tr>
                                         <th class="pr-2 pl-2"><small><b>Social Behaviour</b></small></th>
                                         <th class="pr-2 pl-2"><small><b>Rating</b></small></th>
@@ -259,7 +264,6 @@
                                         </th>
                                     </tr>
                                     </thead>
-
                                 </table>
                                 <table class="table  table-bordered no-wrap">
                                     <thead>
@@ -313,23 +317,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-body">
-                    <div class="form-actions d-flex justify-content-between">
-                        <div>
-                            {{--                                    {{ $reports->links() }}--}}
-                        </div>
-                        <div class="text-right">
-                            <button class="btn btn-dark" id="download">Print</button>
-                            <a href="#" class="btn btn-info">Download</a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
         </div>
     </div>
 </div>
 </body>
-</html>

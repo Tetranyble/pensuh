@@ -66,4 +66,10 @@ class ReportCardService{
         return ReportCard::findOrFail($report)
             ->with('grade','student', 'school', 'exam')->first();
     }
+    public function getReportCardWithGradeStudentSchoolExam($section, $exam)
+    {
+        return ReportCard::where('section_id', $section)
+            ->where('exam_id', $exam)
+            ->with('grade','student', 'school', 'exam')->paginate(1);
+    }
 }

@@ -712,6 +712,7 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         'App\\Http\\Controllers\\BlogController' => __DIR__ . '/../..' . '/app/Http/Controllers/BlogController.php',
         'App\\Http\\Controllers\\ClassesController' => __DIR__ . '/../..' . '/app/Http/Controllers/ClassesController.php',
         'App\\Http\\Controllers\\Console\\CourseController' => __DIR__ . '/../..' . '/app/Http/Controllers/Console/CourseController.php',
+        'App\\Http\\Controllers\\Console\\GenerateReportController' => __DIR__ . '/../..' . '/app/Http/Controllers/Console/GenerateReportController.php',
         'App\\Http\\Controllers\\Console\\GradeManagerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Console/GradeManagerController.php',
         'App\\Http\\Controllers\\Console\\GradesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Console/GradesController.php',
         'App\\Http\\Controllers\\Console\\ImpersonateUserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Console/ImpersonateUserController.php',

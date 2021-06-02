@@ -34,7 +34,7 @@ Route::resource('teachers', 'TeacherController');
 Route::resource('attendances', 'AttendanceController');
 Route::resource('qrcodes', 'QrcodeController');
 Route::resource('galleries', 'GalleryController');
-
+Route::resource('signatures', 'SignatureController')->middleware('auth');
 
 Route::resource('roles', 'RolesController')->middleware('can:edit');
 
@@ -51,6 +51,7 @@ Route::group([ 'prefix' => 'console', 'namespace' => 'Console', 'middleware' => 
 
     Route::resource('staff', 'StaffController');
     Route::resource('report', 'ReportCardManagerController');
+    Route::resource('download_reports', 'GenerateReportController');
     Route::resource('comments', 'ReportCardCommentController');
     Route::resource('psychometrics', 'PsychologicalRatingController');
 

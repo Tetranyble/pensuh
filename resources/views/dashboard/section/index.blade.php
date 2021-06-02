@@ -61,6 +61,7 @@
                                                     <a class="btn btn-sm btn-outline-danger" href="{{ route('sections.edit', $section) }}" title="update this class section">Edit</a>
                                                         <a href="{{ route('report.create', ['section' => $section->id, 'form_teacher' => $section->form_teacher]) }}" title="generate new reports for the current section and active exam" class="btn btn-sm btn-outline-dark">Create Reports</a>
                                                     <a href="{{ route('report.index', ['section' => $section->id, 'form_teacher' => $section->form_teacher]) }}" title="view generatd report cards for the current section and active exam" class="btn btn-sm btn-outline-success">Reports</a>
+{{--                                                    <a onclick="return false;" title="glitches" disabled="disabled" href="{{ route('download_reports.index', ['section' => $section->id, 'form_teacher' => $section->form_teacher]) }}" title="generate and download report cards for the current section and active exam" class="btn btn-sm btn-outline-success">Download</a>--}}
                                                 @else
                                                     <a onclick="return false;" title="Unauthorized" class="btn btn-sm btn-outline-danger" href="{{ route('sections.edit', $section) }}">Edit</a>
                                                 @endcan
