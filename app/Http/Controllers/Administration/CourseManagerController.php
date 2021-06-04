@@ -60,7 +60,7 @@ class CourseManagerController extends Controller
     public function store(CourseStoreRequest $request)
     {
         $this->fileService->save($request,'banner_x','banner',$request->name,['width'=>1919, 'height' => 700]);
-        $this->fileService->save($request,'photo_x','banner',$request->name,['width'=>800, 'height'=>533]);
+        $this->fileService->save($request,'photo_x','photo',$request->name,['width'=>800, 'height'=>533]);
         $course = Course::create($request->except(['teacher','schedule_id','_token','photo_x','banner_x']));
         $course->assignTeacherTo($request->teacher);
         $course->attachSchedule($request->schedule_id);
