@@ -9,7 +9,7 @@
             @endforeach
         </ul>
         <div class="row">
-            <div class="col-12">
+            <div class="col-12" >
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Student's Bio</h4>
@@ -44,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            <form action="{{ route('student.store') }}" method="POST" enctype="multipart/form-data">
+            <form id="studentForm" action="{{ route('student.store') }}" method="POST" enctype="multipart/form-data">
                 <div class="col-12">
                 <div class="card">
                     <div class="card-body">
@@ -285,7 +285,7 @@
                     </div>
                 </div>
             </div>
-                <br>
+
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
@@ -520,3 +520,25 @@
     </div>
 @endsection
 
+@section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+    <script>
+        $(function() {
+            jQuery(document).bind("keyup keydown", function(e){
+                if(e.ctrlKey && e.keyCode == 80){
+                    console.log('hello world')
+                    var opt = {
+                        margin: 0,
+                        filename: 'studentform.pdf',
+                        image: { type: 'jpeg', quality: 0.98 },
+                        html2canvas: { scale: 1 },
+                        jsPDF: { unit: 'in', format: 'A4', orientation: 'portrait' }
+                    };
+                    html2pdf().from(document.getElementById('studentForm')).set(opt).save();
+                }
+            });
+
+        });
+    </script>
+    @parent
+@endsection
