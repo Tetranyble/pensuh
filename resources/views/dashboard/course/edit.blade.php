@@ -90,7 +90,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="photo_x">Photo
-                                                <span class="text-danger">800*533 (required)<span
+                                                <span class="text-danger">800*533 (optional)<span
                                                         class="text-danger h6">{{$errors->first('photo_x')}}</span></span>
                                             </label>
                                             <div class="custom-file">

@@ -8,6 +8,7 @@ use App\CourseType;
 use App\Department;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CourseStoreRequest;
+use App\Http\Requests\CourseUpdateRequest;
 use App\Schedule;
 use App\Section;
 use App\Services\UploadHandler;
@@ -61,9 +62,12 @@ class CourseManagerController extends Controller
     {
         $this->fileService->save($request,'banner_x','banner',$request->name,['width'=>1919, 'height' => 700]);
         $this->fileService->save($request,'photo_x','photo',$request->name,['width'=>800, 'height'=>533]);
-        $course = Course::create($request->except(['teacher','schedule_id','_token','photo_x','banner_x']));
-        $course->assignTeacherTo($request->teacher);
-        $course->attachSchedule($request->schedule_id);
+        foreach ($request->sections as $section){
+            $request->merge(['section_id' => $section]);
+            $course = Course::create($request->except(['teacher','schedule_id','_token','photo_x','banner_x', 'sections']));
+            $course->assignTeacherTo($request->teacher);
+            $course->attachSchedule($request->schedule_id);
+        }
         return redirect()->back()->with('success', 'school updated successfully');
     }
 
@@ -101,7 +105,7 @@ class CourseManagerController extends Controller
      * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(CourseStoreRequest $request, Course $course)
+    public function update(CourseUpdateRequest $request, Course $course)
     {
         $this->fileService->save($request,'banner_x','banner',$request->name,['width'=>1919, 'height' => 700]);
         $this->fileService->save($request,'photo_x','photo',$request->name,['width' =>800, 'height' =>533]);

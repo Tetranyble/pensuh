@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
 
-class CourseStoreRequest extends FormRequest
+class CourseUpdateRequest extends FormRequest
 {
     public function passedValidation()
     {
@@ -33,7 +33,7 @@ class CourseStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'sections' => 'required|array',
+            'section_id' => 'required|numeric',
             'course_type_id' => 'required|numeric',
             'body' => 'required|string|max:6000',
             'banner_x' => 'nullable|mimes:jpeg,png,jpg|max:3240|dimensions:min_width=1919,min_height=700',

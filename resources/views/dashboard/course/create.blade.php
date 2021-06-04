@@ -39,24 +39,6 @@
                                                    placeholder="enter course duration" value="{{ old('duration') }}">
                                         </div>
                                     </div>
-
-                                    <div class="col-md-6">
-                                        <div class="form-group {{($errors->has('section_id')) ? 'has-error' : ''}}">
-                                            <label for="section_id">Section
-                                                <span class="text-danger"><span
-                                                        class="text-danger h6">{{$errors->first('section_id')}}</span></span>
-                                            </label>
-                                            <select name="section_id" class="form-control" id="section_id" type="text">
-                                                <option>select class section</option>
-                                                @forelse($sections as $section)
-                                                    <option
-                                                        {{ old('section_id', request('section')) == $section->id ? "selected" : "" }} value="{{ $section->id }}">{{ $section->classes->name .' / '.$section->name }}</option>
-                                                @empty
-                                                    <option>No data</option>
-                                                @endforelse
-                                            </select>
-                                        </div>
-                                    </div>
                                     <div class="col-md-6">
                                         <div class="form-group {{($errors->has('course_type_id')) ? 'has-error' : ''}}">
                                             <label for="course_type_id">Course Type
@@ -102,10 +84,7 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
@@ -151,6 +130,33 @@
                                         </select>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Assign Course to Class Section</h4>
+                            <p class="text-warning">Careful of time table/schedule collision</p>
+                            <div class="form-body">
+                                <div class="row">
+                                    @forelse($sections as $section)
+                                            <div class="col-md-6">
+                                                <div class="form-group {{($errors->has('sections')) ? 'has-error' : ''}}">
+                                                    <fieldset class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" {{ in_array($section->id, old('sections') ?: []) ? "checked" : "" }} name="sections[]" value="{{ $section->id }}"> {{ $section->classes->name .' / '.$section->name }}
+                                                        </label>
+                                                    </fieldset>
+                                                </div>
+                                            </div>
+                                    @empty
+                                        <p>no roles</p>
+                                    @endforelse
+
+                                </div>
+
                             </div>
                         </div>
                     </div>
