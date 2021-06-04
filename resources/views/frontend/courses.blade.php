@@ -61,7 +61,7 @@
                         </div>
                     </div>
                     <!--classes-sec end-->
-                    <div class="mdp-pagiation">
+                    <div class="mdp-pagiation pb-3">
                        {{ $courses->links() }}
                     </div>
                     <!--pagination-end-->
