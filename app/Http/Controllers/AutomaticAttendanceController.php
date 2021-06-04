@@ -4,18 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Attendance;
 use App\AttendanceType;
-
 use App\Http\Requests\StoreAttendanceRequest;
-
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
 
-class AttendanceController extends Controller
+class AutomaticAttendanceController extends Controller
 {
-    public function __construct()
-    {
-
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -33,8 +27,8 @@ class AttendanceController extends Controller
      */
     public function create()
     {
-        $attendanceTypes = AttendanceType::all();
-        return view('dashboard.attendance.create', compact('attendanceTypes'));
+        $attendanceTypes = AttendanceType::get();
+        return view('dashboard.attendance.automatic', compact('attendanceTypes'));
     }
 
     /**
@@ -46,9 +40,19 @@ class AttendanceController extends Controller
     public function store(StoreAttendanceRequest $request)
     {
         $att = new Attendance();
-        $att->create($request->all());
+        $att = $att->where('user_id', $request->code)->where('created_at', Carbon::today())->where('attendance_type_id', $request->attendance_type_id)->first();
+        if ($att){
+            $att->status = 1;
+            $att->save();
+        }else{
+            $att = $att->create($request->all());
+            //fire of mass attendance creation
+        }
+        $user = User::whereCode($request->code)->first();
+        return response()->json(
+             ['message'=>'attendance taken successfully', 'user' => $user]
+        );
 
-        return redirect()->back()->with('success', 'attendance marked successfully');
     }
 
     /**

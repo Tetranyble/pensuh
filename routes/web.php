@@ -31,7 +31,10 @@ Route::resource('admissions', 'AdmissionController');
 Route::resource('syllabi', 'SyllabusController');
 Route::resource('students', 'StudentController');
 Route::resource('teachers', 'TeacherController');
+Route::get('attendances/automatic', 'AutomaticAttendanceController@create')->name('attendances.automatic')->middleware('auth');
+Route::post('attendances/automatic', 'AutomaticAttendanceController@store')->name('attendances.automatics')->middleware('auth');
 Route::resource('attendances', 'AttendanceController');
+
 Route::resource('qrcodes', 'QrcodeController');
 Route::resource('galleries', 'GalleryController');
 Route::resource('signatures', 'SignatureController')->middleware('auth');

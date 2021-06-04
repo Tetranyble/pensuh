@@ -53,7 +53,7 @@
                                         <td>{{ $user->phone }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td style="white-space: initial"><small>{{ $user->roles->flatten()->pluck('name') }}</small></td>
-                                        <td>{{ $user->school->school_name }}</td>
+                                        <td>{{ $user->school->school_name_code }}</td>
                                         <td ><small>
                                                 @can('master')
                                                     <a class="btn btn-sm btn-outline-warning" href="{{ route('impersonates.enter') }}" aria-expanded="false"

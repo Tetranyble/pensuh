@@ -16,7 +16,8 @@ mix.js('resources/js/app.js', 'public/js')
 
     .copyDirectory('resources/assets', 'public/assets')
     .copyDirectory('resources/dist', 'public/dist')
-    .copyDirectory('resources/favicon', 'public');
+    .copyDirectory('resources/favicon', 'public')
+    .copyDirectory('resources/js/scanner.min.js', 'public/js');
 /*
 .styles([
     'resources/dist/css/style.css',

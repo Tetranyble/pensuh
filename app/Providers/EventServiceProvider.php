@@ -2,7 +2,11 @@
 
 namespace App\Providers;
 
+use App\Attendance;
+use App\Events\AttendanceEvent;
 use App\Grade;
+use App\Listeners\TakeAttendance;
+use App\Observers\AttendanceObserver;
 use App\Observers\GradeObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -21,7 +25,12 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
             'App\Listeners\UserCode',
         ],
-
+        AttendanceEvent::class => [
+            TakeAttendance::class,
+//            'App\Listeners\TakeAttendance',
+//            'App\Listeners\AttendanceMailNotification',
+//            'App\Listeners\AttendanceSmsNotification',
+        ]
 
     ];
 
@@ -34,6 +43,6 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
         Grade::observe(GradeObserver::class);
-        //
+        Attendance::observe(AttendanceObserver::class);
     }
 }

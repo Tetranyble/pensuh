@@ -15,11 +15,11 @@ class CreateAttendancesTable extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unsigned();
-            $table->integer('attendant')->unsigned()->nullable();
-            $table->integer('school_id')->unsigned()->nullable();
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('taken_by')->unsigned()->nullable();
+            $table->bigInteger('school_id')->unsigned()->nullable();
             $table->integer('attendance_type_id')->unsigned()->nullable();
-            $table->boolean('present')->default(false)->nullable();
+            $table->boolean('status')->default(false)->nullable();
             $table->timestamps();
         });
     }

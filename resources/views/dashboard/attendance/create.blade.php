@@ -19,49 +19,24 @@
                                                 <span class="text-danger"><span  class="text-danger h6">{{$errors->first('attendance_type_id')}}</span></span>
                                             </label>
                                             <select name="attendance_type_id" class="form-control" id="attendance_type_id" type="text">
-
-                                                @canany([ 'admin', 'principal','bursar', 'master'])
-                                                    <option value="4">staff signin</option>
-                                                    <option value="5">staff signout</option>
-                                                @endcanany
-                                                    @canany([ 'admin', 'principal','bursar', 'master', 'form_teacher'])
-                                                        <option value="6">morning attendance</option>
-                                                        <option value="7">afternoon attendance</option>
-                                                    @endcanany
-                                                    @canany([ 'admin', 'principal','bursar', 'master', 'form_teacher','teacher'])
-                                                        <option value="8">class attendance</option>
-                                                        <option value="1">examination Attendance</option>
-                                                    @endcanany
-                                                    @canany([ 'admin', 'principal','bursar', 'master', 'form_teacher','teacher','security'])
-                                                        <option value="2">child safety (arrived)</option>
-                                                        <option value="3">child safety (picked up)</option>
-
-                                                    @endcanany
+                                                @forelse($attendanceTypes as $attendance)
+                                                    <option value="{{ $attendance->id }}">{{ $attendance->name }}</option>
+                                                @empty
+                                                    <option value="">No Attendance Data</option>
+                                                @endforelse
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group {{($errors->has('user')) ? 'has-error' : ''}}">
-                                            <label for="user">User Identity Number
-                                                <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('user')}}</span></span>
+                                        <div class="form-group {{($errors->has('user_id')) ? 'has-error' : ''}}">
+                                            <label for="user_id">User Identity Number
+                                                <span class="text-danger">*<span class="text-danger h6">{{$errors->first('user_id')}}</span></span>
                                             </label>
-                                            <input name="user" class="form-control" id="user_id" type="text"
-                                                   placeholder="enter user id" value="{{ old('user') }}">
+                                            <input name="user_id" class="form-control" id="user_id" type="number"
+                                                   placeholder="enter user code" value="{{ old('user_id') }}">
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group {{($errors->has('present')) ? 'has-error' : ''}}">
-                                            <label for="present">Mark
-                                                <span class="text-danger"><span  class="text-danger h6">{{$errors->first('present')}}</span></span>
-                                            </label>
-                                            <select name="present" class="form-control" id="present" type="text">
-                                                <option>mark attendance</option>
-                                                <option value="0">absent</option>
-                                                <option value="1">present</option>
-                                                <option value="1">pickup</option>
-                                            </select>
-                                        </div>
-                                    </div>
+
                                 </div>
 
                             </div>

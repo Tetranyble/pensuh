@@ -109,7 +109,7 @@
                         @forelse($courses as $course)
                             <div class="col-lg-3">
                                 <div class="classes-col">
-                                    <div class="class-thumb"><img src="{{ asset('storage/'.$course->photo) }}" alt="" class="w-100">
+                                    <div class="class-thumb"><img src="{{ asset($course->photo) }}" alt="" class="w-100">
                                         {{--                                        <a href="#" title="" class="crt-btn"><img src="assets/img/icon10.png" alt=""></a>--}}
                                     </div>
                                     <div class="class-info">
