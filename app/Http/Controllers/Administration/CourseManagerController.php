@@ -32,7 +32,7 @@ class CourseManagerController extends Controller
      */
     public function index()
     {
-        $courses = Course::whereSchoolId(auth()->user()->school->id)->paginate();
+        $courses = Course::whereSchoolId(auth()->user()->school->id)->paginate(20);
         return view('dashboard.course.index', compact('courses'));
     }
 
