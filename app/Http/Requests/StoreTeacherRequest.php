@@ -4,13 +4,14 @@ namespace App\Http\Requests;
 
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class StoreTeacherRequest extends FormRequest
 {
     public function passedValidation()
     {
         $this->merge([
-            'username' => $this->firstname . '.' . $this->lastname
+            'username' => Str::slug($this->firstname . '.' . $this->lastname),
         ]);
     }
     /**

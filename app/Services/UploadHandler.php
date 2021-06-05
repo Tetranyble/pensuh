@@ -14,7 +14,7 @@ class UploadHandler {
             if ($request->has($nameOnRequest)){
                 $photo = $request->file($nameOnRequest);
                 if(!Storage::exists('school-'.$request->school_id)){
-                    Storage::makeDirectory('public/school-'.auth()->user()->school->id, 0755, true, true);
+                    Storage::makeDirectory('public/school-'.$request->school_id, 0755, true, true);
                 }
                 //$photos = Image::make($photo->getRealPath())->resize($dimension['width'] ? $dimension['width'] : getimagesize($photo)[0], $dimension['height'] ? $dimension['height'] : getimagesize($photo)[1]);
                 $photos = $this->resizeImage(Image::make($photo->getRealPath()), $dimension['width'] ? $dimension['width'] : getimagesize($photo)[0]);
@@ -60,5 +60,24 @@ class UploadHandler {
 
         $image->resize($newWidth, $newHeight);
         return $image;
+    }
+
+    public function favicon(FormRequest $request, $nameOnRequest, $dbFieldName, $saveFileNameAs){
+        try{
+            if ($request->has($nameOnRequest)){
+                $photo = $request->file($nameOnRequest);
+                if(!Storage::exists('school-'.$request->school_id)){
+                  Storage::makeDirectory('public/school-'.$request->school_id, 0755, true, true);
+                }
+                $doc = time().Str::slug($saveFileNameAs) . '.' . $photo->getClientOriginalExtension();
+                $request->merge([$dbFieldName => 'school-'.$request->school_id.'/'.$doc]);
+                $photo->storeAs('school-'.$request->school_id, $doc, 'public');
+                return $request;
+            }
+        }catch (\Exception $e){
+            dd($e);
+            return redirect()->back()->with('error', 'Oops something went wrong!');
+        }
+
     }
 }

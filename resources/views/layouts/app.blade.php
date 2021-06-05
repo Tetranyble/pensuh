@@ -13,7 +13,7 @@
     @yield('styles')
 
 {{--    webcrawler script and social media spider crawling data--}}
-{{--    <link rel="shortcut icon" href="{{ asset('asset/images/favicon.ico') }}" type="image/x-icon">--}}
+    <link rel="icon" href="{{ asset('storage/'.$home->favicon) }}" type="image/x-icon">
 {{--    <meta name="title" content="{{ config('app.name') }} - @yield('title')">--}}
 {{--    <meta name="description" content="{{ config('app.name') }} - cryptocurrency, forex and stock investment platform">--}}
 {{--    <meta name="keywords" content="cryptocurrency, forex, stock, investment, platform, earn money online,">--}}

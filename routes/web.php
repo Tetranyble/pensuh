@@ -90,7 +90,7 @@ Route::group([ 'middleware' => 'auth'], function(){
 //Route::middleware(['auth', 'admin'])->prefix('academic')->name('academic.')->group(function () {});
 
 Route::middleware(['auth'])->prefix('master')->namespace('Console')->group(function(){
-
+    Route::resource('favicons', 'FaviconController');
     Route::resource('schools', 'SchoolController');
     Route::post('impersonates/enter', 'ImpersonateUserController@impersonate')->name('impersonates.enter');
 //    Route::get('impersonates/leave', 'ImpersonateUserController@impersonate')->name('impersonates.leave');

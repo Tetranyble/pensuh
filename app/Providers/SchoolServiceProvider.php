@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Classes;
 use App\School;
 use App\Services\Schools;
 use Illuminate\Support\ServiceProvider;
@@ -29,5 +30,6 @@ class SchoolServiceProvider extends ServiceProvider
             $school = School::whereDomain($app['config']->get('app.url'))->first();
             return new Schools($school);
         });
+
     }
 }

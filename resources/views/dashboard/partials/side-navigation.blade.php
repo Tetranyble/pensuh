@@ -156,6 +156,10 @@
                                     class="hide-menu"> My School
                                         </span></a>
                         </li>
+                        <li class="sidebar-item"><a href="{{ route('favicons.create') }}" class="sidebar-link"><span
+                                    class="hide-menu"> Favicon
+                                        </span></a>
+                        </li>
                     </ul>
                 </li>
 
