@@ -25,6 +25,20 @@
                             <div class="card-body">
                                 <h4 class="card-title">{{ $course->name }}</h4>
                                 <p class="card-text">{{ Str::limit(strip_tags($course->body), 100) }}</p>
+                                @forelse($course->schedules as $schedule)
+                                    <p><span>{{ Str::ucfirst($schedule->day) }}</span> <span>{{ $schedule->start . ' - ' . $schedule->end }}</span></p>
+                                @empty
+                                    <p><span>No Time Table</span></p>
+                                @endforelse
+                                @if(auth()->user()->roles->flatten()->pluck('slug')->contains('student'))
+                                <div class="d-flex flex-wrap align-items-center pb-3">
+                                    <div class="posted-by">
+                                        <img style="width: 1.5rem;" src="{{ asset('storage/'.$course->teacher->first()->photo) }}" alt="{{ $course->teacher->first()->fullname }}">
+                                        <a target="_blank" href="{{ route('teachers.show', $course->teacher->first()) }}" title="">{{ $course->teacher->first()->fullname }}</a>
+                                        {{--                                            </div><strong class="price">$45</strong>--}}
+                                    </div>
+                                </div>
+                                @endif
                                 <a target="_blank" href="{{ route('courses.show', $course->id) }}" class="btn btn-sm btn-outline-primary">View</a>
                                 @canany(['admin', 'principal', 'teacher', 'form_teacher', 'vice_principal_admin', 'director', 'vice_principal_academy'])
                                     <a href="{{ route('grades.create', ['t'=> $course->teacher->first()->id, 'c' => $course->id, 's' => $course->section->id, 'course_name', $course->slug])}}" class="btn btn-sm btn-outline-secondary">Score</a>

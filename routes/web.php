@@ -31,9 +31,12 @@ Route::resource('admissions', 'AdmissionController');
 Route::resource('syllabi', 'SyllabusController');
 Route::resource('students', 'StudentController');
 Route::resource('teachers', 'TeacherController');
+Route::resource('reports', 'ReportCardController');
 Route::get('attendances/automatic', 'AutomaticAttendanceController@create')->name('attendances.automatic')->middleware('auth');
 Route::post('attendances/automatic', 'AutomaticAttendanceController@store')->name('attendances.automatics')->middleware('auth');
 Route::resource('attendances', 'AttendanceController');
+Route::resource('receipts', 'ReceiptController')->middleware('auth');
+Route::resource('transactions', 'TransactionController')->middleware('auth');
 
 Route::resource('qrcodes', 'QrcodeController');
 Route::resource('galleries', 'GalleryController');
@@ -64,7 +67,7 @@ Route::group([ 'prefix' => 'console', 'namespace' => 'Console', 'middleware' => 
     Route::resource('mastersheets', 'GradeManagerController');
 });
 
-
+// sectup namespace route
 Route::group([ 'prefix' => 'setup', 'namespace' => 'Administration','middleware' => 'auth', 'name' => 'setup'], function(){
     Route::get('admin/create', 'AdminController@create')->name('admin.create');
     Route::post('admin/store', 'AdminController@store')->name('admin.store');

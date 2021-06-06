@@ -19,6 +19,7 @@
                                 </div>
                                 <div class="form-actions">
                                     <div class="text-right">
+                                        <button id="clear_signature" type="submit"  class="btn btn-info">Clear</button>
                                         <button id="save_signature" type="submit" class="btn btn-info">Update</button>
                                     </div>
                                 </div>
@@ -672,11 +673,13 @@
 
         $(document).ready(function () {
 
+            /* Clear signature pad*/
+            $(document).on('click', '#clear_signature', function(event) {
+                signaturePad.clear()
+            }
             /* Save signature */
             $(document).on('click', '#save_signature', function(event) {
-                console.log('hello world')
                 event.preventDefault();
-
                 $.ajax({
                     url: "{{ route('signatures.store') }}",
                     type: "POST",

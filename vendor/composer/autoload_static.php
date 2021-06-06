@@ -95,6 +95,7 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         '507d7a825db0ba8319f9dd335c46057a' => __DIR__ . '/..' . '/lab404/laravel-impersonate/src/helpers.php',
         '880d9aa7c2c689853e94e8a3794c8282' => __DIR__ . '/..' . '/mavinoo/laravel-batch/src/Common/Helpers.php',
+        'bab4ed692c1fd3872849227e2a85791e' => __DIR__ . '/..' . '/unicodeveloper/laravel-paystack/src/Support/helpers.php',
         '2bdaa6ef545278e06bf77098ec29abe8' => __DIR__ . '/../..' . '/app/Helpers/ApplicationHelper.php',
     );
 
@@ -119,6 +120,10 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         array (
             'Whoops\\' => 7,
             'Webmozart\\Assert\\' => 17,
+        ),
+        'U' => 
+        array (
+            'Unicodeveloper\\Paystack\\' => 24,
         ),
         'T' => 
         array (
@@ -286,6 +291,10 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
+        ),
+        'Unicodeveloper\\Paystack\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/unicodeveloper/laravel-paystack/src',
         ),
         'TijsVerkoyen\\CssToInlineStyles\\' => 
         array (
@@ -714,6 +723,7 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         'App\\Http\\Controllers\\BlogController' => __DIR__ . '/../..' . '/app/Http/Controllers/BlogController.php',
         'App\\Http\\Controllers\\ClassesController' => __DIR__ . '/../..' . '/app/Http/Controllers/ClassesController.php',
         'App\\Http\\Controllers\\Console\\CourseController' => __DIR__ . '/../..' . '/app/Http/Controllers/Console/CourseController.php',
+        'App\\Http\\Controllers\\Console\\FaviconController' => __DIR__ . '/../..' . '/app/Http/Controllers/Console/FaviconController.php',
         'App\\Http\\Controllers\\Console\\GenerateReportController' => __DIR__ . '/../..' . '/app/Http/Controllers/Console/GenerateReportController.php',
         'App\\Http\\Controllers\\Console\\GradeManagerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Console/GradeManagerController.php',
         'App\\Http\\Controllers\\Console\\GradesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Console/GradesController.php',
@@ -745,6 +755,7 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         'App\\Http\\Controllers\\LanguageController' => __DIR__ . '/../..' . '/app/Http/Controllers/LanguageController.php',
         'App\\Http\\Controllers\\PublishExamController' => __DIR__ . '/../..' . '/app/Http/Controllers/PublishExamController.php',
         'App\\Http\\Controllers\\QrcodeController' => __DIR__ . '/../..' . '/app/Http/Controllers/QrcodeController.php',
+        'App\\Http\\Controllers\\ReceiptController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReceiptController.php',
         'App\\Http\\Controllers\\ReligionController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReligionController.php',
         'App\\Http\\Controllers\\ReportCardController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReportCardController.php',
         'App\\Http\\Controllers\\RolesController' => __DIR__ . '/../..' . '/app/Http/Controllers/RolesController.php',
@@ -755,8 +766,10 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         'App\\Http\\Controllers\\StudentController' => __DIR__ . '/../..' . '/app/Http/Controllers/StudentController.php',
         'App\\Http\\Controllers\\SyllabusController' => __DIR__ . '/../..' . '/app/Http/Controllers/SyllabusController.php',
         'App\\Http\\Controllers\\TeacherController' => __DIR__ . '/../..' . '/app/Http/Controllers/TeacherController.php',
+        'App\\Http\\Controllers\\TransactionController' => __DIR__ . '/../..' . '/app/Http/Controllers/TransactionController.php',
         'App\\Http\\Controllers\\UserIdentityController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserIdentityController.php',
         'App\\Http\\Controllers\\UsersController' => __DIR__ . '/../..' . '/app/Http/Controllers/UsersController.php',
+        'App\\Http\\Controllers\\VerifyParentController' => __DIR__ . '/../..' . '/app/Http/Controllers/VerifyParentController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -769,6 +782,7 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\AttendanceStoreRequest' => __DIR__ . '/../..' . '/app/Http/Requests/AttendanceStoreRequest.php',
         'App\\Http\\Requests\\CourseStoreRequest' => __DIR__ . '/../..' . '/app/Http/Requests/CourseStoreRequest.php',
+        'App\\Http\\Requests\\CourseUpdateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/CourseUpdateRequest.php',
         'App\\Http\\Requests\\GradeManagerRequest' => __DIR__ . '/../..' . '/app/Http/Requests/GradeManagerRequest.php',
         'App\\Http\\Requests\\ImpersinateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ImpersinateRequest.php',
         'App\\Http\\Requests\\ReportCardManagerRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ReportCardManagerRequest.php',
@@ -791,6 +805,7 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         'App\\Http\\Requests\\StoreSyllabusRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StoreSyllabusRequest.php',
         'App\\Http\\Requests\\StoreTeacherRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StoreTeacherRequest.php',
         'App\\Http\\Requests\\StoreUser' => __DIR__ . '/../..' . '/app/Http/Requests/StoreUser.php',
+        'App\\Http\\Requests\\UpdateFaviconRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateFaviconRequest.php',
         'App\\Http\\Requests\\UpdateStaffRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateStaffRequest.php',
         'App\\Http\\Requests\\UpdateStudentRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateStudentRequest.php',
         'App\\Http\\Requests\\UserManagerRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UserManagerRequest.php',
@@ -816,10 +831,12 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Providers\\SchoolServiceProvider' => __DIR__ . '/../..' . '/app/Providers/SchoolServiceProvider.php',
+        'App\\Receipt' => __DIR__ . '/../..' . '/app/Receipt.php',
         'App\\Religion' => __DIR__ . '/../..' . '/app/Religion.php',
         'App\\ReportCard' => __DIR__ . '/../..' . '/app/ReportCard.php',
         'App\\ReportCardComment' => __DIR__ . '/../..' . '/app/ReportCardComment.php',
         'App\\Role' => __DIR__ . '/../..' . '/app/Role.php',
+        'App\\Rules\\Favicon' => __DIR__ . '/../..' . '/app/Rules/Favicon.php',
         'App\\Schedule' => __DIR__ . '/../..' . '/app/Schedule.php',
         'App\\School' => __DIR__ . '/../..' . '/app/School.php',
         'App\\SchoolType' => __DIR__ . '/../..' . '/app/SchoolType.php',
@@ -839,6 +856,7 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         'App\\Syllabus' => __DIR__ . '/../..' . '/app/Syllabus.php',
         'App\\Tag' => __DIR__ . '/../..' . '/app/Tag.php',
         'App\\TeacherQualification' => __DIR__ . '/../..' . '/app/TeacherQualification.php',
+        'App\\Transaction' => __DIR__ . '/../..' . '/app/Transaction.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Cors.php',
         'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/CorsService.php',
@@ -6325,6 +6343,12 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
+        'Unicodeveloper\\Paystack\\Exceptions\\IsNullException' => __DIR__ . '/..' . '/unicodeveloper/laravel-paystack/src/Exceptions/IsNullException.php',
+        'Unicodeveloper\\Paystack\\Exceptions\\PaymentVerificationFailedException' => __DIR__ . '/..' . '/unicodeveloper/laravel-paystack/src/Exceptions/PaymentVerificationFailedException.php',
+        'Unicodeveloper\\Paystack\\Facades\\Paystack' => __DIR__ . '/..' . '/unicodeveloper/laravel-paystack/src/Facades/Paystack.php',
+        'Unicodeveloper\\Paystack\\Paystack' => __DIR__ . '/..' . '/unicodeveloper/laravel-paystack/src/Paystack.php',
+        'Unicodeveloper\\Paystack\\PaystackServiceProvider' => __DIR__ . '/..' . '/unicodeveloper/laravel-paystack/src/PaystackServiceProvider.php',
+        'Unicodeveloper\\Paystack\\TransRef' => __DIR__ . '/..' . '/unicodeveloper/laravel-paystack/src/TransRef.php',
         'UserSeeder' => __DIR__ . '/../..' . '/database/seeds/UserSeeder.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',

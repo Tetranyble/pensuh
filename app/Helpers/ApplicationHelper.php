@@ -13,3 +13,37 @@ function money($amount, $sign = '#'){
     }
     return $sign . ' ' .'0';
 }
+
+
+function payStackCharge($payable){
+    $chargePercent = 1.5;
+    $maxFee = 2000;
+    $maxChargeable = 150000;
+    if ($payable < $maxChargeable){
+        return ($payable * $chargePercent) /100;
+    }else{
+        return $maxFee;
+    }
+}
+function payable($payables = []){
+    $pays = [];
+    foreach ($payables as $pay){
+        array_push($pays, $pay->amount, payStackCharge($pay->amount));
+    }
+    return array_sum($pays);
+}
+function payAll($payables = []){
+    $data = array();
+    foreach ($payables as $pay){
+        array_push($data, [$pay->name => $pay->amount, 'feeType' => $pay->schoolType->name]);
+    }
+
+}
+
+function receiptAmount($amounts = []){
+    $sum  = [];
+    foreach ($amounts as $amount){
+        array_push($sum, $amount['amount']);
+    }
+    return array_sum($sum);
+}

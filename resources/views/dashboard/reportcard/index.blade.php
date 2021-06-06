@@ -40,7 +40,7 @@
                                         <td>{{ $report->total }}</td>
                                         <td>{{ $report->average }}</td>
                                         <td>{{ $report->position }}</td>
-                                        <td><small><a class="btn btn-sm btn-outline-info" href="{{ route('report.show', $report) }}"><i class="fa fa-eye"></i>See Report</a>
+                                        <td><small><a class="btn btn-sm btn-outline-info" href="{{ route('reports.show', $report) }}"><i class="fa fa-eye"></i>See Report</a>
 {{--                                                <a disabled="disabled" onclick="return false;" title="glitches" class="btn btn-sm btn-outline-info" href="{{ route('download_reports.show', $report) }}"><i class="fa fa-download"></i>Download</a>--}}
                                                 @can('form_teacher')
                                                 <a class="btn btn-sm btn-outline-dark" href="{{ route('comments.create', ['report'=> $report->id, 'student'=> $report->student->id, 'role' => 'form_teacher']) }}"><i class="fa fa-plus"></i>F.T Comment</a>

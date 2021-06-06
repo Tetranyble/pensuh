@@ -94,5 +94,6 @@ return array(
     'b6b991a57620e2fb6b2f66f03fe9ddc2' => $vendorDir . '/symfony/string/Resources/functions.php',
     '507d7a825db0ba8319f9dd335c46057a' => $vendorDir . '/lab404/laravel-impersonate/src/helpers.php',
     '880d9aa7c2c689853e94e8a3794c8282' => $vendorDir . '/mavinoo/laravel-batch/src/Common/Helpers.php',
+    'bab4ed692c1fd3872849227e2a85791e' => $vendorDir . '/unicodeveloper/laravel-paystack/src/Support/helpers.php',
     '2bdaa6ef545278e06bf77098ec29abe8' => $baseDir . '/app/Helpers/ApplicationHelper.php',
 );

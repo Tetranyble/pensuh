@@ -30,7 +30,7 @@
                     </li>
                 @endcan
 {{--                <li class="nav-small-cap"><span class="hide-menu">Applications</span></li>--}}
-                @canany(['teacher', 'admin', 'principal', 'security','form_teacher','student'])
+                @canany(['teacher', 'admin', 'principal', 'security','form_teacher'])
                     <li class="list-divider"></li>
                 <li class="sidebar-item"> <a class="sidebar-link" href="{{ route('students.index') }}"
                                              aria-expanded="false"><i data-feather="eye" class="feather-icon"></i><span
@@ -45,34 +45,54 @@
                                 </span></a>
                 </li>
                 @endcan
-                @canany(['teacher','form_teacher', 'admin', 'principal', 'security','form_teacher', 'vice_principal_admin', 'vice_principal_academy', 'bursar'])
-                    <li class="sidebar-item"> <a class="sidebar-link" href="{{ route('sections.courses',[ 'teacher' => auth()->user()->id, 'section' => '']) }}"
+                @canany(['teacher','form_teacher', 'admin', 'principal', 'security','form_teacher', 'vice_principal_admin', 'vice_principal_academy', 'bursar', 'student'])
+                    <li class="sidebar-item"> <a class="sidebar-link" href="{{ route('sections.courses',[ 'teacher' => auth()->user()->id, 'section' =>auth()->user()->studentInfo ? auth()->user()->studentInfo->section->id : '', 'student']) }}"
                                                  aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span
                                 class="hide-menu">My Courses
                                 </span></a>
-                    </li>
-                    <li class="list-divider"></li>
-                    <li class="nav-small-cap"><span class="hide-menu">Attendance</span></li>
-                    <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
-                                                 aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
-                                class="hide-menu">Attendance(s) </span></a>
-                        <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                            <li class="sidebar-item"><a href="{{ route('attendances.create') }}" class="sidebar-link"><span
-                                        class="hide-menu">Manual
-                                        </span></a>
-                            </li>
-                            <li class="sidebar-item"><a href="{{ route('attendances.automatic') }}" class="sidebar-link"><span
-                                        class="hide-menu">Automatic
-                                        </span></a>
-                            </li>
-                        </ul>
                     </li>
 
 
                     <li class="list-divider"></li>
                 @endcan
+                @canany(['teacher','form_teacher', 'admin', 'principal', 'security','form_teacher', 'vice_principal_admin', 'vice_principal_academy', 'bursar'])
 
+                <li class="nav-small-cap"><span class="hide-menu">Attendance</span></li>
+                <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                                             aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
+                            class="hide-menu">Attendance(s) </span></a>
+                    <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                        <li class="sidebar-item"><a href="{{ route('attendances.create') }}" class="sidebar-link"><span
+                                    class="hide-menu">Manual
+                                        </span></a>
+                        </li>
+                        <li class="sidebar-item"><a href="{{ route('attendances.automatic') }}" class="sidebar-link"><span
+                                    class="hide-menu">Automatic
+                                        </span></a>
+                        </li>
+                    </ul>
+                </li>
 
+                @endcanany
+                @canany(['parent', 'student'])
+                    <li class="sidebar-item"> <a class="sidebar-link" href="{{ route('reports.index') }}"
+                                                 aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
+                                class="hide-menu">Report Cards
+                                </span></a>
+                    </li>
+                    <li class="list-divider"></li>
+                    <li class="sidebar-item"> <a class="sidebar-link" href="{{ route('fees.index') }}"
+                                             aria-expanded="false"><i data-feather="dollar-sign" class="feather-icon"></i><span
+                            class="hide-menu">Fees
+                                </span></a>
+                    </li>
+                    <li class="sidebar-item"> <a class="sidebar-link" href="{{ route('receipts.index') }}"
+                                                  aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
+                                class="hide-menu">Receipts
+                                </span></a>
+                    </li>
+                    <li class="list-divider"></li>
+                @endcanany
 
                 @canany(['admin', 'principal', 'vice_principal_admin', 'vice_principal_academy', 'director'])
                 <li class="list-divider"></li>

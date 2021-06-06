@@ -2,11 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Fee;
+use App\GradeSystem;
+use App\Http\Traits\GenerateReportCard;
 use App\ReportCard;
+use App\Services\ReportCard\GradeService;
+use App\Services\ReportCardService;
 use Illuminate\Http\Request;
 
 class ReportCardController extends Controller
 {
+    use GenerateReportCard;
+    protected $gradeService;
+    protected $reportCardService;
+    public function __construct(GradeService $gradeService, ReportCardService $reportCardService)
+    {
+        $this->middleware('auth');
+        $this->gradeService = $gradeService;
+        $this->reportCardService = $reportCardService;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +28,8 @@ class ReportCardController extends Controller
      */
     public function index()
     {
-        //
+        $reports = ReportCard::whereStudentId(auth()->user()->id)->paginate(10);
+        return view('dashboard.reportcard.index', compact('reports'));
     }
 
     /**
@@ -44,9 +59,12 @@ class ReportCardController extends Controller
      * @param  \App\ReportCard  $reportCard
      * @return \Illuminate\Http\Response
      */
-    public function show(ReportCard $reportCard)
+    public function show(ReportCard $reportCard, $report)
     {
-        //
+        $report = $this->reportCardService->getReportCard($report);
+        $gradeSystem = GradeSystem::where('name',$report->grade[0]->course->grade_system_name)->where('school_id', auth()->user()->school->id)->get();
+        $fees = Fee::where('school_id', auth()->user()->school->id)->where('school_type_id', $report->student->studentInfo->schoolType->id)->orWhere('school_type_id', null)->get();
+        return view('dashboard.reportcard.show', compact('report', 'gradeSystem', 'fees'));
     }
 
     /**
