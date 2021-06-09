@@ -44,19 +44,19 @@
                                     <a href="{{ route('grades.create', ['t'=> $course->teacher->first()->id, 'c' => $course->id, 's' => $course->section->id, 'course_name', $course->slug])}}" class="btn btn-sm btn-outline-secondary">Score</a>
                                     <a href="{{ route('course.edit', $course)}}" class="btn btn-sm btn-outline-dark">Message</a>
                                 @endcanany
-                                @canany(['admin', 'principal', 'form_teacher', 'vice_principal_admin', 'director', 'vice_principal_academy'])
-                                    <a class="btn btn-sm btn-outline-warning" href="{{ route('mastersheets.store') }}" aria-expanded="false"
-                                       onclick="event.preventDefault();
-                                           document.getElementById('grade_update-{{ $course->id }}').submit();">
-                                        Grade
-                                    </a>
-                                    <form id="grade_update-{{ $course->id }}" action="{{ route('mastersheets.store') }}" method="POST" class="d-none">
-                                        @csrf
-                                        <input type="hidden" name="course_name" value="{{ $course->slug }}">
-                                        <input type="hidden" name="teacher" value="{{ $course->teacher->first()->id }}">
-                                        <input type="hidden" name="course_id" value="{{ $course->id }}">
-                                    </form>
-                                @endcanany
+{{--                                @canany(['admin', 'principal', 'form_teacher', 'vice_principal_admin', 'director', 'vice_principal_academy'])--}}
+{{--                                    <a class="btn btn-sm btn-outline-warning" href="{{ route('mastersheets.store') }}" aria-expanded="false"--}}
+{{--                                       onclick="event.preventDefault();--}}
+{{--                                           document.getElementById('grade_update-{{ $course->id }}').submit();">--}}
+{{--                                        Grade--}}
+{{--                                    </a>--}}
+{{--                                    <form id="grade_update-{{ $course->id }}" action="{{ route('mastersheets.store') }}" method="POST" class="d-none">--}}
+{{--                                        @csrf--}}
+{{--                                        <input type="hidden" name="course_name" value="{{ $course->slug }}">--}}
+{{--                                        <input type="hidden" name="teacher" value="{{ $course->teacher->first()->id }}">--}}
+{{--                                        <input type="hidden" name="course_id" value="{{ $course->id }}">--}}
+{{--                                    </form>--}}
+{{--                                @endcanany--}}
 
                                 @canany(['admin', 'principal', 'vice_principal_admin', 'vice_principal_academy'])
                                 <a href="{{ route('course.edit', $course)}}" class="btn btn-sm text-warning">Edit</a>
