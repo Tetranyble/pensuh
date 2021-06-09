@@ -40,7 +40,7 @@
                                             {{--                                        <a href="#" title="" class="crt-btn"><img src="assets/img/icon10.png" alt=""></a>--}}
                                         </div>
                                         <div class="class-info">
-                                            <h3><a href="{{ route('courses.show', $course->id) }}" title="{{ $course->name }}">{{ $course->name }}</a></h3>
+                                            <h3><a href="{{ route('courses.show', $course->id) }}" title="{{ $course->name }}">{{ $course->name }}<span class="pl-2">({{$course->section->classes->name. '/'. $course->section->name }})</span></a></h3>
                                             @forelse($course->schedules as $schedule)
                                             <span>{{ Str::ucfirst($schedule->day) }}</span> <span>{{ $schedule->start . ' - ' . $schedule->end }}</span>
                                                 @empty

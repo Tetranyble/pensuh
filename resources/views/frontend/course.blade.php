@@ -17,7 +17,7 @@
                 <div class="row">
                     <div class="col-xl-8 col-lg-8">
                         <div class="class-single-content">
-                            <h2>{{ $course->name }}</h2>
+                            <h2>{{ $course->name }}<span class="pl-2">({{$course->section->classes->name. '/'. $course->section->name }})</span></h2>
                             <ul class="meta-box">
                                 <li><a href="{{ route('home') }}" title="">Home</a></li>
                                 <li><span>Course</span></li>
@@ -84,7 +84,7 @@
                                         <div class="class-thumb"><img src="{{ asset('storage/'.$course->photo) }}" alt="{{ $course->name }}" class="w-100"> <a
                                                 href="{{ route('courses.show', $course->id) }}" title="" class="crt-btn"><img src="assets/img/icon10.png" alt=""></a></div>
                                         <div class="class-info">
-                                            <h3>{{ $course->name }}</h3>
+                                            <h3>{{ $course->name }}<span class="pl-2">({{$course->section->classes->name. '/'. $course->section->name }})</span></h3>
                                             @forelse($course->schedules as $schedule)
                                                 <span>{{ Str::ucfirst($schedule->day) }}</span> <span>{{ $schedule->start . ' - ' . $schedule->end }}</span>
                                             @empty

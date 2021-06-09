@@ -23,7 +23,7 @@
                             <img class="card-img-top img-fluid" src="{{ asset('storage/'.$course->photo) }}"
                                  alt="{{ $course->name }}">
                             <div class="card-body">
-                                <h4 class="card-title">{{ $course->name }}</h4>
+                                <h4 class="card-title">{{ $course->name }}<span class="pl-2">({{$course->section->classes->name. '/'. $course->section->name }})</span></h4>
                                 <p class="card-text">{{ Str::limit(strip_tags($course->body), 100) }}</p>
                                 @forelse($course->schedules as $schedule)
                                     <p><span>{{ Str::ucfirst($schedule->day) }}</span> <span>{{ $schedule->start . ' - ' . $schedule->end }}</span></p>
