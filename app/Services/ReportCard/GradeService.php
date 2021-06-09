@@ -8,9 +8,7 @@ use App\Gradesystem;
 use App\Http\Requests\GradeManagerRequest;
 use App\Http\Requests\StoreGradeRequest;
 use App\User;
-use Illuminate\Http\Request;
-use Mavinoo\Batch\Batch;
-use phpDocumentor\Reflection\Types\True_;
+
 
 class GradeService {
 
@@ -33,7 +31,8 @@ class GradeService {
         return ($grade_system_name)?Gradesystem::where('school_id', auth()->user()->school->id)
             ->where('name', $grade_system_name)
             //->groupBy('grade_system_name')
-            ->get() : Gradesystem::select('name')
+            ->get() :
+            Gradesystem::select('name')
             ->where('school_id', auth()->user()->school->id)
             ->distinct()
             ->get();
