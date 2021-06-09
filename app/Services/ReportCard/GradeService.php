@@ -6,6 +6,7 @@ use App\Exam;
 use App\Grade;
 
 
+use App\GradeSystem;
 use App\Http\Requests\GradeManagerRequest;
 use App\Http\Requests\StoreGradeRequest;
 use App\User;
@@ -23,17 +24,17 @@ class GradeService {
     }
     public function getGradeSystemByname($name)
     {
-        return Gradesystem::where('school_id', auth()->user()->school->id)
+        return GradeSystem::where('school_id', auth()->user()->school->id)
             ->where('name', $name)
             ->get();
     }
     public function getGradeSystemBySchoolId($grades){
         $grade_system_name = isset($grades[0]->course->grade_system_name) ? $grades[0]->course->grade_system_name : false;
-        return ($grade_system_name)?\App\GradesystemGradesystem::where('school_id', auth()->user()->school->id)
+        return ($grade_system_name)? GradeSystem::where('school_id', auth()->user()->school->id)
             ->where('name', $grade_system_name)
             //->groupBy('grade_system_name')
             ->get() :
-            \App\Gradesystem::select('name')
+            GradeSystem::select('name')
             ->where('school_id', auth()->user()->school->id)
             ->distinct()
             ->get();
