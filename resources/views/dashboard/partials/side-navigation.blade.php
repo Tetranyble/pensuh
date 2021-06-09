@@ -81,16 +81,16 @@
                                 </span></a>
                     </li>
                     <li class="list-divider"></li>
-                    <li class="sidebar-item"> <a class="sidebar-link" href="{{ route('fees.index') }}"
-                                             aria-expanded="false"><i data-feather="dollar-sign" class="feather-icon"></i><span
-                            class="hide-menu">Fees
-                                </span></a>
-                    </li>
-                    <li class="sidebar-item"> <a class="sidebar-link" href="{{ route('receipts.index') }}"
-                                                  aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
-                                class="hide-menu">Receipts
-                                </span></a>
-                    </li>
+{{--                    <li class="sidebar-item"> <a class="sidebar-link" href="{{ route('fees.index') }}"--}}
+{{--                                             aria-expanded="false"><i data-feather="dollar-sign" class="feather-icon"></i><span--}}
+{{--                            class="hide-menu">Fees--}}
+{{--                                </span></a>--}}
+{{--                    </li>--}}
+{{--                    <li class="sidebar-item"> <a class="sidebar-link" href="{{ route('receipts.index') }}"--}}
+{{--                                                  aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span--}}
+{{--                                class="hide-menu">Receipts--}}
+{{--                                </span></a>--}}
+{{--                    </li>--}}
                     <li class="list-divider"></li>
                 @endcanany
 

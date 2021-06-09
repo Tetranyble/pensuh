@@ -13,15 +13,15 @@ class CreateReceiptsTable extends Migration
      */
     public function up()
     {
-        Schema::create('receipts', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('student_id');
-            $table->bigInteger('paid_by_id')->nullable();
-            $table->bigInteger('school_id');
-            $table->bigInteger('transaction_id')->nullable();
-            $table->longText('data');
-            $table->timestamps();
-        });
+//        Schema::create('receipts', function (Blueprint $table) {
+//            $table->id();
+//            $table->bigInteger('student_id');
+//            $table->bigInteger('paid_by_id')->nullable();
+//            $table->bigInteger('school_id');
+//            $table->bigInteger('transaction_id')->nullable();
+//            $table->longText('data');
+//            $table->timestamps();
+//        });
     }
 
     /**
@@ -31,6 +31,6 @@ class CreateReceiptsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('receipts');
+//        Schema::dropIfExists('receipts');
     }
 }
