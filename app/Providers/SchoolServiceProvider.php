@@ -29,7 +29,7 @@ class SchoolServiceProvider extends ServiceProvider
         $this->app->singleton(Schools::class, function($app){
             //$school = School::whereDomain($app['config']->get('app.url'))->first();
             $school = School::whereDomain(request()->getHost())->first();
-            dd($school);
+            dd($school, request()->getHost());
             if ($school){
                 return new Schools($school);
             }
