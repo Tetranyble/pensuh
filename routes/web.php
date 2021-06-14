@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Route::impersonate();
+//Route::domain('{school}.'.env('APP_URL'))->group(function ($school) {
+//    dd('hello world', request());
+//});
 Route::get('/', 'FrontController@index')->name('home');
 Route::resource('/events', 'EventController');
 Route::resource('/news', 'BlogController');

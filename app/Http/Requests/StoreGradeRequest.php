@@ -75,7 +75,7 @@ class StoreGradeRequest extends FormRequest
             'grade_system_name' => 'required|string|min:2',
 //            'grade_system_name' => 'required|string',
             'sum' => 'required',
-            'sum.*' => 'numeric|between:1,100'
+            'sum.*' => 'numeric|between:0,100'
         ];
     }
 }
