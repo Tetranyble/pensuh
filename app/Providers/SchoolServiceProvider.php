@@ -6,6 +6,7 @@ use App\Classes;
 use App\School;
 use App\Services\Schools;
 use Illuminate\Support\ServiceProvider;
+use LayerShifter\TLDExtract\Extract;
 
 class SchoolServiceProvider extends ServiceProvider
 {
@@ -27,11 +28,12 @@ class SchoolServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->singleton(Schools::class, function($app){
+            $extract = new Extract();
             //$school = School::whereDomain($app['config']->get('app.url'))->first();
-            $school = School::whereDomain(request()->getHost())->first();
-            if ($school){
-                return new Schools($school);
-            }
+            $result = $extract->parse(request()->getHost());
+            $school = School::where('domain',$result->getFullHost())->orWhere('alias',$result->getRegistrableDomain())->first();
+            abort_unless($school, 404);
+            return new Schools($school);
         });
     }
 }

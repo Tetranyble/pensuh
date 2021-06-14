@@ -18,6 +18,7 @@
         "laravel/framework": "^7.29",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^2.4",
+        "layershifter/tld-extract": "^2.0",
         "maatwebsite/excel": "^3.1",
         "mavinoo/laravel-batch": "^2.2",
         "simplesoftwareio/simple-qrcode": "~4",

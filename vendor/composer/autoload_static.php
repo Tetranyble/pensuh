@@ -94,6 +94,7 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
         '507d7a825db0ba8319f9dd335c46057a' => __DIR__ . '/..' . '/lab404/laravel-impersonate/src/helpers.php',
+        '98ac7ebbcd4b271b4f101d3af2543920' => __DIR__ . '/..' . '/layershifter/tld-extract/src/static.php',
         '880d9aa7c2c689853e94e8a3794c8282' => __DIR__ . '/..' . '/mavinoo/laravel-batch/src/Common/Helpers.php',
         'bab4ed692c1fd3872849227e2a85791e' => __DIR__ . '/..' . '/unicodeveloper/laravel-paystack/src/Support/helpers.php',
         '2bdaa6ef545278e06bf77098ec29abe8' => __DIR__ . '/../..' . '/app/Helpers/ApplicationHelper.php',
@@ -197,6 +198,9 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
             'League\\MimeTypeDetection\\' => 25,
             'League\\Flysystem\\' => 17,
             'League\\CommonMark\\' => 18,
+            'LayerShifter\\TLDSupport\\' => 24,
+            'LayerShifter\\TLDExtract\\' => 24,
+            'LayerShifter\\TLDDatabase\\' => 25,
             'Laravel\\Ui\\' => 11,
             'Laravel\\Tinker\\' => 15,
             'Lab404\\Impersonate\\' => 19,
@@ -495,6 +499,18 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         'League\\CommonMark\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/commonmark/src',
+        ),
+        'LayerShifter\\TLDSupport\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/layershifter/tld-support/src',
+        ),
+        'LayerShifter\\TLDExtract\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/layershifter/tld-extract/src',
+        ),
+        'LayerShifter\\TLDDatabase\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/layershifter/tld-database/src',
         ),
         'Laravel\\Ui\\' => 
         array (
@@ -3327,6 +3343,27 @@ class ComposerStaticInit0e2478cf6d13847df1ad4d1e6a90a525
         'Laravel\\Ui\\Presets\\Vue' => __DIR__ . '/..' . '/laravel/ui/src/Presets/Vue.php',
         'Laravel\\Ui\\UiCommand' => __DIR__ . '/..' . '/laravel/ui/src/UiCommand.php',
         'Laravel\\Ui\\UiServiceProvider' => __DIR__ . '/..' . '/laravel/ui/src/UiServiceProvider.php',
+        'LayerShifter\\TLDDatabase\\Exceptions\\Exception' => __DIR__ . '/..' . '/layershifter/tld-database/src/Exceptions/Exception.php',
+        'LayerShifter\\TLDDatabase\\Exceptions\\HttpException' => __DIR__ . '/..' . '/layershifter/tld-database/src/Exceptions/HttpException.php',
+        'LayerShifter\\TLDDatabase\\Exceptions\\IOException' => __DIR__ . '/..' . '/layershifter/tld-database/src/Exceptions/IOException.php',
+        'LayerShifter\\TLDDatabase\\Exceptions\\ParserException' => __DIR__ . '/..' . '/layershifter/tld-database/src/Exceptions/ParserException.php',
+        'LayerShifter\\TLDDatabase\\Exceptions\\StoreException' => __DIR__ . '/..' . '/layershifter/tld-database/src/Exceptions/StoreException.php',
+        'LayerShifter\\TLDDatabase\\Exceptions\\UpdateException' => __DIR__ . '/..' . '/layershifter/tld-database/src/Exceptions/UpdateException.php',
+        'LayerShifter\\TLDDatabase\\Http\\AdapterInterface' => __DIR__ . '/..' . '/layershifter/tld-database/src/Http/AdapterInterface.php',
+        'LayerShifter\\TLDDatabase\\Http\\CurlAdapter' => __DIR__ . '/..' . '/layershifter/tld-database/src/Http/CurlAdapter.php',
+        'LayerShifter\\TLDDatabase\\Parser' => __DIR__ . '/..' . '/layershifter/tld-database/src/Parser.php',
+        'LayerShifter\\TLDDatabase\\Store' => __DIR__ . '/..' . '/layershifter/tld-database/src/Store.php',
+        'LayerShifter\\TLDDatabase\\Update' => __DIR__ . '/..' . '/layershifter/tld-database/src/Update.php',
+        'LayerShifter\\TLDExtract\\Exceptions\\Exception' => __DIR__ . '/..' . '/layershifter/tld-extract/src/Exceptions/Exception.php',
+        'LayerShifter\\TLDExtract\\Exceptions\\RuntimeException' => __DIR__ . '/..' . '/layershifter/tld-extract/src/Exceptions/RuntimeException.php',
+        'LayerShifter\\TLDExtract\\Extract' => __DIR__ . '/..' . '/layershifter/tld-extract/src/Extract.php',
+        'LayerShifter\\TLDExtract\\IDN' => __DIR__ . '/..' . '/layershifter/tld-extract/src/IDN.php',
+        'LayerShifter\\TLDExtract\\Result' => __DIR__ . '/..' . '/layershifter/tld-extract/src/Result.php',
+        'LayerShifter\\TLDExtract\\ResultInterface' => __DIR__ . '/..' . '/layershifter/tld-extract/src/ResultInterface.php',
+        'LayerShifter\\TLDSupport\\Helpers\\Arr' => __DIR__ . '/..' . '/layershifter/tld-support/src/Helpers/Arr.php',
+        'LayerShifter\\TLDSupport\\Helpers\\IP' => __DIR__ . '/..' . '/layershifter/tld-support/src/Helpers/IP.php',
+        'LayerShifter\\TLDSupport\\Helpers\\Mixed' => __DIR__ . '/..' . '/layershifter/tld-support/src/Helpers/Mixed.php',
+        'LayerShifter\\TLDSupport\\Helpers\\Str' => __DIR__ . '/..' . '/layershifter/tld-support/src/Helpers/Str.php',
         'League\\CommonMark\\Block\\Element\\AbstractBlock' => __DIR__ . '/..' . '/league/commonmark/src/Block/Element/AbstractBlock.php',
         'League\\CommonMark\\Block\\Element\\AbstractStringContainerBlock' => __DIR__ . '/..' . '/league/commonmark/src/Block/Element/AbstractStringContainerBlock.php',
         'League\\CommonMark\\Block\\Element\\BlockQuote' => __DIR__ . '/..' . '/league/commonmark/src/Block/Element/BlockQuote.php',
