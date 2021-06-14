@@ -47,3 +47,15 @@ function receiptAmount($amounts = []){
     }
     return array_sum($sum);
 }
+
+
+function domain($host){
+    $myhost = strtolower(trim($host));
+    $count = substr_count($myhost, '.');
+    if($count === 2){
+        if(strlen(explode('.', $myhost)[1]) > 3) $myhost = explode('.', $myhost, 2)[1];
+    } else if($count > 2){
+        $myhost = domain(explode('.', $myhost, 2)[1]);
+    }
+    return $myhost;
+}

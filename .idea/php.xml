@@ -129,6 +129,9 @@
       <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
       <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-dompdf" />
       <path value="$PROJECT_DIR$/vendor/unicodeveloper/laravel-paystack" />
+      <path value="$PROJECT_DIR$/vendor/layershifter/tld-database" />
+      <path value="$PROJECT_DIR$/vendor/layershifter/tld-extract" />
+      <path value="$PROJECT_DIR$/vendor/layershifter/tld-support" />
     </include_path>
   </component>
   <component name="PhpUnit">
