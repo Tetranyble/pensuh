@@ -17,7 +17,26 @@ mix.js('resources/js/app.js', 'public/js')
     .copyDirectory('resources/assets', 'public/assets')
     .copyDirectory('resources/dist', 'public/dist')
     .copyDirectory('resources/favicon', 'public')
-    .copyDirectory('resources/js/scanner.min.js', 'public/js');
+    .copyDirectory('resources/js/scanner.min.js', 'public/js')
+    .styles([
+        'resources/assets/css/pensuh/bootstrap.min.css',
+        'resources/assets/css/pensuh/owl.carousel.min.css',
+        'resources/assets/css/pensuh/magnific-popup.css',
+        'resources/assets/css/pensuh/icomoon.css',
+        'resources/assets/css/pensuh/icofont.min.css',
+        'resources/assets/css/pensuh/animate.css',
+        'resources/assets/css/pensuh/style.css',
+        'resources/assets/css/pensuh/responsive.css'], 'public/assets/css/index.css')
+    .scripts([
+        'resources/assets/js/pensuh/jquery-3.3.1.min.js',
+        'resources/assets/js/pensuh/popper.min.js',
+        'resources/assets/js/pensuh/bootstrap.min.js',
+        'resources/assets/js/pensuh/magnific-popup.min.js',
+        'resources/assets/js/pensuh/owl.carousel.min.js',
+        'resources/assets/js/pensuh/scrollIt.min.js',
+        'resources/assets/js/pensuh/validator.min.js',
+        'resources/assets/js/pensuh/contact.js',
+        'resources/assets/js/pensuh/custom.js'], 'public/assets/js/index.js');
 /*
 .styles([
     'resources/dist/css/style.css',

@@ -35,7 +35,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
-                                            <div class="form-group {{($errors->has('email')) ? 'has-error' : ''}}">
+                                            <div class="form-group {{($errors->has('password')) ? 'has-error' : ''}}">
                                                 <label class="text-dark" for="pwd">Password
                                                     <span class="required"><span  class="text-danger h6">{{$errors->first('password')}}</span></span>
                                                 </label>
