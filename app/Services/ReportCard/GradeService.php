@@ -58,7 +58,7 @@ class GradeService {
     public function gradeByIds($ids){
         return Grade::whereIn('id', $ids)->get();
     }
-    protected $field = ['resumCoption_test', 'note', 'project', 'classwork', 'assignment', 'midterm_test', 'attendance', 'exam'];
+    protected $field = ['resumption_test', 'note', 'project', 'classwork', 'assignment', 'midterm_test', 'attendance', 'exam'];
     public function gradeMark($grade){
 
     }

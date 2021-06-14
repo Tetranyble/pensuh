@@ -20,6 +20,9 @@ class FrontController extends Controller
     }
 
     public function index(){
+        if($this->schools->school()->school_name == 'pensuh'){
+            return view('frontend.pensuh.index');
+        }
         $events = Event::whereSchoolId($this->schools->id())->limit(3)->get();
         $courses = Course::whereSchoolId($this->schools->id())->limit(8)->get();
         $teachers = User::whereHas("roles", function($q){ $q->where("name", "teacher"); })->where('school_id',$this->schools->id())->limit(4)->get();
