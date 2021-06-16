@@ -13,12 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 Route::impersonate();
 //Route::domain('{school}.'.env('APP_URL'))->group(function ($school) {
 //    dd('hello world', request());
 //});
 Route::get('/', 'FrontController@index')->name('home');
+Route::get('/legal', 'FrontController@termsOfService')->name('legal');
 Route::resource('/events', 'EventController');
 Route::resource('/news', 'BlogController');
 Route::get('/classes', 'FrontController@classes')->name('classes');
@@ -101,4 +102,6 @@ Route::middleware(['auth'])->prefix('master')->namespace('Console')->group(funct
     Route::post('impersonates/enter', 'ImpersonateUserController@impersonate')->name('impersonates.enter');
 //    Route::get('impersonates/leave', 'ImpersonateUserController@impersonate')->name('impersonates.leave');
     Route::get('users', 'SystemUsersController@index')->name('system.users');
+    Route::get('users/create', 'SystemUsersController@create')->name('system.users.create');
+    Route::post('users', 'SystemUsersController@store')->name('system.users.store');
 });

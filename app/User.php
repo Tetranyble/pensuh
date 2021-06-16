@@ -2,16 +2,18 @@
 
 namespace App;
 
+use App\Mail\SchoolAdminCreation;
 use Facade\Ignition\Solutions\SolutionTransformer;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Lab404\Impersonate\Models\Impersonate;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, Impersonate;
     use SoftDeletes;
@@ -67,6 +69,12 @@ class User extends Authenticatable
         }
         $this->roles()->sync($role, false);
     }
+    public function removeRole($role){
+        if(is_string($role)){
+            $role = Role::whereName($role)->firstOrFail();
+        }
+        $this->roles()->detach($role);
+    }
 
     public function permissions(){
         return $this->roles->map->permissions->flatten()->pluck('name')->unique();
@@ -107,11 +115,16 @@ class User extends Authenticatable
     public function courses(){
         return $this->belongsToMany(Course::class, 'course_user');
     }
-
+    public function setLastnameAttribute($value){
+        $this->attributes['lastname'] = Str::title($value);
+    }
+    public function setFirstnameAttribute($value){
+        $this->attributes['firstname'] = Str::title($value);
+    }
     public function setUsernameAttribute($value)
     {
-        $firstName = Str::lower($this->attributes['firstname']);
-        $lastName = Str::lower($this->attributes['lastname']);
+        $firstName = Str::lower(isset($this->attributes['firstname']) ? $this->attributes['firstname'] : $value);
+        $lastName = Str::lower(isset($this->attributes['lastname']) ? $this->attributes['lastname'] : $value);
 
         $username = $firstName . '.' . $lastName;
 
@@ -215,7 +228,7 @@ class User extends Authenticatable
     public function canBeImpersonated()
     {
         // For example
-
         return !auth()->user()->roles->flatten()->pluck('slug')->contains('master');
     }
+
 }

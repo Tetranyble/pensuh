@@ -1,83 +1,4 @@
 @extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
-
-
-@extends('layouts.app')
 @section('title', 'Register')
 @section('styles')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/main.min.css') }}">
@@ -87,7 +8,7 @@
 @section('content')
     <div class="wrapper">
         <div class="main-section">
-            @include('frontend.partials.header')
+{{--            @include('frontend.partials.header')--}}
             <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative"
                  style="background:url('{{asset('assets/images/big/auth-bg.jpg')}}') no-repeat center center;padding: 60px 20px 60px 20px">
                 <div class="auth-box row">
@@ -98,8 +19,8 @@
                             <div class="text-center">
                                 <img src="{{ asset('../assets/images/big/icon.png') }}" alt="wrapkit">
                             </div>
-                            <h2 class="mt-3 text-center" style="font-size: 1.875rem;">{{ __('Sign Up') }}</h2>
-                            <p class="text-center">Enter your email address and password to access admin panel.</p>
+                            <h2 class="mt-3 text-center" style="font-size: 1.875rem;">{{ __('Register') }}</h2>
+                            <p class="text-center">First step to setting up your school in cloud</p>
                             <form class="mt-4" method="POST" action="{{ route('register') }}">
                                 @csrf
                                 <div class="row">
@@ -110,50 +31,58 @@
                                                 <span class="required"><span  class="text-danger h6">{{$errors->first('email')}}</span></span>
                                             </label>
                                             <input name="email" class="form-control" id="email" type="text"
-                                                   placeholder="enter your username">
+                                                   autocomplete="email" value="{{ old('email') }}"
+                                                   placeholder="enter your email address">
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
 
-                                        <div class="form-group {{($errors->has('firstname')) ? 'has-error' : ''}}">
-                                            <label class="text-dark" for="firstname">Email
-                                                <span class="required"><span  class="text-danger h6">{{$errors->first('firstname')}}</span></span>
+                                        <div class="form-group {{($errors->has('name')) ? 'has-error' : ''}}">
+                                            <label class="text-dark" for="name">Name
+                                                <span class="required"><span  class="text-danger h6">{{$errors->first('name')}}</span></span>
                                             </label>
-                                            <input name="firstname" class="form-control" id="firstname" type="text"
-                                                   placeholder="enter your first name">
+                                            <input name="name" class="form-control" id="name" type="text"
+                                                   autocomplete="name" value="{{ old('name') }}"
+                                                   placeholder="firstname lastname">
                                         </div>
                                     </div>
-                                    <div class="col-lg-12">
 
-                                        <div class="form-group {{($errors->has('lastname')) ? 'has-error' : ''}}">
-                                            <label class="text-dark" for="lastname">Email
-                                                <span class="required"><span  class="text-danger h6">{{$errors->first('lastname')}}</span></span>
-                                            </label>
-                                            <input name="lastname" class="form-control" id="lastname" type="text"
-                                                   placeholder="enter your lastname">
-                                        </div>
-                                    </div>
                                     <div class="col-lg-12">
-                                        <div class="form-group {{($errors->has('firstname')) ? 'has-error' : ''}}">
-                                            <label class="text-dark" for="firstname">Password
-                                                <span class="required"><span  class="text-danger h6">{{$errors->first('firstname')}}</span></span>
+                                        <div class="form-group {{($errors->has('password')) ? 'has-error' : ''}}">
+                                            <label class="text-dark" for="password">Password
+                                                <span class="required"><span  class="text-danger h6">{{$errors->first('password')}}</span></span>
                                             </label>
-                                            <input id="password" type="text"
+                                            <input id="password" type="password"
                                                    class="form-control" placeholder="enter your password"
-                                                   name="firstname" required autocomplete="current-password">
+                                                   name="password" required autocomplete="new-password">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <div class="form-group {{($errors->has('password')) ? 'has-error' : ''}}">
+                                            <label class="text-dark" for="password">{{ __('Confirm Password') }}
+                                                <span class="required"><span  class="text-danger h6">{{$errors->first('password')}}</span></span>
+                                            </label>
+                                            <input id="password_confirmation" type="password"
+                                                   class="form-control" placeholder=""
+                                                   name="password_confirmation" required autocomplete="new-password">
+                                        </div>
+                                    </div>
+                                    <div class=" col-lg-12">
+                                        <div class="form-group">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="vendor"
+                                                       {{ old('vendor') ? 'checked' : '' }} data-toggle="tooltip" data-placement="top" title="Only check this box if you're a reseller">
+
+                                                <label class="form-check-label" for="vendor">
+                                                    {{ __('I\'m a vendor.') }} <small class="text-warning" style="font-size: .8rem;">Only check this box if you're a reseller</small>
+                                                </label>
+                                                <p>By creating an account, you agree with our <a class="text-danger" href="{{ route('legal') }}">Terms of Service.</a></p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 text-center">
-                                        <button type="submit" class="btn btn-block btn-dark">{{ __('Sign In') }}</button>
-                                    </div>
-                                    <div class="col-lg-12 text-center mt-5">
-                                        Forgot Your Password?
-                                        @if (Route::has('password.request'))
-                                            <a class="text-danger" href="{{ route('password.request') }}">
-                                                {{ __('Recover') }}
-                                            </a>
-                                        @endif
-
+                                        <button type="submit" class="btn btn-block btn-dark">{{ __('Sign Up') }}</button>
                                     </div>
                                 </div>
                             </form>

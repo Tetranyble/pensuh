@@ -333,7 +333,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group {{($errors->has('map')) ? 'has-error' : ''}}">
-                                            <label for="map">School Map
+                                            <label for="map">School Map <small><a  href="https://www.google.com/maps">paste the embeddable code</a></small>
                                                 <span class="text-danger"> <span  class="text-danger h6">{{$errors->first('map')}}</span></span>
                                             </label>
                                             <textarea name="map" class="form-control" id="map" type="text"
@@ -343,9 +343,7 @@
                                 </div>
                                 <div class="form-actions">
                                     <div class="text-right">
-                                        <button type="submit" class="btn btn-info">Submit</button>
-                                        <button type="reset" class="btn btn-dark">Reset</button>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -408,13 +406,22 @@
                                                    placeholder="contact phone" value="{{ old('contact_phone', $school->contact_phone) }}">
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group {{($errors->has('alias')) ? 'has-error' : ''}}">
+                                            <label for="alias">Alias
+                                                <span class="text-danger"> *<span  class="text-danger h6">{{$errors->first('alias_x')}}</span></span>
+                                            </label>
+                                            <input name="alias_x" class="form-control" id="alias" type="text"
+                                                   placeholder="alias" value="{{ old('alias_x', $school->alias) }}">
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
                             <div class="form-actions">
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-info">Submit</button>
-                                    <button type="reset" class="btn btn-dark">Reset</button>
+{{--                                    <button type="submit" class="btn btn-info">Submit</button>--}}
+
                                 </div>
                             </div>
                         </div>
@@ -528,7 +535,7 @@
                             <div class="form-actions">
                                 <div class="text-right">
                                     <button type="submit" class="btn btn-info">Submit</button>
-                                    <button type="reset" class="btn btn-dark">Reset</button>
+
                                 </div>
                             </div>
 

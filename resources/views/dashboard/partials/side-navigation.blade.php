@@ -17,12 +17,15 @@
                                              aria-expanded="false"><i data-feather="home" class="feather-icon"></i><span
                             class="hide-menu">Dashboard</span></a></li>
 
-                @can('master')
+                @canany(['master', 'vendor', 'creator'])
                 <li class="sidebar-item"> <a class="sidebar-link" href="{{ route('schools.index') }}"
                                              aria-expanded="false"><i data-feather="book-open" class="feather-icon"></i><span
                             class="hide-menu">Schools
                                 </span></a>
                 </li>
+
+                @endcanany
+                @can('master')
                     <li class="sidebar-item"> <a class="sidebar-link" href="{{ route('system.users') }}"
                                                  aria-expanded="false"><i data-feather="user" class="feather-icon"></i><span
                                 class="hide-menu">Users

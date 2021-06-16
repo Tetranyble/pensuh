@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Console;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSchoolRequest;
 use App\Language;
+use App\Role;
 use App\School;
 use App\Services\Schools;
 use App\Services\UploadHandler;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -29,7 +31,16 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        $schools = School::paginate();
+        //Gate::any(['creator', 'master','vendor']);
+
+        if (!Gate::any(['creator', 'master','vendor'])){
+            return redirect()->route('dashboard');
+        }
+        if (auth()->user()->roles->pluck('slug')->flatten()->contains('master')){
+            $schools = School::paginate();
+        }else {
+            $schools = School::whereVendor(auth()->user()->id)->paginate();
+        }
         return view('dashboard.master.schools', compact('schools'));
     }
 
@@ -53,23 +64,23 @@ class SchoolController extends Controller
      */
     public function store(StoreSchoolRequest $request)
     {
-
+        $user = auth()->user();
         $filenames = [ 'mission_image_x' => [575,592], 'blog_banner_x' => [1340,894], 'school_logo_x' => [162,57], 'course_banner_x' => [1170,400],
             'banner_image_x' => [497,586], 'event_image_x' => [476,526], 'about_image_x' => [601,645], 'favicon_x' => [32,32]];
         foreach ($filenames as $key => $file){
             if ($request->has($key)){
-//                $photo = $request->file($key);
-//                $photos = Image::make($photo->getRealPath())->resize($file[0], $file[1]);
-//                $newName = time() . Str::slug($request->get('school_name')) . '.' . $photo->getClientOriginalExtension();
-//                $request->merge([str_replace('_x','', $key) => 'storage/'.$newName]);
                 $this->fileService->save($request,$key,str_replace('_x','', $key),$request->school_name,['width'=>$file[0], 'height'=>$file[1]]);
-
             }
         }
-        School::whereId($request->id)->update($request->except(['_token', 'id', 'mission_image_x', 'blog_banner_x', 'school_logo_x', 'course_banner_x', 'banner_image_x',
-            'event_image_x', 'about_image_x'
-            , 'favicon_x']));
-        return redirect()->back()->with('success', 'school updated successfully');
+        $school = School::create($request->all());
+        if ($user->roles->flatten()->pluck('slug')->contains('creator')){
+//            $role = Role::whereIn('slug',['creator', 'principal'])->get()->flatten()->pluck('id');
+            $user->assignRole('principal');
+            $user->removeRole('creator');
+            $user->school_id = $school->id;
+            $user->save();
+        }
+        return redirect()->route('schools.index')->with('success', 'school created successfully');
 
     }
 
@@ -102,9 +113,17 @@ class SchoolController extends Controller
      * @param  \App\School  $school
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, School $school)
+    public function update(StoreSchoolRequest $request, School $school)
     {
-        //
+        $filenames = [ 'mission_image_x' => [575,592], 'blog_banner_x' => [1340,894], 'school_logo_x' => [162,57], 'course_banner_x' => [1170,400],
+            'banner_image_x' => [497,586], 'event_image_x' => [476,526], 'about_image_x' => [601,645], 'favicon_x' => [32,32]];
+        foreach ($filenames as $key => $file){
+            if ($request->has($key)){
+                $this->fileService->save($request,$key,str_replace('_x','', $key),$request->school_name,['width'=>$file[0], 'height'=>$file[1]]);
+            }
+        }
+        School::whereId($request->id)->update($request->all());
+        return redirect()->back()->with('success', 'school updated successfully');
     }
 
     /**

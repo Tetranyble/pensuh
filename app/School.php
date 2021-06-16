@@ -16,7 +16,7 @@ class School extends Model
         'favicon', 'theme', 'code', 'language_id', 'established', 'school_event_body', 'school_event_header', 'school_news_body', 'school_news_header', 'school_teacher_body',
         'school_teacher_header', 'school_class_body', 'school_class_header', 'course_banner', 'map', 'school_welcome_body', 'school_welcome_header', 'school_excerpt_header',
         'school_excerpt', 'about_school', 'school_logo', 'instagram_handle', 'twitter_handle', 'facebook_handle', 'blog_banner', 'email', 'contact_phone', 'work_time', 'school_name_code',
-        'address', 'merchant_email', 'secret_key', 'public_key'];
+        'address', 'merchant_email', 'secret_key', 'public_key', 'vendor', 'result_school_name', 'result_logo'];
 
     public function users(){
         return $this->hasMany(User::class);
@@ -28,7 +28,7 @@ class School extends Model
 
     public function setCodeAttribute($value){
         $code = time();
-        while(User::whereCode($code)->exists())
+        while(School::whereCode($code)->exists())
         {
             $code = time();
         }

@@ -3,12 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\Http\Requests\StoreContactRequest;
 use App\Mail\ContactAcknowledgement;
+use App\Services\Schools;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
+    private $schools;
+
+    public function __construct(Schools $schools)
+    {
+        $this->schools = $schools;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -35,24 +44,20 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreContactRequest $request)
     {
-        $request->validate([
-            'name' => 'required|min:3|string',
-            'email' => 'required|email',
-            'phone' => 'nullable|string',
-            'class' => 'nullable|numeric',
-            'message' => 'required|string'
-        ]);
+        $request->merge(['school_id' => $this->schools->id()]);
         $contact = Contact::create($request->all());
 
-        Mail::to(env('MAIL_SUPPORT'))
-            ->cc(env('MAIL_USERNAME'))
-            ->queue(new \App\Mail\Contact($contact));
+        Mail::to($this->schools->school()->email)
+            ->send(new \App\Mail\Contact($contact));
         Mail::to($contact->email)
-            ->queue(new ContactAcknowledgement($contact));
+            ->send(new ContactAcknowledgement($contact, $this->schools->school()));
+        return response()->json([
+            'status' => 'success',
+            'success' => 'We have received your inquiry. We would get back to you as soon as possible.'
+        ]);
 
-        return redirect()->back()->with('success', 'Thank you for reaching out. We have received your message. We would get back to you as soon as possible. Thanks again.');
     }
 
     /**

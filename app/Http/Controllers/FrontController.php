@@ -53,5 +53,8 @@ class FrontController extends Controller
     public function contacts(){
         return view('frontend.contact');
     }
+    public function termsOfService(){
+        return view('frontend.pensuh.terms_conditions');
+    }
 
 }

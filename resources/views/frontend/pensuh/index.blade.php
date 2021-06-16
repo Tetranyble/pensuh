@@ -87,7 +87,7 @@
                         <p>
                             Manage and automate attendance, admission, assessment, payment, performance, generate report cards – all from one easy-to-use app.
                         </p>
-                        <a href="#contact-area">Create School</a>
+                        <a href="{{ route('register') }}">Create School</a>
                     </div>
                 </div>
             </div>
@@ -285,10 +285,6 @@
                             <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="subject" name="subject" placeholder="subject*" required="required" data-error="subject is required.">
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <div class="form-group">
                             <textarea class="form-control" id="message" name="message" rows="10" placeholder="Write Your Message*" required="required" data-error="Please, leave us a message."></textarea>
                             <div class="help-block with-errors"></div>
                         </div>
@@ -347,5 +343,52 @@
 
 <!--main js-->
 <script src="{{ asset('assets/js/index.js') }}"></script>
+<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" ></script>
+
+<script>
+    $(function () {
+
+        "use strict";
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        // init the validator
+        $('#ajax-contact').validator();
+
+        // when the form is submitted
+        $('#ajax-contact').on('submit', function (e) {
+
+            // if the validator does not prevent form submit
+            if (!e.isDefaultPrevented()) {
+                var url = "/contacts";
+
+                // POST values in the background the the script URL
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: $(this).serialize(),
+                    beforeSend: function() {
+                        toastr.info('Hang-on', 'Contact request is being processed');
+                    },
+                    success: function (r) {
+                        toastr.success(r.status, r.success);
+                        $('#ajax-contact')[0].reset();
+
+                    },
+                    error: function(jqXHR, testStatus, error) {
+                        toastr.error('Error', error)
+                    },
+                    timeout: 30000
+                });
+                return false;
+            }
+        })
+    });
+
+</script>
 </body>
 </html>

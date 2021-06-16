@@ -50,6 +50,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="widget widget-links">
+                        @if($home->school_name != 'pensuh')
                         <h3 class="widget-title">Quick Links</h3>
                         <ul>
                             <li><a href="{{ route('about') }}" title="">About Us</a></li>
@@ -60,6 +61,7 @@
                             <li><a href="{{ route('news.index') }}" title="">Our News</a></li>
                             <li><a href="{{ route('schedules.index') }}" title="">Schedules</a></li>
                         </ul>
+                            @endif
                     </div>
                     <!--widget-links end-->
 
