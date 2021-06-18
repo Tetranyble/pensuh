@@ -11,6 +11,6 @@ RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
 
 RewriteCond %{REQUEST_URI} !web/
 RewriteRule (.*) /public/$1 [L]
-RewriteCond %{HTTP_HOST} ^peculiarschoolozubulu\.com$ [OR]
-RewriteCond %{HTTP_HOST} ^www\.peculiarschoolozubulu\.com$
-RewriteRule ^/?$ "https\:\/\/www\.peculiarschoolozubulu\.com\/" [R=301,L]
+RewriteCond %{HTTP_HOST} ^pensuh\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.pensuh\.com$
+RewriteRule ^/?$ "https\:\/\/www\.pensuh\.com\/" [R=301,L]
