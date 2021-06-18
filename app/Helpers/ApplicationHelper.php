@@ -48,5 +48,9 @@ function receiptAmount($amounts = []){
     return array_sum($sum);
 }
 
+function cardExpiry($class){
+
+}
+
 
 

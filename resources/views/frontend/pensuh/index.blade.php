@@ -67,6 +67,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#" data-scroll-nav="6">Contact</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-dark" href="{{ route('login') }}" >Login</a>
+                        </li>
 
                     </ul>
                 </div>
@@ -83,9 +86,9 @@
             <div class="col-md-6">
                 <div class="caption d-table">
                     <div class="d-table-cell align-middle">
-                        <h1>Digital School Management without Stress.</h1>
+                        <h1>School automation in three steps</h1>
                         <p>
-                            Manage and automate attendance, admission, assessment, payment, performance, generate report cards – all from one easy-to-use app.
+                            Sign up, create school and hook-up domain. that's it.
                         </p>
                         <a href="{{ route('register') }}">Create School</a>
                     </div>

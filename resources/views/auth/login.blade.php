@@ -8,7 +8,9 @@
 @section('content')
     <div class="wrapper">
             <div class="main-section">
-                @include('frontend.partials.header')
+                @if($home->school_name != 'pensuh')
+                    @include('frontend.partials.header')
+                @endif
                 <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative"
                      style="background:url('{{asset('assets/images/big/auth-bg.jpg')}}') no-repeat center center;padding: 60px 20px 60px 20px">
                     <div class="auth-box row">

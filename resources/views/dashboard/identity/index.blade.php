@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.dashboard')
-@section('title', 'Identity Cnntrol')
+@section('title', 'Identity Control')
 @section('dashboard')
     <div class="container-fluid">
         <!-- basic table -->
