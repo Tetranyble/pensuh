@@ -31,6 +31,7 @@ class SchoolServiceProvider extends ServiceProvider
             $extract = new Extract();
             //$school = School::whereDomain($app['config']->get('app.url'))->first();
             $result = $extract->parse(request()->getHost());
+            dd($result);
             $school = School::where('domain', str_replace('www.', '', $result->getFullHost()))->orWhere('alias', str_replace('www.', '', $result->getRegistrableDomain()))->first();
             abort_unless($school, 404);
             return new Schools($school);
