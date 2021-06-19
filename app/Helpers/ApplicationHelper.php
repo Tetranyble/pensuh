@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Str;
+
 function getTimeFromDate($dateTime){
     if ($dateTime){
         return date("h:i A", strtotime($dateTime));
@@ -49,7 +51,9 @@ function receiptAmount($amounts = []){
 }
 
 function cardExpiry($class){
-
+    $class = str_replace(' ', '', Str::lower($class));
+    $classes = [ 6 => 'jss1',  5 => 'jss2', 4 => 'jss3', 3 => 'ss1', 2 => 'ss2', 1 => 'ss3' ];
+    return array_search($class, $classes);
 }
 
 
