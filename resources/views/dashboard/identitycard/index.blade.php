@@ -148,7 +148,7 @@
                                 <div class="card-background">
                                     <div class="card-container">
                                         <div class="card-logo-container">
-                                            <img class="img-fluid card-logo" src="{{ asset("storage/stpatrick-logo1.png") }}">
+                                            <img class="img-fluid card-logo" src="{{ asset("storage/".$user->school->result_logo) }}">
                                             <div class="card-logo-header">
                                                 <h1>{{ \Illuminate\Support\Str::upper($user->school->school_name) }}</h1>
                                                 <div class="card-address"><span>{{ \Illuminate\Support\Str::upper($user->school->address) }}</span></div>
@@ -156,7 +156,7 @@
                                         </div>
                                         <div class="d-flex ">
                                             <div class="card-img-container">
-                                                <img src="{{ asset('storage/passport.jpg') }}" />
+                                                <img src="{{ asset('storage/'.$user->photo) }}" />
                                             </div>
                                             <div class="card-user-name">
                                                 <h3>{{ \Illuminate\Support\Str::upper($user->longname) }}</h3>
@@ -183,7 +183,7 @@
                                     </div>
                                     <div class="position-relative">
                                         <h6>This card is the property of</h6>
-                                        <img class="img-fluid card-logo" src="{{ asset("storage/stpatrick-logo1.png") }}">
+                                        <img class="img-fluid card-logo" src="{{ asset('storage'.$user->school->result_logo) }}">
                                         <h5>{{ \Illuminate\Support\Str::title($user->school->school_name) }}</h5>
                                         <h6 class="pl-5 pr-5 pb-card">If found please return to the Management</h6>
                                         <div class=" pl-5 pr-5 ml-3 mr-3 text-center"  >
