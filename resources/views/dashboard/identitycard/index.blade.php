@@ -163,7 +163,9 @@
                                                 <div class="">
                                                     <p><span>Reg No: </span>{{ $user->school->school_name_code.'-'.$user->code }}</p>
                                                     <p><span>Issue Date:</span> {{ Carbon\Carbon::now()->format('F j, Y') }}</p>
-                                                    <p><span>Expiry Date:</span> {{ Carbon\Carbon::now()->format('F j, Y') }}</p>
+                                                    @if($user->studentInfo->section->classes->name)
+                                                    <p><span>Expiry Date:</span> {{ Carbon\Carbon::now()->addYears(cardExpiry($user->studentInfo->section->classes->name))->format('F j, Y') }}</p>
+                                                        @endif
                                                 </div>
                                             </div>
 

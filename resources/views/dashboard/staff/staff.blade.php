@@ -34,13 +34,17 @@
                                         <th><small>Gender</small></th>
                                         <th><small>Blood</small></th>
                                         <th><small>Address</small></th>
+
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @forelse($staffs as $key => $student)
                                         <tr>
                                             <td><small>{{ $key+1 }}</small></td>
-                                            <td><small><a class="btn btn-sm btn-outline-danger" href="{{ route('staff.edit', $student) }}">Edit</a></small></td>
+                                            <td><small>
+                                                    <a class="btn btn-sm btn-outline-danger" href="{{ route('staff.edit', $student) }}">Edit</a>
+                                                    <a class="btn btn-sm btn-outline-success" href="{{ asset('storage/'.$student->photo) }}" download>Photo</a>
+                                                </small></td>
                                             <td><small>{{ $student->code }}</small></td>
                                             <td>
                                                 <small>
