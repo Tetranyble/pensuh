@@ -44,7 +44,7 @@
         .card-background{
             border-radius: 4px;
             position: relative;
-            background: url('{{ asset("storage/identity_card-front-image.png") }}') center center no-repeat;
+            background: url('{{ asset("storage/school-2/identity_card-front-image.png") }}') center center no-repeat;
             background-size: 100%;
             background-position: top center;
             width: 100%;
