@@ -183,7 +183,7 @@
                                     </div>
                                     <div class="position-relative">
                                         <h6>This card is the property of</h6>
-                                        <img class="img-fluid card-logo" src="{{ asset('storage'.$user->school->result_logo) }}">
+                                        <img class="img-fluid card-logo" src="{{ asset('storage/'.$user->school->result_logo) }}">
                                         <h5>{{ \Illuminate\Support\Str::title($user->school->school_name) }}</h5>
                                         <h6 class="pl-5 pr-5 pb-card">If found please return to the Management</h6>
                                         <div class=" pl-5 pr-5 ml-3 mr-3 text-center"  >
