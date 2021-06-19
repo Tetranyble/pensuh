@@ -8,7 +8,9 @@
 @section('content')
     <div class="wrapper">
             <div class="main-section">
-                @include('frontend.partials.header')
+                @if($home->school_name != 'pensuh')
+                    @include('frontend.partials.header')
+                @endif
                 <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative"
                      style="background:url('{{asset('assets/images/big/auth-bg.jpg')}}') no-repeat center center;padding: 60px 20px 60px 20px">
                     <div class="auth-box row">
@@ -17,7 +19,7 @@
                         <div class="col-lg-5 col-md-7 bg-white">
                             <div class="p-3">
                                 <div class="text-center">
-                                    <img src="../assets/images/big/icon.png" alt="wrapkit">
+                                    <img src="{{ asset('../assets/images/big/icon.png') }}" alt="wrapkit">
                                 </div>
                                 <h2 class="mt-3 text-center" style="font-size: 1.875rem;">{{ __('Sign In') }}</h2>
                                 <p class="text-center">Enter your email address and password to access admin panel.</p>

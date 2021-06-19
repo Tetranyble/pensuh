@@ -179,6 +179,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Lab404\Impersonate\ImpersonateServiceProvider::class,
+        App\Providers\SchoolAdminServiceProvider::class,
     ],
 
     /*
@@ -233,6 +234,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Batch' => Mavinoo\Batch\BatchFacade::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'SchoolAdmin' => App\Providers\SchoolAdminServiceProvider::class,
     ],
 
 ];

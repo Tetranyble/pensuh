@@ -24,6 +24,7 @@
                                     <th><small>Short Name</small></th>
                                     <th><small>School Code</small></th>
                                     <th><small>School Phone</small></th>
+                                    <th><small>Subdomain</small></th>
                                     <th><small>Action</small></th>
                                 </tr>
                                 </thead>
@@ -36,6 +37,7 @@
                                         <td>{{ $school->school_name_code }}</td>
                                         <td>{{ $school->code }}</td>
                                         <td>{{ $school->contact_phone }}</td>
+                                        <td><a href="{{ url('//'.$school->alias) }}" target="_blank"> {{ $school->alias }}</a></td>
                                         <td><small>
                                                 @can('master')
                                                     <a class="sidebar-link sidebar-link text-warning" href="{{ route('impersonates.enter') }}" aria-expanded="false"
@@ -49,7 +51,13 @@
                                                         <input type="hidden"  name="school" value="{{ $school->id }}">
                                                     </form>
                                                 @endcan
-                                            </small></td>
+                                            </small>
+                                            @if(!$school->users->map->roles->flatten()->pluck('slug')->contains('principal'))
+                                            <small>
+                                                <a href="{{ route('system.users.create', ['school' => $school->id]) }}">Create Admin</a>
+                                            </small>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr>
@@ -64,6 +72,7 @@
                                     <th><small>Short Name</small></th>
                                     <th><small>School Code</small></th>
                                     <th><small>School Phone</small></th>
+                                    <th><small>Subdomain</small></th>
                                     <th><small>Action</small></th>
                                 </tr>
                                 </tfoot>

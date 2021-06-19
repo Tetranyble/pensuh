@@ -35,7 +35,7 @@ mix.js('resources/js/app.js', 'public/js')
         'resources/assets/js/pensuh/owl.carousel.min.js',
         'resources/assets/js/pensuh/scrollIt.min.js',
         'resources/assets/js/pensuh/validator.min.js',
-        'resources/assets/js/pensuh/contact.js',
+        // 'resources/assets/js/pensuh/contact.js',
         'resources/assets/js/pensuh/custom.js'], 'public/assets/js/index.js');
 /*
 .styles([

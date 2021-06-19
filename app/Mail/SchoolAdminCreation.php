@@ -2,26 +2,30 @@
 
 namespace App\Mail;
 
+use App\School;
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ContactAcknowledgement extends Mailable
+class SchoolAdminCreation extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $contact;
+    public $user;
     public $school;
+    public $password;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($contact, $school)
+    public function __construct($user, $school, $password)
     {
-        $this->contact = $contact;
+        $this->user = $user;
         $this->school = $school;
+        $this->password = $password;
     }
 
     /**
@@ -31,7 +35,7 @@ class ContactAcknowledgement extends Mailable
      */
     public function build()
     {
-        return $this->subject('Enquiry Acknowledgement')->replyTo($this->school['email'])->from($this->school['email'], $this->contact['name'])->markdown('mails.ContactAcknowledgement');
 
+        return $this->subject('Administrative Role Assignment')->replyTo(env('MAIL_SUPPORT'))->from(env('MAIL_SUPPORT'), 'Pensuh')->markdown('mails.schooladmin');
     }
 }

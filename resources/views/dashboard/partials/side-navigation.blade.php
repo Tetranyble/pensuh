@@ -17,12 +17,15 @@
                                              aria-expanded="false"><i data-feather="home" class="feather-icon"></i><span
                             class="hide-menu">Dashboard</span></a></li>
 
-                @can('master')
+                @canany(['master', 'vendor', 'creator'])
                 <li class="sidebar-item"> <a class="sidebar-link" href="{{ route('schools.index') }}"
                                              aria-expanded="false"><i data-feather="book-open" class="feather-icon"></i><span
                             class="hide-menu">Schools
                                 </span></a>
                 </li>
+
+                @endcanany
+                @can('master')
                     <li class="sidebar-item"> <a class="sidebar-link" href="{{ route('system.users') }}"
                                                  aria-expanded="false"><i data-feather="user" class="feather-icon"></i><span
                                 class="hide-menu">Users
@@ -191,14 +194,20 @@
                                 class="hide-menu">Gallery </span></a>
                         <ul aria-expanded="false" class="collapse  first-level base-level-line">
                             <li class="sidebar-item"><a href="{{ route('galleries.create') }}" class="sidebar-link"><span
-                                        class="hide-menu">Add
+                                        class="hide-menu">Gallery
                                         </span></a>
                             </li>
                             <li class="sidebar-item"><a href="{{ route('galleries.index') }}" class="sidebar-link"><span
-                                        class="hide-menu">Galery
+                                        class="hide-menu">Galleries
                                         </span></a>
                             </li>
                         </ul>
+                    </li>
+                    <li class="list-divider"></li>
+                    <li class="sidebar-item"> <a class="sidebar-link" href="{{ route('identitycards.index') }}"
+                                                 aria-expanded="false"><i data-feather="file-text" class="feather-icon"></i><span
+                                class="hide-menu">Identity Cards
+                                </span></a>
                     </li>
                 @endcanany
                 @canany([ 'principal', 'vice_principal_academy', 'vice_principal_admin'])

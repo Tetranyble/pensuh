@@ -3,9 +3,21 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Config;
+use LayerShifter\TLDExtract\Extract;
 
 class StoreSchoolRequest extends FormRequest
 {
+    public function passedValidation()
+    {
+        $extract = new Extract();
+        $result = $extract->parse(Config::get('app.url'));
+        $this->merge([
+            'vendor' => auth()->user()->id,
+            'code' => time(),
+            'alias' => str_replace('www.', $this->alias_x . '.', $result->getRegistrableDomain())
+        ]);
+    }
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -26,7 +38,7 @@ class StoreSchoolRequest extends FormRequest
         return [
             'established' => 'required|numeric',
             'language_id' => 'required|numeric|max:11',
-            'school_name' => 'required|string|max:255',
+            'school_name' => 'required|string|max:255|unique:schools,school_name',
             'school_name_code' => 'required|string|max:10',
             'theme' => 'nullable|string|max:20',
             'address' => 'required|string|max:255',
@@ -58,6 +70,11 @@ class StoreSchoolRequest extends FormRequest
             'mission_body' => 'required|string|max:255',
             'benefit_header' =>'required|string|max:255',
             'benefit_body' => 'required|string|max:255',
+
+            'alias_x' => 'required|string|alpha|max:255|unique:schools,alias',
+            'merchant_email' => 'nullable|string|max:255',
+            'secret_key' => 'nullable|string|max:255',
+            'public_key' => 'nullable|string|max:255',
 
             'about_image_x' => 'nullable|mimes:jpeg,png,jpg|max:1240|dimensions:min_width=601,min_height=645',
             'banner_image_x' => 'nullable|mimes:jpeg,png,jpg|max:1240|dimensions:min_width=497,min_height=586', //497*586
