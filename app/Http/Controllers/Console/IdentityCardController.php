@@ -16,7 +16,7 @@ class IdentityCardController extends Controller
     public function index(Request $request)
     {
         $request->validate(['paginate' => 'nullable|numeric']);
-        $users = User::with('school', 'studentInfo')->whereHas("roles", function($q){ $q->where("slug", "student"); })->where('school_id', auth()->user()->school->id)->paginate($request->get('paginate'));
+        $users = User::with('school', 'studentInfo')->where('active', true)->whereHas("roles", function($q){ $q->where("slug", "student"); })->where('school_id', auth()->user()->school->id)->paginate($request->get('paginate'));
         $principal = User::whereHas("roles", function($q){ $q->where("slug", "principal"); })->where('school_id', auth()->user()->school->id)->first();
         return view('dashboard.identitycard.index', compact('users', 'principal'));
     }

@@ -136,8 +136,12 @@ class StudentOnboardingController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(User $user, $id)
     {
-        //
+        $user = User::whereUsername($id)->first();
+        abort_unless($user, 404);
+        $user->active = $user->active ? false : true;
+        $user->save();
+        return redirect()->back()->with('success', 'user details updated');
     }
 }
