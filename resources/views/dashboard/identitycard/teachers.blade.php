@@ -1,128 +1,34 @@
 @extends('dashboard.layouts.dashboard')
-@section('title', 'Identity Cards Generator')
+@section('title', 'Staff identity cards generator')
 @section('dashboard')
     <style>
-        /*@media print {*/
-        /*    body {transform: scale(.7);}*/
-        /*    tr {page-break-inside: avoid;}*/
-        /*}*/
-        /*.print-page{*/
-        /*    width: 21cm;*/
-        /*    height: 29.7cm;*/
-        /*}*/
-        .break{
-
-        }
-        .break-data{page-break-before:always}
-        .card-container{
-            padding: 1rem;
-
-        }
-        .card-logo-container{
-            display: flex;
-            justify-content: space-between;
-            color: white;
-        }
-        .card-logo {
-            border-radius: .4rem;
-            width: 4.5rem;
-            margin-right: 1.5rem;
-            margin-left: 1.2rem;
-        }
-        .card-logo-header{
-            margin-top: .2rem;
-        }
-        .card-logo-header > h1{
-            font-weight: 500;
-            font-size: 2rem;
-            /*margin-bottom: 0;*/
-        }
-        .card-logo-header > div{
-            /*font-size: 1.1rem;*/
-            color: #0b0b0b;
-        }
-        .card-background{
+        .card-background-back{
             border-radius: 4px;
-            position: relative;
-            background: url('{{ asset("storage/school-2/identity_card-front-image.png") }}') center center no-repeat;
+            color: #0b0b0b;
+            background: url('{{ asset("storage/school-2/identity_card-back.png") }}') center center no-repeat;
             background-size: 100%;
-            background-position: top center;
+
             width: 100%;
+            height: 600px;
+
         }
-        .card-address{
-            text-align: center;
-            padding-left: 8rem;
-            line-height: 90%;
+        .card-background-front{
+            border-radius: 4px;
+            color: #0b0b0b;
+            background: url('{{ asset("storage/school-2/identity_card-front.png") }}') center center no-repeat;
+            background-size: 100%;
+
+            width: 100%;
+            height: 600px;
         }
-        .card-address > span{
-            font-size: .9rem;
-        }
-        .card-img-container{
-            width: 28%;
-            overflow: hidden;
-        }
-        .card-img-container > img {
-            max-width: 100%;
-            height: auto;
-            margin-top: 1.2rem;
-            border: 2px solid #2F366A;
-            border-radius: 8px;
-        }
-        .card-user-name{
-            margin-top: 6%;
-            margin-left: 4%;
-        }
-        .card-user-name p{
-            font-size: 1rem;
-            margin-bottom: .4rem;
-        }
-        .card-qrcode{
-            width: 4.5rem;
-            overflow: hidden;
-            position: absolute;
-            right: 1rem;
-            bottom: 1rem;
+        .card-logo{
+            width: 20%;
         }
         .qrcode{
-            max-width: 100%;
-            height: auto;
+            width: 40%;
         }
-        .qrcode-back{
-            width: 10rem;
-            overflow: hidden;
-            margin-left: 1rem;
-        }
-        .card-container.qrcode-back-outline{
-            border-radius: 4px;
-            border: 2px solid rgba(0,0,0, .1);
-        }
-        hr.solid {
-            border-top: 2px solid #999;
-            margin-bottom: 0;
-            margin-top: 0;
-        }
-
-
-        hr.hr-text {
-            position: relative;
-            border: none;
-            height: 1px;
-            background: #999;
-        }
-
-        hr.hr-text::before {
-            content: attr(data-content);
-            display: inline-block;
-            background: #fff;
-            font-weight: bold;
-            font-size: 0.85rem;
-            color: #999;
-            border-radius: 30rem;
-            padding: 0.2rem 2rem;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        .mtt-5{
+            margin-top: 2.25rem;
         }
         .card-signature{
             position: absolute;
@@ -130,98 +36,91 @@
             bottom: 1.2rem;
             right: 5rem;
         }
-        .pb-card{
-            /*padding-bottom: 3.7rem;*/
+        hr.solid {
+            border-top: 2px solid #999;
+            margin-bottom: 0;
         }
-        .mr-3.text-center{
-            margin-top: 2.6rem;
+        .school-name{
+            color: #2F366A;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        .mt-3.school-name{
+            font-size: 1.6rem;
+        }
+        .card-img-container{
+            overflow: hidden;
+        }
+        .card-img-container > img {
+            width: 171px;
+            height: 171px;
+            max-width: 100%;
+            /*border: 2px solid #2F366A;*/
+            border-radius: 50%;
         }
     </style>
-<div class="container">
-    <div class="row">
-        <div class="col-12" >
-            <div class="card" >
-                <div class="card-body " id="identity-card">
-                    <div class="row">
-                    @forelse($users as $key => $user)
-                            <div class="col-lg-6 col-md-6 mb-1">
-                                <div class="card-background">
-                                    <div class="card-container">
-                                        <div class="card-logo-container">
-                                            <img class="img-fluid card-logo" src="{{ asset("storage/".$user->school->result_logo) }}">
-                                            <div class="card-logo-header">
-                                                <h1>{{ \Illuminate\Support\Str::upper($user->school->school_name) }}</h1>
-                                                <div class="card-address"><span>{{ \Illuminate\Support\Str::upper($user->school->address) }}</span></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12" >
+                <div class="card" >
+                    <div class="card-body " id="identity-card">
+                        <div class="row">
+                            @forelse($users as $key => $user)
+                                <div class="offset-lg-2 offset-md-2 col-lg-8 col-md-8">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 mb-1 card-background-front">
+                                            <div class=" text-center position-relative">
+                                                <img class="card-logo mtt-5" src="{{ asset("storage/".$user->school->result_logo) }}" />
+                                                <h3 class="mt-3 school-name">{{ $user->school->school_name }}</h3>
+
+                                                <div class="card-img-container mt-4 pt-1">
+                                                    <img class="card-profile-photo" src="{{ asset('storage/'.$user->photo) }}" />
+                                                </div>
+                                                <h3 class="text-uppercase mt-5">{{ $user->longname }}</h3>
+                                                <h4 class="text-capitalize">{{ $user->roles->first()->name }}</h4>
+                                                <h5 class="text-capitalize">{{ $user->school->school_name_code.'-'.$user->code }}</h5>
+                                                <h5 class="text-capitalize"><span>Expires:</span> {{ Carbon\Carbon::now()->addYears(1)->format('F j, Y') }}</h5>
                                             </div>
                                         </div>
-                                        <div class="d-flex ">
-                                            <div class="card-img-container">
-                                                <img src="{{ asset('storage/'.$user->photo) }}" />
-                                            </div>
-                                            <div class="card-user-name">
-                                                <h3>{{ \Illuminate\Support\Str::upper($user->longname) }}</h3>
-                                                <div class="">
-                                                    <p><span>Reg No: </span>{{ $user->school->school_name_code.'-'.$user->code }}</p>
-                                                    <p><span>Issue Date:</span> {{ Carbon\Carbon::now()->format('F j, Y') }}</p>
-                                                    @if($user->studentInfo->section->classes->name)
-                                                    <p><span>Expiry Date:</span> {{ Carbon\Carbon::now()->addYears(cardExpiry($user->studentInfo->section->classes->name))->format('F j, Y') }}</p>
-                                                        @endif
+                                        <div class="col-lg-6 col-md-6 mb-1 card-background-back">
+                                            <div class="text-center position-relative">
+                                                <img class="card-img-top qrcode mtt-5" src="data:image/svg+xml;base64,{!! base64_encode(QrCode::format('svg')->generate($user->code)) !!}"
+                                                     alt="{{ $user->fullname }}">
+                                                <p class="mt-2">This card is the property of</p>
+                                                <img class="card-logo" src="{{ asset("storage/".$user->school->result_logo) }}" />
+                                                <h3 class="mt-1">{{ $user->school->school_name }}</h3>
+                                                <p class="mr-4 ml-4 mt-3">If found please return to the Management</p>
+                                                <div class=" pl-5 pr-5 ml-3 mr-3 mt-5 pt-2"  >
+                                                    <canvas class="canvas text-uppercase card-signature" id="principal-board-{{ $key }}" style="width: 50%"></canvas>
+                                                    <hr class="solid">
+                                                    <p>Authorized Signature</p>
                                                 </div>
                                             </div>
-
-                                        </div>
-                                        <div class="card-qrcode">
-                                            <img class="card-img-top img-fluid qrcode" src="data:image/svg+xml;base64,{!! base64_encode(QrCode::format('svg')->generate($user->code)) !!}"
-                                                 alt="{{ $user->fullname }}">
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 mb-1">
-                                <div class="card-container qrcode-back-outline d-flex justify-content-between text-center pt-4">
-                                    <div class="qrcode-back d-flex align-items-center justify-content-center">
-                                        <img class="card-img-top img-fluid qrcode" src="data:image/svg+xml;base64,{!! base64_encode(QrCode::format('svg')->generate($user->code)) !!}"
-                                             alt="{{ $user->fullname }}">
-                                    </div>
-                                    <div class="position-relative">
-                                        <h6>This card is the property of</h6>
-                                        <img class="img-fluid card-logo" src="{{ asset('storage/'.$user->school->result_logo) }}">
-                                        <h5>{{ \Illuminate\Support\Str::title($user->school->school_name) }}</h5>
-                                        <h6 class="pl-5 pr-5 pb-card">If found please return to the Management</h6>
-                                        <div class=" pl-5 pr-5 ml-3 mr-3 text-center"  >
-                                            <canvas class="canvas text-uppercase card-signature" id="principal-board-{{ $key }}" style="width: 50%"></canvas>
-                                            <hr class="solid">
-                                            <p>Authorized Signature</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        @if(($key+1) %2 ==0)
-                            <div style="page-break-before:always"></div>
-                            @endif
-                <!-- Card -->
-                    @empty
-                        <p>No data</p>
-                    @endforelse
+                            <!-- Card -->
+                            @empty
+                                <p>No data</p>
+                            @endforelse
+                        </div>
+                    </div>
+                </div>
+            {{ $users->links() }}
+            <!-- Row -->
+            </div>
+            <div class="col-12">
+                <div class="form-group row mb-0">
+                    <div class="col-md-12 offset-md-10 ">
+                        <button type="submit" class="btn btn-outline-dark" id="download">
+                            {{ __('Download') }}
+                        </button>
                     </div>
                 </div>
             </div>
-            {{ $users->links() }}
-            <!-- Row -->
         </div>
-        <div class="col-12">
-            <div class="form-group row mb-0">
-                <div class="col-md-12 offset-md-10 ">
-                    <button type="submit" class="btn btn-outline-dark" id="download">
-                        {{ __('Download') }}
-                    </button>
-                </div>
-            </div>
-        </div>
+        <div id="principal" data-principal="{{ $principal->signature }}"></div>
     </div>
-    <div id="principal" data-principal="{{ $principal->signature }}"></div>
-</div>
 
 
 @endsection
@@ -841,9 +740,9 @@
 
         })));
 
-        @forelse($users as $key => $user)
+            @forelse($users as $key => $user)
         var principle = $('#principal').data('principal');
-          new SignaturePad(document.querySelector("#principal-board-{{$key}}")).fromData(principle);
+        new SignaturePad(document.querySelector("#principal-board-{{$key}}")).fromData(principle);
 
         @empty
         @endforelse
@@ -856,13 +755,13 @@
                     filename: '{{\Illuminate\Support\Str::slug($home->school_name)}}.pdf',
                     image: { type: 'jpeg', quality: 0.98 },
                     html2canvas: { scale: 1 },
-                    jsPDF: { unit: 'in', format: 'A4', orientation: 'landscape' },
+                    jsPDF: { unit: 'in', format: 'A3', orientation: 'portrait' },
                     pagebreak: {avoid: 'tr'}
                 };
                 html2pdf().from(document.getElementById('identity-card')).set(opt).save();
             })
         });
     </script>
-@parent
+    @parent
 @endsection
 

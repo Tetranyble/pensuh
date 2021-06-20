@@ -69,7 +69,8 @@ Route::group([ 'prefix' => 'console', 'namespace' => 'Console', 'middleware' => 
     Route::post('staff/import', 'StaffImportController@import')->name('staff.import');
     //Grade Manager and master sheets
     Route::resource('mastersheets', 'GradeManagerController');
-    Route::resource('identitycards', 'IdentityCardController');
+    Route::get('cards/students', 'IdentityCardController@students')->name('cards.students');
+    Route::get('cards/teachers', 'IdentityCardController@teachers')->name('cards.teachers');
 });
 
 // sectup namespace route

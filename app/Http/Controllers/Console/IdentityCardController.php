@@ -3,87 +3,53 @@
 namespace App\Http\Controllers\Console;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\IdentityCardsRequest;
 use App\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IdentityCardController extends Controller
 {
+
+    public function __construct( Auth $auth)
+    {
+        $this->middleware('auth');
+
+    }
+
+
     /**
      * Display a listing of the resource.
      *
+     * @param IdentityCardsRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function students(IdentityCardsRequest $request)
     {
-        $request->validate(['paginate' => 'nullable|numeric']);
         $users = User::with('school', 'studentInfo')->where('active', true)->whereHas("roles", function($q){ $q->where("slug", "student"); })->where('school_id', auth()->user()->school->id)->paginate($request->get('paginate'));
         $principal = User::whereHas("roles", function($q){ $q->where("slug", "principal"); })->where('school_id', auth()->user()->school->id)->first();
-        return view('dashboard.identitycard.index', compact('users', 'principal'));
+        return view('dashboard.identitycard.students', compact('users', 'principal'));
     }
-
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the resource.
      *
+     * @param IdentityCardsRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function teachers(IdentityCardsRequest $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, User $user)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        //
+        $users = User::with('school', 'studentInfo')
+            ->where('active', true)
+            ->whereHas("roles", function($q){ $q->where("slug", "principal")
+            ->orWhere('slug', 'admin'); })
+            ->where('school_id', auth()->user()->school->id)->paginate($request->get('paginate'));
+        $principal = User::whereHas("roles", function($q){ $q->where("slug", "principal")
+        ->orWhere('slug', 'public_relation_officer')
+            ->orWhere('slug', 'bursar')
+            ->orWhere('slug', 'exam_head')
+            ->orWhere('slug', 'vice_principal_admin')
+            ->orWhere('slug', 'vice_principal_academy')
+            ->orWhere('slug', 'dean_of_study')
+        ->orWhere('slug','librarian'); })->where('school_id', auth()->user()->school->id)->first();
+        return view('dashboard.identitycard.teachers', compact('users', 'principal'));
     }
 }
