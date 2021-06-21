@@ -186,9 +186,7 @@
                                 </div>
                             </div>
 
-                        @if(($key+1) %2 ==0)
-                            <div style="page-break-before:always"></div>
-                            @endif
+
                 <!-- Card -->
                     @empty
                         <p>No data</p>
