@@ -37,8 +37,7 @@ class IdentityCardController extends Controller
      */
     public function teachers(IdentityCardsRequest $request)
     {
-        $users = User::with('school', 'studentInfo')
-            ->where('active', true)
+        $users = User::where('active', true)
             ->whereHas("roles", function($q){ $q->where("slug", "principal")
             ->orWhere('slug', 'admin')
                 ->orWhere('slug', 'public_relation_officer')
