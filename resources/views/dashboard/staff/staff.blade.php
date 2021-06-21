@@ -43,12 +43,23 @@
                                             <td><small>{{ $key+1 }}</small></td>
                                             <td><small>
                                                     <a class="btn btn-sm btn-outline-danger" href="{{ route('staff.edit', $student) }}">Edit</a>
-                                                    <a class="btn btn-sm btn-outline-success" href="{{ asset('storage/'.$student->photo) }}" download>Photo</a>
+                                                    <a class="btn btn-sm {{ $student->active ? 'btn-outline-warning' : 'btn-outline-success' }}" href="{{ route('staff.destroy', $student) }}" aria-expanded="false"
+                                                       onclick="event.preventDefault();
+                                                           document.getElementById('deactivate-form-{{$student->id}}').submit();">
+                                                        <i data-feather="log-out" class="feather-icon"></i><span class="hide-menu">{{ $student->active ? 'Deactivate' : 'Activate' }}</span>
+                                                    </a>
+                                                    <form id="deactivate-form-{{$student->id}}" action="{{ route('staff.destroy', $student) }}" method="POST" class="d-none">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
+
                                                 </small></td>
                                             <td><small>{{ $student->code }}</small></td>
                                             <td>
                                                 <small>
-                                                    <img data-src="{{ asset('storage/'.$student->photo) }}" src="{{ asset('storage/'.$student->photo) }}" style="border-radius: 50%; width: 25px; height: 25px">
+                                                    <a class="btn btn-sm btn-outline-success" href="{{ asset('storage/'.$student->photo) }}" download>
+                                                        <img data-src="{{ asset('storage/'.$student->photo) }}" src="{{ asset('storage/'.$student->photo) }}" style="border-radius: 50%; width: 25px; height: 25px">
+                                                    </a>
                                                     <a target="_blank" href="{{ route('teachers.show', $student) }}">{{ $student->fullname }}</a>
                                                 </small>
                                             </td>
