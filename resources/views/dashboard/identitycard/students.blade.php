@@ -145,8 +145,7 @@
                                         </div>
                                         <div class="d-flex ">
                                             <div class="card-img-container">
-                                                <img src="{{ asset('storage/passport.jpg') }}" />
-{{--                                                <img src="{{ asset('storage/'.$user->photo) }}" />--}}
+                                                <img src="{{ asset('storage/'.$user->photo) }}" />
                                             </div>
                                             <div class="card-user-name">
                                                 <h3>{{ \Illuminate\Support\Str::upper($user->longname) }}</h3>
