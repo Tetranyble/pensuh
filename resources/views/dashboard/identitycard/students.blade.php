@@ -47,12 +47,12 @@
             font-size: .9rem;
         }
         .card-img-container{
-            width: 28%;
+
             overflow: hidden;
         }
         .card-img-container > img {
-            max-width: 100%;
-            height: auto;
+            width: 136px;
+            height: 159px;
             margin-top: 1.2rem;
             border: 2px solid #2F366A;
             border-radius: 8px;
@@ -145,7 +145,8 @@
                                         </div>
                                         <div class="d-flex ">
                                             <div class="card-img-container">
-                                                <img src="{{ asset('storage/'.$user->photo) }}" />
+                                                <img src="{{ asset('storage/passport.jpg') }}" />
+{{--                                                <img src="{{ asset('storage/'.$user->photo) }}" />--}}
                                             </div>
                                             <div class="card-user-name">
                                                 <h3>{{ \Illuminate\Support\Str::upper($user->longname) }}</h3>
