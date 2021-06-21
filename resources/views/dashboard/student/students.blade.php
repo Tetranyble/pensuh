@@ -43,7 +43,7 @@
                                         <td><small>{{ $key+1 }}</small></td>
                                         <td><small>
                                                 <a class="btn btn-sm btn-outline-danger" href="{{ route('student.edit', $student->username) }}">Edit</a>
-                                                <a class="btn btn-sm btn-outline-dark" href="{{ route('student.destroy', $student) }}" aria-expanded="false"
+                                                <a class="btn btn-sm {{ $student->active ? 'btn-outline-warning' : 'btn-outline-success' }}" href="{{ route('student.destroy', $student) }}" aria-expanded="false"
                                                    onclick="event.preventDefault();
                                                      document.getElementById('deactivate-form-{{$student->id}}').submit();">
                                                     <i data-feather="log-out" class="feather-icon"></i><span class="hide-menu">{{ $student->active ? 'Deactivate' : 'Activate' }}</span>
