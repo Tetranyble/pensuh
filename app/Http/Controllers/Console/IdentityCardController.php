@@ -40,16 +40,16 @@ class IdentityCardController extends Controller
         $users = User::with('school', 'studentInfo')
             ->where('active', true)
             ->whereHas("roles", function($q){ $q->where("slug", "principal")
-            ->orWhere('slug', 'admin'); })
+            ->orWhere('slug', 'admin')
+                ->orWhere('slug', 'public_relation_officer')
+                ->orWhere('slug', 'bursar')
+                ->orWhere('slug', 'exam_head')
+                ->orWhere('slug', 'vice_principal_admin')
+                ->orWhere('slug', 'vice_principal_academy')
+                ->orWhere('slug', 'dean_of_study')
+                ->orWhere('slug','librarian'); })
             ->where('school_id', auth()->user()->school->id)->paginate($request->get('paginate'));
-        $principal = User::whereHas("roles", function($q){ $q->where("slug", "principal")
-        ->orWhere('slug', 'public_relation_officer')
-            ->orWhere('slug', 'bursar')
-            ->orWhere('slug', 'exam_head')
-            ->orWhere('slug', 'vice_principal_admin')
-            ->orWhere('slug', 'vice_principal_academy')
-            ->orWhere('slug', 'dean_of_study')
-        ->orWhere('slug','librarian'); })->where('school_id', auth()->user()->school->id)->first();
+        $principal = User::whereHas("roles", function($q){ $q->where("slug", "principal"); })->where('school_id', auth()->user()->school->id)->first();
         return view('dashboard.identitycard.teachers', compact('users', 'principal'));
     }
 }
