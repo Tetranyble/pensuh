@@ -78,7 +78,7 @@
                                                 </div>
                                                 <h3 class="text-uppercase mt-5">{{ $user->longname }}</h3>
                                                 <h4 class="text-capitalize">{{ $user->roles->first()->name }}</h4>
-                                                <h5 class="text-capitalize">{{ $user->school->school_name_code.'-'.$user->code }}</h5>
+                                                <h5 class="text-uppercase">{{ $user->school->school_name_code.'-'.$user->code }}</h5>
                                                 <h5 class="text-capitalize"><span>Expires:</span> {{ Carbon\Carbon::now()->addYears(1)->format('F j, Y') }}</h5>
                                             </div>
                                         </div>
