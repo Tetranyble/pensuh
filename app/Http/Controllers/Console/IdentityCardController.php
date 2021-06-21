@@ -47,7 +47,7 @@ class IdentityCardController extends Controller
                 ->orWhere('slug', 'vice_principal_admin')
                 ->orWhere('slug', 'vice_principal_academy')
                 ->orWhere('slug', 'dean_of_study')
-                ->orWhere('slug','librarian'); })
+                ->orWhere('slug','teacher'); })
             ->where('school_id', auth()->user()->school->id)->paginate($request->get('paginate'));
         $principal = User::whereHas("roles", function($q){ $q->where("slug", "principal"); })->where('school_id', auth()->user()->school->id)->first();
         return view('dashboard.identitycard.teachers', compact('users', 'principal'));
