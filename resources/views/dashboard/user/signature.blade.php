@@ -676,7 +676,7 @@
             /* Clear signature pad*/
             $(document).on('click', '#clear_signature', function(event) {
                 signaturePad.clear()
-            }
+            });
             /* Save signature */
             $(document).on('click', '#save_signature', function(event) {
                 event.preventDefault();
