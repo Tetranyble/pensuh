@@ -16,7 +16,7 @@ trait GenerateReportCard {
         if($reportsCardCount < 1){// Not added
             // Get student ids of that section
             $students = User::where('active',1)
-                ->whereHas("roles", function($q){ $q->where("name", "student"); })
+                ->whereHas("roles", function($q){ $q->where("slug", "student"); })
                 ->whereHas("studentInfo", function($q) use($section_id){ $q->where("section_id", $section_id); })
                 ->with('grade')->get();
                 //->pluck('id')
@@ -33,6 +33,7 @@ trait GenerateReportCard {
             foreach($reportCards as $reportCard){
                 array_push($reportsCard_student_ids, $reportCard->student_id);
             }
+
             $positions = [];
 
             function total($student){
