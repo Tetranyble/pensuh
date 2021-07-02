@@ -67,13 +67,22 @@ trait AssignGrade {
                     // Insert students of that section to give marks later for this course and Examination
 
                     $grad = Grade::insert($tbc);
-                dd($grad);
+
                 return;
             }catch(\Exception $e){
                 return false;
             }
         } else {// Added desired course for desired exam
             return true;
+        }
+    }
+    public function checkMissOutStudentGrade($gradedStudentCount, $section_id){
+        $students = User::where('active',1)
+            ->whereHas("roles", function($q){ $q->where("name", "student"); })
+            ->whereHas("studentInfo", function($q) use($section_id){ $q->where("section_id", $section_id); })
+            ->get();
+        if($students->count() !== $gradedStudentCount){
+
         }
     }
 }
