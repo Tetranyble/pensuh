@@ -24,7 +24,7 @@ class ReportCardManagerUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'id.*' => 'required|numeric|between:0,5',
+            'id.*' => 'required|numeric',
             'punctuality.*' => 'required|numeric|between:0,5',
             'attendance.*' => 'required|numeric|between:0,5',
             'attentiveness.*' => 'required|numeric|between:0,5',

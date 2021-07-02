@@ -62,6 +62,7 @@ class ReportCardController extends Controller
     public function show(ReportCard $reportCard, $report)
     {
         $report = $this->reportCardService->getReportCard($report);
+
         $gradeSystem = GradeSystem::where('name',$report->grade[0]->course->grade_system_name)->where('school_id', auth()->user()->school->id)->get();
         $fees = Fee::where('school_id', auth()->user()->school->id)->where('school_type_id', $report->student->studentInfo->schoolType->id)->orWhere('school_type_id', null)->get();
         return view('dashboard.reportcard.show', compact('report', 'gradeSystem', 'fees'));
