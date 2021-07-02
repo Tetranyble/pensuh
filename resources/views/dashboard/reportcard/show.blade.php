@@ -67,7 +67,7 @@
                                         <tbody>
                                         @forelse($report->grade as $grade)
                                             <tr>
-                                                <td style="white-space: nowrap;" class="pl-3 pr-3"><small>{{ \Illuminate\Support\Str::title($grade->course->name) }}</small></td>
+                                                <td style="white-space: nowrap;" class="pl-1 pr-1"><small>{{ \Illuminate\Support\Str::title($grade->course->name) }}</small></td>
                                                 <td><small>{{ $grade->resumption_test }}</small></td>
                                                 <td><small>{{ $grade->note }}</small></td>
                                                 <td><small>{{ $grade->project }}</small></td>
@@ -207,11 +207,13 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @forelse($fees as $fee)
+                                                @forelse($fees as $key => $fee)
+                                                    @if($key < 8)
                                                     <tr>
                                                         <th class="pr-2 pl-2"><small>{{ $fee->name }}</small></th>
                                                         <td class="pr-2 pl-2"><small>{{ money($fee->amount, '') }}</small></td>
                                                     </tr>
+                                                    @endif
                                                 @empty
                                                     <p>no fees</p>
                                                 @endforelse
