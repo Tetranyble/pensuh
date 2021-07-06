@@ -150,7 +150,7 @@
                                             <div class="card-user-name">
                                                 <h3>{{ \Illuminate\Support\Str::upper($user->longname) }}</h3>
                                                 <div class="">
-                                                    <p><span>Reg No: </span>{{ $user->school->school_name_code.'-'.$user->code }}</p>
+                                                    <p><span>Reg No: </span><span class="text-uppercase">{{ $user->school->school_name_code.'-'.$user->code }}</span></p>
                                                     <p><span>Issue Date:</span> {{ Carbon\Carbon::now()->format('F j, Y') }}</p>
                                                     @if($user->studentInfo->section->classes->name)
                                                     <p><span>Expiry Date:</span> {{ Carbon\Carbon::now()->addYears(cardExpiry($user->studentInfo->section->classes->name))->format('F j, Y') }}</p>
