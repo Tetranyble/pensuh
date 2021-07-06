@@ -64,9 +64,9 @@
                                             </small></td>
                                         <td><small>{{ $student->code }}</small></td>
                                         <td>
-                                            <small>
+                                            <small >
                                                 <img data-src="{{ asset('storage/'.$student->photo) }}" src="{{ asset('storage/'.$student->photo) }}" style="border-radius: 50%; width: 25px; height: 25px">
-                                                <a href="{{ route('student.show', $student) }}">{{ $student->fullname }}</a>
+                                                <a  href="{{ route('student.show', $student) }}">{{ \Illuminate\Support\Str::title($student->fullname) }}</a>
                                             </small>
                                         </td>
                                         <td><small><a class="btn btn-primary" href="{{ route('attendances.show', $student) }}">View Attendance</a></small></td>
