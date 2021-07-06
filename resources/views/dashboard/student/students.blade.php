@@ -1,10 +1,7 @@
 @extends('dashboard.layouts.dashboard')
 @section('title', 'Students')
 @section('dashboard')
-    <link href="{{ asset('../assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}" rel="stylesheet">
-    <!-- ============================================================== -->
-    <!-- Container fluid  -->
-    <!-- ============================================================== -->
+
     <div class="container-fluid">
         @include('components.flash-message')
         <ul>
@@ -16,8 +13,20 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Download</h4>
-                        <div class="well"><h6>No implemetation yet</h6></div>
+                        <h4 class="card-title">Students</h4>
+                        <div class="d-flex justify-content-between p-2 pb-1">
+                            <div></div>
+                            <div>
+                                <form class="" method="GET" action="{{ route('students.index') }}">
+                                    <div class="input-group">
+                                        <input type="text" name="search" class="form-control" placeholder="username/id/name" aria-label="username/id/name" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-outline-secondary" type="button">search</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                         <div class="table-responsive">
                             <table id="zero_config" class="table table-striped table-bordered no-wrap">
                                 <thead>
@@ -109,8 +118,6 @@
 @endsection
 
 @section('script')
-            <script src="{{ asset('../assets/extra-libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-            <script src="{{ asset('../dist/js/pages/datatable/datatable-basic.init.js') }}"></script>
     @parent
 @endsection
 

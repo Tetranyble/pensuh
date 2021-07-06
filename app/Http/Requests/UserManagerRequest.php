@@ -13,7 +13,7 @@ class UserManagerRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->user()->roles->flatten()->pluck('slug')->contains('master');
+        return true;
     }
 
     /**

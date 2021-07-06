@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserManagerRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class StudentController extends Controller
 {
@@ -21,9 +23,25 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(UserManagerRequest $request)
     {
-        $students = User::whereHas("roles", function($q){ $q->where("name", "student"); })->where('school_id', auth()->user()->school->id)->with('gender','studentInfo', 'blood')->paginate(10);
+        if ($request->input('search')) {
+            $students = User::with('gender','studentInfo', 'blood')
+                ->where('school_id', auth()->user()->school->id)
+                ->where([['username', 'LIKE', '%' . Str::lower($request->input('search')) . '%']])
+//                ->orWhere([['code', 'LIKE', '%' . $request->input('search') . '%']])
+//                ->orWhere([['firstname', 'LIKE', '%' . $request->input('search') . '%']])
+//                ->orWhere([['lastname', 'LIKE', '%' . $request->input('search') . '%']])
+                ->whereHas("roles", function($q){
+                    $q->where("slug", "student"); })
+                ->paginate(10);
+        }else{
+            $students = User::whereHas("roles", function($q){
+                $q->where("slug", "student"); })
+                ->where('school_id', auth()->user()->school->id)
+                ->with('gender','studentInfo', 'blood')->paginate(10);
+        }
+
         return view('dashboard.student.students', compact('students'));
     }
 
