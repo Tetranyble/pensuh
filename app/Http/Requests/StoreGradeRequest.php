@@ -62,14 +62,14 @@ class StoreGradeRequest extends FormRequest
     {
         return [
 
-            'resumption_test.*' => 'nullable|numeric|between:0,5',
-            'project.*' => 'nullable|numeric|between:0,2',
-            'note.*' => 'nullable|numeric|between:0,8',
-            'classwork.*' => 'nullable|numeric|between:0,15',
-            'assignment.*' => 'nullable|numeric|between:0,15',
-            'midterm_test.*' => 'nullable|numeric|between:0,10',
-            'attendance.*' => 'nullable|numeric|between:0,8',
-            'exam.*' => 'nullable|numeric|between:0,100',
+            'resumption_test.*' => 'nullable|numeric',
+            'project.*' => 'nullable|numeric',
+            'note.*' => 'nullable|numeric',
+            'classwork.*' => 'nullable|numeric',
+            'assignment.*' => 'nullable|numeric',
+            'midterm_test.*' => 'nullable|numeric',
+            'attendance.*' => 'nullable|numeric',
+            'exam.*' => 'nullable|numeric',
             't' => 'required|numeric',
             'c' => 'required|numeric',
             'grade_system_name' => 'required|string|min:2',
