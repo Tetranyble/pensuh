@@ -29,7 +29,7 @@
                                             <label for="resumption_test">Resumption Test
                                                 <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('resumption_test.'. $key)}}</span></span>
                                             </label>
-                                            <input name="resumption_test[]" class="form-control" id="resumption_test" type="number" min="0" max="5"
+                                            <input name="resumption_test[]" class="form-control" id="resumption_test" type="number" min="0"
                                                    placeholder="resumption test" value="{{ in_array($grade->resumption_test, old('resumption_test', $grade->pluck('resumption_test')->toArray()) ?: []) ? $grade->resumption_test : old(`resumption_test.{$key}`) }}">
                                         </div>
                                     </div>
@@ -38,7 +38,7 @@
                                             <label for="note">Note Score
                                                 <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('note')}}</span></span>
                                             </label>
-                                            <input name="note[]" class="form-control" id="note" type="number" min="0" max="8"
+                                            <input name="note[]" class="form-control" id="note" type="number" min="0"
                                                    placeholder="note score" value="{{ in_array($grade->note, old('note', $grade->pluck('note')->toArray()) ?: []) ? $grade->note : $grade->note }}">
                                         </div>
                                     </div>
@@ -48,7 +48,7 @@
                                             <label for="project">Project Score
                                                 <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('project')}}</span></span>
                                             </label>
-                                            <input name="project[]" class="form-control" id="project" type="number" min="0" max="2"
+                                            <input name="project[]" class="form-control" id="project" type="number" min="0"
                                                       placeholder="project score" value="{{ in_array($grade->project, old('project', $grade->pluck('project')->toArray()) ?: []) ? $grade->project : $grade->project }}">
                                         </div>
                                     </div>
@@ -57,7 +57,7 @@
                                             <label for="classwork">Classwork Score
                                                 <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('classwork')}}</span></span>
                                             </label>
-                                            <input name="classwork[]" class="form-control" id="classwork" type="number" min="0" max="15"
+                                            <input name="classwork[]" class="form-control" id="classwork" type="number" min="0"
                                                    placeholder="classwork score" value="{{ in_array($grade->classwork, old('classwork', $grade->pluck('classwork')->toArray()) ?: []) ? $grade->classwork : $grade->classwork }}">
                                         </div>
                                     </div>
@@ -67,7 +67,7 @@
                                             <label for="assignment">Assignment Score
                                                 <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('assignment')}}</span></span>
                                             </label>
-                                            <input name="assignment[]" class="form-control" id="assignment" type="number" min="0" max="15"
+                                            <input name="assignment[]" class="form-control" id="assignment" type="number" min="0"
                                                    placeholder="assignment score" value="{{in_array($grade->assignment, old('assignment', $grade->pluck('assignment')->toArray()) ?: []) ? $grade->assignment : $grade->assignment }}">
                                         </div>
                                     </div>
@@ -76,7 +76,7 @@
                                             <label for="midterm_test">Midterm Test
                                                 <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('midterm_test')}}</span></span>
                                             </label>
-                                            <input name="midterm_test[]" class="form-control" id="midterm_test" type="number" min="0" max="10"
+                                            <input name="midterm_test[]" class="form-control" id="midterm_test" type="number" min="0"
                                                    placeholder="midterm test score" value="{{ in_array($grade->midterm_test, old('midterm_test', $grade->pluck('midterm_test')->toArray()) ?: []) ? $grade->midterm_test : $grade->mideterm_test }}">
                                         </div>
                                     </div>
@@ -85,7 +85,7 @@
                                             <label for="attendance">Attendance Score
                                                 <span class="text-danger">*<span  class="text-danger h6">{{$errors->first('attendance')}}</span></span>
                                             </label>
-                                            <input name="attendance[]" class="form-control" id="attendance" type="number" min="0" max="8"
+                                            <input name="attendance[]" class="form-control" id="attendance" type="number" min="0"
                                                    placeholder="attendance score" value="{{ in_array($grade->attendance, old('attendance', $grade->pluck('attendance')->toArray()) ?: []) ? $grade->attendance : $grade->attendance }}">
                                         </div>
                                     </div>
