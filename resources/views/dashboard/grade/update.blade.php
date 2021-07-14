@@ -19,7 +19,7 @@
                 @forelse($grades as $key => $grade)
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">{{ $grade->student->fullname }}</h4>
+                        <h4 class="card-title">{{ $grade->student->longname }}</h4>
 
                             <div class="form-body">
                                 <div class="row">
