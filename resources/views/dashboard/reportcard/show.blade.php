@@ -15,7 +15,6 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
                                 <div>
-                                    <h4><b>NAME:</b> {{ $report->id }}</h4>
                                     <h4><b>NAME:</b> {{ $report->student->longname }}</h4>
                                     <h4><b>TOTAL:</b> {{ $report->total }}</h4>
                                     <h4><b>AVERAGE:</b> {{ $report->average }}</h4>
@@ -90,113 +89,80 @@
                                         <div>
                                             <?php
                                             $comments = $report->comments($report->student->id)
+
                                             ?>
+
                                             @forelse($comments as $key => $comment)
-                                                @if($comment->role == 'form_teacher')
-                                                    <p>FORM TEACHER'S COMMENT: {{ $comment->comment }}</p>
+                                                @if($comment->role == 'form_teacher' && $key == 0)
+                                                    <p>Form Teacher's Comment: <span class="text-info">{{ $comment->comment }}</span></p>
                                                     <p ><span id="formteacher" data-formteacher="{{ $comment->commentBy->signature }}">
                                                             Signature: <canvas class="canvas" id="formTeacher" style="width: 17%"></canvas>
                                                         </span> <span>Date: {{ $comment->created_at }}</span>
                                                     </p>
-                                                    @else
-                                                        @if($key == 0)
-                                                            <div>
-                                                                <p>FORM TEACHER'S COMMENT: </p>
-                                                                <p class=""><span id="formteacher" data-formteacher="">
+                                                    @elseif($key == 0)
+                                                            <p>Form Teacher's Comment: </p>
+                                                            <p class=""><span id="formteacher" data-formteacher="">
                                                                     Signature: <canvas class="canvas" id="formTeacher" style="width: 17%"></canvas>
                                                                 </span> <span>Date: </span></p>
-                                                            </div>
-                                                        @endif
+
                                                 @endif
                                             @empty
-                                                    <div>
-                                                        <p>FORM TEACHER'S COMMENT: </p>
-                                                        <p class=""><span id="formteacher" data-formteacher="">
-                                                                    Signature: <canvas class="canvas" id="formTeacher" style="width: 17%"></canvas>
-                                                                </span> <span>Date: </span></p>
-                                                    </div>
+                                                    <p></p>
                                             @endforelse
-                                                @forelse($comments as $key => $comment)
-                                                    @if($comment->role == 'sport')
-                                                        <div>
-                                                            <p>HOUSE MASTER'S COMMENT: {{ $comment->comment }}</p>
-                                                            <p class=""><span id="sportman" data-sportman="{{ $comment->commentBy->signature }}">
-                                                                    Signature: <canvas class="canvas" id="sportMan" style="width: 17%"></canvas>
-                                                                </span> <span>Date: {{ $comment->created_at }}</span></p>
-                                                        </div>
-                                                        @else
-                                                        @if($key == 0)
-                                                        <div>
-                                                            <p>HOUSE MASTER'S COMMENT: </p>
-                                                            <p class=""><span id="sportman" data-sportman="">
-                                                                    Signature: <canvas class="canvas" id="sportMan" style="width: 17%"></canvas>
-                                                                </span> <span>Date: </span></p>
-                                                        </div>
-                                                            @endif
-                                                    @endif
-                                                @empty
-                                                    <div>
-                                                        <p>HOUSE MASTER'S COMMENT: </p>
-                                                        <p class=""><span id="sportman" data-sportman="">
-                                                                    Signature: <canvas class="canvas" id="sportMan" style="width: 17%"></canvas>
-                                                                </span> <span>Date: </span></p>
-                                                    </div>
-                                                @endforelse
-                                                @forelse($comments as $key => $comment)
-                                                    @if($comment->role == 'counsellor')
-                                                        <div>
-                                                            <p>GUIDANCE COUNSELLOR'S COMMENT: {{ $comment->comment }}</p>
-                                                            <p ><span id="counsellor" data-counsellor="{{ $comment->commentBy->signature }}">
-                                                                    Signature: <canvas class="canvas" id="Counsellor" style="width: 17%"></canvas>
-                                                                </span> <span>Date: {{ $comment->created_at }}</span>
-                                                            </p>
-                                                        </div>
-                                                    @else
-                                                        @if($key == 0)
-                                                            <div>
-                                                                <p>GUIDANCE COUNSELLOR'S COMMENT: </p>
-                                                                <p class=""><span id="counsellor" data-counsellor="">
-                                                                    Signature: <canvas class="canvas" id="Counsellor" style="width: 17%"></canvas>
-                                                                </span> <span>Date: </span></p>
-                                                            </div>
-                                                        @endif
+                                            @forelse($comments as $key => $comment)
+                                                @if($comment->role == 'sport' && $key == 0)
+                                                    <p>House Master's Comment: <span class="text-info">{{ $comment->comment }}</span></p>
+                                                    <p class=""><span id="sportman" data-sportman="{{ $comment->commentBy->signature }}">
+                                                                Signature: <canvas class="canvas" id="sportMan" style="width: 17%"></canvas>
+                                                            </span> <span>Date: {{ $comment->created_at }}</span>
+                                                    </p>
+                                                @elseif($key == 0)
+                                                    <p>House Master's Comment: </p>
+                                                    <p class=""><span id="sportman" data-sportman="">
+                                                                Signature: <canvas class="canvas" id="sportMan" style="width: 17%"></canvas>
+                                                            </span> <span>Date: </span></p>
 
-                                                    @endif
-                                                @empty
-                                                    <div>
-                                                        <p>GUIDANCE COUNSELLOR'S COMMENT: </p>
+                                                @endif
+                                            @empty
+                                                <p></p>
+                                            @endforelse
+
+                                            @forelse($comments as $key => $comment)
+                                                @dd($comment->role)
+                                                @if($comment->role != 'counsellor')
+                                                    <p>Guidance Counsellor's Comment: <span class="text-info">{{ $comment->comment }}</span></p>
+                                                    <p ><span id="counsellor" data-counsellor="{{ $comment->commentBy->signature }}">
+                                                                Signature: <canvas class="canvas" id="Counsellor" style="width: 17%"></canvas>
+                                                            </span> <span>Date: {{ $comment->created_at }}</span>
+                                                    </p>
+                                                @elseif($key == 0)
+                                                        <p>Guidance Counsellor's Comment: </p>
                                                         <p class=""><span id="counsellor" data-counsellor="">
-                                                                    Signature: <canvas class="canvas" id="Counsellor" style="width: 17%"></canvas>
-                                                                </span> <span>Date: </span></p>
-                                                    </div>
-                                                @endforelse
-                                                @forelse($comments as $key => $comment)
-                                                    @if($comment->role == 'principal')
-                                                        <div>
-                                                            <p>PRINCIPAL'S COMMENT: {{ $comment->comment }}</p>
-                                                            <p ><span id="principal" data-principal="{{ $comment->commentBy->signature }}">
-                                                                    Signature: <canvas class="canvas" id="Principal" style="width: 17%"></canvas>
-                                                                </span> <span>Date: {{ $comment->created_at }}</span>
-                                                            </p>
-                                                        </div>
-                                                    @else
-                                                        @if($key == 0)
-                                                            <div>
-                                                                <p>PRINCIPAL'S COMMENT: </p>
-                                                                <p class=""><span id="principal" data-principal="">
-                                                                    Signature: <canvas class="canvas" id="Principal" style="width: 17%"></canvas>
-                                                                </span> <span>Date: </span></p>
-                                                            </div>
-                                                        @endif
-                                                    @endif
-                                                @empty
-                                                    <div>
-                                                        <p>PRINCIPAL'S COMMENT: </p>
+                                                                Signature: <canvas class="canvas" id="Counsellor" style="width: 17%"></canvas>
+                                                            </span> <span>Date: </span></p>
+
+
+                                                @endif
+                                            @empty
+                                               <p></p>
+                                            @endforelse
+                                            @forelse($comments as $key => $comment)
+                                                @if($comment->role == 'principal' && $key == 0)
+                                                    <p>Principal's Comment: <span class="text-info">{{ $comment->comment }}</span></p>
+                                                    <p ><span id="principal" data-principal="{{ $comment->commentBy->signature }}">
+                                                                Signature: <canvas class="canvas" id="Principal" style="width: 17%"></canvas>
+                                                            </span> <span>Date: {{ $comment->created_at }}</span>
+                                                    </p>
+                                                @elseif($key == 0)
+                                                        <p>Principal's Comment: </p>
                                                         <p class=""><span id="principal" data-principal="">
-                                                                    Signature: <canvas class="canvas" id="Principal" style="width: 17%"></canvas>
-                                                                </span> <span>Date: </span></p>
-                                                    </div>
-                                                @endforelse
+                                                                Signature: <canvas class="canvas" id="Principal" style="width: 17%"></canvas>
+                                                            </span> <span>Date: </span></p>
+
+                                                @endif
+                                            @empty
+                                                <p></p>
+                                            @endforelse
                                         </div>
                                         <div>
                                             <table class="table table-bordered">
@@ -1029,7 +995,7 @@
             return SignaturePad;
 
         })));
-
+        console.log( $('#sportman').data('sportman'), 'hello world')
         var formteacher = new SignaturePad(document.querySelector("#formTeacher"));
         formteacher.off()
             var form = $('#formteacher').data('formteacher');
@@ -1038,6 +1004,7 @@
         var sport = new SignaturePad(document.querySelector("#sportMan"));
             sport.off()
         var sp = $('#sportman').data('sportman');
+
         sport.fromData(sp)
 
         var counsellor = new SignaturePad(document.querySelector("#Counsellor"));
