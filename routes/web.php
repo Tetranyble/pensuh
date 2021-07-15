@@ -36,6 +36,8 @@ Route::resource('syllabi', 'SyllabusController');
 Route::resource('students', 'StudentController');
 Route::resource('teachers', 'TeacherController');
 Route::resource('reports', 'ReportCardController');
+Route::get('/profilesettings', 'ProfileSettingController@index')->name('profilesettings.index');
+Route::patch('/profilesettings/{user}', 'ProfileSettingController@changePassword')->name('profilesettings.password')->middleware('auth');
 Route::get('attendances/automatic', 'AutomaticAttendanceController@create')->name('attendances.automatic')->middleware('auth');
 Route::post('attendances/automatic', 'AutomaticAttendanceController@store')->name('attendances.automatics')->middleware('auth');
 Route::resource('attendances', 'AttendanceController');

@@ -85,99 +85,85 @@
                                         @endforelse
                                         </tbody>
                                     </table>
-                                    <div class="pt-4 pb-4 d-flex justify-content-between">
-                                        <div>
+                                    <div class="pt-4 pb-4 row">
+                                        <div class="col-md-9">
                                             <?php
-                                            $comments = $report->comments($report->student->id)
+                                            $comments = $report->comments($report->student->id);
+                                            $role = [];
+                                            foreach ($comments as $comment){
+                                                array_push($role, $comment->role);
+                                            }
 
                                             ?>
-
-                                            @forelse($comments as $key => $comment)
-                                                @if($comment->role == 'form_teacher' && $key == 0)
-                                                    <p>Form Teacher's Comment: <span class="text-info">{{ $comment->comment }}</span></p>
-                                                    <p ><span id="formteacher" data-formteacher="{{ $comment->commentBy->signature }}">
-                                                            Signature: <canvas class="canvas" id="formTeacher" style="width: 17%"></canvas>
-                                                        </span> <span>Date: {{ $comment->created_at }}</span>
-                                                    </p>
-                                                    @elseif($key == 0)
-                                                            <p>Form Teacher's Comment: </p>
-                                                            <p class=""><span id="formteacher" data-formteacher="">
-                                                                    Signature: <canvas class="canvas" id="formTeacher" style="width: 17%"></canvas>
-                                                                </span> <span>Date: </span></p>
-
-                                                @endif
-                                            @empty
-                                                    <p></p>
-                                            @endforelse
-                                            @forelse($comments as $key => $comment)
-                                                @if($comment->role == 'sport' && $key == 0)
-                                                    <p>House Master's Comment: <span class="text-info">{{ $comment->comment }}</span></p>
-                                                    <p class=""><span id="sportman" data-sportman="{{ $comment->commentBy->signature }}">
-                                                                Signature: <canvas class="canvas" id="sportMan" style="width: 17%"></canvas>
-                                                            </span> <span>Date: {{ $comment->created_at }}</span>
-                                                    </p>
-                                                @elseif($key == 0)
-                                                    <p>House Master's Comment: </p>
-                                                    <p class=""><span id="sportman" data-sportman="">
-                                                                Signature: <canvas class="canvas" id="sportMan" style="width: 17%"></canvas>
+                                            @if(in_array('form_teacher',$role))
+                                                <p>FORM TEACHER'S COMMENT: <span class="text-body">{{ $comments[array_search('form_teacher',$role)]->comment }}</span></p>
+                                                <p class="position-relative mr-5"><span id="formteacher" data-formteacher="{{ $comments[array_search('form_teacher',$role)]->commentBy->signature }}">
+                                                        Signature: <canvas class="canvas" id="formTeacher" style="width: 30%; position: absolute; left: 17px; bottom: -20px"></canvas>
+                                                    </span> <span>Date: {{ $comments[array_search('form_teacher',$role)]->created_at }}</span>
+                                                </p>
+                                            @else
+                                                <p>FORM TEACHER'S COMMENT:  </p>
+                                                <p class="position-relative mr-5"><span id="formteacher" data-formteacher="">
+                                                                Signature: <canvas class="canvas" id="formTeacher" style="width: 17%"></canvas>
                                                             </span> <span>Date: </span></p>
 
-                                                @endif
-                                            @empty
-                                                <p></p>
-                                            @endforelse
+                                            @endif
+                                            @if(in_array('sport', $role))
+                                                <p>HOUSE MASTER'S COMMENT: <span class="text-body">{{ $comments[array_search('sport',$role)]->comment }}</span></p>
+                                                <p class="position-relative mr-5"><span id="sportman" data-sportman="{{ $comments[array_search('sport',$role)]->commentBy->signature }}">
+                                                            Signature: <canvas class="canvas" id="sportMan" style="width: 30%; position: absolute; left: 17px; bottom: -20px"></canvas>
+                                                        </span> <span>Date: {{ $comments[array_search('sport',$role)]->created_at }}</span>
+                                                </p>
+                                            @else
+                                                <p>HOUSE MASTER'S COMMENT: </p>
+                                                <p class="position-relative mr-5"><span id="sportman" data-sportman="">
+                                                            Signature: <canvas class="canvas" id="sportMan" style="width: 30%; position: absolute; left: 17px; bottom: -20px"></canvas>
+                                                        </span> <span>Date: </span></p>
 
-                                            @forelse($comments as $key => $comment)
-                                                @dd($comment->role)
-                                                @if($comment->role != 'counsellor')
-                                                    <p>Guidance Counsellor's Comment: <span class="text-info">{{ $comment->comment }}</span></p>
-                                                    <p ><span id="counsellor" data-counsellor="{{ $comment->commentBy->signature }}">
-                                                                Signature: <canvas class="canvas" id="Counsellor" style="width: 17%"></canvas>
-                                                            </span> <span>Date: {{ $comment->created_at }}</span>
-                                                    </p>
-                                                @elseif($key == 0)
-                                                        <p>Guidance Counsellor's Comment: </p>
-                                                        <p class=""><span id="counsellor" data-counsellor="">
-                                                                Signature: <canvas class="canvas" id="Counsellor" style="width: 17%"></canvas>
-                                                            </span> <span>Date: </span></p>
+                                            @endif
+
+                                            @if(in_array('counsellor', $role))
+                                                <p>GUIDANCE COUNSELLOR'S COMMENT: <span class="text-body">{{ $comments[array_search('counsellor',$role)]->comment }}</span></p>
+                                                <p class="position-relative mr-5"><span id="counsellor" data-counsellor="{{ $comments[array_search('counsellor',$role)]->commentBy->signature }}">
+                                                            Signature: <canvas class="canvas" id="Counsellor" style="width: 30%; position: absolute; left: 17px; bottom: -20px"></canvas>
+                                                        </span> <span>Date: {{ $comments[array_search('counsellor',$role)]->created_at }}</span>
+                                                </p>
+                                            @else
+                                                <p>GUIDANCE COUNSELLOR'S COMMENT: </p>
+                                                <p class="position-relative mr-5"><span id="counsellor" data-counsellor="">
+                                                            Signature: <canvas class="canvas" id="Counsellor" style="width: 30%; position: absolute; left: 17px; bottom: -20px"></canvas>
+                                                        </span> <span>Date: </span></p>
 
 
-                                                @endif
-                                            @empty
-                                               <p></p>
-                                            @endforelse
-                                            @forelse($comments as $key => $comment)
-                                                @if($comment->role == 'principal' && $key == 0)
-                                                    <p>Principal's Comment: <span class="text-info">{{ $comment->comment }}</span></p>
-                                                    <p ><span id="principal" data-principal="{{ $comment->commentBy->signature }}">
-                                                                Signature: <canvas class="canvas" id="Principal" style="width: 17%"></canvas>
-                                                            </span> <span>Date: {{ $comment->created_at }}</span>
-                                                    </p>
-                                                @elseif($key == 0)
-                                                        <p>Principal's Comment: </p>
-                                                        <p class=""><span id="principal" data-principal="">
-                                                                Signature: <canvas class="canvas" id="Principal" style="width: 17%"></canvas>
-                                                            </span> <span>Date: </span></p>
+                                            @endif
+                                            @if(in_array('principal', $role))
+                                                <p>PRINCIPAL'S COMMENT: <span class="text-body">{{ $comments[array_search('principal',$role)]->comment }}</span></p>
+                                                <p class="position-relative mr-5"><span id="principal" data-principal="{{ $comments[array_search('principal',$role)]->commentBy->signature }}">
+                                                            Signature: <canvas class="canvas" id="Principal" style="width: 30%; position: absolute; left: 17px; bottom: -20px"></canvas>
+                                                        </span> <span>Date: {{ $comments[array_search('principal',$role)]->created_at }}</span>
+                                                </p>
+                                            @else
+                                                <p>PRINCIPAL'S COMMENT: </p>
+                                                <p class="position-relative mr-5"><span id="principal" data-principal="">
+                                                            Signature: <canvas class="canvas" id="Principal" style="width: 30%; position: absolute; left: 17px; bottom: -20px"></canvas>
+                                                        </span> <span>Date: </span></p>
 
-                                                @endif
-                                            @empty
-                                                <p></p>
-                                            @endforelse
+                                            @endif
                                         </div>
-                                        <div>
-                                            <table class="table table-bordered">
+                                        <div class="col-md-3 float-right">
+                                            <table class="table-bordered">
                                                 <thead>
                                                 <tr>
-                                                    <th class="pr-2 pl-2"><small><b>Fees</b></small></th>
-                                                    <th class="pr-2 pl-2"><small><b>Amount (N)</b></small></th>
+                                                    <th class="pr-4 pl-4"><small><b>Fees</b></small></th>
+                                                    <th class="pr-4 pl-4"><small><b>Amount (N)</b></small></th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 @forelse($fees as $key => $fee)
-                                                    @if($key < 6)
+                                                    @if($key < 10)
                                                     <tr>
-                                                        <th class="pr-2 pl-2"><small>{{ $fee->name }}</small></th>
-                                                        <td class="pr-2 pl-2"><small>{{ money($fee->amount, '') }}</small></td>
+                                                        <th class="pr-4 pl-4"><small>{{ $fee->name }}</small></th>
+                                                        <td class="pr-4 pl-4"><small>{{ money($fee->amount, '') }}</small></td>
                                                     </tr>
                                                     @endif
                                                 @empty
@@ -201,77 +187,77 @@
                                         <tbody>
                                         <tr>
                                             <th class="pr-2 pl-2"><small>Punctuality</small></th>
-                                            <td class="pr-2 pl-2"><small>{{ $report->punctuality }}</small></td>
+                                            <td class="pr-2 pl-2"><small>{{ ($report->punctuality == 0) ? '': $report->punctuality }}</small></td>
                                             <td class="pr-2 pl-2"><small>{{ $report->user->fullname }}</small></td>
                                         </tr>
                                         <tr>
                                             <th class="pr-2 pl-2"><small>Class Attendance</small></th>
-                                            <td class="pr-2 pl-2"><small>{{ $report->attendance }}</small></td>
+                                            <td class="pr-2 pl-2"><small>{{ ($report->attendance == 0) ? '': $report->attendance }}</small></td>
                                             <td class="pr-2 pl-2"><small>{{ $report->user->fullname }}</small></td>
                                         </tr>
                                         <tr>
                                             <th class="pr-2 pl-2"><small>Attentiveness</small></th>
-                                            <td class="pr-2 pl-2"><small>{{ $report->attentiveness }}</small></td>
+                                            <td class="pr-2 pl-2"><small>{{ ($report->attentiveness == 0) ? '': $report->attentiveness }}</small></td>
                                             <td class="pr-2 pl-2"><small>{{ $report->user->fullname }}</small></td>
                                         </tr>
                                         <tr>
                                             <th class="pr-2 pl-2"><small>Initiative</small></th>
-                                            <td class="pr-2 pl-2"><small>{{ $report->initiative }}</small></td>
+                                            <td class="pr-2 pl-2"><small>{{ ($report->initiative == 0) ? '': $report->initiative }}</small></td>
                                             <td class="pr-2 pl-2"><small>{{ $report->user->fullname }}</small></td>
                                         </tr>
                                         <tr>
                                             <th class="pr-2 pl-2"><small>Perseverance</small></th>
-                                            <td class="pr-2 pl-2"><small>{{ $report->perseverance }}</small></td>
+                                            <td class="pr-2 pl-2"><small>{{ ($report->perseverance == 0) ? '' : $report->perseverance }}</small></td>
                                             <td class="pr-2 pl-2"><small>{{ $report->user->fullname }}</small></td>
                                         </tr>
                                         <tr>
                                             <th class="pr-2 pl-2"><small>Carrying out assignment</small></th>
-                                            <td class="pr-2 pl-2"><small>{{ $report->carrying_out_assignment }}</small></td>
+                                            <td class="pr-2 pl-2"><small>{{ ($report->carrying_out_assignment == 0) ? '' : $report->carrying_out_assignment }}</small></td>
                                             <td class="pr-2 pl-2"><small>{{ $report->user->fullname }}</small></td>
                                         </tr>
                                         <tr>
                                             <th class="pr-2 pl-2"><small>Organisational Ability</small></th>
-                                            <td class="pr-2 pl-2"><small>{{ $report->organisational_ability }}</small></td>
+                                            <td class="pr-2 pl-2"><small>{{ ($report->organisational_ability == 0) ? '': $report->organisational_ability }}</small></td>
                                             <td class="pr-2 pl-2"><small>{{ $report->user->fullname }}</small></td>
                                         </tr>
                                         <tr>
                                             <th class="pr-2 pl-2"><small>Neatness</small></th>
-                                            <td class="pr-2 pl-2"><small>{{ $report->neatness }}</small></td>
+                                            <td class="pr-2 pl-2"><small>{{ ($report->neatness == 0) ? '': $report->neatness }}</small></td>
                                             <td class="pr-2 pl-2"><small>{{ $report->user->fullname }}</small></td>
                                         </tr>
                                         <tr>
                                             <th class="pr-2 pl-2"><small>Politeness</small></th>
-                                            <td class="pr-2 pl-2"><small>{{ $report->politeness }}</small></td>
+                                            <td class="pr-2 pl-2"><small>{{ ($report->politeness == 0) ? '' : $report->politeness }}</small></td>
                                             <td class="pr-2 pl-2"><small>{{ $report->user->fullname }}</small></td>
                                         </tr>
                                         <tr>
                                             <th class="pr-2 pl-2"><small>Honesty</small></th>
-                                            <td class="pr-2 pl-2"><small>{{ $report->honesty }}</small></td>
+                                            <td class="pr-2 pl-2"><small>{{ ($report->honesty == 0) ? '': $report->honesty }}</small></td>
                                             <td class="pr-2 pl-2"><small>{{ $report->user->fullname }}</small></td>
                                         </tr>
                                         <tr>
                                             <th class="pr-2 pl-2"><small>Self control</small></th>
-                                            <td class="pr-2 pl-2"><small>{{ $report->self_control }}</small></td>
+                                            <td class="pr-2 pl-2"><small>{{ ($report->self_control == 0)? '': $report->self_control }}</small></td>
                                             <td class="pr-2 pl-2"><small>{{ $report->user->fullname }}</small></td>
                                         </tr>
                                         <tr>
                                             <th class="pr-2 pl-2"><small>Spirit of cooperation</small></th>
-                                            <td class="pr-2 pl-2"><small>{{ $report->spirit_of_cooperation }}</small></td>
+                                            <td class="pr-2 pl-2"><small>{{( $report->spirit_of_cooperation == 0) ? '' :  $report->spirit_of_cooperation }}</small></td>
                                             <td class="pr-2 pl-2"><small>{{ $report->user->fullname }}</small></td>
                                         </tr>
                                         <tr>
                                             <th class="pr-2 pl-2"><small>Obedience</small></th>
-                                            <td class="pr-2 pl-2"><small>{{ $report->obedience }}</small></td>
+                                            <td class="pr-2 pl-2"><small>{{ ($report->obedience == 0) ? '' : $report->obedience }}</small></td>
                                             <td class="pr-2 pl-2"><small>{{ $report->user->fullname }}</small></td>
                                         </tr>
                                         <tr>
                                             <th class="pr-2 pl-2"><small>Sense of responsibility</small></th>
-                                            <td class="pr-2 pl-2"><small>{{ $report->sense_of_responsibility }}</small></td>
+                                            <td class="pr-2 pl-2"><small>{{ ($report->sense_of_responsibility == 0) ? '' : $report->sense_of_responsibility }}</small></td>
                                             <td class="pr-2 pl-2"><small>{{ $report->user->fullname }}</small></td>
                                         </tr>
                                         <tr>
                                             <th class="pr-2 pl-2"><small>Public Speaking</small></th>
-                                            <td class="pr-2 pl-2"><small>{{ $report->public_speaking }}</small></td>
+                                            <td class="pr-2 pl-2"><small>{{ ($report->public_speaking == 0) ? '' : $report->public_speaking }}</small></td>
                                             <td class="pr-2 pl-2"><small>{{ $report->user->fullname }}</small></td>
                                         </tr>
 
