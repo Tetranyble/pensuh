@@ -132,6 +132,9 @@
       <path value="$PROJECT_DIR$/vendor/layershifter/tld-database" />
       <path value="$PROJECT_DIR$/vendor/layershifter/tld-extract" />
       <path value="$PROJECT_DIR$/vendor/layershifter/tld-support" />
+      <path value="$PROJECT_DIR$/vendor/maximebf/debugbar" />
+      <path value="$PROJECT_DIR$/vendor/symfony/debug" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
     </include_path>
   </component>
   <component name="PhpUnit">

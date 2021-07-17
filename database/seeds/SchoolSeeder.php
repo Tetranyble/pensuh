@@ -64,6 +64,8 @@ class SchoolSeeder extends Seeder
             'mission_body' =>  '<p>Our mission is to make learning:</p><ul><li>Simple</li><li>Flexible</li><li>Reliable</li><li>User friendly</li></ul>',
             'benefit_header' => 'Product Features',
             'benefit_body' => 'Peculiar Group of School is a Cloud based School Management Software System that combines all features necessary for running a modern Nursery, Primary, or Secondary school into one system that is simple, flexible, and reliable.',
+        ])->domains()->create([
+            'domain' => 'super.localhost',
         ]);
     }
 }

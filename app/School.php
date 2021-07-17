@@ -46,4 +46,7 @@ class School extends Model
     public function psychometric(){
         return $this->hasMany(PsychologicalRating::class);
     }
+    public function domains(){
+        return $this->hasMany(Domain::class);
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes;
 use App\Event;
 use App\School;
 use App\Services\Schools;
@@ -18,9 +19,9 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index( Schools $schools)
     {
-        $events = Event::whereSchoolId($this->schools->id())->paginate(14);
+        $events = Event::whereSchoolId($schools->id())->paginate(14);
         return view('frontend.events', compact( 'events'));
     }
 
@@ -51,7 +52,7 @@ class EventController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show(Event $event, Schools $schools)
     {
         return view('frontend.event', compact( 'event'));
     }

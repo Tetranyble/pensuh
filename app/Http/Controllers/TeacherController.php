@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes;
 use App\School;
 use App\Services\Schools;
 use App\User;
@@ -22,9 +23,9 @@ class TeacherController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Schools $schools)
     {
-        $teachers = User::whereHas("roles", function($q){ $q->where("name", "teacher"); })->where('school_id', $this->schools->id())->paginate();
+        $teachers = User::whereHas("roles", function($q){ $q->where("name", "teacher"); })->where('school_id', $schools->id())->paginate();
         return view('frontend.teachers', compact('teachers'));
     }
 
@@ -55,9 +56,9 @@ class TeacherController extends Controller
      * @param  \App\User  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function show(User $teacher)
+    public function show(User $teacher, Schools $schools)
     {
-        $teachers = User::whereHas("roles", function($q){ $q->where("name", "teacher"); })->where('school_id', $this->schools->id())->paginate();
+        $teachers = User::whereHas("roles", function($q){ $q->where("name", "teacher"); })->where('school_id', $schools->id())->paginate();
         return view('frontend.teacher', compact('teacher', 'teachers'));
     }
 
