@@ -19,7 +19,7 @@
                                     <h4><b>TOTAL:</b> {{ $report->total }}</h4>
                                     <h4><b>AVERAGE:</b> {{ $report->average }}</h4>
                                     <h4><b>POSITION:</b> {{ $report->position }}</h4>
-                                    <h4><b>ADMISSION NUMBER:</b> {{ $report->school->school_name_code . '-' . $report->student->code }}</h4>
+                                    <h4><b>ADMISSION NUMBER:</b> {{ \Illuminate\Support\Str::upper($report->school->school_name_code) . '-' . $report->student->code }}</h4>
                                 </div>
                                 <div class="text-center">
                                     @if($report->school->result_logo)
