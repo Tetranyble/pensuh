@@ -15,6 +15,8 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
 
     .copyDirectory('resources/assets', 'public/assets')
+    .copyDirectory('resources/assets/main', 'public/assets')
+    .copyDirectory('resources/assets/main/images', 'public/images')
     .copyDirectory('resources/dist', 'public/dist')
     .copyDirectory('resources/favicon', 'public')
     .copyDirectory('resources/js/scanner.min.js', 'public/js')

@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::resource('/product', ProductController::class);
-Route::get('/', function (){
-    return 'main site loaded';
-});
 Auth::routes(['verify' => true]);
 Route::impersonate();
+Route::namespace('Main')->group(function(){
+    Route::get('/', 'HomeController@index')->name('main.index');
+});
+
