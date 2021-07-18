@@ -2,7 +2,6 @@
 
 namespace Illuminate\Foundation\Auth;
 
-use App\Http\Requests\RegistrationRequest;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -28,9 +27,10 @@ trait RegistersUsers
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */
-    public function register(RegistrationRequest $request)
+    public function register(Request $request)
     {
-       //$this->validator($request->all())->validate();
+        $this->validator($request->all())->validate();
+
         event(new Registered($user = $this->create($request->all())));
 
         $this->guard()->login($user);
@@ -61,7 +61,7 @@ trait RegistersUsers
      * @param  mixed  $user
      * @return mixed
      */
-    protected function registered(RegistrationRequest $request, $user)
+    protected function registered(Request $request, $user)
     {
         //
     }
