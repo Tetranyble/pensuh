@@ -8,8 +8,8 @@
 (function($) {
     "use strict";
     /*---------------------------------------------*
-     // Loader 
-    *---------------------------------------------*/ 
+     // Loader
+    *---------------------------------------------*/
     $(window).on('load', function() {
         $('#status').fadeOut();
         $('#preloader').delay(350).fadeOut('slow');
@@ -18,8 +18,8 @@
         });
     });
     /*---------------------------------------------*
-     // WOW Animation 
-    *---------------------------------------------*/ 
+     // WOW Animation
+    *---------------------------------------------*/
     var wow = new WOW(
         {
             boxClass:     'wow',      // default
@@ -32,14 +32,15 @@
     wow.init();
     /*---------------------------------------------*
      // Theme Option
-    *---------------------------------------------*/ 
+    *---------------------------------------------*/
+
     $("#theme-option .switcher-btn a.settings").click(function(e){
         e.preventDefault();
         var div = $("#theme-option");
         if (div.css("left") === "-200px") {
             $("#theme-option").animate({
                 left: "0px"
-            }); 
+            });
         } else {
             $("#theme-option").animate({
                 left: "-200px"
@@ -63,7 +64,7 @@
     function changeImagePath(colorValue){
         var img = $("img").each(function() {
             var src = $(this).attr("src");
-            var path = src.substring(0,src.lastIndexOf('/')); 
+            var path = src.substring(0,src.lastIndexOf('/'));
             var fileName = src.substring(src.lastIndexOf('/'));
             var newSrc = path+"/large"+fileName;
             if(path !== "images"){
@@ -83,10 +84,10 @@
         $(this).removeClass('enable');
         return false;
     });
-    
+
     /*---------------------------------------------*
      // Search Option
-    *---------------------------------------------*/ 
+    *---------------------------------------------*/
     $('.search-btn a').click(function(e){
         e.preventDefault();
         $('.overlay.overlay-search').addClass('open');
@@ -95,7 +96,7 @@
         e.preventDefault();
         $('.overlay.overlay-search').removeClass('open');
     });
-    
+
     $(document).keydown(function(e) {
         // ESCAPE key pressed
         if (e.keyCode === 27) {
@@ -106,7 +107,7 @@
     });
     /*---------------------------------------------*
      // Sticky Nav
-    *---------------------------------------------*/ 
+    *---------------------------------------------*/
     $(window).scroll(function() {
         var scroll = $(window).scrollTop();
         if (scroll >= 150) {
@@ -162,7 +163,7 @@
     });
     /*---------------------------------------------*
      // Testimonial slider
-    *---------------------------------------------*/ 
+    *---------------------------------------------*/
     $('.theme-one .testimonial-slider').slick({
         dots: false,
         arrows: true,
@@ -226,7 +227,7 @@
     });
     /*---------------------------------------------*
      // Screen Shot slider
-    *---------------------------------------------*/ 
+    *---------------------------------------------*/
     $('.screenshot-slider').slick({
         dots: false,
         arrows: true,
@@ -328,7 +329,7 @@
     });
     /*---------------------------------------------*
      // Fact Counter + Text Count
-    *---------------------------------------------*/ 
+    *---------------------------------------------*/
     if($('.counter').length){
         $('.counter').appear(function(){
             var $t = $(this),
@@ -355,7 +356,7 @@
     }
     /*---------------------------------------------*
      // Filter
-    *---------------------------------------------*/ 
+    *---------------------------------------------*/
     if($('.grid').length > 0){
         var $grid = jQuery('.grid').isotope({
             // options
@@ -377,10 +378,10 @@
         });
     }
 
-    
+
     /*---------------------------------------------*
      // CountDown
-    *---------------------------------------------*/ 
+    *---------------------------------------------*/
     if($('#clock').length > 0){
         var DateTime = $('#clock').data('date');
         const second = 1000,
@@ -388,7 +389,7 @@
             hour = minute * 60,
             day = hour * 24;
             let countDown = new Date(DateTime).getTime(),
-            x = setInterval(function() {    
+            x = setInterval(function() {
             let now = new Date().getTime(),
                 distance = countDown - now;
             document.getElementById('days').innerText = Math.floor(distance / (day)),
@@ -399,7 +400,7 @@
     }
     /*---------------------------------------------*
      // Upload
-    *---------------------------------------------*/ 
+    *---------------------------------------------*/
     jQuery('input#upload').change(function(){
         var tmpval = jQuery(this).val();
         var ms = this.value.replace(/^.*\\/, '');
