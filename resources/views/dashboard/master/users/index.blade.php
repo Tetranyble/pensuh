@@ -34,6 +34,7 @@
                                 <thead>
                                 <tr>
                                     <th><small>#</small></th>
+                                    <th><small>ID</small></th>
                                     <th><small>Name</small></th>
                                     <th><small>Code</small></th>
                                     <th><small>Phone</small></th>
@@ -48,6 +49,7 @@
                                 @forelse($users as $key => $user)
                                     <tr>
                                         <td>{{ $key+1 }}</td>
+                                        <td>{{ $user->id }}</td>
                                         <td>{{ $user->fullname }}</td>
                                         <td>{{ $user->code }}</td>
                                         <td>{{ $user->phone }}</td>
@@ -77,6 +79,7 @@
                                 <tfoot>
                                 <tr>
                                     <th><small>#</small></th>
+                                    <th><small>ID</small></th>
                                     <th><small>Name</small></th>
                                     <th><small>Code</small></th>
                                     <th><small>Phone</small></th>
