@@ -104,7 +104,7 @@
                                             @else
                                                 <p>FORM TEACHER'S COMMENT:  </p>
                                                 <p class="position-relative mr-5"><span id="formteacher" data-formteacher="">
-                                                                Signature: <canvas class="canvas" id="formTeacher" style="width: 17%"></canvas>
+                                                                Signature: <canvas class="canvas" id="formTeacher" style="width: 30%; position: absolute; left: 17px; bottom: -20px"></canvas>
                                                             </span> <span>Date: </span></p>
 
                                             @endif
