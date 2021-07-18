@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes;
 use App\Course;
 use App\School;
 use App\Services\Schools;
@@ -21,16 +22,16 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index( Schools $schools)
     {
         if (request('q')) {
-            $courses = Course::where('school_id', $this->schools->id())->where([
+            $courses = Course::where('school_id', $schools->id())->where([
 
                 ['name', 'LIKE', '%' . Str::lower(request('q')) . '%'],
             ])->paginate();
 
         }else{
-            $courses = Course::where('school_id', $this->schools->id())->paginate();
+            $courses = Course::where('school_id', $schools->id())->paginate();
         }
         return view('frontend.courses', compact('courses'));
     }
@@ -62,10 +63,11 @@ class CourseController extends Controller
      * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show(Course $course, Schools $schools)
     {
 
-        $courses = Course::where('school_id', $this->schools->id())->paginate(5);
+        $courses = Course::where('school_id', $schools->id())->paginate(5);
+
         return view('frontend.course', compact('course', 'courses'));
     }
 

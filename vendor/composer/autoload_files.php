@@ -91,7 +91,12 @@ return array(
     'f190e3308e6ca23234a2875edc985c03' => $vendorDir . '/markbaker/complex/classes/src/operations/divideby.php',
     'ac9e33ce6841aa5bf5d16d465a2f03a7' => $vendorDir . '/markbaker/complex/classes/src/operations/divideinto.php',
     '6124b4c8570aa390c21fafd04a26c69f' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
+<<<<<<< HEAD
     'ed962a97bd972bc82007176b647d4e36' => $vendorDir . '/facade/ignition/src/helpers.php',
+=======
+    'b6b991a57620e2fb6b2f66f03fe9ddc2' => $vendorDir . '/symfony/string/Resources/functions.php',
+    '4a1f389d6ce373bda9e57857d3b61c84' => $vendorDir . '/barryvdh/laravel-debugbar/src/helpers.php',
+>>>>>>> 4f20387095fb7797b2112fddb1ffacea9cf1bb44
     '507d7a825db0ba8319f9dd335c46057a' => $vendorDir . '/lab404/laravel-impersonate/src/helpers.php',
     '98ac7ebbcd4b271b4f101d3af2543920' => $vendorDir . '/layershifter/tld-extract/src/static.php',
     '880d9aa7c2c689853e94e8a3794c8282' => $vendorDir . '/mavinoo/laravel-batch/src/Common/Helpers.php',

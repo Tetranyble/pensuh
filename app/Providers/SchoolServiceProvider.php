@@ -3,13 +3,21 @@
 namespace App\Providers;
 
 use App\Classes;
-use App\School;
+use App\Http\Middleware\InitializeStoreByDomain;
+use App\Http\Middleware\InitializeStoreByDomainOrSubdomain;
+use App\Http\Middleware\InitializeStoreByRequestData;
+use App\Http\Middleware\InitializeStoreBySubdomain;
+use App\Services\SchoolManager;
 use App\Services\Schools;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use LayerShifter\TLDExtract\Extract;
+
 
 class SchoolServiceProvider extends ServiceProvider
 {
+    // By default, no namespace is used to support the callable array syntax.
+    public static string $controllerNamespace = 'App\Http\Controllers';
+
     /**
      * Register services.
      *
@@ -27,13 +35,33 @@ class SchoolServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->singleton(Schools::class, function($app){
-            $extract = new Extract();
-            //$school = School::whereDomain($app['config']->get('app.url'))->first();
-            $result = $extract->parse(request()->getHost());
-            $school = School::where('domain', str_replace('www.', '', $result->getRegistrableDomain()))->orWhere('alias', str_replace('www.', '', $result->getFullHost()))->first();
-            abort_unless($school, 404);
-            return new Schools($school);
-        });
+        $this->mapRoutes();
+
+        $this->makeTenancyMiddlewareHighestPriority();
+
+
+    }
+    protected function mapRoutes()
+    {
+        if (file_exists(base_path('routes/school.php'))) {
+            Route::namespace(static::$controllerNamespace)
+                ->group(base_path('routes/school.php'));
+        }
+    }
+
+    protected function makeTenancyMiddlewareHighestPriority()
+    {
+        $tenancyMiddleware = [
+            // Even higher priority than the initialization middleware
+            Middleware\PreventAccessFromCentralDomains::class,
+            InitializeStoreByDomain::class,
+            InitializeStoreBySubdomain::class,
+            InitializeStoreByDomainOrSubdomain::class,
+            InitializeStoreByRequestData::class
+        ];
+
+        foreach (array_reverse($tenancyMiddleware) as $middleware) {
+            $this->app[\Illuminate\Contracts\Http\Kernel::class]->prependToMiddlewarePriority($middleware);
+        }
     }
 }

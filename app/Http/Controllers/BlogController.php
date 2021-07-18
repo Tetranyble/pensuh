@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Blog;
 use App\Category;
+use App\Classes;
 use App\School;
 use App\Services\Schools;
 use App\Tag;
@@ -24,26 +25,25 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index( Schools $schools)
     {
         if (request('tag')){
-            $blogs = Tag::where('school_id', $this->schools->id())->where('slug', request('tag'))->firstOrFail()->blogs()->paginate();
+            $blogs = Tag::where('school_id', $schools->id())->where('slug', request('tag'))->firstOrFail()->blogs()->paginate();
         }elseif (request('category')){
-            $blogs = Category::where('school_id', $this->schools->id())->where('slug', request('category'))->firstOrFail()->blogs()->paginate();
+            $blogs = Category::where('school_id', $schools->id())->where('slug', request('category'))->firstOrFail()->blogs()->paginate();
         }elseif (request('search')){
-            $blogs = Blog::where('school_id', $this->schools->id())->where([
+            $blogs = Blog::where('school_id', $schools->id())->where([
 
                 ['name', 'LIKE', '%' . Str::lower(request('search')) . '%'],
             ])->latest()->paginate();
         } else{
-            $blogs = Blog::where('school_id', $this->schools->id())->paginate();
+            $blogs = Blog::where('school_id', $schools->id())->paginate();
         }
 
-        $latestBlogs = Blog::where('school_id', $this->schools->id())->orderBy('created_at', 'desc')->take(3)->get();
+        $latestBlogs = Blog::where('school_id', $schools->id())->orderBy('created_at', 'desc')->take(3)->get();
 
-        $tags = Tag::where('school_id', $this->schools->id())->get();
-        $categories = Category::where('school_id', $this->schools->id())->withCount('blogs')->get();
-
+        $tags = Tag::where('school_id', $schools->id())->get();
+        $categories = Category::where('school_id', $schools->id())->withCount('blogs')->get();
         return view('frontend.blogs', compact('blogs', 'tags', 'categories', 'latestBlogs'));
     }
 
@@ -74,29 +74,30 @@ class BlogController extends Controller
      * @param  \App\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function show(Blog $blog, $news)
+    public function show(Blog $blog, $news, Schools $schools)
     {
 
         if (request('tag')){
-            $blogs = Tag::where('school_id', $this->schools->id())->where('slug', request('tag'))->firstOrFail()->blogs()->paginate();
+            $blogs = Tag::where('school_id', $schools->id())->where('slug', request('tag'))->firstOrFail()->blogs()->paginate();
         }elseif (request('category')){
-            $blogs = Category::where('school_id', $this->schools->id())->where('slug', request('category'))->firstOrFail()->blogs()->paginate();
+            $blogs = Category::where('school_id', $schools->id())->where('slug', request('category'))->firstOrFail()->blogs()->paginate();
         }elseif (request('search')){
-            $blogs = Blog::where('school_id', $this->schools->id())->where([
+            $blogs = Blog::where('school_id', $schools->id())->where([
 
                 ['name', 'LIKE', '%' . Str::lower(request('search')) . '%'],
             ])->latest()->paginate();
         } else{
-            $blogs = Blog::where('school_id', $this->schools->id())->paginate();
+            $blogs = Blog::where('school_id', $schools->id())->paginate();
         }
-        $latestBlogs = Blog::where('school_id', $this->schools->id())->orderBy('created_at', 'desc')->take(3)->get();
+        $latestBlogs = Blog::where('school_id', $schools->id())->orderBy('created_at', 'desc')->take(3)->get();
 
-        $tags = Tag::where('school_id', $this->schools->id())->get();
-        $categories = Category::where('school_id', $this->schools->id())->withCount('blogs')->get();
+        $tags = Tag::where('school_id', $schools->id())->get();
+        $categories = Category::where('school_id', $schools->id())->withCount('blogs')->get();
         if (request('tag') || \request('category')){
             return view('frontend.blogs', compact('blogs', 'tags', 'categories', 'latestBlogs', 'home'));
         }
-        $blog = Blog::where('school_id', $this->schools->id())->whereSlug($news)->first();
+        $blog = Blog::where('school_id', $schools->id())->whereSlug($news)->first();
+
         return view('frontend.blog', compact('blog', 'tags', 'categories', 'latestBlogs'));
     }
 

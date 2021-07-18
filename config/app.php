@@ -171,15 +171,18 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\SchoolServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\SchoolServiceProvider::class,
+        App\Providers\SchoolViewServiceProvider::class,
+
 
         Lab404\Impersonate\ImpersonateServiceProvider::class,
         App\Providers\SchoolAdminServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
@@ -235,6 +238,7 @@ return [
         'Batch' => Mavinoo\Batch\BatchFacade::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'SchoolAdmin' => App\Providers\SchoolAdminServiceProvider::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];

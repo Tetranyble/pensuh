@@ -24,9 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (! app()->runningInConsole()) {
-            view()->share(['classes' => Classes::whereSchoolId(Schools::schoolId())->get(), 'home' => $home = Schools::schools()]);
-        }
+
 
     }
 }

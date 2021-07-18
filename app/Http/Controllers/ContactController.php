@@ -44,15 +44,15 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreContactRequest $request)
+    public function store(StoreContactRequest $request, Schools $schools)
     {
-        $request->merge(['school_id' => $this->schools->id()]);
+        $request->merge(['school_id' => $schools->id()]);
         $contact = Contact::create($request->all());
 
-        Mail::to($this->schools->school()->email)
+        Mail::to($schools->school()->email)
             ->send(new \App\Mail\Contact($contact));
         Mail::to($contact->email)
-            ->send(new ContactAcknowledgement($contact, $this->schools->school()));
+            ->send(new ContactAcknowledgement($contact, $schools->school()));
         return response()->json([
             'status' => 'success',
             'success' => 'We have received your inquiry. We would get back to you as soon as possible.'

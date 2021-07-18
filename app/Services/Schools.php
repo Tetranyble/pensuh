@@ -22,6 +22,7 @@ class Schools {
         return app(Schools::class)->id();
     }
     public static function schools(){
+
         return app(Schools::class)->school();
     }
 }
