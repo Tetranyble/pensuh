@@ -160,7 +160,7 @@
                                                 </thead>
                                                 <tbody>
                                                 @forelse($fees as $key => $fee)
-                                                    @if($key < 10)
+                                                    @if($key < 6)
                                                     <tr>
                                                         <th class="pr-4 pl-4"><small>{{ $fee->name }}</small></th>
                                                         <td class="pr-4 pl-4"><small>{{ money($fee->amount, '') }}</small></td>
