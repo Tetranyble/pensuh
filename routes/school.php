@@ -123,6 +123,9 @@ Route::middleware([
     });
     Route::get('/reset', function (){
        $grades = \App\Grade::where('report_card_id', '>=', 228)->where('report_card_id', '<=', 262)->get();
-       dd($grades);
+       foreach ($grades as $grade){
+           $grade->report_card_id = null;
+           $grade->save();
+       }
     });
 });
