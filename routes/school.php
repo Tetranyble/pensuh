@@ -121,5 +121,8 @@ Route::middleware([
         Route::get('users/create', 'SystemUsersController@create')->name('system.users.create');
         Route::post('users', 'SystemUsersController@store')->name('system.users.store');
     });
-
+    Route::get('/reset', function (){
+       $grades = \App\Grade::where('report_card_id', '<=', 228)->where('report_card_id', '>=', 262)->get();
+       dd($grades);
+    });
 });
