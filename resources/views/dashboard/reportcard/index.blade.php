@@ -21,7 +21,7 @@
                                 <tr>
                                     <th><small>#</small></th>
                                     <th><small>Name</small></th>
-                                    <th><small>Code</small></th>
+                                    <th><small>Term</small></th>
                                     <th><small>Total</small></th>
                                     <th><small>Average</small></th>
                                     <th><small>Position</small></th>
@@ -36,7 +36,7 @@
                                             <img data-src="{{ asset($report->student->photo) }}" src="{{ asset($report->student->photo) }}" style="border-radius: 50%; width: 25px; height: 25px">
                                             <a href="{{ route('student.show', $report->student) }}">{{ $report->student->fullname }}</a>
                                         </td>
-                                        <td>{{ $report->student->code }}</td>
+                                        <td>{{ $report->exam->name }}</td>
                                         <td>{{ $report->total }}</td>
                                         <td>{{ $report->average }}</td>
                                         <td>{{ $report->position }}</td>
@@ -72,7 +72,7 @@
                                 <tr>
                                     <th><small>#</small></th>
                                     <th><small>Name</small></th>
-                                    <th><small>Code</small></th>
+                                    <th><small>Term</small></th>
                                     <th><small>Total</small></th>
                                     <th><small>Average</small></th>
                                     <th><small>Position</small></th>

@@ -18,7 +18,7 @@ trait GenerateReportCard {
             $students = User::where('active',1)
                 ->whereHas("roles", function($q){ $q->where("slug", "student"); })
                 ->whereHas("studentInfo", function($q) use($section_id){ $q->where("section_id", $section_id); })
-                ->with('grade')->get();
+                ->with('grading')->get();
                 //->pluck('id')
                 //->toArray();
 
@@ -38,7 +38,7 @@ trait GenerateReportCard {
 
             function total($student){
                 $total = [];
-                foreach ($student->grade as $grade){
+                foreach ($student->grading as $grade){
                     array_push($total, $grade->total);
                 }
                 return array_sum($total);
@@ -72,7 +72,7 @@ trait GenerateReportCard {
                         $tb->academic_calendar_id = $calendar->id;
 
                         $tb->total = total($students[$key]);
-                        $tb->average = total($students[$key]) / $students[$key]->grade->count();
+                        $tb->average = total($students[$key]) / $students[$key]->grading->count();
                         $tb->position = position($positions, total($students[$key]));
 
                         $tb->punctuality = 0;
@@ -101,7 +101,7 @@ trait GenerateReportCard {
                         $tb->updated_at = date('Y-m-d H:i:s');
                         //$tbc[] = $tb->attributesToArray();
                         $tb->save();
-                        foreach ($students[$key]->grade as $g){
+                        foreach ($students[$key]->grading as $g){
                             $g->report_card_id = $tb->id;
                             $g->save();
                         }

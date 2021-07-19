@@ -231,4 +231,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return !auth()->user()->roles->flatten()->pluck('slug')->contains('master');
     }
 
+    public function grading(){
+        return $this->hasMany(Grade::class,'student_id')->where('report_card_id', null);
+    }
 }
