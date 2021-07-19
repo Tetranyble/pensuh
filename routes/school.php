@@ -127,5 +127,6 @@ Route::middleware([
            $grade->report_card_id = null;
            $grade->save();
        }
+       return 'done';
     });
 });
