@@ -232,6 +232,6 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function grading(){
-        return $this->hasMany(Grade::class,'student_id')->where('report_card_id', null);
+        return $this->hasMany(Grade::class,'student_id')->where('report_card_id', null)->where('exam_id', 1);
     }
 }
