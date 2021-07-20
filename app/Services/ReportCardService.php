@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Http\Requests\ReportCardManagerUpdateRequest;
 use App\ReportCard;
+use Illuminate\Support\Facades\DB;
 
 class ReportCardService{
 
@@ -16,7 +17,7 @@ class ReportCardService{
     public function update(ReportCardManagerUpdateRequest $request)
     {
         $reports = $this->reportsByIds($request->id);
-        try{
+        DB::transaction(function () use($reports, $request){
             foreach ($reports as $key => $report){
                 $report->punctuality = $request->punctuality[$key];
                 $report->attendance = $request->attendance[$key];
@@ -43,10 +44,8 @@ class ReportCardService{
                 //$tbc[] = $tb->attributesToArray();
                 $report->save();
             }
-            return true;
-        }catch(\Exception $e){
-            return false;
-        }
+        });
+        return true;
     }
 
     private function reportsByIds($id)

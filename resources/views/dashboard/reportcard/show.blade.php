@@ -36,7 +36,7 @@
                                 </div>
                                 <div>
                                     <h4><b>HOUSE:</b> {{ $report->student->studentInfo->group->name }}</h4>
-                                    <h4><span><b>CLASS:</b> {{ $report->student->studentInfo->section->classes->name }}</span>   <span><b>NUMBER IN CLASS:</b> {{ $report->student->studentInfo->section->count() }}</span></h4>
+                                    <h4><span><b>CLASS:</b> {{ $report->student->studentInfo->section->classes->name }}</span>   <span><b>NUMBER IN CLASS:</b> {{ $report->class_count }}</span></h4>
                                     <h4><span><b>TERM:</b> {{ $report->exam->name }}</span> <span><b>YEAR:</b> {{ $report->exam->academicCalendar->session->name }}</span></h4>
                                     <h4><b>NEXT TERM BEGINS:</b> {{ $report->exam->academicCalendar->resumption}}</h4>
                                 </div>
